@@ -1,1 +1,8 @@
-﻿baseurl: /inexistence.github.com
+﻿title: My Blog
+baseurl: /inexistence.github.com
+author : jianbin
+name : Name Lastname
+email : blah@email.test
+github : username
+twitter : username
+feedburner : feedname
