@@ -1,2 +1,3 @@
+baseurl: jianbin.person
 markdown: rdiscount
 pygments: true
