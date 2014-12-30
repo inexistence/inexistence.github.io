@@ -1,7 +1,7 @@
----
+ï»¿---
 layout: default
-title: ÄãºÃ£¬ÊÀ½ç
+title: Hello World!
 ---
 <h2>{{ page.title }}</h2>
-<p>ÎÒµÄµÚÒ»ÆªÎÄÕÂ</p>
+<p>My first page</p>
 <p>{{ page.date | date_to_string }}</p>
