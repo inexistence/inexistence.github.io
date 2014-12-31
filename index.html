@@ -29,3 +29,14 @@ title: Blog
 	{% endif %}
 {% endif %}
 
+<p>分类</p>
+
+{% for category in site.categories %}
+{{ category | first }} 数量：
+</span>{{ category | last | size }}</span>
+<ul class="arc-list">
+    {% for post in category.last %}
+        <li>{{ post.date | date:"%d/%m/%Y"}} <a href="{{ post.url }}" target="_blank">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endfor %}
