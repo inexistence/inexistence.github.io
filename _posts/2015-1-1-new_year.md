@@ -6,7 +6,7 @@ description: description
 published: true
 ---
 
-<img class="full-width to-top" src="/images/2015-01-01.jpg">
+<img class="full-width to-top" src="../../../../images/2015-01-01.jpg">
 
 {{ page.title }}
 ===
