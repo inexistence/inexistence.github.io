@@ -73,29 +73,8 @@ subtitle:
 </ul>
 {% endfor %}
 
-<div class="scroll-to-top cursor-pointer tip-t-fade" data-tooltip="Scroll To Top"><a class="fa fa-chevron-circle-up fa-fw">scroll to top</a></div>
-
 </div>
 
 <script type="text/javascript">
-	var header = document.getElementById("header");
-	var overlay = document.getElementById("overlay");
-	var about = document.getElementById("about");
-	function setOpacity(){
-		var top = document.documentElement.scrollTop || document.body.scrollTop;
-		if(header) {
-			header.style.backgroundPosition="50%"+ top/5 + "px";
-		}
-		if(about){
-			about.style.opacity = 1-top/1000*3.5;
-		}
-		if(overlay){
-			//overlay.style.opacity = 0.5 + top/1000;
-			overlay.style.opacity = 0 + top/1000;
-		}
-	}
-	window.onscroll = function () { 
-		setOpacity();
-	};
-	setOpacity();
+	
 </script>

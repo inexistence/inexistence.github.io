@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-<link rel="stylesheet" href="/assets/css/markdown.css" type="text/css" media="all">
 <link rel="stylesheet" href="/assets/css/post.css" type="text/css" media="all">
 
 <div id="post">
@@ -14,35 +13,6 @@ layout: default
 	主要用于设置full-width的图片达到full-width的效果
 -->
 <script type="text/javascript">
-	function getByClass(oParent, sClass) {
-	        var aEle=oParent.getElementsByTagName('*');
-	        var aResult=[];
-	        var re=new RegExp('\\b'+sClass+'\\b', 'i');
-	        for(var i=0;i<aEle.length;i++) {
-	                if(re.test(aEle[i].className)) {
-	                        aResult.push(aEle[i]);
-	                }
-	        }
-	        return aResult;
-	}
-	function getWinWidth() {
-		if (window.innerWidth)
-			winWidth = window.innerWidth;
-		else if ((document.body) && (document.body.clientWidth))
-			winWidth = document.body.clientWidth;
-		if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
-			winWidth = document.documentElement.clientWidth;
-		}
-		return winWidth;
-	}
-	var resize = function(){
-		var img = getByClass(document, "full-width");
-		for(var i = 0; i < img.length; i++){
-			img[i].style.width = getWinWidth()+"px";
-		}
-	}
-
-	resize();
-	window.onresize = resize;
+	
 
 </script>

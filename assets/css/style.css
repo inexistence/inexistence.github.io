@@ -185,3 +185,75 @@ body {
 .entry .details .tags {
 	margin: 0 0 15px;
 }
+
+
+.index-nav {
+/	display: none;
+	position: fixed;
+	width: 30px;
+	z-index: 9800;
+	text-align: center;
+	background: #fafafa;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-size: 12px;
+	transition: .2s all linear;
+}
+
+.index-nav .border {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: -3px;
+	border: 3px solid #fafafa;
+	left: -3px;
+	border-radius: 4px;
+	display: none;
+}
+
+.index-nav .pointer-block {
+	position: absolute;
+	width: 30px;
+	height: 27px;
+	background: #00a1d6;
+	z-index: -1;
+	display: none;
+}
+
+.index-nav .nav-list {
+	position: relative;
+	z-index: 233;
+}
+.index-nav .n-i.gotop.sub {
+	background: #888;
+	padding: 0 0 10px 0;
+	color: #fff;
+	transition: .2s all linear;
+}
+
+.index-nav .n-i.gotop.sub:hover{
+	background-color:#666;
+}
+
+.index-nav .n-i.gotop {
+	border: none;
+}
+
+.index-nav .n-i {
+	border-bottom: 1px solid #ddd;
+	padding: 2px 0;
+	cursor: pointer;
+}
+
+.index-nav .n-i.gotop .btn_gotop {
+	height: 30px;
+	background: #888 url(/assets/images/icon_up.png) 11px 0px no-repeat;
+}
+
+.index-nav .n-i.gotop.sub .btn_gotop {
+background-color: transparent;
+}
