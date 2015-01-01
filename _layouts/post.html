@@ -1,9 +1,13 @@
 ---
 layout: default
 ---
-<link rel="stylesheet" href="/css/markdown.css" type="text/css" media="all">
+<link rel="stylesheet" href="/assets/css/markdown.css" type="text/css" media="all">
+<link rel="stylesheet" href="/assets/css/post.css" type="text/css" media="all">
 
 <div id="post">
+{% if page.frontImage %}
+<img class="full-width to-top" src="{{ page.frontImage }}">
+{% endif %}
 {{ content }}
 </div>
 <!--
@@ -34,7 +38,7 @@ layout: default
 	var resize = function(){
 		var img = getByClass(document, "full-width");
 		for(var i = 0; i < img.length; i++){
-			img[i].style.width = getWinWidth()-16+"px";
+			img[i].style.width = getWinWidth()+"px";
 		}
 	}
 

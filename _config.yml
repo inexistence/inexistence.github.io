@@ -1,4 +1,5 @@
 markdown: rdiscount
 pygments: true
-paginate: 1
+paginate: 5
 paginate_path: "page:num"
+excerpt_separator: "\n\n\n"

@@ -35,18 +35,7 @@ body {
 	padding: 30px;               /*原本是为了h1标题和顶部也有30px距离*/
     font-size: 18px;
 }
-#post img {
-	width:100%; 
-}
-#post .full-width{
-/	width: 107.5%;        /*使图片满框*/
-    max-width: 860px;
-	margin: 0px 0px 0 -30px;  /*使图片满框但不满顶部*/
-	text-align: center;
-}
-#post .to-top{
-	margin-top: -47.580px;  /*使图片满顶部*/
-}
+
 
 p   {
 /    font-size: 22px;

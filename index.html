@@ -1,13 +1,45 @@
 ---
 layout: default
-title: Blog
+title: 如果变成天空
+subtitle: 
 ---
-<h1>{{ page.title }}</h1>
-<ul>
+<header id="header">
+    <div id="overlay" style="opacity: 0.5"></div>
+    <div id="about" style="opacity: 1">
+            <h1><a href="/index.html">{{ page.title }}</a></h1>
+            <p>{{ page.subtitle }}</p>
+    </div>
+</header>
+<div id="posts" >
 {% for post in paginator.posts %}
-	<li>{{ post/date | date_to_string }} <a href="{{ post.url }}" target="_blank">{{ post.title }}</a></li>
+	{% capture isodd %}{{ forloop.index0 | modulo:2 }}{% endcapture %}
+	{% if isodd == '0' %}
+		<article class="entry animate-in" data-anim-type="fade-in-left" data-anim-delay="200">
+	{% else %}
+		<article class="entry animate-in" data-anim-type="fade-in-right" data-anim-delay="200">
+	{% endif %}
+
+	
+		{% if post.frontImage %}
+		<div class="photo">
+			<a href="{{ post.url }}" target="_blank">
+				<img src="{{ post.frontImage }}">
+			</a>
+		</div>
+		{% endif %}
+		<a href="{{ post.url }}" target="_blank">
+			<div id="captionsDiv" class="captions">
+				{{ post.excerpt }}
+			</div>
+		</a>
+		<div class="details">
+			<!-- <div class="tags">
+				<a href="http://theme-hogwood.tumblr.com/tagged/mountains" target="_blank">#mountains</a>
+			</div> -->
+			{{ post/date | date_to_string }}
+		</div> 
+	</article>
 {% endfor %}
-</ul>
 
 {% if paginator.total_pages > 1 %}
 	{% if paginator.previous_page %}
@@ -40,3 +72,30 @@ title: Blog
     {% endfor %}
 </ul>
 {% endfor %}
+
+<div class="scroll-to-top cursor-pointer tip-t-fade" data-tooltip="Scroll To Top"><a class="fa fa-chevron-circle-up fa-fw">scroll to top</a></div>
+
+</div>
+
+<script type="text/javascript">
+	var header = document.getElementById("header");
+	var overlay = document.getElementById("overlay");
+	var about = document.getElementById("about");
+	function setOpacity(){
+		var top = document.documentElement.scrollTop || document.body.scrollTop;
+		if(header) {
+			header.style.backgroundPosition="50%"+ top/5 + "px";
+		}
+		if(about){
+			about.style.opacity = 1-top/1000*3.5;
+		}
+		if(overlay){
+			//overlay.style.opacity = 0.5 + top/1000;
+			overlay.style.opacity = 0 + top/1000;
+		}
+	}
+	window.onscroll = function () { 
+		setOpacity();
+	};
+	setOpacity();
+</script>

@@ -2,8 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
+	<link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all">
+	<link rel="stylesheet" href="/assets/css/anim.min.css" type="text/css" media="all">
 	<title>{{ page.title }}</title>
 </head>
-<body>
-{{ content }}
+<body onload="loadOK()">
+<div id="loading" style="opacity: 1;"></div>
+<div id="container" style="opacity: 0;">
+	{{ content }}
+</div>
+
 </body>
+<script type="text/javascript">
+	function loadOK(){
+		var loading = document.getElementById("loading");
+		var container = document.getElementById("container");
+		if(loading)
+			loading.style.opacity = 0;
+		if(container)
+			container.style.opacity = 1;
+	}
+</script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/appear.min.js"></script>
+<script src="/assets/js/smoothscroll.min.js"></script>
+<script src="/assets/js/animations.min.js"></script>
+<script src="/assets/js/scrollToTop.js"></script>
