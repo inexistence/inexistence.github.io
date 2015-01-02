@@ -11,7 +11,7 @@ subtitle: 起风了，唯有努力生存。
             <p>{{ page.subtitle }}</p>
     </div>
 </header>
-<div id="posts" >
+<div id="posts" class="container">
 {% for post in paginator.posts %}
 	{% capture isodd %}{{ forloop.index0 | modulo:2 }}{% endcapture %}
 	{% if isodd == '0' %}
@@ -68,21 +68,26 @@ subtitle: 起风了，唯有努力生存。
 {% endif %}
 
 </div>
-<div style="background-color:#2c3e50;padding:180px;color:#FFF">
-	<h2 style="color:#FFF">分类</h2>
-	{% for category in site.categories %}
-	<div class="float-half-left">
-		<h3>{{ category | first }} ：
-		</span>{{ category | last | size }}</span></h3>
-		<ul class="arc-list">
-		    {% for post in category.last %}
-		        <li>{{ post.date | date:"%d/%m/%Y"}} <a href="{{ post.url }}" target="_blank">{{ post.title }}</a></li>
-		    {% endfor %}
-		</ul>
+<div class="container-fluid" style="background-color:#2c3e50;padding:180px 0;color:#FFF;">
+	<div class="row" style="margin: 0;">
+		<h2 class="col-sm-offset-2 col-md-offset-2" style="color:#FFF;">分类</h2>
+		{% for category in site.categories %}
+		{% if forloop.index0 == 0 %}
+		<div class="col-sm-4 col-md-4 col-sm-offset-2 col-md-offset-2" style="">
+		{% else %}
+		<div class="col-sm-4 col-md-4" style="">
+		{% endif %}
+		
+			<h3>{{ category | first }} ：</span>{{ category | last | size }}</span></h3>
+			<ul class="arc-list">
+			    {% for post in category.last %}
+			        <li>{{ post.date | date:"%d/%m/%Y"}} <a href="{{ post.url }}" target="_blank">{{ post.title }}</a></li>
+			    {% endfor %}
+			</ul>
+		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
-	<div class="clear"></div>
 </div>
-<div class="text-center" style="background-color:#2c3e50;color:#FFF;margin:0 auto;padding-bottom:55px;">
+<div class="text-center container-fluid" style="background-color:#2c3e50;color:#FFF;margin:0 auto;padding-bottom:55px;">
 	<p  style="margin:0px;max-width:100%;color:#eeeeee;">没有人烟的小径 你和我一起走着 你一定也很寂寞</p>
 </div>

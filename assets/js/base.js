@@ -100,7 +100,7 @@ var resize = function(){
 	}
 	//设置header满屏
 	if(header) {
-		var padding =(winHeight - 290)/2;
+		var padding =(winHeight - 278)/2;
 		header.style.paddingTop = header.style.paddingBottom = padding+"px";
 	}
 

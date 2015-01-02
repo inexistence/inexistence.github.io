@@ -48,6 +48,10 @@ a, p, .like_button, a#install-button, #posts-container, #sidebar, #sidebar a#ava
 	float: left;
 	width: 50%;
 }
+.float-half-right {
+	float: right;
+	width: 50%;
+}
 /*h1 a {
 	color: black;
 }
