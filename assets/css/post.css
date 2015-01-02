@@ -23,3 +23,18 @@
 	margin-bottom: 80px;
 	margin-top: 80px;
 }
+
+
+@media screen and (max-width: 890px){
+	#post {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 800px){
+	#post {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+}

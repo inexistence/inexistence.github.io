@@ -70,14 +70,16 @@ subtitle: 起风了，唯有努力生存。
 </div>
 <div style="background-color:#2c3e50;padding:180px;color:#FFF">
 	<h2 style="color:#FFF">分类</h2>
-
 	{% for category in site.categories %}
-	<h3>{{ category | first }} ：
-	</span>{{ category | last | size }}</span></h3>
-	<ul class="arc-list">
-	    {% for post in category.last %}
-	        <li>{{ post.date | date:"%d/%m/%Y"}} <a href="{{ post.url }}" target="_blank">{{ post.title }}</a></li>
-	    {% endfor %}
-	</ul>
+	<div class="float-half-left">
+		<h3>{{ category | first }} ：
+		</span>{{ category | last | size }}</span></h3>
+		<ul class="arc-list">
+		    {% for post in category.last %}
+		        <li>{{ post.date | date:"%d/%m/%Y"}} <a href="{{ post.url }}" target="_blank">{{ post.title }}</a></li>
+		    {% endfor %}
+		</ul>
+	</div>
 	{% endfor %}
+	<div class="clear"></div>
 </div>
