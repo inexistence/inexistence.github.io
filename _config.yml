@@ -4,3 +4,5 @@ paginate: 5
 paginate_path: "page:num"
 excerpt_separator: "\n\n\n"
 highlighter: pygments
+encoding: UTF-8
+permalink: /:year/:month/:day/:title

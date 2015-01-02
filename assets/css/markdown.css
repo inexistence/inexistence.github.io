@@ -1,6 +1,6 @@
-body {
-	background-color:#f8f8f8;
-}
+/*body {
+	background-color:#f0f0f0;
+}*/
 
 #post{
     margin: 0 auto;
@@ -97,7 +97,7 @@ a {
 }
 a:hover {
     text-decoration: blink;
-    color: green;
+    color: #00a1d6;
 }
 a:visited {
     color: black;

@@ -28,9 +28,18 @@ body{
 ::-webkit-scrollbar-thumb:hover{background:#17a689;cursor:pointer;}
 ::-webkit-scrollbar-thumb:active{background:#117964;}
 
-/*a, p, .like_button, a#install-button, #posts-container, #sidebar, #sidebar a#avatar img, #sidebar #search input[type="text"], #sidebar #instagram #instagram-feed img, #sidebar #flickr #flickr-feed img, #sidebar #dribbble #dribbble-feed img, #sidebar #twitter .content, .entry .photo img, .entry .text a.link:after, .mfp-fade.mfp-bg, .mfp-fade.mfp-wrap .mfp-content {
+a, p, .like_button, a#install-button, #posts-container, #sidebar, #sidebar a#avatar img, #sidebar #search input[type="text"], #sidebar #instagram #instagram-feed img, #sidebar #flickr #flickr-feed img, #sidebar #dribbble #dribbble-feed img, #sidebar #twitter .content, .entry .photo img, .entry .text a.link:after, .mfp-fade.mfp-bg, .mfp-fade.mfp-wrap .mfp-content {
 	-webkit-transition: .3s;
 	transition: .3s;
+}
+/*h1 a {
+	color: black;
+}
+h1 a:hover {
+	color: black;
+}
+h1 a:visited {
+    color: black;
 }*/
 #header {
 	position: relative;
@@ -100,6 +109,7 @@ body{
 	z-index: 10;
 	
 }
+
 #loading {
 	position: absolute;
 	width: 50px;
@@ -122,7 +132,7 @@ body{
 	padding: 20px 0;
 }
 #container {
-	/*background-color: #36b1c0;*/
+	/*background-color: #ec7068;*/
 	/*background-color: #f0f0f0;*/
 }
 
@@ -173,7 +183,15 @@ article {
 	color: #333333;
 }*/
 .entry a {
-	color: #777777;
+	color: #333;
+	text-decoration: none;
+}
+.entry a:hover {
+	color: #333;
+	text-decoration: none;
+}
+.entry a:visited {
+	color: #333;
 	text-decoration: none;
 }
 .entry .details, .entry .details a {
