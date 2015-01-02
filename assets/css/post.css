@@ -10,7 +10,7 @@
 
 #post .full-width{
 /	width: 107.5%;        /*使图片满框*/
-    max-width: 860px;
+    max-width: 800px;
 	margin: 0px 0px 0 -30px;  /*使图片满框但不满顶部*/
 	text-align: center;
 }
