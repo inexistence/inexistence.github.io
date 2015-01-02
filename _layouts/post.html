@@ -7,6 +7,8 @@ layout: default
 {% if page.frontImage %}
 <img class="full-width to-top" src="{{ page.frontImage }}">
 {% endif %}
+<h1>{{ page.title }}</h1>
+<p>{{ page.date | date_to_string }} {{ page.place }}</p>
 {{ content }}
 <div class="entry">
 <div class="details">

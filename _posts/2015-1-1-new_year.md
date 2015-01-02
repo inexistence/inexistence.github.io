@@ -4,12 +4,9 @@ title: 2015 新年
 category: [blog,web]
 description: description
 frontImage: /assets/blog-images/2015-01-01.jpg
+place: in Guang'zhou, China
 published: true
 ---
-
-{{ page.title }}
-===
-{{ page.date | date_to_string }} in Guang'zhou, China
 
 新的一年到了，没想到跨年的一刻竟然是在折腾github来搞静态blog，而且这个blog搞完以后估计好久都不会更新。
 

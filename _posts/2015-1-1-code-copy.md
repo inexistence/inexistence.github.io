@@ -2,11 +2,9 @@
 layout: post
 title: 自定义HTML滚动条
 category: WEB
+place: in Guang'zhou, China
 published: true
 ---
-{{ page.title }}
-====
-{{ page.date | date_to_string }} in Guang'zhou, China
 {% highlight css %}
 body{
 /	overflow-x:hidden;

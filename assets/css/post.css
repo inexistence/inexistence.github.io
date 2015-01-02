@@ -18,3 +18,8 @@
 #post .to-top{
 	margin-top: -47.580px;  /*使图片满顶部*/
 }
+
+#post {
+	margin-bottom: 80px;
+	margin-top: 80px;
+}
