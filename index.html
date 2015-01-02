@@ -1,11 +1,12 @@
 ---
 layout: default
-title: 如果变成天空
-subtitle: 
+title: INEXISTENCE
+subtitle: 过去的事情可以不忘记，但一定要放下。
 ---
 <header id="header">
-    <div id="overlay" style="opacity: 0.5"></div>
-    <div id="about" style="opacity: 1">
+    <div id="overlay"></div>
+    <div id="about">
+    <img title="喵~" src="/assets/images/cat_man.png" >
             <h1><a href="/index.html">{{ page.title }}</a></h1>
             <p>{{ page.subtitle }}</p>
     </div>
@@ -27,16 +28,19 @@ subtitle:
 			</a>
 		</div>
 		{% endif %}
-		<a href="{{ post.url }}" target="_blank">
+		
 			<div id="captionsDiv" class="captions">
 				{{ post.excerpt }}
 			</div>
-		</a>
+		
 		<div class="details">
-			<!-- <div class="tags">
-				<a href="http://theme-hogwood.tumblr.com/tagged/mountains" target="_blank">#mountains</a>
-			</div> -->
-			{{ post/date | date_to_string }}
+			<div class="tags">
+				{% for tag in post.category %}
+				<a href="#">#{{ tag }}</a>
+				{% endfor %}
+			</div>
+			<!-- {{ post/date | date_to_string }} -->
+			<div class="read-more"><a href="{{ post.url }}" target="_blank">查看更多</a></div>
 		</div> 
 	</article>
 {% endfor %}
@@ -61,18 +65,19 @@ subtitle:
 	{% endif %}
 {% endif %}
 
-<p>分类</p>
+</div>
+<div style="background-color:#2c3e50;padding:180px;color:#FFF">
+	<h2 style="color:#FFF">分类</h2>
 
-{% for category in site.categories %}
-{{ category | first }} 数量：
-</span>{{ category | last | size }}</span>
-<ul class="arc-list">
-    {% for post in category.last %}
-        <li>{{ post.date | date:"%d/%m/%Y"}} <a href="{{ post.url }}" target="_blank">{{ post.title }}</a></li>
-    {% endfor %}
-</ul>
-{% endfor %}
-
+	{% for category in site.categories %}
+	<h3>{{ category | first }} ：
+	</span>{{ category | last | size }}</span></h3>
+	<ul class="arc-list">
+	    {% for post in category.last %}
+	        <li>{{ post.date | date:"%d/%m/%Y"}} <a href="{{ post.url }}" target="_blank">{{ post.title }}</a></li>
+	    {% endfor %}
+	</ul>
+	{% endfor %}
 </div>
 
 <script type="text/javascript">

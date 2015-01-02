@@ -6,40 +6,41 @@ body{
 	scrollbar-track-color:#6b6b6b;
 	scrollbar-arrow-color:#fff;
 	scrollbar-shadow-color:#28e1bd;
-	scrollbar-dark-shadow-color:#1dd2af
+	scrollbar-dark-shadow-color:#1dd2af;
+
+	height: 100%;
+	margin: 0;
+	padding: 0;
+/	font: 13px/1.8em "Arial", san-serif;
+/	color: #777777;
+	color: #333333;
+	font-family:Georgia, Palatino, serif;
+
+	background-color: #f0f0f0;
+/	background-color: #f2f2f2;
 }
 /**
  * scroll bar style
  **/
-::-webkit-scrollbar{width:7px;height:7px}
-::-webkit-scrollbar-track{background:#6b6b6b}
-::-webkit-scrollbar-thumb{background:#148f77;border-radius:0}
-::-webkit-scrollbar-thumb:hover{background:#17a689;cursor:pointer}
-::-webkit-scrollbar-thumb:active{background:#117964}
+::-webkit-scrollbar{width:7px;height:7px;}
+::-webkit-scrollbar-track{background:#6b6b6b;}
+::-webkit-scrollbar-thumb{background:#148f77;border-radius:0;}
+::-webkit-scrollbar-thumb:hover{background:#17a689;cursor:pointer;}
+::-webkit-scrollbar-thumb:active{background:#117964;}
 
-a, p, .like_button, a#install-button, #posts-container, #sidebar, #sidebar a#avatar img, #sidebar #search input[type="text"], #sidebar #instagram #instagram-feed img, #sidebar #flickr #flickr-feed img, #sidebar #dribbble #dribbble-feed img, #sidebar #twitter .content, .entry .photo img, .entry .text a.link:after, .mfp-fade.mfp-bg, .mfp-fade.mfp-wrap .mfp-content {
+/*a, p, .like_button, a#install-button, #posts-container, #sidebar, #sidebar a#avatar img, #sidebar #search input[type="text"], #sidebar #instagram #instagram-feed img, #sidebar #flickr #flickr-feed img, #sidebar #dribbble #dribbble-feed img, #sidebar #twitter .content, .entry .photo img, .entry .text a.link:after, .mfp-fade.mfp-bg, .mfp-fade.mfp-wrap .mfp-content {
 	-webkit-transition: .3s;
 	transition: .3s;
-}
-a, a:hover {
-	cursor: pointer;
-	word-wrap: break-word;
-	text-decoration: none;
-	color: #6e8296;
-}
-
-/*img {
-	max-width: 100%;
-	display: block;
 }*/
 #header {
 	position: relative;
 	padding: 180px 0;
 	text-align: center;
-	background: url("/assets/images/cover.jpg") no-repeat center top;
-	-webkit-background-size: cover;
-	background-size: cover;
+/	background: url("/assets/images/cat_man.png") no-repeat center top;
+/	-webkit-background-size: cover;
+/	background-size: cover;
 	margin-bottom: 70px;
+	
 }
 #header #overlay {
 	position: absolute;
@@ -47,18 +48,29 @@ a, a:hover {
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: #000000;
-	background: -webkit-linear-gradient(45deg,#000000;,#000000);
-	background: -o-linear-gradient(45deg,#000000,#000000);
-	background: -moz-linear-gradient(45deg,#000000,#000000);
-	background: linear-gradient(45deg,#000000,#000000);
-	opacity: .50;
+	background: url("/assets/images/cat_man.png") no-repeat center top;
+	background: #5ec2a6;
+	background: -webkit-linear-gradient(45deg,#5ec2a6,#5ec2a6);
+	background: -o-linear-gradient(45deg,#5ec2a6,#5ec2a6);
+	background: -moz-linear-gradient(45deg,#5ec2a6,#5ec2a6);
+	background: linear-gradient(45deg,#5ec2a6,#5ec2a6);
+/	opacity: .5;
 	z-index: 5;
-	
+/	background-color: #5ec2a6;
 }
-#header #about {
 
+#header #about img {
+	margin-bottom:15px;
+	cursor: pointer;
+	-webkit-transition: .3s;
+	transition: .3s;
 }
+#header #about img:hover {
+	-webkit-transform: scale(1.2,1.2);
+	-moz-transform: scale(1.2,1.2);
+	transform: scale(1.2,1.2);
+}
+
 #header #about h1 {
 	margin: 0;
 }
@@ -68,15 +80,17 @@ a, a:hover {
 	letter-spacing: 1px;
 	font-weight: bold;
 	color: #ffffff;
+	text-decoration: none;
 }
 #header #about h1 a:hover {
-text-shadow: 0 0 10px rgba(255,255,255,.5);
+	text-shadow: 0 0 10px rgba(255,255,255,.5);
 }
 #header #about p {
 	max-width: 400px;
 	margin: 30px auto 0;
 	font: 16px/2em "Domine",sans-serif;
 	color: #eeeeee;
+	
 }
 #header #about {
 	position: relative;
@@ -84,6 +98,7 @@ text-shadow: 0 0 10px rgba(255,255,255,.5);
 	max-width: 600px;
 	margin: auto;
 	z-index: 10;
+	
 }
 #loading {
 	position: absolute;
@@ -106,14 +121,16 @@ text-shadow: 0 0 10px rgba(255,255,255,.5);
 	margin: auto;
 	padding: 20px 0;
 }
-
+#container {
+	/*background-color: #36b1c0;*/
+	/*background-color: #f0f0f0;*/
+}
 
 #container, #loading {
 	opacity: 0;
 	-webkit-transition: opacity 1s ease,height .5s ease;
 	transition: opacity 1s ease,height .5s ease;
 }
-
 
 #posts, #pagination {
 	opacity: 1;
@@ -123,23 +140,9 @@ text-shadow: 0 0 10px rgba(255,255,255,.5);
 	padding: 20px 0 120px;
 }
 
-body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-/	font: 13px/1.8em "Arial", san-serif;
-/	color: #777777;
-	color: #333333;
-	font-family:Georgia, Palatino, serif;
-}
-
 article {
 	display: block;
 	margin-bottom: 50px;
-}
-
-body {
-	background-color: #f2f2f2;
 }
 
 .entry {
@@ -166,9 +169,9 @@ body {
 .entry .captions p{
 	color: #777777;
 }
-.entry .captions:hover p{
+/*.entry .captions:hover p{
 	color: #333333;
-}
+}*/
 .entry a {
 	color: #777777;
 	text-decoration: none;
@@ -184,6 +187,43 @@ body {
 
 .entry .details .tags {
 	margin: 0 0 15px;
+}
+.entry .details .tags a {
+	min-width: 50px;
+	/*width: 30px;*/
+	text-align: center;
+	display: block;
+	float: left;
+	font-size: 0.75em;
+	color: #777;
+	line-height: 30px;
+	vertical-align: middle;
+	padding: 0px 8px 0px 10px;
+	margin: 0 5px;
+	max-width: 100px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	background-color: #efefef;
+	-webkit-transition: opacity 0.3s, color 0.3s, background-color 0.3s;
+	transition: opacity 0.3s, color 0.3s, background-color 0.3s;
+}
+.entry .details .tags a:hover {
+	background-color: #396;
+	color: #fff;
+}
+
+.entry .details .read-more {
+	text-align: right;
+}
+.entry .details .read-more a{
+	display: inline-block;
+	/*font-size: 0.8125em;*/
+	/*color: rgba(38,135,133,0.7);*/
+	/*line-height: 20px;*/
+	color: black;
+	vertical-align: middle;
+	padding: 0px 6px;
 }
 
 
@@ -202,6 +242,7 @@ body {
 	user-select: none;
 	font-size: 12px;
 	transition: .2s all linear;
+	
 }
 
 .index-nav .border {
@@ -233,6 +274,7 @@ body {
 	padding: 0 0 10px 0;
 	color: #fff;
 	transition: .2s all linear;
+	
 }
 
 .index-nav .n-i.gotop.sub:hover{
@@ -255,5 +297,5 @@ body {
 }
 
 .index-nav .n-i.gotop.sub .btn_gotop {
-background-color: transparent;
+	background-color: transparent;
 }

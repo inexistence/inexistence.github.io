@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 2015 新年
-category: blog
+category: [blog,web]
 description: description
 frontImage: /assets/blog-images/2015-01-01.jpg
 published: true

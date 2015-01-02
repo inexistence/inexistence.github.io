@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 	$('.scroll-to-top').click(function (b) {
 		b.preventDefault();
