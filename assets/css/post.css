@@ -5,7 +5,7 @@
 }*/
 
 #post img {
-	width:100%; 
+	max-width:100%; 
 }
 
 #post .full-width{
