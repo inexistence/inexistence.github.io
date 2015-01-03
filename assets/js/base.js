@@ -179,32 +179,46 @@ window.onscroll = function () {
 	setOpacity();
 };
 setOpacity();
-	var rotate = 0;
-	var clickTime = 0;
-	var toRota = 90;
+	var rotate = 0;        //根据下面所有条件计算后旋转的真实值
+	var clickTime = 0;     //左右切换旋转
+	var randomAnim = 1;    //随机数初始值
+	var toRota = 90;       //一次旋转的角度
+	var randomBig = true;  //是否随机放大
+	var randomTimes = 4;   //随机放大概率
 	/*设置点击后一言变换*/
 	$(".one-word-btn").click(function(event){
 		var animItem = $("#one-word-btn");
-		if(clickTime==0){
-			clickTime = 1;
-			rotate = Number(rotate) + toRota;
-		} else {
-			clickTime = 0;
-			rotate = Number(rotate) - toRota;
-		}
-
-		animItem.css("-webkit-transform","scale(1.5,1.5) rotate("+rotate+"deg)");
-		animItem.css("-moz-transform","scale(1.5,1.5) rotate("+rotate+"deg)");
-		animItem.css("transform","scale(1.5,1.5) rotate("+rotate+"deg)");
-
-		setTimeout(function(){
+		if(randomBig)randomAnim = Math.floor(Math.random()*randomTimes);
+		if(randomAnim!=0){
 			if(clickTime==0){
-				// clickTime = 1;
+				clickTime = 1;
 				rotate = Number(rotate) + toRota;
 			} else {
+				clickTime = 0;
 				rotate = Number(rotate) - toRota;
 			}
+			animItem.css("-webkit-transform","scale(1.4,1.4) rotate("+rotate+"deg)");
+			animItem.css("-moz-transform","scale(1.4,1.4) rotate("+rotate+"deg)");
+			animItem.css("transform","scale(1.4,1.4) rotate("+rotate+"deg)");
+		} else {
+			animItem.css("-webkit-transform","scale(1.5,1.5)");
+			animItem.css("-moz-transform","scale(1.5,1.5)");
+			animItem.css("transform","scale(1.5,1.5)");
+		}
+		//不可快速连续点击
+		animItem.attr("disabled","disabled"); 
+
+		setTimeout(function(){
+			if(randomAnim!=0){
+				if(clickTime==0){
+					// clickTime = 1;
+					rotate = Number(rotate) + toRota;
+				} else {
+					rotate = Number(rotate) - toRota;
+				}
+			}
 			animItem.removeAttr("style");
+			animItem.removeAttr("disabled");
 			// animItem.removeClass("-webkit-transform");
 			// animItem.removeClass("-moz-transform");
 			// animItem.removeClass("transform");
