@@ -185,9 +185,9 @@ setOpacity();
 	var toRota = 90;       //一次旋转的角度
 	var randomBig = true;  //是否随机放大
 	var randomTimes = 4;   //随机放大概率
+	var animItem = $("#one-word-btn");
 	/*设置点击后一言变换*/
 	$(".one-word-btn").click(function(event){
-		var animItem = $("#one-word-btn");
 		if(randomBig)randomAnim = Math.floor(Math.random()*randomTimes);
 		if(randomAnim!=0){
 			if(clickTime==0){
