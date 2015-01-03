@@ -3,7 +3,7 @@ layout: post
 title: 2015 新年
 category: 日志
 description: description
-frontImage: /assets/blog-images/2015-01-01.jpg
+frontImage: /assets/blog-images/2015/1/2015-01-01.jpg
 place: in Guang'zhou, China
 published: true
 ---
