@@ -225,9 +225,7 @@ setOpacity();
 			// animItem.css("-webkit-transform","scale(1,1) rotate("+rotate+"deg)");
 			// animItem.css("-moz-transform","scale(1,1) rotate("+rotate+"deg)");
 			// animItem.css("transform","scale(1,1) rotate("+rotate+"deg)");
-		},200),
-
-		console.log(event);
+		},200);
 		// console.log('click');
 		//调用jQuery脚本请求
 		// jQuery.getScript('http://api.hitokoto.us/rand?uid=3153',function(data,err){  
