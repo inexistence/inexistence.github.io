@@ -4,7 +4,7 @@ title: 给jekyll添加说说模块
 place: in Guang'zhou, China
 category: 技术
 tag: [idea,tech]
-published: true
+published: false
 ---
 jekyll会解析根目录和_post下的文件并解析成静态网页。
 
