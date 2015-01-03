@@ -10,7 +10,7 @@
  	following are some optional font families. Usually a family 
 	is safer to choose than a specific font, 
 	which may not be on the users computer		*/
-    font-family:Georgia, Palatino, serif;
+     font-family:Georgia, Palatino, serif;
 /    font-family:"Book Antiqua", Palatino, serif;
 /    font-family:Arial, Helvetica, sans-serif;
 /    font-family:Tahoma, Verdana, Geneva, sans-serif;
@@ -141,19 +141,33 @@ code {
     line-height: 1.5;
     font-size: 13px;
 }
+/*暂时屏蔽
 aside {
     display: block;
     float: right;
     width: 390px;
-}
+}*/
+/*旧版
 blockquote {
     border-left:.5em solid #eee;
     padding: 0 1em;
     margin-left:0;
     max-width: 476px;
+}*/
+
+blockquote{
+	font-size: 15px;
+	width: auto;
+	margin: 20px 5%;
+	padding: 30px 40px;
+	line-height: 2;
+/	background: rgba(256,256,256,0.1);
+	background-color:#f0f0f0;
+	border-left: 8px solid rgba(0,0,0,0.1);
 }
+
 blockquote  cite {
- /   font-size:14px;
+    font-size:14px;
     line-height:20px;
     color:#bfbfbf;
 }
@@ -161,14 +175,33 @@ blockquote cite:before {
     content: '\2014 \00A0';
 }
 
-blockquote p {  
-    color: #666;
-    max-width: 460px;
+blockquote p {
+	color: rgba(0,0,0,0.7);
+	font-size: 16px;
+	line-height: 2em;
+	text-align: left;
+	text-indent: 0;
+	padding: 0;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+/	max-width: 476px;
 }
 hr {
 /    width: 540px;
     text-align: left;
     margin: 0 auto 0 0;
     color: #999;
+}
+
+.tip {
+    border-left:.5em solid #eee;
+    padding: 0 1em;
+    margin-left:0;
+    max-width: 476px;
+}
+.tip p {
+    color: #666;
+    max-width: 460px;
+	padding: 10px;
 }
 
