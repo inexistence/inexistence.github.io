@@ -3,6 +3,7 @@ layout: post
 title: 自定义HTML滚动条
 category: 技术
 place: in Guang'zhou, China
+tag: tech
 published: true
 ---
 {% highlight css %}
