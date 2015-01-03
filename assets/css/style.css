@@ -33,7 +33,7 @@ a, p, .like_button, a#install-button, #posts-container, #sidebar, #sidebar a#ava
 	transition: .3s;
 }
 .active {
-	font-size: 35px;
+	font-size: 30px;
 	margin: 0 5px;
 }
 .text-center {

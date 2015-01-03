@@ -49,7 +49,7 @@ subtitle: 起风了，唯有努力生存。
 
 {% if paginator.total_pages > 1 %}
 	{% if paginator.previous_page %}
-		<a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">上一页</a>
+		<a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">上一页</a>&emsp;
 	{% endif %}
 
 	{% for page in (1..paginator.total_pages) %}
@@ -63,7 +63,7 @@ subtitle: 起风了，唯有努力生存。
 	{% endfor %}
 
 	{% if paginator.next_page %}
-    	<a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页</a>
+    	&emsp;<a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页</a>
 	{% endif %}
 {% endif %}
 
