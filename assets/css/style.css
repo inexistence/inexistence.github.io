@@ -95,6 +95,7 @@ h1 a:visited {
 #header #about img {
 	margin-bottom:15px;
 	cursor: pointer;
+	-moz-transition: .3s;
 	-webkit-transition: .3s;
 	transition: .3s;
 }
@@ -119,16 +120,17 @@ h1 a:visited {
 	text-shadow: 0 0 10px rgba(255,255,255,.5);
 }
 #header #about p {
-	max-width: 400px;
+/	max-width: 400px;
 	margin: 30px auto 0;
 	font: 16px/2em "Domine",sans-serif;
 	color: #eeeeee;
-	
+	max-width: 100%;
+/	width: 100%;
 }
 #header #about {
 	position: relative;
 	width: 90%;
-	max-width: 600px;
+/	max-width: 600px;
 	margin: auto;
 	z-index: 10;
 	

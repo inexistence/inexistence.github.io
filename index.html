@@ -1,14 +1,15 @@
 ---
 layout: default
 title: INEXISTENCE
-subtitle: 起风了，唯有努力生存。
+# subtitle: 起风了，唯有努力生存。
 ---
 <header id="header">
     <div id="overlay"></div>
     <div id="about">
-    <img title="喵~" src="/assets/images/cat_man.png" >
-            <h1><a href="/index.html">{{ page.title }}</a></h1>
-            <p>{{ page.subtitle }}</p>
+    <!-- <div id="hitokoto"><script>hitokoto()</script></div> -->
+		<img id="one-word-btn" title="喵~" class="one-word-btn" src="/assets/images/cat_man.png" >
+        <h1><a href="/index.html">{{ page.title }}</a></h1>
+        <p class="one-word">{{ page.subtitle }}</p>
     </div>
 </header>
 <div id="posts" class="container">
@@ -89,5 +90,21 @@ subtitle: 起风了，唯有努力生存。
 	</div>
 </div>
 <div class="text-center container-fluid" style="background-color:#2c3e50;color:#FFF;margin:0 auto;padding-bottom:55px;">
-	<p  style="margin:0px;max-width:100%;color:#eeeeee;">没有人烟的小径 你和我一起走着 你一定也很寂寞</p>
+	<p id="one-word" class="one-word" style="margin:0px;max-width:100%;color:#eeeeee;">没有人烟的小径 你和我一起走着 你一定也很寂寞</p>
 </div>
+<script type="text/javascript">
+	function async(result) {
+		console.log("---感谢。以下数据来自一言( http://hitokoto.us/ )---");
+		console.log(result);
+		console.log("本句页面:( http://hitokoto.us/view/"+result.id+".html )");
+		var oneWord = $(".one-word");
+		if(oneWord){
+			for (var i = oneWord.length - 1; i >= 0; i--) {
+				oneWord[i].innerText = result.hitokoto;
+			};
+		}
+	}
+	
+</script>
+<!-- 一言 大赞 -->
+<script type="text/javascript">setTimeout(function(){var hjs=document.createElement('script');hjs.setAttribute('src','http://api.hitokoto.us/rand?uid=3153&encode=jsc&fun=async');document.body.appendChild(hjs);},100);</script>
