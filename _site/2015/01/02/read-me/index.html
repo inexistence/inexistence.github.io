@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<!--[if IE]>
+<script src="/assets/js/html5.js"></script>
+<![endif]-->
+	<script src="/assets/js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all">
+	<link rel="stylesheet" href="/assets/css/anim.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="/assets/css/code.css" type="text/css" media="all">
+	<link rel="stylesheet" href="/assets/css/markdown.css" type="text/css" media="all">
+	<title>Hello Blog</title>
+</head>
+<body onload="">
+<div id="loading" style="opacity: 1;"></div>
+<div id="container" style="opacity: 0;">
+	<link rel="stylesheet" href="/assets/css/post.css" type="text/css" media="all">
+
+<div id="post">
+
+<h1>Hello Blog</h1>
+<p>02 Jan 2015 in Guang'zhou, China</p>
+<div class="tip"><p>这是对markdown语法和yaml头部以及本blog的css类的一点记录</p></div>
+
+
+<h2>yaml头部说明以及表格</h2>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;"> key              </th>
+<th style="text-align:left;"> value                                    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> layout     &emsp;</td>
+<td style="text-align:left;"> 模版，文章则写post                       </td>
+</tr>
+<tr>
+<td style="text-align:left;"> title      &emsp;</td>
+<td style="text-align:left;"> 标题                                     </td>
+</tr>
+<tr>
+<td style="text-align:left;"> category   &emsp;</td>
+<td style="text-align:left;"> 分类                                     </td>
+</tr>
+<tr>
+<td style="text-align:left;"> tag        &emsp;</td>
+<td style="text-align:left;"> 标签(暂时没用到)                         </td>
+</tr>
+<tr>
+<td style="text-align:left;"> description&emsp;</td>
+<td style="text-align:left;"> 描述(没用到)                             </td>
+</tr>
+<tr>
+<td style="text-align:left;"> frontImage &emsp;</td>
+<td style="text-align:left;"> 头部图片，满父框的宽且置于标题之上的顶部 </td>
+</tr>
+<tr>
+<td style="text-align:left;"> place      &emsp;</td>
+<td style="text-align:left;"> in 地点                                  </td>
+</tr>
+<tr>
+<td style="text-align:left;"> published  &emsp;</td>
+<td style="text-align:left;"> 是否发布                                 </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>要写代码则这样</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;tip&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>这是对markdown语法和yaml头部以及本blog的css类的一点记录<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+
+<pre><code>    { % highlight 语法 %}
+    &lt;div class="tip"&gt;
+        &lt;p&gt;自定义的和blockquote类似的样式,因为blockquote的样式是引用，这个用作自己的提示&lt;/p&gt;
+    &lt;/div&gt;
+    { % endhighlight %}
+</code></pre>
+
+<p><em>注：'{' 和 '%' 之间没有空格，为了防止被转换只好这样写了</em></p>
+
+<h2>分割线</h2>
+
+<p>分割线的语法只需要三个 <code>*</code> 号，例如：</p>
+
+<hr />
+
+<h2>粗体与斜体</h2>
+
+<p>Markdown 的粗体和斜体也非常简单，用两个 <code>*</code> 包含一段文本就是粗体的语法，用一个 <code>*</code> 包含一段文本就是斜体的语法。</p>
+
+<p>例如: <em>这里是斜体</em> <strong>这是粗体</strong></p>
+
+<h2>图片与链接</h2>
+
+<p>插入链接与插入图片的语法很像，区别在一个 !号</p>
+
+<p>图片为：<code>![]()</code></p>
+
+<p>链接为：<code>[]()</code></p>
+
+<p>由于一些样式需求，如需要满框则要加上<code>class='full-width'</code></p>
+
+<p>普通的图片插入，和左右边有margin</p>
+
+<p><img src="/assets/images/cat_man.png" alt="" /></p>
+
+<p>满宽的图片插入，紧贴左右边，小图会被强制拉伸</p>
+
+<p><img class="full-width" src="/assets/blog-images/2015/1/2015-01-01.jpg"></p>
+
+<h2>其他</h2>
+
+<p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+
+<p>同时，下面也是一个普通pre的示例，只需要以 ``` 开头以 ``` 结尾，且内部行均用tab制表符开头</p>
+
+<pre><code>    \   反斜线
+    `   反引号
+    *   星号
+    _   底线
+    {}  花括号
+    []  方括号
+    ()  括弧
+    #   井字号
+    +   加号
+    -   减号
+    .   英文句点
+    !   惊叹号
+</code></pre>
+
+<h2>类别为中文时问题</h2>
+
+<p>Windows下，使用UTF-8编码时当category为中文时，在通过url进入文章时，会出现如下错误</p>
+
+<blockquote><p>Internal Server Error
+"\xAE\xBE" from GBK to UTF-8</p></blockquote>
+
+<p>首先介绍一下jekyll的Permalinks这个配置，这个配置定义了文章被jekyll处理后生成结果的最终路径，默认为 /:categories/:year/:month/:day/:title.html ，也就是说，如一篇文章叫“2014-2-6-this-is-a-title.md”，在文章中定义的文类为[测试, new]，那么最终这篇文章的路径将会是“_site/测试/new/2014/02/06/this-is-a-title.html”，也就是说如果category为中文名称的话，中文将会出现在url中。然后就会根据中文去jekyll的action中索引，然后导致错误。</p>
+
+<p>避开方法就是去掉根据permlinks中的categories，因为一般情况下根据时间来生成文件夹就已经够了，在_config.yml中新增一行：</p>
+
+<p>permalink: /:year/:month/:day/:title
+规则可以自己定，具体参照 jekyll的Permlinks配置介绍页面 ，别出现categories就行了</p>
+
+<blockquote><p>哦天呐，发现Windows下好多奇怪的错误，下次还是开一篇新的Blog来细说吧</p></blockquote>
+
+<div class="entry">
+<div class="details">
+	<div class="tags">
+		
+		<a href="#">#技术</a>
+		
+	</div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="index-nav scroll-to-top" id="index_nav" style="opacity: 0;">
+	<div class="border"></div>
+	<div class="pointer-block"></div>
+	<div class="nav-list">
+		<div class="n-i gotop sub">
+		<div class="btn_gotop" title="返回顶部"></div>
+		<div>返回顶部</div>
+	</div>
+	</div>
+</div>
+</body>
+
+
+<!-- <script src="/assets/js/bootstrap.min.js"></script> -->
+<script src="/assets/js/appear.min.js"></script>
+<script src="/assets/js/smoothscroll.min.js"></script>
+<script src="/assets/js/animations.min.js"></script>
+<script src="/assets/js/scrollToTop.js"></script>
+<script src="/assets/js/base.js"></script>

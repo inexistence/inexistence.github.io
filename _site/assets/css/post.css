@@ -1,0 +1,40 @@
+/*#post {
+	opacity: 0;
+	-webkit-transition: opacity 1s ease,height .5s ease;
+	transition: opacity 1s ease,height .5s ease;
+}*/
+
+#post img {
+/	max-width:100%; 
+}
+
+#post .full-width{
+/	width: 107.5%;        /*使图片满框*/
+    max-width: 800px;
+	margin: 0px 0px 0 -30px;  /*使图片满框但不满顶部*/
+	text-align: center;
+}
+
+#post .to-top{
+	margin-top: -47.580px;  /*使图片满顶部*/
+}
+
+#post {
+	margin-bottom: 80px;
+	margin-top: 80px;
+}
+
+
+@media screen and (max-width: 890px){
+	#post {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 800px){
+	#post {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+}
