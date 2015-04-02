@@ -100,7 +100,7 @@ a:hover {
     color: #00a1d6;
 }
 a:visited {
-    color: black;
+/    color: black;
 }
 ul, ol {
     padding: 0;

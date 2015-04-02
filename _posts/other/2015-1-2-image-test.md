@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 图片测试
-category: 日志
+category: 测试
 place: in Guang'zhou, China
 published: false
 ---
