@@ -158,7 +158,8 @@ var resize = function(){
 			left = 'auto';
 			right = '0px';
 		} else {
-			left = left + 'px';
+			left = '90%';
+			right = 'auto'
 		}
 		index_nav.style.left = left;
 		index_nav.style.right = right;
