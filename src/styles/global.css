@@ -603,7 +603,7 @@ form {
 }
 
 .page-hero--archive {
-  background: #9bdcca;
+  background: #65b99b url('/assets/animal-island-ui/home-bg.webp') center / 560px auto;
   isolation: isolate;
 }
 
@@ -611,7 +611,7 @@ form {
   position: absolute;
   z-index: 0;
   inset: 0;
-  background: linear-gradient(90deg, rgba(255, 243, 207, 0.24), transparent 58%);
+  background: linear-gradient(100deg, rgba(17, 105, 92, 0.26), rgba(85, 183, 151, 0.05) 60%, transparent);
   content: '';
   pointer-events: none;
 }
@@ -620,29 +620,49 @@ form {
   display: none;
 }
 
-.archive-hero__scenery {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.archive-hero__art {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+.archive-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 330px);
+  align-items: center;
+  gap: clamp(32px, 4vw, 56px);
 }
 
 .page-hero--archive h1 {
-  color: var(--island-brown);
-  text-shadow: 0 6px 0 rgba(255, 246, 220, 0.76), 0 18px 30px rgba(139, 83, 39, 0.14);
+  color: var(--island-cream);
+  font-size: clamp(3.2rem, 6.8vw, 6.5rem);
+  text-shadow: 0 7px 0 rgba(81, 59, 39, 0.68), 0 20px 35px rgba(18, 71, 67, 0.28);
 }
 
 .page-hero--archive .eyebrow,
 .page-hero--archive .page-hero__inner > p:last-child {
-  color: color-mix(in oklch, var(--island-brown) 88%, transparent);
+  color: rgba(255, 246, 220, 0.88);
+}
+
+.archive-hero__copy > p:last-child {
+  max-width: 34ch;
+  margin: 0;
+  color: rgba(255, 246, 220, 0.88);
+  font-size: 1.08rem;
+}
+
+.archive-hero__copy {
+  position: relative;
+  z-index: 3;
+}
+
+.archive-hero__miles {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 250px);
+  justify-self: center;
+  filter: drop-shadow(0 18px 22px rgba(31, 91, 69, 0.24));
+}
+
+.archive-hero__miles object {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
 }
 
 .page-hero--category h1 {
@@ -1295,29 +1315,28 @@ form {
     background: linear-gradient(180deg, rgba(255, 241, 199, 0.08), rgba(168, 89, 42, 0.12));
   }
 
-  .archive-hero__scenery {
-    inset: 0;
-  }
-
-  .archive-hero__scenery::after {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(167, 226, 207, 0.78) 0%, rgba(167, 226, 207, 0.66) 48%, rgba(167, 226, 207, 0.1) 78%, transparent 100%);
-    content: '';
-  }
-
-  .archive-hero__art {
-    object-position: 55% center;
-  }
-
   .page-hero--archive h1 {
-    max-width: 5.2ch;
-    font-size: clamp(2.75rem, 12vw, 3.55rem);
-    line-height: 1.04;
+    max-width: none;
+    font-size: clamp(2.65rem, 12.5vw, 4.4rem);
+    line-height: 0.94;
   }
 
-  .page-hero--archive .page-hero__inner > p:last-child {
-    max-width: 19ch;
+  .archive-hero__inner {
+    display: block;
+  }
+
+  .archive-hero__miles {
+    position: absolute;
+    right: -14px;
+    bottom: -22px;
+    width: 112px;
+    opacity: 0.32;
+  }
+
+  @media (max-width: 360px) {
+    .archive-hero__miles {
+      display: none;
+    }
   }
 
   .post-header h1 {

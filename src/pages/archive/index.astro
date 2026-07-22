@@ -29,13 +29,15 @@ const groups = [...grouped].map(([year, entries]) => ({
 
 <BaseLayout title="文章岛志" description="沿着年份回看 INEXISTENCE 的全部公开文章。">
   <header class="page-hero page-hero--archive">
-    <div class="archive-hero__scenery" aria-hidden="true">
-      <img class="archive-hero__art" src="/assets/archive/archive-isabelle-v1.png" alt="" />
-    </div>
-    <div class="shell page-hero__inner" data-reveal>
-      <p class="eyebrow">ARCHIVE TRAIL</p>
-      <h1>沿着时间的小径</h1>
-      <p>{posts.length} 篇公开文字，散落在 {groups.length} 个年份里。</p>
+    <div class="shell page-hero__inner archive-hero__inner" data-reveal>
+      <div class="archive-hero__copy">
+        <p class="eyebrow">ARCHIVE TRAIL</p>
+        <h1>沿着时间的小径</h1>
+        <p>{posts.length} 篇公开文字，散落在 {groups.length} 个年份里。</p>
+      </div>
+      <div class="archive-hero__miles" aria-hidden="true">
+        <object data="/assets/animal-island-ui/icon-miles.svg" type="image/svg+xml" tabindex="-1"></object>
+      </div>
     </div>
   </header>
 
