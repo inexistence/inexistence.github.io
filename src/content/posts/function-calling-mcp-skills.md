@@ -1,5 +1,5 @@
 ---
-title: "从工具调用到生态协同：Function Calling、MCP、Skills 的关系与价值"
+title: "Function Calling、MCP、Skills 的关系与价值"
 description: "梳理 AI Agent 从 Function Calling 到 MCP 与 Skills 的技术演进、协作关系、核心价值与安全风险。"
 publishDate: "2026-01-11"
 category: "技术"
