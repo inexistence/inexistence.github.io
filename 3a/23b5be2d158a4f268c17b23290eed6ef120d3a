@@ -1,0 +1,51 @@
+src/pages/category/[category].astro
+  s_f15167015f5a4f::t_17ee754edfd749 41
+src/components/SiteFooter.astro
+  s_a03b825760cf49::t_e1808b6a95cfe8 12
+src/pages/index.astro
+  s_a03b825760cf49::t_6e1e44c7742ea8 33
+  s_a03b825760cf49::t_e1808b6a95cfe8 31,34,36,51,59,84,95,104-106,125-127
+  s_a03b825760cf49::t_11b9aca2b8ab87 60
+  s_a03b825760cf49::t_34c6ecd01c4739 61
+src/pages/rss.xml.ts
+  s_f15167015f5a4f::t_17ee754edfd749 8
+src/layouts/BaseLayout.astro
+  s_f15167015f5a4f::t_17ee754edfd749 17
+src/pages/archive/index.astro
+  s_f15167015f5a4f::t_17ee754edfd749 29
+src/pages/posts/[slug].astro
+  s_f15167015f5a4f::t_17ee754edfd749 36
+src/styles/global.css
+  s_a03b825760cf49::t_11b9aca2b8ab87 1578,1580-1581,1594,1596-1597,1602
+src/components/SiteHeader.astro
+  s_a03b825760cf49::t_e1808b6a95cfe8 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "3a23b5be2d158a4f268c17b23290eed6ef120d3a",
+  "prompts": {},
+  "logical_commit_id": "3a23b5be2d158a4f268c17b23290eed6ef120d3a",
+  "sessions": {
+    "s_a03b825760cf49": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f89b7-f2c8-7f23-9f99-cf1e5e0556c1",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <huangjianbin@imo.im>",
+      "total_additions": 27,
+      "total_deletions": 24
+    },
+    "s_f15167015f5a4f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f89c8-05ca-7a01-b045-d6f54b2b2f6f",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <huangjianbin@imo.im>",
+      "total_additions": 5,
+      "total_deletions": 5
+    }
+  }
+}
