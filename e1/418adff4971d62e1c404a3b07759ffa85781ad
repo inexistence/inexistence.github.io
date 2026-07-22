@@ -1,0 +1,22 @@
+README.md
+  s_5e3942391ccd2f::t_707e4337b3d53a 19,25,27-121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "e1418adff4971d62e1c404a3b07759ffa85781ad",
+  "prompts": {},
+  "logical_commit_id": "e1418adff4971d62e1c404a3b07759ffa85781ad",
+  "sessions": {
+    "s_5e3942391ccd2f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f89ce-99f1-7232-b8a5-6d71191c004b",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <huangjianbin@imo.im>",
+      "total_additions": 97,
+      "total_deletions": 3
+    }
+  }
+}
