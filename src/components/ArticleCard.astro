@@ -8,11 +8,12 @@ interface Props {
   post: Post;
   featured?: boolean;
   index?: number;
+  uniform?: boolean;
 }
 
-const { post, featured = false, index = 0 } = Astro.props;
+const { post, featured = false, index = 0, uniform = false } = Astro.props;
 const color = categoryColor(post.data.category);
-const pattern = featured ? color : index % 3 === 0 ? 'default' : 'none';
+const pattern = featured ? color : uniform || index % 3 === 0 ? 'default' : 'none';
 ---
 
 <article class:list={['article-card', { 'article-card--featured': featured }]} data-reveal>

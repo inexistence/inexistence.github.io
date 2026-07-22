@@ -1,7 +1,5 @@
 ---
 import { Button } from 'animal-island-ui/es/components/Button/Button.js';
-import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
-import { Title } from 'animal-island-ui/es/components/Title/Title.js';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { categoryColor, getPublishedPosts, type Post } from '../../lib/posts';
@@ -21,20 +19,21 @@ interface Props {
 }
 
 const { category, posts } = Astro.props;
+const color = categoryColor(category);
 ---
 
 <BaseLayout title={`${category}分类`} description={`INEXISTENCE 中的${category}文章。`}>
-  <header class="page-hero page-hero--category">
+  <header class:list={['page-hero', 'page-hero--category', `page-hero--${color}`]}>
     <div class="shell page-hero__inner" data-reveal>
-      <Tag size="large" variant="solid" color={categoryColor(category)}>{category}</Tag>
-      <h1><Title size="large" color={categoryColor(category)}>{category}小径</Title></h1>
+      <p class="eyebrow">CATEGORY</p>
+      <h1>{category}小径</h1>
       <p>这里一共有 {posts.length} 篇文章。</p>
     </div>
   </header>
 
-  <section class="shell section">
+  <section class="shell section category-list">
     <div class="article-grid article-grid--category">
-      {posts.map((post, index) => <ArticleCard post={post} index={index} />)}
+      {posts.map((post, index) => <ArticleCard post={post} index={index} uniform />)}
     </div>
     <div class="section-action">
       <form action="/archive/">
