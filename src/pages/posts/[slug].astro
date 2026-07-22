@@ -27,27 +27,24 @@ interface Props {
 const { post, newer, older } = Astro.props;
 const { Content, headings } = await render(post);
 const color = categoryColor(post.data.category);
-const publishYear = post.data.publishDate.getFullYear();
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover || undefined}>
   <article class="post">
     <header class:list={['post-header', `post-header--${color}`]}>
-      <div class="post-header__stamp" aria-hidden="true">
-        <span>{post.data.category}</span>
-        <span>{publishYear}</span>
-      </div>
       <div class="shell post-header__inner" data-reveal>
         <a class="post-header__back" href="/archive/">← 返回岛志</a>
-        <div class="post-header__meta">
-          <a href={`/category/${encodeURIComponent(post.data.category)}/`}>
-            <Tag size="medium" variant="solid" color={color}>{post.data.category}</Tag>
-          </a>
-          <time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time>
-          {post.data.place && <span>{post.data.place}</span>}
+        <div class="post-header__content">
+          <div class="post-header__meta">
+            <a href={`/category/${encodeURIComponent(post.data.category)}/`}>
+              <Tag size="medium" variant="solid" color={color}>{post.data.category}</Tag>
+            </a>
+            <time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time>
+            {post.data.place && <span>{post.data.place}</span>}
+          </div>
+          <h1>{post.data.title}</h1>
+          <p>{post.data.description}</p>
         </div>
-        <h1>{post.data.title}</h1>
-        <p>{post.data.description}</p>
       </div>
     </header>
 
