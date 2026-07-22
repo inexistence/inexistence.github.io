@@ -1,5 +1,6 @@
 import { Collapse } from 'animal-island-ui/es/components/Collapse/Collapse.js';
 import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
+import { categoryColor } from '../lib/category';
 
 interface ArchiveItem {
   title: string;
@@ -33,7 +34,7 @@ export default function ArchiveCollapse({ groups }: { groups: YearGroup[] }) {
                       className="archive-collapse-list__tag"
                       size="small"
                       variant="soft"
-                      color={post.category === '技术' ? 'app-teal' : 'app-yellow'}
+                      color={categoryColor(post.category)}
                     >
                       {post.category}
                     </Tag>

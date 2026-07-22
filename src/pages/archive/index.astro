@@ -25,36 +25,12 @@ const groups = [...grouped].map(([year, entries]) => ({
   })),
 }));
 
-const newestYear = groups[0]?.year ?? '';
-const oldestYear = groups.at(-1)?.year ?? '';
 ---
 
 <BaseLayout title="文章岛志" description="沿着年份回看 INEXISTENCE 的全部公开文章。">
   <header class="page-hero page-hero--archive">
     <div class="archive-hero__scenery" aria-hidden="true">
-      <svg viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <path class="archive-hero__island archive-hero__island--back" d="M790 560C850 437 1009 364 1156 390c134 24 211-60 324-80v250Z" />
-        <path class="archive-hero__island archive-hero__island--front" d="M985 560c73-91 184-121 294-95 77 18 132-21 201-50v145Z" />
-        <path class="archive-hero__route" d="M900 524c114-53 79-144 184-190 110-48 73-126 184-166 78-28 101-77 172-112" />
-
-        <g class="archive-hero__waypoint" transform="translate(1008 420)">
-          <circle r="24" />
-          <text text-anchor="middle" dominant-baseline="central">{oldestYear}</text>
-        </g>
-        <g class="archive-hero__waypoint archive-hero__waypoint--current" transform="translate(1193 245)">
-          <circle r="28" />
-          <text text-anchor="middle" dominant-baseline="central">{newestYear}</text>
-        </g>
-
-        <g class="archive-hero__leaf" transform="translate(1360 92) rotate(-24)">
-          <path d="M0 27C2 9 15-1 35 0c-1 20-12 31-35 27Z" />
-          <path d="M4 23 29 5" />
-        </g>
-        <g class="archive-hero__leaf archive-hero__leaf--small" transform="translate(928 474) rotate(36)">
-          <path d="M0 22C2 8 12 0 28 0c0 16-9 25-28 22Z" />
-          <path d="M4 19 23 4" />
-        </g>
-      </svg>
+      <img class="archive-hero__art" src="/assets/archive/archive-isabelle-v1.png" alt="" />
     </div>
     <div class="shell page-hero__inner" data-reveal>
       <p class="eyebrow">ARCHIVE TRAIL</p>
