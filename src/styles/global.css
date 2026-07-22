@@ -1382,7 +1382,7 @@ form {
 .home-hero__inner {
   display: grid;
   min-height: 100svh;
-  grid-template-columns: minmax(0, 0.88fr) minmax(470px, 1.12fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(430px, 0.92fr);
   align-items: center;
   gap: clamp(24px, 4vw, 68px);
   padding-block: 135px 125px;
@@ -1407,19 +1407,20 @@ form {
   margin: 0;
   color: var(--home-cream);
   font-family: 'Nunito', 'Noto Sans SC', sans-serif;
-  font-size: clamp(4.3rem, 7.6vw, 8.1rem);
+  font-size: clamp(3.6rem, 5.4vw, 6.6rem);
   font-weight: 900;
   letter-spacing: -0.075em;
-  line-height: 0.72;
+  line-height: 0.88;
+  white-space: nowrap;
   text-shadow: 0 7px 0 rgba(81, 59, 39, 0.72), 0 20px 35px rgba(18, 71, 67, 0.28);
 }
 
 .home-hero h1 span {
-  display: block;
+  display: inline;
 }
 
 .home-hero h1 span:first-child {
-  margin-left: 0.62em;
+  margin-left: 0;
 }
 
 .home-hero__saying {
@@ -1929,6 +1930,10 @@ form {
     grid-template-columns: minmax(0, .9fr) minmax(390px, 1.1fr);
   }
 
+  .home-hero h1 {
+    font-size: clamp(2.8rem, 5vw, 3.6rem);
+  }
+
   .home-hero__stamp {
     left: 0;
   }
@@ -1978,7 +1983,7 @@ form {
   }
 
   .home-hero h1 {
-    font-size: clamp(3.65rem, 17vw, 5.8rem);
+    font-size: clamp(2rem, 9.5vw, 4.5rem);
   }
 
   .home-hero__kicker {
