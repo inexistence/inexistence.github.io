@@ -1,0 +1,157 @@
+public/favicon.svg
+  s_396df8a508d580::t_d0d79afba36b77 1-5
+.github/workflows/deploy.yml
+  s_396df8a508d580::t_9aede0b617c944 1-21,23,25-32,34,36-47
+  s_ebe0bd8ddcc3ed::t_0c42fd24b791d5 22,24,33,35,48
+src/types/animal-island-ui.d.ts
+  s_396df8a508d580::t_79a4272a475191 1-2,5-6,9-10,13-14,17-19,21-22,25-27
+README.md
+  s_396df8a508d580::t_2707f25ee53985 1,3,5-31
+src/pages/[year]/[month]/[day]/[slug].astro
+  s_ebe0bd8ddcc3ed::t_d63dbe28110e02 2
+  s_ebe0bd8ddcc3ed::t_d963309a85fa27 1,3-5,7-14,16-18,20-38
+src/content/posts/hello-blog.md
+  s_396df8a508d580::t_b8d8159cb8d09b 3,13,45,51,57,75,95
+  s_396df8a508d580::t_6c27c52a9eb066 2,4-9,11,29,33,110
+tsconfig.json
+  s_396df8a508d580::t_bce7475310d1e0 1-3,5
+  s_396df8a508d580::t_e22ead50f73d73 4
+astro.config.mjs
+  s_396df8a508d580::t_3bd51533e9b9f2 15,19-22
+  s_ebe0bd8ddcc3ed::t_55027650040b58 9-14
+  s_396df8a508d580::t_5b39030a236fbb 16-18
+  s_396df8a508d580::t_bce7475310d1e0 1-8,23-29
+src/styles/global.css
+  s_396df8a508d580::t_0bf9f9508bc623 1-596,598-629,632-651,654-736,739-755,757-1042,1046-1143,1145-1219,1224,1226-1296
+  s_396df8a508d580::t_8b1cf7826c6b69 1609-1612,1618-1619,1621,1625,1633,1636,1645-1646,1649,1667-1669,1674,1678,1683,1687-1692
+  s_396df8a508d580::t_e3f62e50912275 597,630-631,652-653,737-738,756,1043-1045
+  s_396df8a508d580::t_4fc229d4ce9da8 1144,1220-1223,1225
+  s_396df8a508d580::t_30fd8326d27629 1629-1632
+  s_396df8a508d580::t_7c4909d24dcc43 1655-1660
+  s_396df8a508d580::t_b2d9989b00d142 1808,1858-1859,1864,1866-1867,1877,1881,1889-1890
+  s_396df8a508d580::t_bc008dffd2a67d 1946,1950,2027,2031-2032,2036,2042,2044,2049,2052,2056-2058,2065,2070-2074,2079-2080,2084-2085,2089-2090,2094-2095,2113,2119
+  s_396df8a508d580::t_6b01c1cb179648 1701,1704,1709-1710,1715,1723-1724,1728,1731,1740,1742,1750,1752
+  s_396df8a508d580::t_1d65e51e881898 2134,2139,2144,2149,2153-2156,2161-2162,2166-2167,2171
+  s_396df8a508d580::t_8e43ba79b02f98 1297-1436,1438-1556,1558-1574,1576,1578-1584,1586-1588,1590-1596,1599-1608,1613-1617,1620,1622-1624,1626-1628,1634-1635,1637-1644,1647-1648,1650-1654,1661-1666,1670-1673,1675-1677,1679-1682,1684-1686,1693-1700,1702-1703,1705-1708,1711-1714,1716-1722,1725-1727,1729-1730,1732-1739,1741,1743-1749,1751,1753-1807,1809-1857,1860-1863,1865,1868-1876,1878-1880,1882-1888,1891-1945,1947-1949,1951-2026,2028-2030,2033-2035,2037-2041,2043,2045-2048,2050-2051,2053-2055,2059-2064,2066-2069,2075-2078,2081-2083,2086-2088,2091-2093,2096-2112,2114-2118,2120-2133,2135-2138,2140-2143,2145-2148,2150-2152,2157-2160,2163-2165,2168-2170,2172-2179
+  s_396df8a508d580::t_61a0739736ba0c 1437,1557,1575,1577,1585,1589,1597-1598
+public/assets/animal-island-ui/chat.svg
+  s_396df8a508d580::t_668ed655e8b615 1-7
+src/content/posts/one-1.md
+  s_396df8a508d580::t_6c27c52a9eb066 2-9,74
+src/pages/index.astro
+  s_396df8a508d580::t_79a4272a475191 2-5
+  s_396df8a508d580::t_212f6cc4bac5e7 34,60,126-127
+  s_396df8a508d580::t_9aede0b617c944 1,6,8-9,11-14,22-23,37,47-48,53-55,63,91-92,94,96-99,119-121,129,147
+  s_396df8a508d580::t_3481efb4047e97 7,15-21,24-33,35-36,38-46,49-52,56-58,61-62,64-65,67-90,93,95,100-118,122-125,128,130-146
+  s_ebe0bd8ddcc3ed::t_9c9efbfb90243a 10,59,66
+src/content/posts/gitpage.md
+  s_396df8a508d580::t_b8d8159cb8d09b 3,11,17
+  s_396df8a508d580::t_6c27c52a9eb066 2,4-9
+src/pages/404.astro
+  s_396df8a508d580::t_9aede0b617c944 1,4-18
+  s_396df8a508d580::t_79a4272a475191 2-3
+src/content/posts/image-test.md
+  s_396df8a508d580::t_b8d8159cb8d09b 16
+  s_396df8a508d580::t_6c27c52a9eb066 2-9,13,17
+src/content.config.ts
+  s_396df8a508d580::t_e22ead50f73d73 1,3
+  s_396df8a508d580::t_97944138c95510 2,4-19
+src/content/posts/new_year.md
+  s_396df8a508d580::t_6c27c52a9eb066 2,4-9,16
+  s_396df8a508d580::t_b8d8159cb8d09b 3
+src/pages/archive/index.astro
+  s_ebe0bd8ddcc3ed::t_d963309a85fa27 6,10,23,49
+  s_396df8a508d580::t_9aede0b617c944 1,4-5,7-9,11-22,24-48,50-63
+  s_396df8a508d580::t_79a4272a475191 2-3
+public/assets/animal-island-ui/recipes.svg
+  s_396df8a508d580::t_668ed655e8b615 1-8
+package.json
+  s_396df8a508d580::t_bce7475310d1e0 1-28
+src/layouts/BaseLayout.astro
+  s_396df8a508d580::t_3481efb4047e97 12,20,47
+  s_396df8a508d580::t_4fc229d4ce9da8 64
+  s_396df8a508d580::t_d0d79afba36b77 1-11,13-19,21-46,48-63,65-71
+src/env.d.ts
+  s_396df8a508d580::t_bce7475310d1e0 1
+  s_396df8a508d580::t_e22ead50f73d73 2-3
+src/content/posts/idea-blog-style.md
+  s_396df8a508d580::t_6c27c52a9eb066 2-9,11
+src/content/posts/read.md
+  s_396df8a508d580::t_6c27c52a9eb066 2-9
+src/content/posts/code-copy.md
+  s_396df8a508d580::t_b8d8159cb8d09b 3
+  s_396df8a508d580::t_6c27c52a9eb066 2,4-9,11,31
+src/pages/category/[category].astro
+  s_396df8a508d580::t_79a4272a475191 2-4
+  s_396df8a508d580::t_9aede0b617c944 1,5-45
+src/components/SiteFooter.astro
+  s_396df8a508d580::t_79a4272a475191 2
+  s_396df8a508d580::t_d0d79afba36b77 1,3-26
+src/content/posts/book-girl-notes.md
+  s_396df8a508d580::t_6c27c52a9eb066 2-9
+src/lib/posts.ts
+  s_ebe0bd8ddcc3ed::t_9c9efbfb90243a 15,17-24
+  s_396df8a508d580::t_d0d79afba36b77 1-14,16,25-37
+.gitignore
+  s_396df8a508d580::t_bce7475310d1e0 5-7
+src/content/posts/viva-happy.md
+  s_396df8a508d580::t_6c27c52a9eb066 2-9,20
+  s_ebe0bd8ddcc3ed::t_ee359f57d0aec4 12-13
+src/pages/posts/[slug].astro
+  s_396df8a508d580::t_79a4272a475191 2-4
+  s_396df8a508d580::t_9aede0b617c944 1,5-94
+src/pages/rss.xml.ts
+  s_396df8a508d580::t_9aede0b617c944 1-19
+public/assets/animal-island-ui/shopping.svg
+  s_396df8a508d580::t_668ed655e8b615 1-6
+src/content/posts/video-test.md
+  s_396df8a508d580::t_6c27c52a9eb066 2-9,16
+  s_ebe0bd8ddcc3ed::t_ee359f57d0aec4 11
+src/content/posts/make-words-module.md
+  s_396df8a508d580::t_6c27c52a9eb066 2-9
+src/components/ArticleCard.astro
+  s_396df8a508d580::t_79a4272a475191 2-3
+  s_396df8a508d580::t_d0d79afba36b77 1,4-37
+src/components/SiteHeader.astro
+  s_396df8a508d580::t_d0d79afba36b77 1-29
+src/content/posts/meet.md
+  s_396df8a508d580::t_6c27c52a9eb066 2,4-9,68
+  s_396df8a508d580::t_b8d8159cb8d09b 3
+src/components/ArchiveCollapse.tsx
+  s_396df8a508d580::t_d0d79afba36b77 3-7,9-30,32-44
+  s_396df8a508d580::t_79a4272a475191 1-2
+  s_ebe0bd8ddcc3ed::t_9c9efbfb90243a 8,31
+src/content/posts/sentences.md
+  s_396df8a508d580::t_6c27c52a9eb066 2-9,13
+package-lock.json
+  s_396df8a508d580::t_2fc549625b8961 1-283,285-6093,6095-6096
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "9cae83b4849f7a85b6ae3f5561ce27f7b2903560",
+  "prompts": {},
+  "logical_commit_id": "9cae83b4849f7a85b6ae3f5561ce27f7b2903560",
+  "sessions": {
+    "s_396df8a508d580": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8922-0b82-7082-ab81-9ce3b6e75b04",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <huangjianbin@imo.im>",
+      "total_additions": 3923,
+      "total_deletions": 324
+    },
+    "s_ebe0bd8ddcc3ed": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8966-0cc9-74f0-a065-0a6cb47220c9",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <huangjianbin@imo.im>",
+      "total_additions": 71,
+      "total_deletions": 17
+    }
+  }
+}
