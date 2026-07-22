@@ -1,0 +1,29 @@
+src/pages/archive/index.astro
+  s_2eae7cd9e1b6f8::t_04af325e912450 27-29,34-58
+src/components/ArchiveCollapse.tsx
+  s_2eae7cd9e1b6f8::t_29291867fec22e 32-37
+src/styles/global.css
+  s_2eae7cd9e1b6f8::t_04af325e912450 605-686,1333-1338,1341-1344
+  s_2eae7cd9e1b6f8::t_d7237e37767f36 1339-1340
+  s_2eae7cd9e1b6f8::t_29291867fec22e 187,696-699,704-708,774-776,781,783-788,792,795-800,1345,1365-1368
+  s_2eae7cd9e1b6f8::t_59ff4f57059b38 1346
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "5f2c120aa15d46a39186de90adb3ab9b42d6fe7c",
+  "prompts": {},
+  "logical_commit_id": "5f2c120aa15d46a39186de90adb3ab9b42d6fe7c",
+  "sessions": {
+    "s_2eae7cd9e1b6f8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f89cb-1665-7d22-bbd0-ceb62423d4cc",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <huangjianbin@imo.im>",
+      "total_additions": 163,
+      "total_deletions": 6
+    }
+  }
+}
