@@ -1,0 +1,24 @@
+src/styles/global.css
+  s_3e9772f9a47a0a::t_57bf3711eed530 153-177,1333-1334
+src/components/SiteHeader.astro
+  s_3e9772f9a47a0a::t_57bf3711eed530 12-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "81f64b438d6229893e5420ac9c88f709f3bda163",
+  "prompts": {},
+  "logical_commit_id": "81f64b438d6229893e5420ac9c88f709f3bda163",
+  "sessions": {
+    "s_3e9772f9a47a0a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f89aa-5447-7fb0-bc4c-a9db11736257",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <huangjianbin@imo.im>",
+      "total_additions": 33,
+      "total_deletions": 12
+    }
+  }
+}
