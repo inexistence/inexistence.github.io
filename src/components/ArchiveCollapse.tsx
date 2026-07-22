@@ -29,7 +29,12 @@ export default function ArchiveCollapse({ groups }: { groups: YearGroup[] }) {
                   <a href={post.href}>
                     <span>{post.title}</span>
                     <time dateTime={post.publishDate}>{post.date}</time>
-                    <Tag size="small" variant="soft" color={post.category === '技术' ? 'app-teal' : 'app-yellow'}>
+                    <Tag
+                      className="archive-collapse-list__tag"
+                      size="small"
+                      variant="soft"
+                      color={post.category === '技术' ? 'app-teal' : 'app-yellow'}
+                    >
                       {post.category}
                     </Tag>
                   </a>
