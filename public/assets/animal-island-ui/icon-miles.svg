@@ -2,7 +2,7 @@
 <style>
   #miles-earth { transform-box: fill-box; transform-origin: center; animation: miles-earth-roll 4.8s linear infinite; }
   #miles-runner { transform-box: fill-box; transform-origin: center bottom; animation: miles-runner-bob .48s ease-in-out infinite alternate; }
-  @keyframes miles-earth-roll { to { transform: rotate(360deg); } }
+  @keyframes miles-earth-roll { to { transform: rotate(-360deg); } }
   @keyframes miles-runner-bob { to { transform: translateY(1.2px); } }
   @media (prefers-reduced-motion: reduce) { #miles-earth, #miles-runner { animation: none; } }
 </style>

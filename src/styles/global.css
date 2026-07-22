@@ -603,6 +603,7 @@ form {
 }
 
 .page-hero--archive {
+  padding: 140px 0 70px;
   background: #65b99b url('/assets/animal-island-ui/home-bg.webp') center / 560px auto;
   isolation: isolate;
 }
@@ -654,7 +655,9 @@ form {
   position: relative;
   z-index: 2;
   width: min(100%, 250px);
+  height: 280px;
   justify-self: center;
+  overflow: hidden;
   filter: drop-shadow(0 18px 22px rgba(31, 91, 69, 0.24));
 }
 
@@ -1315,6 +1318,11 @@ form {
     background: linear-gradient(180deg, rgba(255, 241, 199, 0.08), rgba(168, 89, 42, 0.12));
   }
 
+  .page-hero--archive {
+    padding-top: 112px;
+    padding-bottom: 58px;
+  }
+
   .page-hero--archive h1 {
     max-width: none;
     font-size: clamp(2.65rem, 12.5vw, 4.4rem);
@@ -1330,6 +1338,8 @@ form {
     right: -14px;
     bottom: -22px;
     width: 112px;
+    height: auto;
+    overflow: visible;
     opacity: 0.32;
   }
 
