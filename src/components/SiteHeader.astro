@@ -1,0 +1,29 @@
+---
+const path = Astro.url.pathname;
+const links = [
+  { href: '/', label: '岛屿' },
+  { href: '/archive/', label: '归档' },
+  { href: '/rss.xml', label: 'RSS' },
+];
+---
+
+<header class="site-header">
+  <a class="site-mark" href="/" aria-label="INEXISTENCE 首页">
+    <span class="site-mark__leaf" aria-hidden="true">◆</span>
+    <span>INEXISTENCE</span>
+  </a>
+  <nav aria-label="主导航">
+    <ul class="site-nav">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={link.href === '/' ? (path === '/' ? 'page' : undefined) : (path.startsWith(link.href) ? 'page' : undefined)}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

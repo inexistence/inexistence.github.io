@@ -1,0 +1,147 @@
+---
+import { Button } from 'animal-island-ui/es/components/Button/Button.js';
+import { Card } from 'animal-island-ui/es/components/Card/Card.js';
+import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
+import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { categoryColor, formatDate, getPublishedPosts } from '../lib/posts';
+
+const posts = await getPublishedPosts();
+const trailPosts = posts.slice(0, 5);
+const categories = [...posts.reduce((map, post) => {
+  map.set(post.data.category, (map.get(post.data.category) ?? 0) + 1);
+  return map;
+}, new Map<string, number>())];
+
+const trailItems = ['star-wand', 'flower', 'fish', 'bell-bag', 'coin'];
+const trailColors = ['app-yellow', 'app-pink', 'app-blue', 'app-orange', 'app-green'] as const;
+const categoryIcons: Record<string, string> = {
+  技术: 'recipes',
+  日志: 'chat',
+};
+---
+
+<BaseLayout bodyClass="home-page">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero__texture" aria-hidden="true"></div>
+    <div class="home-hero__rings" aria-hidden="true"></div>
+
+    <div class="home-hero__inner shell">
+      <div class="home-hero__copy">
+        <p class="home-hero__kicker">A SMALL ISLAND OF WORDS · SINCE 2010</p>
+        <h1 id="home-title"><span>IN</span><span>EXISTENCE</span></h1>
+        <p class="home-hero__saying">起风了，唯有努力生存。</p>
+        <p class="home-hero__lead">随便写点技术、生活，以及当时觉得值得记录的东西。</p>
+        <form action="#island-trail">
+          <Button type="primary" size="large" htmlType="submit">领取登岛地图 <span aria-hidden="true">→</span></Button>
+        </form>
+      </div>
+
+      <div class="home-hero__scene" aria-label="两位狸猫岛民欢迎你登岛">
+        <div class="home-hero__sun" aria-hidden="true"></div>
+        <img class="home-hero__animal" src="/assets/animal-island-ui/animal-icon.png" alt="两位狸猫岛民" />
+        <img class="hero-float hero-float--star" src="/assets/animal-island-ui/star-wand.png" alt="" aria-hidden="true" />
+        <img class="hero-float hero-float--flower" src="/assets/animal-island-ui/flower.png" alt="" aria-hidden="true" />
+        <img class="hero-float hero-float--coin" src="/assets/animal-island-ui/coin.png" alt="" aria-hidden="true" />
+        <span class="home-hero__stamp" aria-hidden="true">WELCOME<br />ASHORE</span>
+      </div>
+    </div>
+
+    <a class="home-hero__scroll" href="#island-trail">
+      <span>向下漫游</span>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6" /></svg>
+    </a>
+  </section>
+
+  <section class="island-trail" id="island-trail">
+    <div class="island-trail__pattern" aria-hidden="true"></div>
+    <header class="trail-heading shell" data-reveal>
+      <p class="eyebrow">ISLAND FIELD GUIDE · {String(trailPosts.length).padStart(2, '0')} STOPS</p>
+      <h2>从最近写下的开始，<br />也可以往前翻翻旧文章。</h2>
+      <p>公开文章按时间排成一条登岛路线。没有算法推荐，喜欢哪块路牌，就从哪里开始。</p>
+    </header>
+
+    <div class="trail-map shell">
+      <div class="trail-map__line" aria-hidden="true"></div>
+      {trailPosts.map((post, index) => {
+        const color = trailColors[index % trailColors.length];
+        return (
+          <article class:list={['trail-stop', { 'trail-stop--reverse': index % 2 === 1 }]} data-reveal style={`--stop-index:${index}`}>
+            <div class="trail-stop__marker" aria-hidden="true">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <img src={`/assets/animal-island-ui/${trailItems[index % trailItems.length]}.png`} alt="" loading="lazy" />
+            </div>
+            <a class="trail-stop__link" href={`/posts/${post.id}/`} aria-label={`阅读《${post.data.title}》`}>
+              <Card color={color} pattern={index === 0 ? color : 'none'} hoverable className="trail-stop__card">
+                {post.data.cover && <img class="trail-stop__cover" src={post.data.cover} alt="" loading={index === 0 ? 'eager' : 'lazy'} />}
+                <div class="trail-stop__body">
+                  <div class="trail-stop__meta">
+                    <Tag size="small" variant="solid" color={categoryColor(post.data.category)}>{post.data.category}</Tag>
+                    <time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time>
+                  </div>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.description}</p>
+                  <span class="trail-stop__more">推开这扇门 <span aria-hidden="true">↗</span></span>
+                </div>
+              </Card>
+            </a>
+          </article>
+        );
+      })}
+    </div>
+
+    <div class="trail-action shell" data-reveal>
+      <form action="/archive/">
+        <Button type="default" size="large" htmlType="submit">打开完整归档</Button>
+      </form>
+    </div>
+  </section>
+
+  <section class="island-directory">
+    <div class="island-directory__top"><Divider type="wave-yellow" /></div>
+    <div class="island-directory__inner shell">
+      <div class="island-directory__copy" data-reveal>
+        <p class="eyebrow">NOOK PHONE DIRECTORY</p>
+        <h2>你想去岛的哪一边？</h2>
+        <p>按主题抄近路，或者什么都不选，继续随风闲逛。</p>
+      </div>
+      <div class="directory-apps">
+        {categories.map(([category, count], index) => (
+          <a href={`/category/${encodeURIComponent(category)}/`} class="directory-app" data-reveal style={`--app-index:${index}`}>
+            <span class="directory-app__icon">
+              <img src={`/assets/animal-island-ui/${categoryIcons[category] ?? 'shopping'}.svg`} alt="" />
+            </span>
+            <strong>{category}</strong>
+            <small>{count} 篇记录</small>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="island-note shell" data-reveal>
+    <img src="/assets/animal-island-ui/bell-bag.png" alt="" aria-hidden="true" />
+    <div>
+      <p class="eyebrow">A NOTE FROM INEXISTENCE</p>
+      <h2>这个博客从 2010 年留到了现在。</h2>
+      <p>更新随缘，内容也有点杂，不过应该还会继续写下去。</p>
+    </div>
+  </section>
+
+  <script>
+    const hero = document.querySelector<HTMLElement>('.home-hero');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (hero && !reduceMotion) {
+      let frame = 0;
+      hero.addEventListener('pointermove', (event) => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          const x = (event.clientX / window.innerWidth - 0.5) * 2;
+          const y = (event.clientY / window.innerHeight - 0.5) * 2;
+          hero.style.setProperty('--parallax-x', x.toFixed(3));
+          hero.style.setProperty('--parallax-y', y.toFixed(3));
+        });
+      }, { passive: true });
+    }
+  </script>
+</BaseLayout>

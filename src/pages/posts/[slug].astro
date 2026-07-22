@@ -1,0 +1,94 @@
+---
+import { Button } from 'animal-island-ui/es/components/Button/Button.js';
+import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
+import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categoryColor, formatDate, getPublishedPosts, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      newer: index > 0 ? posts[index - 1] : null,
+      older: index < posts.length - 1 ? posts[index + 1] : null,
+    },
+  }));
+}
+
+interface Props {
+  post: Post;
+  newer: Post | null;
+  older: Post | null;
+}
+
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
+const color = categoryColor(post.data.category);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover || undefined}>
+  <article class="post">
+    <header class:list={['post-header', `post-header--${color}`]}>
+      <div class="shell post-header__inner" data-reveal>
+        <a class="post-header__back" href="/archive/">← 返回归档</a>
+        <div class="post-header__meta">
+          <a href={`/category/${encodeURIComponent(post.data.category)}/`}>
+            <Tag size="medium" variant="solid" color={color}>{post.data.category}</Tag>
+          </a>
+          <time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time>
+          {post.data.place && <span>{post.data.place}</span>}
+        </div>
+        <h1>{post.data.title}</h1>
+        <p>{post.data.description}</p>
+      </div>
+    </header>
+
+    <div class="post-layout shell">
+      <div class="post-layout__main">
+        {post.data.cover && (
+          <figure class="post-cover" data-reveal>
+            <img src={post.data.cover} alt={`${post.data.title}的文章封面`} />
+          </figure>
+        )}
+        <div class="prose" data-reveal>
+          <Content />
+        </div>
+      </div>
+
+      {headings.length > 2 && (
+        <aside class="post-toc" aria-label="文章目录">
+          <p>沿途路标</p>
+          <ol>
+            {headings.filter((heading) => heading.depth <= 3).map((heading) => (
+              <li class:list={[`depth-${heading.depth}`]}><a href={`#${heading.slug}`}>{heading.text}</a></li>
+            ))}
+          </ol>
+        </aside>
+      )}
+    </div>
+
+    <div class="shell"><Divider type="wave-yellow" /></div>
+
+    <nav class="post-nav shell" aria-label="文章翻页">
+      <div>
+        {newer && (
+          <form action={`/posts/${newer.id}/`}>
+            <span>更新一篇</span>
+            <Button type="default" size="large" htmlType="submit">← {newer.data.title}</Button>
+          </form>
+        )}
+      </div>
+      <div>
+        {older && (
+          <form action={`/posts/${older.id}/`}>
+            <span>更早一篇</span>
+            <Button type="default" size="large" htmlType="submit">{older.data.title} →</Button>
+          </form>
+        )}
+      </div>
+    </nav>
+  </article>
+</BaseLayout>

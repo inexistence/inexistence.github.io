@@ -1,0 +1,37 @@
+---
+import { Card } from 'animal-island-ui/es/components/Card/Card.js';
+import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
+import type { Post } from '../lib/posts';
+import { categoryColor, formatDate } from '../lib/posts';
+
+interface Props {
+  post: Post;
+  featured?: boolean;
+  index?: number;
+}
+
+const { post, featured = false, index = 0 } = Astro.props;
+const color = categoryColor(post.data.category);
+const pattern = featured ? color : index % 3 === 0 ? 'default' : 'none';
+---
+
+<article class:list={['article-card', { 'article-card--featured': featured }]} data-reveal>
+  <a class="article-card__link" href={`/posts/${post.id}/`} aria-label={`阅读《${post.data.title}》`}>
+    <Card color={featured ? color : 'default'} pattern={pattern} hoverable className="article-card__surface">
+      {post.data.cover && (
+        <div class="article-card__cover">
+          <img src={post.data.cover} alt="" loading={featured ? 'eager' : 'lazy'} />
+        </div>
+      )}
+      <div class="article-card__body">
+        <div class="article-card__meta">
+          <Tag size="small" variant={featured ? 'solid' : 'soft'} color={color}>{post.data.category}</Tag>
+          <time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time>
+        </div>
+        <h3>{post.data.title}</h3>
+        <p>{post.data.description}</p>
+        <span class="article-card__more">继续散步 <span aria-hidden="true">→</span></span>
+      </div>
+    </Card>
+  </a>
+</article>

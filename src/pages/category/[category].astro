@@ -1,0 +1,45 @@
+---
+import { Button } from 'animal-island-ui/es/components/Button/Button.js';
+import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
+import { Title } from 'animal-island-ui/es/components/Title/Title.js';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { categoryColor, getPublishedPosts, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  const categories = [...new Set(posts.map((post) => post.data.category))];
+  return categories.map((category) => ({
+    params: { category },
+    props: { category, posts: posts.filter((post) => post.data.category === category) },
+  }));
+}
+
+interface Props {
+  category: string;
+  posts: Post[];
+}
+
+const { category, posts } = Astro.props;
+---
+
+<BaseLayout title={`${category}分类`} description={`INEXISTENCE 中的${category}文章。`}>
+  <header class="page-hero page-hero--category">
+    <div class="shell page-hero__inner" data-reveal>
+      <Tag size="large" variant="solid" color={categoryColor(category)}>{category}</Tag>
+      <h1><Title size="large" color={categoryColor(category)}>{category}小径</Title></h1>
+      <p>这里一共有 {posts.length} 篇文章。</p>
+    </div>
+  </header>
+
+  <section class="shell section">
+    <div class="article-grid article-grid--category">
+      {posts.map((post, index) => <ArticleCard post={post} index={index} />)}
+    </div>
+    <div class="section-action">
+      <form action="/archive/">
+        <Button type="default" size="large" htmlType="submit">返回全部归档</Button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

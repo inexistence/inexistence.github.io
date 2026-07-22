@@ -1,0 +1,63 @@
+---
+import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
+import { Title } from 'animal-island-ui/es/components/Title/Title.js';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArchiveCollapse from '../../components/ArchiveCollapse';
+import { formatDate, getDateParts, getPublishedPosts } from '../../lib/posts';
+
+const posts = await getPublishedPosts();
+const grouped = posts.reduce((map, post) => {
+  const { year } = getDateParts(post.data.publishDate);
+  const entries = map.get(year) ?? [];
+  entries.push(post);
+  map.set(year, entries);
+  return map;
+}, new Map<string, typeof posts>());
+
+const groups = [...grouped].map(([year, entries]) => ({
+  year,
+  posts: entries.map((post) => ({
+    title: post.data.title,
+    href: `/posts/${post.id}/`,
+    date: formatDate(post.data.publishDate),
+    publishDate: post.data.publishDate.toISOString(),
+    category: post.data.category,
+  })),
+}));
+---
+
+<BaseLayout title="文章归档" description="沿着年份回看 INEXISTENCE 的全部公开文章。">
+  <header class="page-hero page-hero--archive">
+    <div class="shell page-hero__inner" data-reveal>
+      <p class="eyebrow">ARCHIVE TRAIL</p>
+      <h1>沿着时间的小径</h1>
+      <p>{posts.length} 篇公开文字，散落在 {groups.length} 个年份里。</p>
+    </div>
+  </header>
+
+  <section class="archive shell section">
+    <div class="archive__desktop">
+      {groups.map((group) => (
+        <section class="archive-year" data-reveal>
+          <div class="archive-year__label">
+            <h2><Title size="large" color="app-teal">{group.year}</Title></h2>
+            <span>{group.posts.length} 篇</span>
+          </div>
+          <ol>
+            {group.posts.map((post) => (
+              <li>
+                <time datetime={post.publishDate}>{post.date}</time>
+                <a href={post.href}>{post.title}</a>
+                <span>{post.category}</span>
+              </li>
+            ))}
+          </ol>
+          <Divider type="dashed-brown" />
+        </section>
+      ))}
+    </div>
+    <div class="archive__mobile">
+      <ArchiveCollapse client:visible groups={groups} />
+    </div>
+  </section>
+</BaseLayout>

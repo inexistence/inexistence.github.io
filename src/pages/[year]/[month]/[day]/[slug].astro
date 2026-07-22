@@ -1,0 +1,38 @@
+---
+import { getDateParts, getPublishedPosts, type Post } from '../../../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+
+  return posts.map((post) => ({
+    params: {
+      ...getDateParts(post.data.publishDate),
+      slug: post.id,
+    },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const destination = `/posts/${post.id}/`;
+const canonical = new URL(destination, Astro.site);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <link rel="canonical" href={canonical} />
+    <title>正在前往《{post.data.title}》</title>
+  </head>
+  <body>
+    <p>文章地址已更新，正在前往 <a href={destination}>《{post.data.title}》</a>。</p>
+  </body>
+</html>

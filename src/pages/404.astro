@@ -1,0 +1,18 @@
+---
+import { Button } from 'animal-island-ui/es/components/Button/Button.js';
+import { Card } from 'animal-island-ui/es/components/Card/Card.js';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="迷路了" description="这条小径暂时没有通向任何地方。" noindex>
+  <section class="not-found shell">
+    <Card color="app-yellow" pattern="app-yellow" className="not-found__card">
+      <p class="eyebrow">404 · LOST TRAIL</p>
+      <h1>这条小径走丢了。</h1>
+      <p>也许路标被风吹倒了。先回到岛屿入口，再选一条路吧。</p>
+      <form action="/">
+        <Button type="primary" size="large" htmlType="submit">返回岛屿</Button>
+      </form>
+    </Card>
+  </section>
+</BaseLayout>
