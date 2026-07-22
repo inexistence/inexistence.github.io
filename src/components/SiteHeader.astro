@@ -1,4 +1,6 @@
 ---
+import leafIcon from '../../node_modules/animal-island-ui/dist/files/icon-leaf.40329f03.png';
+
 const path = Astro.url.pathname;
 const links = [
   { href: '/', label: '岛屿' },
@@ -10,9 +12,11 @@ const links = [
 <header class="site-header">
   <a class="site-mark" href="/" aria-label="INEXISTENCE 首页">
     <span class="site-mark__leaf" aria-hidden="true">
-      <svg viewBox="0 0 64 64" focusable="false">
-        <path class="site-mark__leaf-blade" d="M47 13C29 15 17 25 16 40c8-5 16-8 25-9-8 4-14 9-19 16 17 2 29-9 25-34Z" />
-        <path class="site-mark__leaf-vein" d="M14 50c8-10 18-19 31-27" />
+      <svg viewBox="0 0 87 83" focusable="false">
+        <mask id="site-mark-leaf-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="87" height="83" style="mask-type: luminance">
+          <image href={leafIcon.src} width="87" height="83" />
+        </mask>
+        <rect width="87" height="83" fill="currentColor" mask="url(#site-mark-leaf-mask)" />
       </svg>
     </span>
     <span>INEXISTENCE</span>

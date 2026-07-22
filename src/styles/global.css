@@ -150,13 +150,11 @@ form {
 }
 
 .site-mark__leaf {
-  --site-leaf-fill: var(--island-mint-deep);
-  --site-leaf-detail: var(--island-paper);
   display: block;
-  width: 28px;
+  width: 29px;
   height: 28px;
   flex: 0 0 auto;
-  transform: rotate(-5deg);
+  color: var(--island-mint-deep);
 }
 
 .site-mark__leaf svg {
@@ -164,17 +162,6 @@ form {
   width: 100%;
   height: 100%;
   overflow: visible;
-}
-
-.site-mark__leaf-blade {
-  fill: var(--site-leaf-fill);
-}
-
-.site-mark__leaf-vein {
-  fill: none;
-  stroke: var(--site-leaf-detail);
-  stroke-linecap: round;
-  stroke-width: 3.5;
 }
 
 .site-nav {
@@ -1134,7 +1121,7 @@ form {
 
   .site-mark__leaf {
     width: 32px;
-    height: 24px;
+    height: 31px;
   }
 
   .site-nav {
@@ -1330,8 +1317,7 @@ form {
 }
 
 .home-page .site-mark__leaf {
-  --site-leaf-fill: var(--home-cream);
-  --site-leaf-detail: var(--home-teal-deep);
+  color: var(--home-cream);
 }
 
 .home-page .site-nav {
