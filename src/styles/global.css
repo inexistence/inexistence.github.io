@@ -1575,8 +1575,10 @@ form {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr .72fr;
+  grid-template-columns: minmax(0, 680px) minmax(260px, 360px);
   align-items: end;
+  justify-content: space-between;
+  gap: clamp(48px, 8vw, 120px);
   margin-bottom: clamp(58px, 7vw, 86px);
 }
 
@@ -1589,14 +1591,15 @@ form {
   margin: 0;
   color: var(--home-ink);
   font-family: 'Nunito', 'Noto Sans SC', sans-serif;
-  font-size: clamp(2.55rem, 4.7vw, 4.75rem);
+  font-size: clamp(2.55rem, 4.2vw, 4.35rem);
   letter-spacing: -0.045em;
-  line-height: 0.98;
+  line-height: 1.02;
+  text-wrap: balance;
 }
 
 .trail-heading > p:last-child {
   max-width: 34ch;
-  margin: 0 0 6px 45px;
+  margin: 0 0 6px;
   color: color-mix(in oklch, var(--home-ink) 91%, #4d9f7a);
   font-size: 1.02rem;
 }

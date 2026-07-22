@@ -28,12 +28,12 @@ const categoryIcons: Record<string, string> = {
 
     <div class="home-hero__inner shell">
       <div class="home-hero__copy">
-        <p class="home-hero__kicker">A SMALL ISLAND OF WORDS · SINCE 2010</p>
+        <p class="home-hero__kicker">INEXISTENCE ISLAND · OPEN SINCE 2010</p>
         <h1 id="home-title"><span>IN</span><span>EXISTENCE</span></h1>
-        <p class="home-hero__saying">起风了，唯有努力生存。</p>
-        <p class="home-hero__lead">随便写点技术、生活，以及当时觉得值得记录的东西。</p>
+        <p class="home-hero__saying">登岛手续办好啦！随便逛逛吧！</p>
+        <p class="home-hero__lead">这里收着一些技术笔记、生活碎片，还有舍不得忘记的旧事。</p>
         <form action="#island-trail">
-          <Button type="primary" size="large" htmlType="submit">领取登岛地图 <span aria-hidden="true">→</span></Button>
+          <Button type="primary" size="large" htmlType="submit">开始逛岛 <span aria-hidden="true">→</span></Button>
         </form>
       </div>
 
@@ -48,7 +48,7 @@ const categoryIcons: Record<string, string> = {
     </div>
 
     <a class="home-hero__scroll" href="#island-trail">
-      <span>向下漫游</span>
+      <span>沿小路往下</span>
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6" /></svg>
     </a>
   </section>
@@ -56,9 +56,9 @@ const categoryIcons: Record<string, string> = {
   <section class="island-trail" id="island-trail">
     <div class="island-trail__pattern" aria-hidden="true"></div>
     <header class="trail-heading shell" data-reveal>
-      <p class="eyebrow">ISLAND FIELD GUIDE · {String(trailPosts.length).padStart(2, '0')} STOPS</p>
-      <h2>从最近写下的开始，<br />也可以往前翻翻旧文章。</h2>
-      <p>公开文章按时间排成一条登岛路线。没有算法推荐，喜欢哪块路牌，就从哪里开始。</p>
+      <p class="eyebrow">ISLAND LOGBOOK · {String(trailPosts.length).padStart(2, '0')} STOPS</p>
+      <h2>从最近一篇出发，<br />慢慢走回从前。</h2>
+      <p>文章按写下的时间排成一条小路。沿着路牌慢慢走，想从哪里开始都可以。</p>
     </header>
 
     <div class="trail-map shell">
@@ -81,7 +81,7 @@ const categoryIcons: Record<string, string> = {
                   </div>
                   <h3>{post.data.title}</h3>
                   <p>{post.data.description}</p>
-                  <span class="trail-stop__more">推开这扇门 <span aria-hidden="true">↗</span></span>
+                  <span class="trail-stop__more">停下来读读 <span aria-hidden="true">↗</span></span>
                 </div>
               </Card>
             </a>
@@ -92,7 +92,7 @@ const categoryIcons: Record<string, string> = {
 
     <div class="trail-action shell" data-reveal>
       <form action="/archive/">
-        <Button type="default" size="large" htmlType="submit">打开完整归档</Button>
+        <Button type="default" size="large" htmlType="submit">翻开完整岛志</Button>
       </form>
     </div>
   </section>
@@ -101,9 +101,9 @@ const categoryIcons: Record<string, string> = {
     <div class="island-directory__top"><Divider type="wave-yellow" /></div>
     <div class="island-directory__inner shell">
       <div class="island-directory__copy" data-reveal>
-        <p class="eyebrow">NOOK PHONE DIRECTORY</p>
-        <h2>你想去岛的哪一边？</h2>
-        <p>按主题抄近路，或者什么都不选，继续随风闲逛。</p>
+        <p class="eyebrow">ISLAND DIRECTORY</p>
+        <h2>今天想去岛上哪一边？</h2>
+        <p>去技术区翻翻工具箱，去日志区听听旧故事；也可以不选方向，继续散步。</p>
       </div>
       <div class="directory-apps">
         {categories.map(([category, count], index) => (
@@ -122,9 +122,9 @@ const categoryIcons: Record<string, string> = {
   <section class="island-note shell" data-reveal>
     <img src="/assets/animal-island-ui/bell-bag.png" alt="" aria-hidden="true" />
     <div>
-      <p class="eyebrow">A NOTE FROM INEXISTENCE</p>
-      <h2>这个博客从 2010 年留到了现在。</h2>
-      <p>更新随缘，内容也有点杂，不过应该还会继续写下去。</p>
+      <p class="eyebrow">MESSAGE FROM THE ISLAND</p>
+      <h2>这座小岛，从 2010 年亮灯到现在。</h2>
+      <p>有时热闹，有时安静。只要还有想记下的事，码头就会继续开放。</p>
     </div>
   </section>
 

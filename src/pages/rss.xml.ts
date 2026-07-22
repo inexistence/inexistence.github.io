@@ -5,7 +5,7 @@ export async function GET(context: { site: URL }) {
   const posts = await getPublishedPosts();
   return rss({
     title: 'INEXISTENCE',
-    description: '起风了，唯有努力生存。',
+    description: '这里收着一些技术笔记、生活碎片，还有舍不得忘记的旧事。',
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
