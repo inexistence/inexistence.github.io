@@ -2054,8 +2054,9 @@ form {
 
 .home-page .site-nav {
   border-color: rgba(255, 246, 220, 0.24);
-  background: rgba(22, 103, 98, 0.45);
+  background: rgba(22, 103, 98, 0.78);
   box-shadow: 0 10px 30px rgba(25, 83, 76, 0.18);
+  backdrop-filter: none;
 }
 
 .home-page .site-nav a[aria-current='page'] {
@@ -2169,13 +2170,12 @@ form {
   color: rgba(255, 246, 220, 0.9);
 }
 
-.home-hero__scene-parallax {
+.home-hero__scene-wrap {
   position: relative;
   z-index: 2;
   width: min(100%, 680px);
   aspect-ratio: 1.05;
   justify-self: end;
-  transition: transform 180ms cubic-bezier(.22, 1, .36, 1);
 }
 
 .home-hero__scene {
@@ -2211,14 +2211,12 @@ form {
   right: -1%;
   bottom: 8%;
   width: 101%;
-  filter: drop-shadow(0 24px 20px rgba(56, 66, 42, 0.24));
   animation: animal-float 6s cubic-bezier(.65, 0, .35, 1) infinite;
 }
 
 .hero-float {
   position: absolute;
   z-index: 3;
-  filter: drop-shadow(0 10px 8px rgba(58, 63, 41, 0.2));
   pointer-events: none;
 }
 
@@ -2289,11 +2287,21 @@ form {
   animation: scroll-nudge 2s cubic-bezier(.65, 0, .35, 1) infinite;
 }
 
+.home-hero:not(.is-animating) .home-hero__texture,
+.home-hero:not(.is-animating) .home-hero__sun::before,
+.home-hero:not(.is-animating) .home-hero__animal,
+.home-hero:not(.is-animating) .hero-float,
+.home-hero:not(.is-animating) .home-hero__scroll svg {
+  animation-play-state: paused;
+}
+
 .island-trail {
   position: relative;
   overflow: hidden;
   padding: clamp(88px, 9vw, 130px) 0 clamp(90px, 10vw, 130px);
   background: #8bcca4 url('/assets/animal-island-ui/content-bg.jpg') center top / 780px auto;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1750px;
 }
 
 .island-trail__pattern {
@@ -2513,6 +2521,8 @@ form {
   padding: clamp(95px, 10vw, 140px) 0;
   color: var(--home-cream);
   background: #f9a25f url('/assets/animal-island-ui/menu-bg.png') center / 670px auto;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }
 
 .island-directory__top {
@@ -2606,6 +2616,8 @@ form {
   align-items: center;
   gap: clamp(32px, 5vw, 66px);
   padding-block: clamp(76px, 8vw, 112px);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 380px;
 }
 
 .island-note > img {
@@ -2663,12 +2675,6 @@ form {
 @keyframes scroll-nudge {
   0%, 100% { transform: translateY(0); opacity: 1; }
   50% { transform: translateY(7px); opacity: .55; }
-}
-
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .home-hero__scene-parallax {
-    will-change: transform;
-  }
 }
 
 @media (max-width: 950px) {
@@ -2747,7 +2753,7 @@ form {
     font-size: .9rem;
   }
 
-  .home-hero__scene-parallax {
+  .home-hero__scene-wrap {
     position: absolute;
     right: -17%;
     bottom: 48px;

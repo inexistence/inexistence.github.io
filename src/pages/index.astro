@@ -37,7 +37,7 @@ const categoryIcons: Record<string, string> = {
         </form>
       </div>
 
-      <div class="home-hero__scene-parallax">
+      <div class="home-hero__scene-wrap">
         <div class="home-hero__scene" aria-label="两位狸猫岛民欢迎你登岛">
           <div class="home-hero__sun" aria-hidden="true"></div>
           <img class="home-hero__animal" src="/assets/animal-island-ui/animal-icon.png" alt="两位狸猫岛民" />
@@ -133,34 +133,20 @@ const categoryIcons: Record<string, string> = {
   <script is:inline data-astro-rerun>
     (() => {
       const hero = document.querySelector('.home-hero');
-      const scene = hero?.querySelector('.home-hero__scene-parallax');
-      const canUseParallax = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches;
-      if (!(hero instanceof HTMLElement) || !(scene instanceof HTMLElement) || !canUseParallax) return;
+      if (!(hero instanceof HTMLElement)) return;
 
-      let frame = 0;
-      let targetX = 0;
-      let targetY = 0;
+      if (!('IntersectionObserver' in window)) {
+        hero.classList.add('is-animating');
+        return;
+      }
 
-      const render = () => {
-        frame = 0;
-        scene.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
-      };
+      const observer = new IntersectionObserver(([entry]) => {
+        hero.classList.toggle('is-animating', entry.isIntersecting);
+      });
 
-      const schedule = () => {
-        if (!frame) frame = requestAnimationFrame(render);
-      };
-
-      hero.addEventListener('pointermove', (event) => {
-        targetX = Math.round((event.clientX / window.innerWidth - 0.5) * 24);
-        targetY = Math.round((event.clientY / window.innerHeight - 0.5) * 16);
-        schedule();
-      }, { passive: true });
-
-      hero.addEventListener('pointerleave', () => {
-        targetX = 0;
-        targetY = 0;
-        schedule();
-      }, { passive: true });
+      observer.observe(hero);
+      document.addEventListener('astro:before-swap', () => observer.disconnect(), { once: true });
     })();
   </script>
+
 </BaseLayout>
