@@ -1,0 +1,69 @@
+src/styles/global.css
+  s_af4414c4209e3d::t_e99fb0adaad615 1271-1273,1275-1276
+  s_af4414c4209e3d::t_d25859ae25f874 1636-1639
+  s_af4414c4209e3d::t_a80de155102958 1158-1162,1167,1173,1175-1178,1180-1202,1205-1211,1214-1215,1248-1251,1268-1269
+  s_af4414c4209e3d::t_10195d74f0d577 1155-1157,1164-1166,1170-1172,1174,1213,1218-1219,1222,1224-1230,1233,1236,1245-1246,1257-1258,1633-1635,1664-1665,1667-1668,1694
+  s_252ae787ac53a7::t_b6729f7228d1d4 1259-1267,1654-1663
+  s_252ae787ac53a7::t_71b6da041b1548 1252
+  s_252ae787ac53a7::t_2d1c02053159b3 1168-1169,1231-1232,1234-1235,1237-1244,1247,1270,1274,1641-1653
+  s_252ae787ac53a7::t_c75c94fa6536ee 1277-1289
+  s_af4414c4209e3d::t_bfb7bbc78d9533 1695-1709
+  s_af4414c4209e3d::t_2e9c33cbb5757b 1163,1179,1203-1204,1212,1216-1217,1220-1221,1223,1666
+  s_252ae787ac53a7::t_a5ba505f57a600 1253-1256
+  s_af4414c4209e3d::t_32c79682ddf6f2 1669
+README.md
+  s_252ae787ac53a7::t_5e69a2c1b08673 4
+src/pages/posts/[slug].astro
+  s_af4414c4209e3d::t_2e9c33cbb5757b 102
+  s_af4414c4209e3d::t_ff85c7410e5c78 112,114-125,128,140,145,154-155,158,160-161,166,170-171,179-180
+  s_af4414c4209e3d::t_e99fb0adaad615 109,135-139,141-143
+  s_252ae787ac53a7::t_d6c4fdaa19cade 159
+  s_af4414c4209e3d::t_0d596dd3747349 4,99-101
+  s_af4414c4209e3d::t_10195d74f0d577 97-98,103,105-108,110-111,126-127,129-130,144,172-178,181-182
+  s_af4414c4209e3d::t_f198ff63acb22c 131-134
+  s_252ae787ac53a7::t_5605417980102c 31,65,69
+  s_252ae787ac53a7::t_2d1c02053159b3 113,146-153,156-157,162-165,167-169
+src/types/animal-island-ui.d.ts
+  s_af4414c4209e3d::t_0d596dd3747349 21-24
+src/pages/index.astro
+  s_80ab7266973903::t_796d0d67a4b402 126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "ea7cbb57fd14c501e9d9d10be64ab66d377ada25",
+  "prompts": {},
+  "logical_commit_id": "ea7cbb57fd14c501e9d9d10be64ab66d377ada25",
+  "sessions": {
+    "s_252ae787ac53a7": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8cc2-8aa0-7261-a81f-cd0cfcad65b7",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 109,
+      "total_deletions": 43
+    },
+    "s_80ab7266973903": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8cc2-f68e-73a3-98dd-f988f0a02734",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 1,
+      "total_deletions": 1
+    },
+    "s_af4414c4209e3d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8ca4-9a23-7250-a01a-d3bd9bd5a09f",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 356,
+      "total_deletions": 145
+    }
+  }
+}
