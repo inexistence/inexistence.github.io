@@ -1,0 +1,26 @@
+docs/comments.md
+  s_51f00941c455dc::t_c75fb345dabae0 5-6
+README.md
+  s_51f00941c455dc::t_29f65c175f6832 36
+docs/comment-maintenance.md
+  s_51f00941c455dc::t_c75fb345dabae0 1-133
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "05e73b514f0824eb4008bc03cc7721f96eae3714",
+  "prompts": {},
+  "logical_commit_id": "05e73b514f0824eb4008bc03cc7721f96eae3714",
+  "sessions": {
+    "s_51f00941c455dc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8d1b-ee27-72c1-becf-0219344df38d",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 136,
+      "total_deletions": 1
+    }
+  }
+}
