@@ -124,8 +124,17 @@ public/assets/page-scenes/archive/time-trail-scene.webp
 
 - `blog-images/`：文章封面与正文图片，按文章名或主题分组；
 - `page-scenes/`：归档、留言板等页面专属的 Hero 与装饰场景，按页面名分组；
-- `animal-island-ui/`：组件库和全站复用的既有岛屿 UI 素材；
+- `avatars/`：Waline 匿名留言使用的公开头像池，不存放作者头像或文章图片；
+- `animal-island-ui/`：本站直接引用的组件库配套静态素材，供多个页面复用；
 - `images/`：少量无法归入以上类别的全站通用图片，不用于存放文章图片。
+
+更新 `avatars/` 时，必须同步维护 `waline-for-blog/index.cjs` 中的
+`avatarFiles`，并检查文件名大小写和 URL 编码。发布时先部署博客静态资源，
+确认新头像 URL 可访问后再部署 Waline 服务，避免匿名头像短暂出现 404。
+
+`animal-island-ui/` 中的素材应保留原项目的许可与署名要求。文章专属图片和
+页面专属场景即使视觉风格相同，也仍应分别放入 `blog-images/` 和
+`page-scenes/`，不要继续扩充组件库素材目录。
 
 ## 发布
 
