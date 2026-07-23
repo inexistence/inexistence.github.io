@@ -37,13 +37,15 @@ const categoryIcons: Record<string, string> = {
         </form>
       </div>
 
-      <div class="home-hero__scene" aria-label="两位狸猫岛民欢迎你登岛">
-        <div class="home-hero__sun" aria-hidden="true"></div>
-        <img class="home-hero__animal" src="/assets/animal-island-ui/animal-icon.png" alt="两位狸猫岛民" />
-        <img class="hero-float hero-float--star" src="/assets/animal-island-ui/star-wand.png" alt="" aria-hidden="true" />
-        <img class="hero-float hero-float--flower" src="/assets/animal-island-ui/flower.png" alt="" aria-hidden="true" />
-        <img class="hero-float hero-float--coin" src="/assets/animal-island-ui/coin.png" alt="" aria-hidden="true" />
-        <span class="home-hero__stamp" aria-hidden="true">WELCOME<br />ASHORE</span>
+      <div class="home-hero__scene-parallax">
+        <div class="home-hero__scene" aria-label="两位狸猫岛民欢迎你登岛">
+          <div class="home-hero__sun" aria-hidden="true"></div>
+          <img class="home-hero__animal" src="/assets/animal-island-ui/animal-icon.png" alt="两位狸猫岛民" />
+          <img class="hero-float hero-float--star" src="/assets/animal-island-ui/star-wand.png" alt="" aria-hidden="true" />
+          <img class="hero-float hero-float--flower" src="/assets/animal-island-ui/flower.png" alt="" aria-hidden="true" />
+          <img class="hero-float hero-float--coin" src="/assets/animal-island-ui/coin.png" alt="" aria-hidden="true" />
+          <span class="home-hero__stamp" aria-hidden="true">WELCOME<br />ASHORE</span>
+        </div>
       </div>
     </div>
 
@@ -131,19 +133,34 @@ const categoryIcons: Record<string, string> = {
   <script is:inline data-astro-rerun>
     (() => {
       const hero = document.querySelector('.home-hero');
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (hero && !reduceMotion) {
-        let frame = 0;
-        hero.addEventListener('pointermove', (event) => {
-          cancelAnimationFrame(frame);
-          frame = requestAnimationFrame(() => {
-            const x = (event.clientX / window.innerWidth - 0.5) * 2;
-            const y = (event.clientY / window.innerHeight - 0.5) * 2;
-            hero.style.setProperty('--parallax-x', x.toFixed(3));
-            hero.style.setProperty('--parallax-y', y.toFixed(3));
-          });
-        }, { passive: true });
-      }
+      const scene = hero?.querySelector('.home-hero__scene-parallax');
+      const canUseParallax = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches;
+      if (!(hero instanceof HTMLElement) || !(scene instanceof HTMLElement) || !canUseParallax) return;
+
+      let frame = 0;
+      let targetX = 0;
+      let targetY = 0;
+
+      const render = () => {
+        frame = 0;
+        scene.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
+      };
+
+      const schedule = () => {
+        if (!frame) frame = requestAnimationFrame(render);
+      };
+
+      hero.addEventListener('pointermove', (event) => {
+        targetX = Math.round((event.clientX / window.innerWidth - 0.5) * 24);
+        targetY = Math.round((event.clientY / window.innerHeight - 0.5) * 16);
+        schedule();
+      }, { passive: true });
+
+      hero.addEventListener('pointerleave', () => {
+        targetX = 0;
+        targetY = 0;
+        schedule();
+      }, { passive: true });
     })();
   </script>
 </BaseLayout>
