@@ -26,10 +26,10 @@ const socialImage = new URL(image, Astro.site);
 ---
 
 <!doctype html>
-<html lang="zh-CN" class="js no-js">
+<html lang="zh-CN" class="js">
   <head>
     <ClientRouter />
-    <script is:inline data-astro-rerun>document.documentElement.classList.remove('no-js');</script>
+    <noscript><style>[data-reveal] { opacity: 1 !important; transform: none !important; will-change: auto !important; }</style></noscript>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#8ec7a0" />

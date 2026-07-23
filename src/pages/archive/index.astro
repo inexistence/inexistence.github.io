@@ -29,13 +29,13 @@ const groups = [...grouped].map(([year, entries]) => ({
 
 <BaseLayout title="文章岛志" description="沿着年份回看 INEXISTENCE 的全部公开文章。">
   <header class="page-hero page-hero--archive">
-    <div class="shell page-hero__inner archive-hero__inner" data-reveal>
+    <div class="shell page-hero__inner archive-hero__inner">
       <div class="archive-hero__copy">
-        <p class="eyebrow">ARCHIVE TRAIL</p>
-        <h1>沿着时间的小径</h1>
-        <p>{posts.length} 篇公开文字，散落在 {groups.length} 个年份里。</p>
+        <p class="eyebrow" data-reveal>ARCHIVE TRAIL</p>
+        <h1 data-reveal>沿着时间的小径</h1>
+        <p data-reveal>{posts.length} 篇公开文字，散落在 {groups.length} 个年份里。</p>
       </div>
-      <div class="archive-hero__miles" aria-hidden="true">
+      <div class="archive-hero__miles" aria-hidden="true" data-reveal>
         <object data="/assets/animal-island-ui/icon-miles.svg" type="image/svg+xml" tabindex="-1"></object>
       </div>
     </div>
@@ -44,14 +44,14 @@ const groups = [...grouped].map(([year, entries]) => ({
   <section class="archive shell section">
     <div class="archive__desktop">
       {groups.map((group) => (
-        <section class="archive-year" data-reveal>
-          <div class="archive-year__label">
+        <section class="archive-year">
+          <div class="archive-year__label" data-reveal>
             <h2><Title size="large" color="app-teal">{group.year}</Title></h2>
             <span>{group.posts.length} 篇</span>
           </div>
           <ol>
-            {group.posts.map((post) => (
-              <li>
+            {group.posts.map((post, index) => (
+              <li data-reveal style={`--reveal-delay:${80 + Math.min(index, 3) * 55}ms; --reveal-distance:10px;`}>
                 <time datetime={post.publishDate}>{post.date}</time>
                 <a href={post.href}>{post.title}</a>
                 <span>{post.category}</span>
@@ -62,7 +62,7 @@ const groups = [...grouped].map(([year, entries]) => ({
         </section>
       ))}
     </div>
-    <div class="archive__mobile">
+    <div class="archive__mobile" data-reveal>
       <ArchiveCollapse client:visible groups={groups} />
     </div>
   </section>
