@@ -1,0 +1,39 @@
+README.md
+  s_51f00941c455dc::t_29f65c175f6832 36
+docs/comment-maintenance.md
+  s_51f00941c455dc::t_c75fb345dabae0 1-133
+  s_51f00941c455dc::t_ab7be55b324b0f 134-136
+  s_8afb7ee21c1d5a::t_0ac2dad3a24c9c 137-158
+docs/comments.md
+  s_51f00941c455dc::t_c75fb345dabae0 5-6
+  s_8afb7ee21c1d5a::t_8607d864a07563 31-34,52-57,137
+src/content/posts/from-giscus-to-waline.md
+  s_8afb7ee21c1d5a::t_75340e2fd8bf5a 143,145-156,180-189,191,212,247,286-287
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "cf66b0f711e9bfb68a08e002a56dd75fcd5e9b1f",
+  "prompts": {},
+  "logical_commit_id": "cf66b0f711e9bfb68a08e002a56dd75fcd5e9b1f",
+  "sessions": {
+    "s_51f00941c455dc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8d1b-ee27-72c1-becf-0219344df38d",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 136,
+      "total_deletions": 1
+    },
+    "s_8afb7ee21c1d5a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8d76-f654-76b2-b640-3c2151672ef5",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
