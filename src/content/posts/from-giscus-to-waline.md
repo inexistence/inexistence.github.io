@@ -140,7 +140,19 @@ DISABLE_USERAGENT=true
 
 Vercel 的环境变量不是保存后立刻注入正在运行的服务。每次变更都要到 **Deployments** 对最新 Production 部署执行 **Redeploy**。
 
-## 两个报错是如何定位的
+## 5. 初始化 Waline 管理员
+
+服务能正常访问后，打开 Waline 服务域名末尾的 `/ui/` 路径，例如：
+
+```text
+https://<你的-waline-服务域名>/ui/
+```
+
+Waline 没有预设的管理员账号或密码，也不使用 GitHub、Vercel 的登录密码。首次进入时选择“注册”，自行设置昵称、邮箱和一组独立的强密码；**第一个注册成功的账号会自动成为管理员**。
+
+本次没有配置 SMTP，因此首次注册不需要邮件验证，但也无法通过邮件自助找回密码。密码应保存到密码管理器，不能写入仓库、环境变量、文档或截图。登录后就可以在「评论」页面查看、审核、回复或删除留言。
+
+## 6. 两个报错是如何定位的
 
 实际配置时，两个错误很有代表性。
 
@@ -166,7 +178,17 @@ GITHUB_PATH=waline
 
 如果文件已经存在仍然报同类错误，应检查两项：Token 是否只选中了正确的 `waline-data` 仓库，以及 Vercel 中的 `GITHUB_REPO` 是否拼写正确。
 
-## 5. 在 Astro 中接入文章评论和留言板
+## 7. GitHub CSV 与后台管理：第三个坑
+
+完成注册后，我又遇到了一个看起来很矛盾的现象：`Comment.csv` 已经有数据，文章和留言板前台也能显示评论，但 Waline 的 `/ui/` 管理页却是一张空表。
+
+这不是新问题。Waline 的 [Issue #205：GitHub 存储的评论后台无法显示](https://github.com/walinejs/waline/issues/205) 和更早的 [Issue #152](https://github.com/walinejs/waline/issues/152) 都记录了相同组合：Vercel 部署、GitHub CSV 存储、前台读取正常、后台列表为空。维护者当时也说明，后台管理会频繁调用 GitHub API，容易受频率和文件读取限制影响，因此不建议把 GitHub 存储当作高频后台管理方案。
+
+这次的问题还包含一个可复现的代码错误：GitHub 存储适配器把后台分页参数写成了 `slice(limit, offset)`。后台第一页会得到类似 `slice(10, 0)` 的空数组；前台读取评论走的是另一条逻辑，因此不受影响。
+
+当前的处理是固定 `@waline/vercel@1.41.3`，并用 `patch-package` 保存一个补丁，把它修正为从 `offset` 开始取 `limit` 条。`postinstall` 会让这个补丁在 Vercel 每次构建时自动生效。它解决了当前后台空列表，却不会改变 GitHub CSV 的架构边界：对于个人博客、低频评论很合适；如果评论量或管理操作明显增加，应考虑迁移到数据库型存储。
+
+## 8. 在 Astro 中接入文章评论和留言板
 
 前端只需要一个可复用的 Waline 组件。它接受固定 `path`，在 Astro 站内导航前销毁旧实例、页面加载后再初始化新实例，避免多个评论区重复挂载。
 
@@ -187,7 +209,7 @@ GITHUB_PATH=waline
 
 Waline 内部的昵称、邮箱、编辑器和提交按钮由客户端生成，不能直接用 React 的 `Input`、`Button` 组件替换，否则会断开 Waline 的状态、验证和提交逻辑。正确做法是保留其功能结构，通过 Waline 的 CSS 变量和 `.wl-*` 选择器把纸张底色、棕色文字、圆角和薄荷色按钮对齐到现有主题。
 
-## 6. 把服务地址交给 GitHub Pages
+## 9. 把服务地址交给 GitHub Pages
 
 博客仓库的 GitHub Actions 在构建时读取公开变量：
 
@@ -222,7 +244,7 @@ PUBLIC_TURNSTILE_SITE_KEY=<可暂时留空>
 
 Waline 默认会允许 `localhost` 和 `127.0.0.1`，因此本地页面可以直接调用线上服务。
 
-## 7. Turnstile：在公开前补上防垃圾留言
+## 10. Turnstile：在公开前补上防垃圾留言
 
 没有人机验证时，Waline 可以正常运行，但公开站点很快会收到机器人留言。Cloudflare Turnstile 用来解决这个问题。
 
@@ -261,6 +283,8 @@ localhost
 - [Giscus](https://giscus.app/) 与 [配置说明](https://giscus.app/zh-CN)
 - [Waline 官网](https://waline.js.org/) 与 [Vercel 部署文档](https://waline.js.org/guide/deploy/vercel.html)
 - [Waline 服务端环境变量说明](https://waline.js.org/reference/server/env.html)
+- [Waline Issue #205：GitHub 存储的评论后台无法显示](https://github.com/walinejs/waline/issues/205)
+- [Waline Issue #152：后台无法看到 GitHub 后端的评论](https://github.com/walinejs/waline/issues/152)
 - [Vercel](https://vercel.com/) 与 [环境变量文档](https://vercel.com/docs/environment-variables)
 - [GitHub Fine-grained Personal Access Token 创建页](https://github.com/settings/personal-access-tokens/new)
 - [GitHub Actions Variables 文档](https://docs.github.com/actions/learn-github-actions/variables)

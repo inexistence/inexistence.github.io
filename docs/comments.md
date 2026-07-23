@@ -2,6 +2,8 @@
 
 INEXISTENCE 使用 Waline 提供文章评论和留言板。博客前端部署在 GitHub Pages，Waline 后端部署在 Vercel，评论数据存放在一个专用私有 GitHub 仓库。
 
+日常操作、故障处理、密钥轮换和备份请参阅 [评论系统维护手册](comment-maintenance.md)。
+
 ## 架构与职责
 
 ```mermaid
@@ -26,9 +28,10 @@ flowchart LR
 
 1. 初始化私有 `waline-data` 仓库的 CSV 表头文件。
 2. 在 Vercel 为 `waline-for-blog` 配置服务端环境变量并 Redeploy。
-3. 在本仓库的 GitHub Actions Variables 配置公开的 Waline 服务地址和 Turnstile Site Key，重新部署 Pages。
-4. 在文章页和 `/guestbook/` 分别提交一条测试留言，确认私有仓库写入正常。
-5. 配置并验证 Turnstile 后，再清理仅用于评论的旧 Giscus Discussion、分类和 App 授权。
+3. 从私有 `waline-data` README 的「维护入口」打开 Waline 管理后台，注册第一个账号；第一个账号自动成为管理员。
+4. 在本仓库的 GitHub Actions Variables 配置公开的 Waline 服务地址和 Turnstile Site Key，重新部署 Pages。
+5. 在文章页和 `/guestbook/` 分别提交一条测试留言，确认私有仓库写入正常。
+6. 配置并验证 Turnstile 后，再清理仅用于评论的旧 Giscus Discussion、分类和 App 授权。
 
 ## 私有数据仓库
 
@@ -46,6 +49,12 @@ objectId,display_name,email,password,type,url,avatar,label,github,twitter,facebo
 ```
 
 创建 fine-grained GitHub Token 时，只选择 `inexistence/waline-data`，只授予 **Contents: Read and write**。该 Token 只保存到 Vercel 的 `GITHUB_TOKEN`，绝不能提交到任何仓库。
+
+### GitHub CSV 存储的后台限制
+
+GitHub CSV 是为了低维护、私有存储而选择的方案，适合当前低频、小规模的博客评论；它不是数据库。Waline 过去已有「CSV 已写入、前台可显示、但 `/ui/` 后台列表为空」的公开报告（[Issue #205](https://github.com/walinejs/waline/issues/205)、[Issue #152](https://github.com/walinejs/waline/issues/152)）。
+
+本项目的 `waline-for-blog` 已固定 `@waline/vercel@1.41.3`，并用持久补丁修复其中一个明确的后台分页问题。补丁会在 Vercel 安装依赖时自动应用，相关文件、升级注意事项见服务仓库 README。它不能消除 GitHub API 的频率和文件大小限制；若评论量或后台管理频率明显增加，应改用数据库型存储。
 
 ## Vercel 服务配置
 
@@ -125,6 +134,7 @@ PUBLIC_TURNSTILE_SITE_KEY=<turnstile-site-key>
 | `500 FUNCTION_INVOCATION_FAILED` | 检查 Vercel 的 `GITHUB_REPO`、`GITHUB_TOKEN`、`GITHUB_PATH`，保存后 Redeploy。 |
 | `The "path" argument must be of type string` | Vercel 未配置 `GITHUB_PATH=waline`。 |
 | `Received undefined` 或 Buffer 相关错误 | `waline-data` 中缺少预建的 CSV 文件，按上方表头创建三个文件。 |
+| CSV 已写入、前台可见，但 `/ui/` 评论列表为空 | 检查 Waline 服务仓库是否保留 `patches/@waline+vercel+1.41.3.patch`、`package-lock.json` 与 `postinstall` 脚本；推送后等待 Vercel 的新 Production 部署完成并强制刷新后台。 |
 | 页面显示“留言区正在准备中” | Pages 构建时没有 `WALINE_SERVER_URL`，检查 GitHub Actions Variables 后重新部署。 |
 | 本地能显示但无法提交 | 检查 Waline 服务地址、Vercel 环境变量和浏览器开发者工具中的请求错误。 |
 

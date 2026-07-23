@@ -33,7 +33,7 @@ npm run build
 npm run preview
 ```
 
-### 评论系统
+## 评论系统
 
 文章评论与留言板使用 Waline。完整的架构、部署步骤、安全边界、环境变量和排障方法请参阅 [评论系统说明](docs/comments.md)。
 
