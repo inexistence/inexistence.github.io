@@ -73,6 +73,25 @@ TURNSTILE_SECRET=<turnstile-secret-key>
 - `IPQPS=60`：同一 IP 两次提交至少间隔 60 秒。
 - 修改 Vercel 环境变量后，必须 Redeploy，设置才会生效。
 
+## Cloudflare Turnstile
+
+在 [Cloudflare Turnstile](https://dash.cloudflare.com/?to=/:account/turnstile) 创建一个 **Managed** 小组件，并添加以下 Hostnames（不填写 `https://` 或端口号）：
+
+```text
+inexistence.github.io
+waline-for-blog-rho.vercel.app
+localhost
+```
+
+创建后会得到 Site Key 和 Secret Key：
+
+| 值 | 配置位置 | 是否公开 |
+| --- | --- | --- |
+| Site Key | Vercel 的 `TURNSTILE_KEY`、本仓库 GitHub Actions Variable `TURNSTILE_SITE_KEY`、本地 `.env` 的 `PUBLIC_TURNSTILE_SITE_KEY` | 可以公开 |
+| Secret Key | 只放 Vercel 的 `TURNSTILE_SECRET` | 必须保密 |
+
+保存 Vercel 变量后 Redeploy Waline；保存 GitHub Actions Variable 后重新运行 Pages 部署工作流。最后在文章页和 `/guestbook/` 各提交一条留言，确认验证码与写入均正常。
+
 ## 博客前端配置
 
 GitHub 仓库 **Settings → Secrets and variables → Actions → Variables** 中添加：

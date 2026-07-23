@@ -226,12 +226,20 @@ Waline 默认会允许 `localhost` 和 `127.0.0.1`，因此本地页面可以直
 
 没有人机验证时，Waline 可以正常运行，但公开站点很快会收到机器人留言。Cloudflare Turnstile 用来解决这个问题。
 
-创建组件时允许博客域名和 Waline 服务域名，然后得到两项：
+在 [Cloudflare Turnstile](https://dash.cloudflare.com/?to=/:account/turnstile) 创建 **Managed** 小组件，添加以下 Hostnames（不写 `https://` 或端口号）：
+
+```text
+inexistence.github.io
+waline-for-blog-rho.vercel.app
+localhost
+```
+
+创建后会得到两项：
 
 - **Site Key**：公开，填写到 Vercel 的 `TURNSTILE_KEY`，同时填写到博客仓库的 `TURNSTILE_SITE_KEY`；
 - **Secret Key**：私密，只填写到 Vercel 的 `TURNSTILE_SECRET`。
 
-保存 Vercel 变量后 Redeploy Waline；保存 GitHub Actions Variable 后重新部署 Pages。最后从真实文章页和留言板各提交一条测试留言，确认验证、立即公开、数据写入和管理员删除都正常。
+本地 `.env` 也可以填写同一个公开 Site Key：`PUBLIC_TURNSTILE_SITE_KEY=<Site Key>`。保存 Vercel 变量后 Redeploy Waline；保存 GitHub Actions Variable 后重新部署 Pages。最后从真实文章页和留言板各提交一条测试留言，确认验证、立即公开、数据写入和管理员删除都正常。
 
 ## 最后的检查清单
 
