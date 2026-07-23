@@ -1,0 +1,28 @@
+src/components/RssMailbox.tsx
+  s_033146de784d6a::t_24eae63471e21c 15
+  s_033146de784d6a::t_9b2a644ab352dd 12
+  s_033146de784d6a::t_6c35a99998b133 1-11,13-14,16-19
+src/styles/global.css
+  s_033146de784d6a::t_6c35a99998b133 200-238,1483-1492
+src/components/SiteHeader.astro
+  s_033146de784d6a::t_6c35a99998b133 3,32-48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "7a02c095a01e256e7fdf29fb87422264beb56706",
+  "prompts": {},
+  "logical_commit_id": "7a02c095a01e256e7fdf29fb87422264beb56706",
+  "sessions": {
+    "s_033146de784d6a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8d12-de58-7493-8295-81f5013e38a0",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 87,
+      "total_deletions": 16
+    }
+  }
+}
