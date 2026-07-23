@@ -28,15 +28,15 @@ const groups = [...grouped].map(([year, entries]) => ({
 ---
 
 <BaseLayout title="文章岛志" description="沿着年份回看 INEXISTENCE 的全部公开文章。">
-  <header class="page-hero page-hero--archive">
-    <div class="shell page-hero__inner archive-hero__inner">
-      <div class="archive-hero__copy">
+  <header class="page-hero page-hero--scene page-hero--archive">
+    <div class="shell page-hero__inner page-hero__inner--scene">
+      <div class="page-hero__copy archive-hero__copy">
         <p class="eyebrow" data-reveal>ARCHIVE TRAIL</p>
         <h1 data-reveal>沿着时间的小径</h1>
         <p data-reveal>{posts.length} 篇公开文字，散落在 {groups.length} 个年份里。</p>
       </div>
       <img
-        class="archive-hero__scene"
+        class="page-hero__scene archive-hero__scene"
         src="/assets/page-scenes/archive/time-trail-scene.webp"
         alt=""
         aria-hidden="true"

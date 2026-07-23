@@ -5,18 +5,21 @@ import Waline from '../components/Waline.astro';
 ---
 
 <BaseLayout title="岛屿留言板" description="在 INEXISTENCE 留下一句话，或与路过这里的岛民聊聊。">
-  <header class="page-hero guestbook-hero">
-    <div class="shell page-hero__inner" data-reveal>
-      <p class="eyebrow">GUESTBOOK</p>
-      <h1>留下一个脚印</h1>
-      <p>写下想说的话，和路过这里的岛民打个招呼。</p>
+  <header class="page-hero page-hero--scene guestbook-hero">
+    <div class="shell page-hero__inner page-hero__inner--scene">
+      <div class="page-hero__copy guestbook-hero__copy">
+        <p class="eyebrow" data-reveal>GUESTBOOK</p>
+        <h1 data-reveal>留下一个脚印</h1>
+        <p data-reveal>写下想说的话，和路过这里的岛民打个招呼。</p>
+      </div>
+      <img
+        class="page-hero__scene guestbook-hero__scene"
+        src="/assets/page-scenes/guestbook/message-corner-scene-v2.webp"
+        alt=""
+        aria-hidden="true"
+        data-reveal
+      />
     </div>
-    <img
-      class="guestbook-hero__scene"
-      src="/assets/page-scenes/guestbook/message-corner-scene.webp"
-      alt=""
-      aria-hidden="true"
-    />
   </header>
 
   <section class="guestbook section shell" aria-label="岛民留言">
