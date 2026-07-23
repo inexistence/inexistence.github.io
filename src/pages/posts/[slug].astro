@@ -1,10 +1,12 @@
 ---
 import { Button } from 'animal-island-ui/es/components/Button/Button.js';
+import { Card } from 'animal-island-ui/es/components/Card/Card.js';
 import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
 import { Loading } from 'animal-island-ui/es/components/Loading/Loading.js';
 import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Waline from '../../components/Waline.astro';
 import { categoryColor, formatDate, getPublishedPosts, type Post } from '../../lib/posts';
 
 export async function getStaticPaths() {
@@ -75,6 +77,19 @@ const tocHeadings = headings.filter((heading) => heading.depth <= 3);
     </div>
 
     <div class="shell"><Divider type="wave-yellow" /></div>
+
+    <section class="post-comments shell" aria-labelledby="post-comments-title" data-reveal>
+      <div class="post-comments__heading">
+        <Tag size="medium" variant="soft" color="app-green">岛民留言</Tag>
+        <div>
+          <h2 id="post-comments-title">聊聊这篇</h2>
+          <p>欢迎留下想法。邮箱不会公开，只用来识别你的留言身份。</p>
+        </div>
+      </div>
+      <Card className="waline-card">
+        <Waline path={`/posts/${post.id}/`} label={`${post.data.title}的评论区`} />
+      </Card>
+    </section>
 
     <nav class="post-nav shell" aria-label="文章翻页">
       <div>

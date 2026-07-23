@@ -1203,6 +1203,182 @@ form {
   padding-block: 70px 130px;
 }
 
+.post-comments,
+.guestbook__comments {
+  width: min(100%, 820px);
+}
+
+.post-comments {
+  padding-top: clamp(54px, 7vw, 88px);
+}
+
+.post-comments__heading,
+.guestbook__heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.post-comments__heading h2,
+.guestbook__heading h2 {
+  margin: -0.1em 0 8px;
+  color: var(--island-brown);
+  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  line-height: 1.1;
+}
+
+.post-comments__heading p,
+.guestbook__heading p {
+  margin: 0;
+  color: var(--island-brown-soft);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.waline-card {
+  width: 100%;
+}
+
+.waline-host {
+  --waline-font-size: 0.94rem;
+  --waline-white: var(--island-paper);
+  --waline-light-grey: var(--island-brown-soft);
+  --waline-dark-grey: var(--island-brown-soft);
+  --waline-theme-color: var(--island-mint-deep);
+  --waline-active-color: var(--island-mint-dark);
+  --waline-color: var(--island-brown);
+  --waline-bg-color: var(--island-paper);
+  --waline-bg-color-light: color-mix(in oklch, var(--island-sand) 24%, var(--island-paper));
+  --waline-bg-color-hover: color-mix(in oklch, var(--island-mint) 20%, var(--island-paper));
+  --waline-border-color: color-mix(in oklch, var(--island-brown) 26%, transparent);
+  --waline-disable-bg-color: color-mix(in oklch, var(--island-sand) 32%, var(--island-paper));
+  --waline-disable-color: var(--island-brown-soft);
+  --waline-code-bg-color: var(--island-mint-dark);
+  --waline-warning-color: #8a5b25;
+  --waline-warning-bg-color: color-mix(in oklch, var(--island-yellow) 27%, var(--island-paper));
+  --waline-bq-color: color-mix(in oklch, var(--island-mint) 38%, var(--island-paper));
+  --waline-badge-color: var(--island-mint-deep);
+  --waline-info-bg-color: color-mix(in oklch, var(--island-sand) 32%, var(--island-paper));
+  --waline-info-color: var(--island-brown-soft);
+  --waline-border: 1px solid var(--waline-border-color);
+  --waline-box-shadow: none;
+  --waline-avatar-radius: 50%;
+  width: 100%;
+  min-height: 112px;
+  margin-top: 0;
+}
+
+.waline-host .wl-panel {
+  margin: 0.8em 0;
+  border: 2px solid var(--animal-border-color);
+  border-radius: 22px;
+  background: var(--animal-bg-color);
+  box-shadow: 0 4px 0 color-mix(in oklch, var(--animal-border-color) 58%, transparent);
+}
+
+.waline-host .wl-header {
+  border-bottom: 2px dashed color-mix(in oklch, var(--animal-border-color) 72%, transparent);
+}
+
+.waline-host .wl-header-item {
+  transition: background-color 160ms ease;
+}
+
+.waline-host .wl-header-item:focus-within {
+  background: color-mix(in oklch, var(--island-mint) 18%, var(--animal-bg-color));
+}
+
+.waline-host .wl-header input,
+.waline-host .wl-editor {
+  color: var(--animal-text-color);
+  font-family: var(--animal-font-family);
+  font-weight: 500;
+}
+
+.waline-host .wl-header input::placeholder,
+.waline-host .wl-editor::placeholder {
+  color: color-mix(in oklch, var(--animal-text-color-secondary) 58%, transparent);
+  font-weight: 400;
+}
+
+.waline-host .wl-editor {
+  min-height: 7.5em;
+  margin: 0.65em 0.5em;
+  padding: 0.65em 0.75em;
+  border: 1px solid transparent;
+  border-radius: 16px;
+}
+
+.waline-host .wl-editor:focus {
+  border-color: color-mix(in oklch, var(--animal-primary-color) 64%, transparent);
+  background: color-mix(in oklch, var(--island-mint) 13%, var(--animal-bg-color));
+}
+
+.waline-host .wl-btn {
+  border-radius: 999px;
+  font-family: var(--animal-font-family);
+  font-weight: 700;
+}
+
+.waline-host .wl-btn.primary {
+  min-height: 36px;
+  padding-inline: 1.1em;
+  border-color: var(--animal-primary-color);
+  background: var(--animal-primary-color);
+  box-shadow: 0 3px 0 var(--animal-primary-color-active);
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.waline-host .wl-btn.primary:hover:not(:disabled) {
+  border-color: var(--animal-primary-color-hover);
+  background: var(--animal-primary-color-hover);
+  box-shadow: 0 4px 0 var(--animal-primary-color-active);
+  transform: translateY(-1px);
+}
+
+.waline-host .wl-btn.primary:active:not(:disabled) {
+  border-color: var(--animal-primary-color-active);
+  background: var(--animal-primary-color-active);
+  box-shadow: 0 1px 0 var(--animal-primary-color-active);
+  transform: translateY(2px);
+}
+
+.waline-host .wl-btn.primary:disabled {
+  box-shadow: none;
+}
+
+.waline-host .wl-card {
+  border-bottom-style: solid;
+}
+
+.waline-host .wl-power {
+  padding-top: 0.9em;
+}
+
+.waline-host__message {
+  margin: 0;
+  color: var(--island-brown-soft);
+  font-size: 0.88rem;
+}
+
+.guestbook-hero {
+  background: var(--island-mint);
+}
+
+.guestbook {
+  width: min(calc(100% - 40px), 820px);
+}
+
+.guestbook__divider {
+  margin-block: clamp(38px, 5vw, 58px) 0;
+}
+
+.guestbook__comments {
+  width: 100%;
+}
+
 .post-nav > div:last-child {
   text-align: right;
 }
@@ -1727,6 +1903,20 @@ form {
   .post-nav {
     grid-template-columns: 1fr;
     padding-block: 58px 90px;
+  }
+
+  .post-comments__heading,
+  .guestbook__heading {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .guestbook {
+    width: min(calc(100% - 28px), 820px);
+  }
+
+  .waline-host .wl-panel {
+    margin-block: 0.65em;
   }
 
   .post-nav > div:last-child {

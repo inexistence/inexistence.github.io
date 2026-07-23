@@ -1,0 +1,83 @@
+---
+import '@waline/client/style';
+
+interface Props {
+  path: string;
+  label?: string;
+}
+
+const {
+  path,
+  label = '评论区',
+} = Astro.props;
+const serverURL = import.meta.env.PUBLIC_WALINE_SERVER_URL;
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+
+<div
+  class="waline-host"
+  aria-label={label}
+  aria-busy={serverURL ? 'true' : 'false'}
+  data-waline
+  data-waline-host
+  data-waline-path={path}
+  data-waline-server-url={serverURL}
+  data-waline-turnstile-key={turnstileKey}
+>
+  <p class="waline-host__message" data-waline-message aria-live="polite">
+    {serverURL ? '留言区正在靠岸…' : '留言区正在准备中，稍后再来看看吧。'}
+  </p>
+  <noscript><p class="waline-host__message">请启用 JavaScript 后查看和参与留言。</p></noscript>
+</div>
+
+<script>
+  import { init } from '@waline/client';
+
+  let instance: ReturnType<typeof init> = null;
+  let mountedHost: HTMLElement | null = null;
+
+  const destroyWaline = () => {
+    instance?.destroy();
+    instance = null;
+    mountedHost = null;
+  };
+
+  const mountWaline = () => {
+    destroyWaline();
+
+    const host = document.querySelector<HTMLElement>('[data-waline-host]');
+    const serverURL = host?.dataset.walineServerUrl;
+    const path = host?.dataset.walinePath;
+
+    if (!host || !serverURL || !path) return;
+    if (instance && host === mountedHost) return;
+
+    instance = init({
+      el: host,
+      serverURL,
+      path,
+      lang: 'zh-CN',
+      meta: ['nick', 'mail'],
+      requiredMeta: ['nick', 'mail'],
+      login: 'disable',
+      commentSorting: 'latest',
+      pageview: false,
+      reaction: false,
+      emoji: [],
+      search: false,
+      noCopyright: false,
+      noRss: true,
+      dark: false,
+      ...(host.dataset.walineTurnstileKey
+        ? { turnstileKey: host.dataset.walineTurnstileKey }
+        : {}),
+    });
+
+    mountedHost = host;
+    host.setAttribute('aria-busy', 'false');
+  };
+
+  mountWaline();
+  document.addEventListener('astro:page-load', mountWaline);
+  document.addEventListener('astro:before-swap', destroyWaline);
+</script>

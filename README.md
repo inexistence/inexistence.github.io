@@ -11,6 +11,7 @@
 - Astro 7 静态内容与路由
 - React islands
 - [animal-island-ui](https://github.com/guokaigdg/animal-island-ui) 1.3.0
+- [Waline](https://waline.js.org/) 评论系统
 - GitHub Actions + GitHub Pages
 
 ## 本地开发
@@ -31,6 +32,10 @@ npm run build
 ```bash
 npm run preview
 ```
+
+### 评论系统
+
+文章评论与留言板使用 Waline。完整的架构、部署步骤、安全边界、环境变量和排障方法请参阅 [评论系统说明](docs/comments.md)。
 
 ## 写文章
 
