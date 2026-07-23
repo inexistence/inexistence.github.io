@@ -66,7 +66,7 @@ Markdown 的粗体和斜体也非常简单，用两个 `*` 包含一段文本就
 
 普通的图片插入，和左右边有margin
 
-![](/assets/images/cat_man.png) 
+![黑色礼帽和八字胡图案](/assets/blog-images/hello-blog/cat_man.png)
 
 满宽的图片插入，紧贴左右边，小图会被强制拉伸
 

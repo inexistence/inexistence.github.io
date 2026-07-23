@@ -662,7 +662,7 @@ form {
 }
 
 .page-hero--archive {
-  padding: 140px 0 70px;
+  padding: 116px 0 56px;
   background: #65b99b url('/assets/animal-island-ui/home-bg.webp') center / 560px auto;
   isolation: isolate;
 }
@@ -671,7 +671,9 @@ form {
   position: absolute;
   z-index: 0;
   inset: 0;
-  background: linear-gradient(100deg, rgba(17, 105, 92, 0.26), rgba(85, 183, 151, 0.05) 60%, transparent);
+  background:
+    linear-gradient(100deg, rgba(17, 105, 92, 0.22), rgba(101, 185, 155, 0.32) 58%, rgba(101, 185, 155, 0.5)),
+    linear-gradient(0deg, rgba(255, 246, 220, 0.08), rgba(255, 246, 220, 0.08));
   content: '';
   pointer-events: none;
 }
@@ -681,16 +683,15 @@ form {
 }
 
 .archive-hero__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 330px);
-  align-items: center;
-  gap: clamp(32px, 4vw, 56px);
+  min-height: 176px;
 }
 
 .page-hero--archive h1 {
+  max-width: min(680px, 58vw);
   color: var(--island-cream);
-  font-size: clamp(3.2rem, 6.8vw, 6.5rem);
-  text-shadow: 0 7px 0 rgba(81, 59, 39, 0.68), 0 20px 35px rgba(18, 71, 67, 0.28);
+  font-size: clamp(3.2rem, 6vw, 5.5rem);
+  line-height: 0.98;
+  text-shadow: 0 5px 0 rgba(81, 59, 39, 0.55);
 }
 
 .page-hero--archive .eyebrow,
@@ -708,6 +709,7 @@ form {
 .archive-hero__copy {
   position: relative;
   z-index: 3;
+  max-width: min(680px, 58vw);
 }
 
 .archive-hero__copy > .eyebrow[data-reveal] {
@@ -724,26 +726,21 @@ form {
   --reveal-distance: 12px;
 }
 
-.archive-hero__miles {
-  position: relative;
+.archive-hero__scene {
+  position: absolute;
   z-index: 2;
-  width: min(100%, 250px);
-  height: 280px;
-  justify-self: center;
-  overflow: hidden;
-  filter: drop-shadow(0 18px 22px rgba(31, 91, 69, 0.24));
+  right: clamp(-28px, -1vw, -8px);
+  bottom: -38px;
+  width: min(520px, 48vw);
+  height: auto;
+  filter: drop-shadow(0 16px 20px rgba(31, 91, 69, 0.2));
+  pointer-events: none;
+  user-select: none;
 }
 
-.archive-hero__miles[data-reveal] {
+.archive-hero__scene[data-reveal] {
   --reveal-delay: 120ms;
   --reveal-distance: 12px;
-}
-
-.archive-hero__miles object {
-  display: block;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
 }
 
 .page-hero--category {
@@ -1906,20 +1903,25 @@ form {
 
   .archive-hero__inner {
     display: block;
+    min-height: 0;
   }
 
-  .archive-hero__miles {
+  .archive-hero__copy,
+  .page-hero--archive h1 {
+    max-width: min(500px, 82vw);
+  }
+
+  .archive-hero__scene {
     position: absolute;
-    right: -14px;
-    bottom: -22px;
-    width: 112px;
+    right: -138px;
+    bottom: -66px;
+    width: 360px;
     height: auto;
-    overflow: visible;
-    opacity: 0.32;
+    opacity: 0.2;
   }
 
   @media (max-width: 360px) {
-    .archive-hero__miles {
+    .archive-hero__scene {
       display: none;
     }
   }
