@@ -1374,15 +1374,56 @@ form {
 }
 
 .guestbook-hero {
+  isolation: isolate;
+  padding-block: 128px 72px;
   background: var(--island-mint);
+}
+
+.guestbook-hero::after {
+  display: none;
+}
+
+.guestbook-hero::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 48% 110% at 14% 108%, color-mix(in oklch, var(--island-sand) 58%, transparent), transparent 70%),
+    url('/assets/animal-island-ui/content-bg.jpg') center / 520px repeat;
+  content: '';
+  opacity: 0.46;
+  pointer-events: none;
+}
+
+.guestbook-hero__scene {
+  position: absolute;
+  z-index: 1;
+  right: clamp(18px, 3vw, 54px);
+  bottom: -46px;
+  width: min(720px, 61vw);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.guestbook-hero .page-hero__inner {
+  z-index: 2;
+  max-width: min(100% - 40px, var(--shell));
+}
+
+.guestbook-hero h1 {
+  max-width: min(640px, 54vw);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+}
+
+.guestbook-hero .page-hero__inner > p:last-child,
+.guestbook-hero .eyebrow {
+  max-width: min(520px, 49vw);
 }
 
 .guestbook {
   width: min(calc(100% - 40px), 820px);
-}
-
-.guestbook__divider {
-  margin-block: clamp(38px, 5vw, 58px) 0;
+  padding-block: clamp(54px, 7vw, 82px) clamp(72px, 9vw, 116px);
 }
 
 .guestbook__comments {
@@ -1821,6 +1862,24 @@ form {
     font-size: clamp(2.65rem, 12.5vw, 4.4rem);
   }
 
+  .guestbook-hero {
+    padding-block: 118px 52px;
+  }
+
+  .guestbook-hero h1,
+  .guestbook-hero .page-hero__inner > p:last-child,
+  .guestbook-hero .eyebrow {
+    max-width: min(280px, 76vw);
+  }
+
+  .guestbook-hero h1 {
+    font-size: clamp(2.45rem, 11vw, 3rem);
+  }
+
+  .guestbook-hero__scene {
+    display: none;
+  }
+
   .page-hero--archive::before {
     background: linear-gradient(180deg, rgba(255, 241, 199, 0.08), rgba(168, 89, 42, 0.12));
   }
@@ -1923,6 +1982,7 @@ form {
 
   .guestbook {
     width: min(calc(100% - 28px), 820px);
+    padding-block: 48px 76px;
   }
 
   .waline-host .wl-panel {

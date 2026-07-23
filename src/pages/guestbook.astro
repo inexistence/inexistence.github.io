@@ -1,7 +1,5 @@
 ---
 import { Card } from 'animal-island-ui/es/components/Card/Card.js';
-import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
-import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Waline from '../components/Waline.astro';
 ---
@@ -11,24 +9,24 @@ import Waline from '../components/Waline.astro';
     <div class="shell page-hero__inner" data-reveal>
       <p class="eyebrow">GUESTBOOK</p>
       <h1>留下一个脚印</h1>
-      <p>如果这座小岛让你想起什么，欢迎留下一句话。</p>
+      <p>写下想说的话，和路过这里的岛民打个招呼。</p>
     </div>
+    <img
+      class="guestbook-hero__scene"
+      src="/assets/blog-images/guestbook/message-corner-scene.png"
+      alt=""
+      aria-hidden="true"
+    />
   </header>
 
-  <section class="guestbook section shell" aria-labelledby="guestbook-title">
-    <div class="guestbook__heading" data-reveal>
-      <Tag size="medium" variant="soft" color="app-teal">岛民留言</Tag>
-      <div>
-        <h2 id="guestbook-title">慢慢聊，不着急</h2>
-        <p>留下昵称和邮箱就能说话；邮箱不会公开，只用来识别你的留言身份。</p>
-      </div>
-    </div>
-
-    <div class="guestbook__divider" aria-hidden="true"><Divider type="wave-yellow" /></div>
-
+  <section class="guestbook section shell" aria-label="岛民留言">
     <div class="guestbook__comments" data-reveal>
       <Card className="waline-card">
-        <Waline path="/guestbook/" label="留言板" />
+        <Waline
+          path="/guestbook/"
+          label="留言板"
+          emailHint="不会公开，仅用于识别留言身份"
+        />
       </Card>
     </div>
   </section>

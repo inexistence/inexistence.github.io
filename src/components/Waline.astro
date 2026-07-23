@@ -4,11 +4,13 @@ import '@waline/client/style';
 interface Props {
   path: string;
   label?: string;
+  emailHint?: string;
 }
 
 const {
   path,
   label = '评论区',
+  emailHint,
 } = Astro.props;
 const serverURL = import.meta.env.PUBLIC_WALINE_SERVER_URL;
 const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
@@ -23,6 +25,7 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   data-waline-path={path}
   data-waline-server-url={serverURL}
   data-waline-turnstile-key={turnstileKey}
+  data-waline-email-hint={emailHint}
 >
   <p class="waline-host__message" data-waline-message aria-live="polite">
     {serverURL ? '留言区正在靠岸…' : '留言区正在准备中，稍后再来看看吧。'}
@@ -39,6 +42,17 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
   const clearTurnstile = (editor: HTMLTextAreaElement) => {
     editor.closest('.wl-panel')?.querySelector('.wl-captcha-container')?.replaceChildren();
+  };
+
+  const applyEmailHint = (host: HTMLElement) => {
+    const emailHint = host.dataset.walineEmailHint;
+    if (!emailHint) return;
+
+    const emailInput = [...host.querySelectorAll<HTMLInputElement>('.wl-header input')].find(
+      (input) => input.name === 'mail' || input.type === 'email',
+    );
+
+    emailInput?.setAttribute('placeholder', emailHint);
   };
 
   const watchForSuccessfulSubmission = (host: HTMLElement, editor: HTMLTextAreaElement) => {
@@ -129,6 +143,7 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     });
 
     mountedHost = host;
+    applyEmailHint(host);
     bindTurnstileCleanup(host);
     host.setAttribute('aria-busy', 'false');
   };
