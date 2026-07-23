@@ -62,6 +62,8 @@ git push origin master
 
 GitHub Pages 工作流完成后验证一篇文章与 `/guestbook/`。
 
+本地模拟的三种范围（仅前端、连接线上服务、完整隔离服务）及环境变量配置，请参阅 [评论系统说明的「本地模拟与联调」](comments.md#本地模拟与联调)。连接线上服务提交的测试留言会写入真实数据；需要验证服务端逻辑时，必须改用独立的测试数据仓库。
+
 ### 修改 Waline 服务端变量
 
 1. 在 Vercel 项目 **Settings → Environment Variables** 修改变量。
