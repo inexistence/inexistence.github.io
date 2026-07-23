@@ -1,0 +1,44 @@
+docs/comments.md
+  s_51f00941c455dc::t_33eae33ad2c75f 59-60,62-64
+  s_51f00941c455dc::t_0dd467741a5335 61
+docs/comment-maintenance.md
+  s_51f00941c455dc::t_33eae33ad2c75f 101-102,104-108,110-112
+  s_51f00941c455dc::t_0dd467741a5335 103,109
+src/components/Waline.astro
+  s_3d5f244d47a8de::t_aa8c676c872b9e 38-75,79-92,94,132
+  s_3d5f244d47a8de::t_f16115fa4d8c1b 76-78
+src/styles/global.css
+  s_51f00941c455dc::t_1908b3746c4034 1362-1363
+  s_51f00941c455dc::t_ffb43de8276ca6 1358,1361
+  s_51f00941c455dc::t_f818c214375805 1359-1360
+  s_51f00941c455dc::t_33eae33ad2c75f 1356-1357,1364-1365
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "4ec93cb22fd9553104df416075435d9d2d8b93d3",
+  "prompts": {},
+  "logical_commit_id": "4ec93cb22fd9553104df416075435d9d2d8b93d3",
+  "sessions": {
+    "s_3d5f244d47a8de": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8ecd-b0d7-7e42-af05-0b7147c9f714",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 57,
+      "total_deletions": 1
+    },
+    "s_51f00941c455dc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8d1b-ee27-72c1-becf-0219344df38d",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 44,
+      "total_deletions": 16
+    }
+  }
+}
