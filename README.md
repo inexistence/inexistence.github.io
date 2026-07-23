@@ -87,9 +87,9 @@ draft: true
 
 建议新文章先设置 `draft: true`。草稿不会出现在生产页面、RSS 或 sitemap 中，确认完成后将其改为 `false` 再发布。
 
-### 添加图片
+### 添加图片与页面素材
 
-把图片放在 `public/assets/blog-images` 下，例如：
+文章封面和正文图片统一放在 `public/assets/blog-images/<文章名或主题>/` 下。例如：
 
 ```text
 public/assets/blog-images/my-new-post/photo.jpg
@@ -106,6 +106,26 @@ public/assets/blog-images/my-new-post/photo.jpg
 ```html
 <img class="full-width" src="/assets/blog-images/my-new-post/photo.jpg" alt="图片说明">
 ```
+
+不属于文章、只服务于某个页面的 Hero 或装饰场景，放在
+`public/assets/page-scenes/<页面名>/` 下。例如：
+
+```text
+public/assets/page-scenes/archive/time-trail-scene.webp
+```
+
+页面中同样使用从 `/assets` 开始的站点绝对路径：
+
+```html
+<img src="/assets/page-scenes/archive/time-trail-scene.webp" alt="" aria-hidden="true">
+```
+
+目录用途不要混用：
+
+- `blog-images/`：文章封面与正文图片，按文章名或主题分组；
+- `page-scenes/`：归档、留言板等页面专属的 Hero 与装饰场景，按页面名分组；
+- `animal-island-ui/`：组件库和全站复用的既有岛屿 UI 素材；
+- `images/`：少量无法归入以上类别的全站通用图片，不用于存放文章图片。
 
 ## 发布
 
