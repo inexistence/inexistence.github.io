@@ -35,8 +35,63 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
   let instance: ReturnType<typeof init> = null;
   let mountedHost: HTMLElement | null = null;
+  let stopTurnstileCleanup: (() => void) | null = null;
+
+  const clearTurnstile = (editor: HTMLTextAreaElement) => {
+    editor.closest('.wl-panel')?.querySelector('.wl-captcha-container')?.replaceChildren();
+  };
+
+  const watchForSuccessfulSubmission = (host: HTMLElement, editor: HTMLTextAreaElement) => {
+    stopTurnstileCleanup?.();
+
+    const cards = host.querySelector('.wl-cards');
+    const initialCommentCount = cards?.querySelectorAll('.wl-card-item').length ?? 0;
+    let checks = 0;
+
+    const timer = window.setInterval(() => {
+      const commentCount = cards?.querySelectorAll('.wl-card-item').length ?? 0;
+
+      // Waline only clears the editor and adds the submitted comment after its API call succeeds.
+      if (!editor.value && commentCount > initialCommentCount) {
+        clearTurnstile(editor);
+        stopTurnstileCleanup?.();
+      } else if (++checks >= 600) {
+        stopTurnstileCleanup?.();
+      }
+    }, 100);
+
+    stopTurnstileCleanup = () => {
+      window.clearInterval(timer);
+      stopTurnstileCleanup = null;
+    };
+  };
+
+  const bindTurnstileCleanup = (host: HTMLElement) => {
+    const startWatching = (editor: HTMLTextAreaElement | null) => {
+      if (editor?.value.trim()) watchForSuccessfulSubmission(host, editor);
+    };
+
+    host.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('.wl-btn.primary')) {
+        startWatching(
+          event.target.closest('.wl-panel')?.querySelector<HTMLTextAreaElement>('.wl-editor') ?? null,
+        );
+      }
+    });
+
+    host.addEventListener('keydown', (event) => {
+      if (
+        event.target instanceof HTMLTextAreaElement &&
+        (event.ctrlKey || event.metaKey) &&
+        event.key === 'Enter'
+      ) {
+        startWatching(event.target);
+      }
+    });
+  };
 
   const destroyWaline = () => {
+    stopTurnstileCleanup?.();
     instance?.destroy();
     instance = null;
     mountedHost = null;
@@ -74,6 +129,7 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     });
 
     mountedHost = host;
+    bindTurnstileCleanup(host);
     host.setAttribute('aria-busy', 'false');
   };
 

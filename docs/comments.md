@@ -56,6 +56,12 @@ GitHub CSV 是为了低维护、私有存储而选择的方案，适合当前低
 
 本项目的 `waline-for-blog` 已固定 `@waline/vercel@1.41.3`，并用持久补丁修复其中一个明确的后台分页问题。补丁会在 Vercel 安装依赖时自动应用，相关文件、升级注意事项见服务仓库 README。它不能消除 GitHub API 的频率和文件大小限制；若评论量或后台管理频率明显增加，应改用数据库型存储。
 
+### 岛民头像分配
+
+匿名留言使用博客 `public/assets/avatars/` 中的岛民角色头像。Waline 服务端将规范化后的昵称与小写邮箱组合后计算 SHA-256 哈希，并从头像池稳定选择一张；昵称和邮箱均不变时，文章与留言板中始终显示相同头像，但邮箱不会发送给第三方头像服务。已注册用户在 Waline 后台单独设置的头像优先。
+
+更新头像池时，先部署包含静态图片的 GitHub Pages，再部署 Waline 服务；头像文件名和服务仓库 `index.cjs` 的 `avatarFiles` 必须保持一致。
+
 ## Vercel 服务配置
 
 在 `waline-for-blog` 的 Vercel 项目中，将以下变量添加到 **Production** 环境：

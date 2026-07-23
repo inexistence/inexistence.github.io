@@ -98,6 +98,18 @@ localhost
 2. 在 GitHub Actions Variables 更新 `TURNSTILE_SITE_KEY`，然后重新部署 Pages。
 3. 用真实文章页和留言板各提交一次测试留言。
 
+### 修改岛民头像池
+
+匿名留言头像由博客 `public/assets/avatars/` 与 Waline 服务仓库 `index.cjs` 共同决定。服务根据昵称与邮箱组合后的 SHA-256 哈希稳定选择一张头像，不会把邮箱传给第三方头像服务。
+
+1. 在博客仓库添加、删除或替换头像文件；文件应使用稳定的文件名。
+2. 在 `waline-for-blog/index.cjs` 同步更新 `avatarFiles` 数组。
+3. **先**推送并完成 GitHub Pages 部署，确认新图片可访问。
+4. **再**推送 Waline 服务并等待 Vercel Production 部署完成。
+5. 打开文章页与留言板，强制刷新确认同一昵称和邮箱组合始终显示同一头像。
+
+不要手动在 `Comment.csv` 中添加头像列；已注册用户如需个人头像，应在 Waline 后台「用户」中单独设置。
+
 ## 数据与备份
 
 评论数据在私有 `waline-data` 仓库的以下文件中：

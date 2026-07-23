@@ -1353,6 +1353,16 @@ form {
   border-bottom-style: solid;
 }
 
+.waline-host .wl-user-avatar {
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  object-fit: cover;
+  object-position: center 32%;
+  overflow: hidden;
+  background: color-mix(in oklch, var(--island-sand) 30%, var(--island-paper));
+}
+
 .waline-host .wl-power {
   padding-top: 0.9em;
 }
