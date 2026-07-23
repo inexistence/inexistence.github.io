@@ -128,20 +128,22 @@ const categoryIcons: Record<string, string> = {
     </div>
   </section>
 
-  <script>
-    const hero = document.querySelector<HTMLElement>('.home-hero');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (hero && !reduceMotion) {
-      let frame = 0;
-      hero.addEventListener('pointermove', (event) => {
-        cancelAnimationFrame(frame);
-        frame = requestAnimationFrame(() => {
-          const x = (event.clientX / window.innerWidth - 0.5) * 2;
-          const y = (event.clientY / window.innerHeight - 0.5) * 2;
-          hero.style.setProperty('--parallax-x', x.toFixed(3));
-          hero.style.setProperty('--parallax-y', y.toFixed(3));
-        });
-      }, { passive: true });
-    }
+  <script is:inline data-astro-rerun>
+    (() => {
+      const hero = document.querySelector('.home-hero');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (hero && !reduceMotion) {
+        let frame = 0;
+        hero.addEventListener('pointermove', (event) => {
+          cancelAnimationFrame(frame);
+          frame = requestAnimationFrame(() => {
+            const x = (event.clientX / window.innerWidth - 0.5) * 2;
+            const y = (event.clientY / window.innerHeight - 0.5) * 2;
+            hero.style.setProperty('--parallax-x', x.toFixed(3));
+            hero.style.setProperty('--parallax-y', y.toFixed(3));
+          });
+        }, { passive: true });
+      }
+    })();
   </script>
 </BaseLayout>
