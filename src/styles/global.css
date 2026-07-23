@@ -1361,6 +1361,16 @@ form {
   border-bottom-style: solid;
 }
 
+.waline-host .wl-card .wl-content > :first-child,
+.waline-host .wl-card .wl-content > div > :first-child {
+  margin-top: 0;
+}
+
+.waline-host .wl-card .wl-content > :last-child,
+.waline-host .wl-card .wl-content > div > :last-child {
+  margin-bottom: 0;
+}
+
 .waline-host .wl-user-avatar {
   box-sizing: border-box;
   display: block;
