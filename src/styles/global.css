@@ -1062,12 +1062,25 @@ form {
 }
 
 .post-toc a {
+  display: block;
+  padding: 0 8px;
+  border-left: 3px solid transparent;
+  border-radius: 0 10px 10px 0;
   color: var(--island-brown-soft);
   text-decoration: none;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
 
 .post-toc a:hover {
   color: var(--island-mint-deep);
+}
+
+.post-toc a.is-active,
+.post-toc a[aria-current='location'] {
+  border-left-color: var(--island-mint-deep);
+  color: var(--island-brown);
+  background: color-mix(in oklch, var(--island-mint) 24%, transparent);
+  font-weight: 800;
 }
 
 .prose {
