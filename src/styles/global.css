@@ -197,6 +197,45 @@ form {
   background: var(--island-brown);
 }
 
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rss-mailbox-tooltip {
+  flex: 0 0 auto;
+}
+
+.rss-mailbox {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  text-decoration: none;
+  transform-origin: 50% 80%;
+  transition: transform 180ms ease-out;
+}
+
+.rss-mailbox img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 2px rgba(77, 53, 31, 0.2));
+}
+
+.rss-mailbox:hover {
+  transform: translateY(-2px) rotate(-2deg);
+}
+
+.rss-mailbox:active {
+  transform: translateY(1px) scale(0.94);
+}
+
+.rss-mailbox-tooltip [role='tooltip'] {
+  z-index: 110;
+}
+
 .hero {
   position: relative;
   display: grid;
@@ -1441,6 +1480,16 @@ form {
   .site-nav a {
     padding: 6px 10px;
     font-size: 0.78rem;
+  }
+
+  .site-header__actions {
+    gap: 6px;
+  }
+
+  .rss-mailbox,
+  .rss-mailbox img {
+    width: 34px;
+    height: 34px;
   }
 
   .hero {

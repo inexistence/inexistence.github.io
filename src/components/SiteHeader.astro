@@ -1,11 +1,11 @@
 ---
 import leafIcon from '../../node_modules/animal-island-ui/dist/files/icon-leaf.40329f03.png';
+import RssMailbox from './RssMailbox';
 
 const path = Astro.url.pathname;
 const links = [
   { href: '/', label: '岛屿' },
   { href: '/archive/', label: '岛志' },
-  { href: '/rss.xml', label: 'RSS' },
 ];
 
 const isCurrent = (href: string) => {
@@ -29,18 +29,21 @@ const isCurrent = (href: string) => {
     </span>
     <span>INEXISTENCE</span>
   </a>
-  <nav aria-label="主导航">
-    <ul class="site-nav">
-      {links.map((link) => (
-        <li>
-          <a
-            href={link.href}
-            aria-current={isCurrent(link.href) ? 'page' : undefined}
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+  <div class="site-header__actions">
+    <nav aria-label="主导航">
+      <ul class="site-nav">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              aria-current={isCurrent(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <RssMailbox client:load />
+  </div>
 </header>
