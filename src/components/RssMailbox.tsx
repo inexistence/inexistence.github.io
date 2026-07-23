@@ -5,7 +5,7 @@ export default function RssMailbox() {
   return (
     <Tooltip
       className="rss-mailbox-tooltip"
-      title="订阅岛屿广播"
+      title="嗯…要订阅岛屿广播吗？"
       placement="bottom-end"
       trigger="hover"
       variant="island"
