@@ -18,6 +18,10 @@ declare module 'animal-island-ui/es/components/Footer/Footer.js' {
   export { Footer } from 'animal-island-ui';
 }
 
+declare module 'animal-island-ui/es/components/Loading/Loading.js' {
+  export { Loading } from 'animal-island-ui';
+}
+
 declare module 'animal-island-ui/es/components/Tag/Tag.js' {
   export { Tag } from 'animal-island-ui';
 }

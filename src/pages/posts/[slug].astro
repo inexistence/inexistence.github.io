@@ -1,6 +1,7 @@
 ---
 import { Button } from 'animal-island-ui/es/components/Button/Button.js';
 import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
+import { Loading } from 'animal-island-ui/es/components/Loading/Loading.js';
 import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -27,6 +28,7 @@ interface Props {
 const { post, newer, older } = Astro.props;
 const { Content, headings } = await render(post);
 const color = categoryColor(post.data.category);
+const tocHeadings = headings.filter((heading) => heading.depth <= 3);
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover || undefined}>
@@ -60,11 +62,11 @@ const color = categoryColor(post.data.category);
         </div>
       </div>
 
-      {headings.length > 2 && (
+      {tocHeadings.length > 2 && (
         <aside class="post-toc" aria-label="文章目录">
           <p>沿途路标</p>
           <ol>
-            {headings.filter((heading) => heading.depth <= 3).map((heading) => (
+            {tocHeadings.map((heading) => (
               <li class:list={[`depth-${heading.depth}`]}><a href={`#${heading.slug}`}>{heading.text}</a></li>
             ))}
           </ol>
@@ -92,5 +94,90 @@ const color = categoryColor(post.data.category);
         )}
       </div>
     </nav>
+
+    <a class="back-to-top" href="#main-content" aria-label="返回文章顶部" data-back-to-top>
+      <span class="back-to-top__island-scene" aria-hidden="true">
+        <Loading client:idle active={true} className="back-to-top__island" />
+      </span>
+      <span class="back-to-top__label">回到顶部</span>
+    </a>
   </article>
+
+  <script>
+    const backToTop = document.querySelector<HTMLElement>('[data-back-to-top]');
+    const postHeader = document.querySelector('.post-header');
+    const siteFooter = document.querySelector('.site-footer');
+
+    if (backToTop && postHeader) {
+      let scrollIdleTimer: number | undefined;
+      let lastScrollY = window.scrollY;
+
+      const syncInteractiveState = () => {
+        const isInteractive = backToTop.classList.contains('is-visible')
+          && !backToTop.classList.contains('is-near-footer');
+        backToTop.setAttribute('aria-hidden', String(!isInteractive));
+        if (isInteractive) {
+          backToTop.removeAttribute('tabindex');
+        } else {
+          backToTop.setAttribute('tabindex', '-1');
+        }
+      };
+
+      const setVisibility = (isVisible: boolean) => {
+        backToTop.classList.toggle('is-visible', isVisible);
+        syncInteractiveState();
+      };
+
+      const observer = new IntersectionObserver(([entry]) => {
+        setVisibility(!entry.isIntersecting && entry.boundingClientRect.bottom < 0);
+      });
+      observer.observe(postHeader);
+
+      if (siteFooter) {
+        const footerObserver = new IntersectionObserver(([entry]) => {
+          const isNearFooter = entry.isIntersecting;
+          backToTop.classList.toggle('is-near-footer', isNearFooter);
+          syncInteractiveState();
+        }, { rootMargin: '0px 0px 72px 0px' });
+        footerObserver.observe(siteFooter);
+      }
+
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        const scrollDelta = currentScrollY - lastScrollY;
+
+        if (Math.abs(scrollDelta) >= 8) {
+          backToTop.classList.toggle('is-expanded', scrollDelta < 0);
+          lastScrollY = currentScrollY;
+        }
+
+        window.clearTimeout(scrollIdleTimer);
+        scrollIdleTimer = window.setTimeout(() => {
+          if (document.activeElement !== backToTop && !backToTop.matches(':hover')) {
+            backToTop.classList.remove('is-expanded');
+          }
+        }, 2000);
+      }, { passive: true });
+
+      backToTop.addEventListener('focus', () => {
+        backToTop.classList.add('is-expanded');
+      });
+
+      backToTop.addEventListener('blur', () => {
+        if (!backToTop.matches(':hover')) {
+          backToTop.classList.remove('is-expanded');
+        }
+      });
+
+      backToTop.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        });
+      });
+
+      syncInteractiveState();
+    }
+  </script>
 </BaseLayout>

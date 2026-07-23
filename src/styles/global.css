@@ -1152,6 +1152,141 @@ form {
   max-width: 100%;
 }
 
+.back-to-top {
+  position: fixed;
+  z-index: 24;
+  right: max(12px, calc((100vw - var(--shell)) / 2 - 116px));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  display: block;
+  width: 104px;
+  height: 126px;
+  color: #654c36;
+  opacity: 0;
+  pointer-events: none;
+  text-decoration: none;
+  transform: translateY(22px) rotate(4deg);
+  transform-origin: right bottom;
+  transition: opacity 150ms cubic-bezier(.7, 0, .84, 0), transform 180ms cubic-bezier(.7, 0, .84, 0), filter 150ms cubic-bezier(.65, 0, .35, 1), visibility 0s linear 180ms;
+  visibility: hidden;
+}
+
+.back-to-top__island-scene {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 9px 10px rgba(61, 74, 54, 0.2));
+  pointer-events: none;
+}
+
+.back-to-top__island-scene > div {
+  width: 100%;
+  height: 100%;
+}
+
+.back-to-top__island {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.back-to-top__island > div {
+  width: 100%;
+  height: 100%;
+}
+
+.back-to-top__island .illustration {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.back-to-top__label {
+  position: absolute;
+  top: 44%;
+  right: calc(100% + 4px);
+  padding: 6px 11px;
+  border: 2px solid color-mix(in oklch, var(--island-sand) 44%, var(--island-paper));
+  border-radius: 999px;
+  color: var(--island-brown);
+  background: #fff6dc;
+  box-shadow: 0 3px 0 rgba(114, 84, 58, 0.16), 0 8px 18px rgba(61, 74, 54, 0.1);
+  font-size: 0.72rem;
+  font-weight: 800;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(5px);
+  transition: opacity 160ms ease, transform 180ms ease;
+  white-space: nowrap;
+}
+
+.back-to-top.is-visible {
+  opacity: 0.78;
+  pointer-events: auto;
+  transform: translateX(16px) translateY(4px) rotate(2deg) scale(0.43);
+  transition: opacity 220ms cubic-bezier(.22, 1, .36, 1), transform 260ms cubic-bezier(.22, 1, .36, 1), filter 180ms cubic-bezier(.65, 0, .35, 1), visibility 0s linear 0s;
+  visibility: visible;
+}
+
+.back-to-top.is-visible.is-expanded,
+.back-to-top.is-visible:hover,
+.back-to-top.is-visible:focus-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(0) scale(1);
+  transition-duration: 260ms, 320ms, 180ms, 0s;
+}
+
+.back-to-top.is-visible:hover {
+  filter: saturate(1.08);
+  transform: translateY(-4px) rotate(-1deg) scale(1.035);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .back-to-top.is-visible:hover .back-to-top__label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.back-to-top.is-visible:active {
+  opacity: 1;
+  transform: translateX(16px) translateY(6px) rotate(1deg) scale(0.41);
+}
+
+.back-to-top.is-visible.is-expanded:active,
+.back-to-top.is-visible:hover:active,
+.back-to-top.is-visible:focus-visible:active {
+  transform: translateY(2px) rotate(0) scale(0.98);
+}
+
+.back-to-top.is-visible.is-near-footer {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(28px) rotate(3deg) scale(0.92);
+  visibility: hidden;
+}
+
+/* Keep the full island outside the reading column when the side gutter is wide enough. */
+@media (min-width: 1440px) {
+  .back-to-top.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(0) scale(1);
+  }
+
+  .back-to-top.is-visible:active {
+    transform: translateY(2px) rotate(0) scale(0.98);
+  }
+
+}
+
 .not-found {
   display: grid;
   min-height: 80svh;
@@ -1497,6 +1632,41 @@ form {
     text-align: left;
   }
 
+  .back-to-top {
+    right: 6px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    width: 84px;
+    height: 102px;
+  }
+
+  .back-to-top.is-visible {
+    transform: translateX(12px) translateY(3px) rotate(2deg) scale(0.53);
+  }
+
+  .back-to-top.is-visible.is-expanded,
+  .back-to-top.is-visible:hover,
+  .back-to-top.is-visible:focus-visible {
+    transform: translateY(0) rotate(0) scale(1);
+  }
+
+  .back-to-top.is-visible:hover {
+    transform: translateY(-3px) rotate(-1deg) scale(1.025);
+  }
+
+  .back-to-top.is-visible:active {
+    transform: translateX(12px) translateY(5px) rotate(1deg) scale(0.5);
+  }
+
+  .back-to-top.is-visible.is-expanded:active,
+  .back-to-top.is-visible:hover:active,
+  .back-to-top.is-visible:focus-visible:active {
+    transform: translateY(2px) rotate(0) scale(0.98);
+  }
+
+  .back-to-top__label {
+    display: none;
+  }
+
   .site-footer__content {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -1521,6 +1691,22 @@ form {
   .js [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  .back-to-top__island #whole-island,
+  .back-to-top__island #tree,
+  .back-to-top__island #leaf1,
+  .back-to-top__island #leaf2,
+  .back-to-top__island #leaf3,
+  .back-to-top__island #leaf4,
+  .back-to-top__island #leaf5,
+  .back-to-top__island #water-circle1,
+  .back-to-top__island #water-circle2,
+  .back-to-top__island #tri-wave1,
+  .back-to-top__island #tri-wave2,
+  .back-to-top__island #sine-wave-group *,
+  .back-to-top__island #fish {
+    transform: none !important;
   }
 }
 
