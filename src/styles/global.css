@@ -1414,7 +1414,7 @@ form {
   inset: 0;
   background:
     radial-gradient(ellipse 48% 110% at 14% 108%, color-mix(in oklch, var(--island-sand) 58%, transparent), transparent 70%),
-    url('/assets/animal-island-ui/content-bg.jpg') center / 520px repeat;
+    url('/assets/animal-island-ui/content-bg.webp') center / 520px repeat;
   content: '';
   opacity: 0.46;
   pointer-events: none;
@@ -2107,7 +2107,7 @@ form {
   left: -4%;
   height: 120px;
   border-radius: 50% 50% 0 0 / 70% 70% 0 0;
-  background: #8bcca4 url('/assets/animal-island-ui/content-bg.jpg') center / 780px auto;
+  background: #8bcca4 url('/assets/animal-island-ui/content-bg.webp') center / 780px auto;
   content: '';
 }
 
@@ -2322,7 +2322,7 @@ form {
   position: relative;
   overflow: hidden;
   padding: clamp(88px, 9vw, 130px) 0 clamp(90px, 10vw, 130px);
-  background: #8bcca4 url('/assets/animal-island-ui/content-bg.jpg') center top / 780px auto;
+  background: #8bcca4 url('/assets/animal-island-ui/content-bg.webp') center top / 780px auto;
   content-visibility: auto;
   contain-intrinsic-size: auto 1750px;
 }
@@ -2543,7 +2543,7 @@ form {
   position: relative;
   padding: clamp(95px, 10vw, 140px) 0;
   color: var(--home-cream);
-  background: #f9a25f url('/assets/animal-island-ui/menu-bg.png') center / 670px auto;
+  background: #f9a25f url('/assets/animal-island-ui/menu-bg.webp') center / 670px auto;
   content-visibility: auto;
   contain-intrinsic-size: auto 720px;
 }
