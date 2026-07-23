@@ -1,0 +1,24 @@
+docs/comments.md
+  s_51f00941c455dc::t_1a968be6e3dd0e 76-94
+src/content/posts/from-giscus-to-waline.md
+  s_51f00941c455dc::t_1a968be6e3dd0e 229-238,242
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "698e4ba86537f254bf59efdc575d671b4d1e40f8",
+  "prompts": {},
+  "logical_commit_id": "698e4ba86537f254bf59efdc575d671b4d1e40f8",
+  "sessions": {
+    "s_51f00941c455dc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f8d1b-ee27-72c1-becf-0219344df38d",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 29,
+      "total_deletions": 2
+    }
+  }
+}
