@@ -1,0 +1,23 @@
+src/content/posts/sunset-elsewhere.md
+  s_2fcd7c5895115b::t_9db28ff3c8ad81 8
+  s_2fcd7c5895115b::t_ebbceb166aa470 2-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "293646bdabcec2a924eb5f4f3ae24f20dbdd3de5",
+  "prompts": {},
+  "logical_commit_id": "293646bdabcec2a924eb5f4f3ae24f20dbdd3de5",
+  "sessions": {
+    "s_2fcd7c5895115b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f925b-c74d-76a1-9513-ec7545ae3455",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 2,
+      "total_deletions": 2
+    }
+  }
+}
