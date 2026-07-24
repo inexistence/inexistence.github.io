@@ -103,6 +103,33 @@ du -ch public/fonts/static/*.woff2
 
 `src/` 外的文本不会进入静态子集，例如 `public/` 中独立文件、接口或 CMS 返回的文本。使用组件时，写在本站页面中的 slot、标题和按钮文案会被扫描；组件库内部写死的中文不会扫描。若组件库的固定中文文案需要保证一致字形，应将其添加至受控的静态字符清单或扩展生成器扫描范围，不要扫描整个 `node_modules`。
 
+### 组件库内置中文（`animal-island-ui`）
+
+构建会删掉组件库 CSS 中的完整中文 `@font-face`，中文改由本站静态子集提供。因此：**仅存在于 `node_modules`、从未出现在 `src/` 的默认文案，不会进入子集**，渲染时可能回退到 `PingFang SC` / 系统字体。
+
+对 `animal-island-ui` 运行时 JS（`dist/es` / `dist/cjs`）的扫描结果（随依赖版本变化，升级后应复查）：
+
+| 组件 | 写死的中文（示例） | 备注 |
+| --- | --- | --- |
+| Modal | 取消、确定 | 默认按钮文案 |
+| Table | 暂无数据 | 空状态 |
+| Select | 请选择 | 占位 |
+| Drawer | 关闭 | 无障碍 / 关闭控件 |
+| Input | 清除 | 清除按钮 |
+| Form validators | 此项为必填、不能少于/多于 …、长度必须为 …、格式不正确 | 默认校验 Error 文案 |
+| Tooltip | （主要为源码注释中的中文） | 一般不进入页面字形 |
+
+类型声明（`.d.ts`）与 README 中的中文只影响文档，不影响运行时字形。
+
+**本站当前从该库引入的组件**：Button、Card、Collapse、Divider、Footer、Loading、Tag、Title。上表带默认中文 UI 的组件多数尚未使用；这些组件上的可见中文通常来自 `src/` 传入的 children / props，会被静态扫描覆盖。
+
+以后注意：
+
+1. 新接入 Modal、Select、Form、Table、Drawer、Input 等时，检查是否沿用默认中文；若沿用，把完整文案写进 `src/`（哪怕在注释或受控字符清单文件里），或覆盖为自定义文案并确保自定义文案也在 `src/`。
+2. 升级 `animal-island-ui` 后，复查运行时 JS 是否新增默认中文文案。
+3. 不要为了省事去扫描整个 `node_modules`（体积与噪声都不可控）；优先受控清单或页面侧文案。
+4. `fonts:verify` 不会检查「组件默认文案是否落在静态子集内」；字形一致性仍靠人工抽查 Rendered Fonts。
+
 ## Waline 评论字体
 
 评论字体位于 `public/fonts/comment/`，CSS 为 `public/fonts/comment-fonts.css`，清单为 `public/fonts/manifest-fragment.json`。它定义独立的 `Noto Sans SC Comment` 字体族：每个字重拆为 48 个带 `unicode-range` 的 WOFF2 文件，共 144 块。
