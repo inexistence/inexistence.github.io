@@ -1,0 +1,24 @@
+src/content/posts/function-calling-mcp-skills.md
+  s_97128107f59f87::t_843a5feb4f46c6 8
+src/content/posts/rag-introduction.md
+  s_97128107f59f87::t_9aa52e7dc90da0 8
+src/styles/global.css
+  s_97128107f59f87::t_4fb1092f062d9e 542-551,553,555-559,1790-1793
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "ed4b861bc20253ec35492bb151fe40fc25d9549a",
+  "prompts": {},
+  "logical_commit_id": "ed4b861bc20253ec35492bb151fe40fc25d9549a",
+  "sessions": {
+    "s_97128107f59f87": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f93ad-36bc-75b2-8407-7f8cfb62c32e",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
