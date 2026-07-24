@@ -1660,18 +1660,18 @@ form {
 
 .js [data-reveal] {
   --reveal-delay: 0ms;
-  --reveal-distance: 18px;
+  --reveal-distance: 12px;
   opacity: 0;
-  transform: translate3d(0, var(--reveal-distance), 0);
+  transform: translate3d(0, var(--reveal-distance), 0) rotate(var(--reveal-from-rotate, 0deg)) scale(var(--reveal-from-scale, 1));
   transition:
-    opacity 420ms cubic-bezier(.16, 1, .3, 1) var(--reveal-delay),
-    transform 620ms cubic-bezier(.16, 1, .3, 1) var(--reveal-delay);
+    opacity 260ms cubic-bezier(.23, 1, .32, 1) var(--reveal-delay),
+    transform 280ms cubic-bezier(.23, 1, .32, 1) var(--reveal-delay);
   will-change: opacity, transform;
 }
 
 .js [data-reveal].is-visible {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0) rotate(var(--reveal-to-rotate, 0deg)) scale(var(--reveal-to-scale, 1));
   will-change: auto;
 }
 
@@ -1691,12 +1691,23 @@ form {
 }
 
 .trail-stop[data-reveal] {
-  --reveal-delay: calc(40ms + var(--stop-index, 0) * 70ms);
+  --reveal-delay: 0ms;
+  --reveal-distance: 22px;
+  --reveal-from-scale: 0.98;
+  transition:
+    opacity 380ms cubic-bezier(.22, .8, .36, 1),
+    transform 380ms cubic-bezier(.22, .8, .36, 1);
 }
 
 .directory-app[data-reveal] {
   --reveal-delay: calc(60ms + var(--app-index, 0) * 80ms);
-  --reveal-distance: 14px;
+  --reveal-distance: 18px;
+  --reveal-from-rotate: 0deg;
+  --reveal-to-rotate: calc((var(--app-index) * 2 - 1) * 2deg);
+  --reveal-from-scale: 0.96;
+  transition:
+    opacity 360ms cubic-bezier(.22, .8, .36, 1) var(--reveal-delay),
+    transform 360ms cubic-bezier(.22, .8, .36, 1) var(--reveal-delay);
 }
 
 @media (max-width: 900px) {
@@ -2457,6 +2468,7 @@ form {
 .trail-stop__card {
   overflow: hidden;
   transform: rotate(-0.35deg);
+  transition: transform 200ms cubic-bezier(.23, 1, .32, 1);
 }
 
 .trail-stop--reverse .trail-stop__card {
@@ -2468,9 +2480,17 @@ form {
   grid-template-columns: 240px minmax(0, 1fr);
 }
 
-.trail-stop__link:hover .trail-stop__marker img,
-.trail-stop:hover .trail-stop__marker img {
+.trail-stop__link:focus-visible .trail-stop__card {
+  transform: translateY(-5px) rotate(0);
+}
+
+.trail-stop__link:focus-visible .trail-stop__marker img {
   transform: translateY(-5px) rotate(-6deg) scale(1.08);
+}
+
+.trail-stop__link:active .trail-stop__card {
+  transform: translateY(2px) rotate(0);
+  transition-duration: 100ms;
 }
 
 .trail-stop__body {
@@ -2608,11 +2628,6 @@ form {
   text-decoration: none;
   transform: rotate(calc((var(--app-index) * 2 - 1) * 2deg));
   transition: transform 280ms cubic-bezier(.16, 1, .3, 1), box-shadow 280ms cubic-bezier(.16, 1, .3, 1);
-}
-
-.directory-app:hover {
-  box-shadow: 0 12px 0 rgba(123, 75, 42, 0.22), 0 28px 48px rgba(138, 78, 39, 0.2);
-  transform: translateY(-7px) rotate(0);
 }
 
 .directory-app__icon {
@@ -2956,8 +2971,18 @@ form {
   }
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
+  .trail-stop__link:hover .trail-stop__marker img,
+  .trail-stop:hover .trail-stop__marker img {
+    transform: translateY(-5px) rotate(-6deg) scale(1.08);
+  }
+
   .trail-stop__link:hover .trail-stop__card {
     transform: translateY(-5px) rotate(0);
+  }
+
+  .js .directory-app[data-reveal].is-visible:hover {
+    box-shadow: 0 12px 0 rgba(123, 75, 42, 0.22), 0 28px 48px rgba(138, 78, 39, 0.2);
+    transform: translateY(-7px) rotate(0);
   }
 }
