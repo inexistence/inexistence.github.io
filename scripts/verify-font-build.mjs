@@ -69,6 +69,25 @@ async function main() {
   }
 
   await assertNonEmpty(join(fontsDirectory, 'comment-fonts.css'), 'comment font CSS');
+  const fragmentPath = join(fontsDirectory, 'manifest-fragment.json');
+  await assertNonEmpty(fragmentPath, 'comment font manifest fragment');
+  let fragment;
+  try {
+    fragment = JSON.parse(await readFile(fragmentPath, 'utf8'));
+  } catch {
+    throw new Error(`Invalid comment font manifest fragment JSON: ${fragmentPath}`);
+  }
+  if (!fragment || typeof fragment !== 'object' || Array.isArray(fragment)) {
+    throw new Error(`Comment font manifest fragment must be an object: ${fragmentPath}`);
+  }
+  if (fragment.chunkCount !== commentChunkCount) {
+    throw new Error(
+      `Comment font manifest fragment chunkCount must be ${commentChunkCount}, found ${String(fragment.chunkCount)}.`,
+    );
+  }
+  if (typeof fragment.commentFingerprint !== 'string' || !fragment.commentFingerprint) {
+    throw new Error(`Comment font manifest fragment is missing commentFingerprint: ${fragmentPath}`);
+  }
   const commentDirectory = join(fontsDirectory, 'comment');
   const commentFiles = (await readdir(commentDirectory)).filter((file) => file.endsWith('.woff2'));
   if (commentFiles.length !== weights.length * commentChunkCount) {
@@ -96,8 +115,8 @@ async function main() {
 
   console.log(
     verifyBuildOutput
-      ? `Font build verification passed: static fonts total ${formatMebibytes(staticFontBytes)}, 144 comment chunks, and page-scoped CSS are valid.`
-      : `Font asset verification passed for ${fontsDirectory}: static fonts total ${formatMebibytes(staticFontBytes)} and 144 comment chunks are valid.`,
+      ? `Font build verification passed: static fonts total ${formatMebibytes(staticFontBytes)}, 144 comment chunks, manifest fragment, and page-scoped CSS are valid.`
+      : `Font asset verification passed for ${fontsDirectory}: static fonts total ${formatMebibytes(staticFontBytes)}, 144 comment chunks, and manifest fragment are valid.`,
   );
 }
 

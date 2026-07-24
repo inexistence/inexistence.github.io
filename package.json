@@ -11,6 +11,7 @@
     "postbuild": "npm run fonts:verify",
     "check": "astro check",
     "fonts:ensure": "node scripts/fonts-ensure.mjs",
+    "fonts:vendor-comment": "node scripts/fonts-ensure.mjs --vendor-comment",
     "fonts:verify": "node scripts/verify-font-build.mjs",
     "fonts:subset": "npm run fonts:ensure",
     "preview": "astro preview"

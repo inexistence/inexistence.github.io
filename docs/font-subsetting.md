@@ -44,18 +44,26 @@ prebuild
 
 首次运行时，`fonts:ensure` 会查找可用的 Python 3（`PYTHON` 优先；Windows 还会尝试 `python` / `py`，非 Windows 优先 `python3`；会用 `sys.version_info` 排除 Python 2）创建项目内的 `.fonttools/` 虚拟环境，并从 `tools/font-subset-requirements.txt` 安装固定版本的 `fonttools[woff]`。首次需要网络；后续会复用该环境。
 
-评论字体共 144 个分块，生成器使用进程池并行子集化（默认最多 8 个 worker），以缩短冷启动时间。输出内容与顺序仍由固定分块策略决定，与串行结果一致。
+评论字体共 144 个分块。仓库提交 `public/fonts/comment/`、`comment-fonts.css` 与 `manifest-fragment.json`（含 comment 指纹与每个文件的 SHA-256）。`fonts:ensure` 在指纹、生成器版本与文件哈希均匹配时跳过评论子集化；不匹配时本地会重新生成、写入 `manifest-fragment.json` 并警告，随后把更新后的 comment 产物一并提交即可。`npm run fonts:vendor-comment` 用于显式刷新/初次 vendoring（过期时会重建）。CI 设置 `STRICT_COMMENT_FONT_VENDOR=1`，不匹配则直接失败，禁止靠现算混过。
 
-生成清单位于 `.cache/inexistence-fonts/manifest.json`，并分别记录静态字体与评论字体的指纹。指纹包含字体源哈希、生成器版本、FontTools 版本和相应策略。输出文件不存在或指纹不同才会重建。
+需要现算评论字体时，生成器使用进程池并行子集化（默认最多 8 个 worker）。输出内容与顺序仍由固定分块策略决定。
 
-缓存命中不只依赖清单：生成器还会检查三份静态 WOFF2，以及评论 CSS 和全部 144 个评论分块是否存在且非空。任一输出缺失时，即使指纹相同也会重新生成对应资产。CI 恢复的缓存因此只是加速手段，不能绕过源字体、策略与产物完整性的校验。
+静态字体的跳过清单位于 `.cache/inexistence-fonts/manifest.json`，**仅记录 static 指纹**。三份静态 WOFF2 存在且指纹相同才会跳过；`.cache` 不再作为 comment 的依据。
 
-以下路径均为本地生成物，已被 `.gitignore` 忽略，不能提交：
+以下路径为本地生成物或缓存，已被 `.gitignore` 忽略：
 
 ```text
 .fonttools/
 .cache/
-public/fonts/
+public/fonts/static/
+```
+
+以下路径**提交进仓库**（勿手改；应由生成器更新）：
+
+```text
+public/fonts/comment/
+public/fonts/comment-fonts.css
+public/fonts/manifest-fragment.json
 ```
 
 ## 静态字体
@@ -97,7 +105,15 @@ du -ch public/fonts/static/*.woff2
 
 ## Waline 评论字体
 
-评论字体输出到 `public/fonts/comment/`，CSS 为 `public/fonts/comment-fonts.css`。它定义独立的 `Noto Sans SC Comment` 字体族：每个字重拆为 48 个带 `unicode-range` 的 WOFF2 文件，共 144 块。
+评论字体位于 `public/fonts/comment/`，CSS 为 `public/fonts/comment-fonts.css`，清单为 `public/fonts/manifest-fragment.json`。它定义独立的 `Noto Sans SC Comment` 字体族：每个字重拆为 48 个带 `unicode-range` 的 WOFF2 文件，共 144 块。
+
+维护评论字体（源字体、生成器、分块策略变更后）：
+
+```bash
+npm run fonts:ensure
+# 或显式：npm run fonts:vendor-comment
+git add public/fonts/comment public/fonts/comment-fonts.css public/fonts/manifest-fragment.json
+```
 
 分块覆盖每份源字体 CMap 的全部 Unicode 码点。固定的常用简体中文优先级表会将常见字符排入前面的块，剩余字符仍完整覆盖；该表不依赖文章内容，因此新增文章不会改变评论分块或使评论缓存失效。浏览器只会请求当前 Waline UI、评论文本和编辑器实际命中的块，而不是一次下载 144 个文件。
 
@@ -109,14 +125,13 @@ du -ch public/fonts/static/*.woff2
 
 ## GitHub Pages
 
-工作流在 `npm ci` 前恢复两份字体缓存：
+工作流在 `npm ci` 前恢复**静态**字体缓存（`.cache` + `public/fonts/static/`），key 额外依赖 `src/**`。评论字体从仓库检出，不再使用 comment 的 Actions cache。
 
-- 评论缓存只依赖锁文件、生成器和分块策略；
-- 静态缓存额外依赖 `src/**`，因此文章改动只让静态缓存失效。
+Build 步骤设置 `STRICT_COMMENT_FONT_VENDOR=1`：已提交的 comment 指纹或文件哈希与当前生成器不一致时构建失败。
 
-工作流也通过 `actions/setup-python` 缓存 pip。`npm ci` 只重建 `node_modules`，不会删除项目根目录的 `.cache/`、`.fonttools/` 或 `public/fonts/`；因此恢复的资产可被 `npm run build` 直接验证并复用。
+工作流也通过 `actions/setup-python` 缓存 pip。`npm ci` 只重建 `node_modules`，不会删除 `.cache/`、`.fonttools/` 或已跟踪的 `public/fonts` 评论产物。
 
-当 `animal-island-ui` 字体源、FontTools 版本、生成器或分块策略变更时，生成器会检测到指纹变化，重新生成相应资产。CI 缓存只是加速手段，清单和输出存在性检查才是正确性保障。
+当 `animal-island-ui` 字体源、FontTools 版本、生成器或分块策略变更时，必须本地更新并提交 comment 产物与 `manifest-fragment.json`；仅依赖 CI 现算不能通过 STRICT 检查。
 
 ### 升级检查清单
 
@@ -134,6 +149,7 @@ du -ch public/fonts/static/*.woff2
 
 - `dist/fonts/static/` 中 400、500、700 三份静态字体均存在且非空；
 - `dist/fonts/comment/` 中恰有 144 个非空评论分块，且评论 CSS 存在；
+- `dist/fonts/manifest-fragment.json` 存在，且 `chunkCount` 为 48、含非空 `commentFingerprint`；
 - 任意 `dist` 文件中没有组件库的 `noto-sans-sc-chinese-simplified-*` 原始完整字体；
 - 含 `data-waline-host` 的 HTML 页面必须引用评论 CSS，未含 Waline 的页面不得引用它。
 
@@ -160,4 +176,4 @@ npm run fonts:ensure
 du -sh public/fonts/static public/fonts/comment
 ```
 
-无改动时应显示两类字体都已跳过。若提示找不到 Python，请安装 `python3` 或设置 `PYTHON`；若首次安装 FontTools 失败，请检查网络或 Python 包源后重试。删除 `.fonttools/`、`.cache/inexistence-fonts/` 和 `public/fonts/` 可模拟冷启动，随后运行 `npm run dev` 或 `npm run build` 会重新创建全部资产。
+无改动时应显示静态与评论均已跳过。若提示找不到 Python，请安装 Python 3 或设置 `PYTHON`；若首次安装 FontTools 失败，请检查网络或 Python 包源后重试。删除 `.fonttools/`、`.cache/inexistence-fonts/` 和 `public/fonts/static/` 可模拟静态冷启动；评论字体仍从仓库使用。

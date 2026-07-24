@@ -87,7 +87,8 @@ async function main() {
     await writeFile(requirementsMarker, `${requirementHash}\n`);
   }
 
-  run(environmentPython, [join(root, 'scripts', 'generate-font-subsets.py')], 'Font subset generation failed.');
+  const generatorArguments = [join(root, 'scripts', 'generate-font-subsets.py'), ...process.argv.slice(2)];
+  run(environmentPython, generatorArguments, 'Font subset generation failed.');
 }
 
 main().catch((error) => {

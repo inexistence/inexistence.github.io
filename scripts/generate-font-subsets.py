@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import os
@@ -24,23 +25,28 @@ PUBLIC_FONTS = ROOT / "public" / "fonts"
 STATIC_DIRECTORY = PUBLIC_FONTS / "static"
 COMMENT_DIRECTORY = PUBLIC_FONTS / "comment"
 COMMENT_CSS = PUBLIC_FONTS / "comment-fonts.css"
+FRAGMENT_PATH = PUBLIC_FONTS / "manifest-fragment.json"
 MANIFEST_PATH = ROOT / ".cache" / "inexistence-fonts" / "manifest.json"
 WEIGHTS = (400, 500, 700)
 CHUNK_COUNT = 48
-GENERATOR_VERSION = "2026-07-24.2"
+GENERATOR_VERSION = "2026-07-24.3"
 SOURCE_EXTENSIONS = {".astro", ".css", ".md", ".mdx", ".ts", ".tsx", ".js", ".jsx", ".json"}
 # Cap workers so a laptop rebuild does not thrash disk while still using several cores.
 MAX_WORKERS = 8
-
-
-def worker_count() -> int:
-    return max(1, min(os.cpu_count() or 2, MAX_WORKERS))
 
 # This list is deliberately fixed: article edits must not reshuffle comment chunks.
 # It starts with commonly used Simplified Chinese characters so Waline's own UI and
 # ordinary short comments usually touch the earliest, cache-friendly chunks.
 PRIORITY_CHARACTERS = """
 的一是在不了有和人这中大为上个国我以要他时来用们生到作地于出就分对成会可主发年动同工也能下过子说产种面而方后多定行学法所民得经十三之进着等部度家电力里如水化高自二理起小物现实加量都两体制机当使点从业本去把性好应开它合还因由其些然前外天政四日那社义事平形相全表间样与关各重新线内数正心反你明看原又么利比或但质气第向道命此变条只没结解问意建月公无系军很情者最立代想已通并提直题党程展五果料象员革位入常文总次品式活设及管特件长求老头基资边流路级少图山统接知较将组见计别她手角期根论运农指几九区强放决西被干做必战先回则任取据处理世车安打每话义万清写增再保望转百让门东导色济声美规站采张接重注字众先风周院林识候单东话归听处走观""".replace("\n", "")
+
+
+def worker_count() -> int:
+    return max(1, min(os.cpu_count() or 2, MAX_WORKERS))
+
+
+def strict_comment_vendor() -> bool:
+    return os.environ.get("STRICT_COMMENT_FONT_VENDOR", "").strip() == "1"
 
 
 def sha256_bytes(value: bytes) -> str:
@@ -102,17 +108,18 @@ def file_fingerprint(fonts: dict[int, Path]) -> dict[str, str]:
     return {str(weight): sha256_file(path) for weight, path in fonts.items()}
 
 
-def read_manifest() -> dict:
+def read_static_manifest() -> dict:
     try:
         return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
 
-def write_manifest(manifest: dict) -> None:
+def write_static_manifest(static_fingerprint: str) -> None:
     MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
+    payload = {"version": 1, "static": static_fingerprint}
     temporary = MANIFEST_PATH.with_suffix(".json.tmp")
-    temporary.write_text(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     temporary.replace(MANIFEST_PATH)
 
 
@@ -196,16 +203,75 @@ def chunks(codepoints: set[int]) -> list[list[int]]:
     return [ordered[index * len(ordered) // CHUNK_COUNT : (index + 1) * len(ordered) // CHUNK_COUNT] for index in range(CHUNK_COUNT)]
 
 
+def comment_relative_paths() -> list[str]:
+    paths = ["comment-fonts.css"]
+    for weight in WEIGHTS:
+        for index in range(1, CHUNK_COUNT + 1):
+            paths.append(f"comment/noto-sans-sc-comment-{weight}-{index:02d}.woff2")
+    return paths
+
+
 def static_outputs_exist() -> bool:
     outputs = [STATIC_DIRECTORY / f"noto-sans-sc-static-{weight}.woff2" for weight in WEIGHTS]
     return all(path.is_file() and path.stat().st_size > 0 for path in outputs)
 
 
 def comment_outputs_exist() -> bool:
-    if not COMMENT_CSS.is_file() or COMMENT_CSS.stat().st_size == 0:
+    return all((PUBLIC_FONTS / relative).is_file() and (PUBLIC_FONTS / relative).stat().st_size > 0 for relative in comment_relative_paths())
+
+
+def compute_comment_file_hashes() -> dict[str, str]:
+    return {relative: sha256_file(PUBLIC_FONTS / relative) for relative in comment_relative_paths()}
+
+
+def write_comment_fragment(comment_fingerprint: str) -> None:
+    if not comment_outputs_exist():
+        raise RuntimeError("Comment font outputs are missing; generate them before writing manifest-fragment.json.")
+    fragment = {
+        "version": 1,
+        "commentFingerprint": comment_fingerprint,
+        "generator": GENERATOR_VERSION,
+        "chunkCount": CHUNK_COUNT,
+        "files": compute_comment_file_hashes(),
+    }
+    PUBLIC_FONTS.mkdir(parents=True, exist_ok=True)
+    temporary = FRAGMENT_PATH.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps(fragment, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary.replace(FRAGMENT_PATH)
+
+
+def read_comment_fragment() -> dict | None:
+    try:
+        data = json.loads(FRAGMENT_PATH.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def comment_vendor_ok(comment_fingerprint: str) -> bool:
+    fragment = read_comment_fragment()
+    if not fragment:
         return False
-    files = [COMMENT_DIRECTORY / f"noto-sans-sc-comment-{weight}-{index:02d}.woff2" for weight in WEIGHTS for index in range(1, CHUNK_COUNT + 1)]
-    return all(path.is_file() and path.stat().st_size > 0 for path in files)
+    if fragment.get("commentFingerprint") != comment_fingerprint:
+        return False
+    if fragment.get("generator") != GENERATOR_VERSION:
+        return False
+    if fragment.get("chunkCount") != CHUNK_COUNT:
+        return False
+    files = fragment.get("files")
+    if not isinstance(files, dict):
+        return False
+    expected = comment_relative_paths()
+    if set(files) != set(expected):
+        return False
+    for relative in expected:
+        path = PUBLIC_FONTS / relative
+        recorded = files.get(relative)
+        if not isinstance(recorded, str) or not path.is_file() or path.stat().st_size == 0:
+            return False
+        if sha256_file(path) != recorded:
+            return False
+    return True
 
 
 def build_static(fonts: dict[int, Path]) -> None:
@@ -245,10 +311,7 @@ def build_comment(fonts: dict[int, Path]) -> None:
     COMMENT_CSS.write_text("\n".join(rules), encoding="utf-8")
 
 
-def main() -> None:
-    if not FONT_DIRECTORY.is_dir():
-        raise RuntimeError("animal-island-ui is missing. Run npm install before generating fonts.")
-    fonts = source_fonts()
+def compute_fingerprints(fonts: dict[int, Path]) -> tuple[str, str]:
     source_hashes = file_fingerprint(fonts)
     generator_hash = sha256_file(Path(__file__))
     static_fingerprint = stable_hash({
@@ -268,22 +331,91 @@ def main() -> None:
         "priority": PRIORITY_CHARACTERS,
         "commentStrategy": "complete-cmap-frequency-priority",
     })
-    manifest = read_manifest()
-    new_manifest = {"version": 1, "static": static_fingerprint, "comment": comment_fingerprint}
+    return static_fingerprint, comment_fingerprint
 
-    if manifest.get("static") == static_fingerprint and static_outputs_exist():
+
+def ensure_font_directory() -> dict[int, Path]:
+    if not FONT_DIRECTORY.is_dir():
+        raise RuntimeError("animal-island-ui is missing. Run npm install before generating fonts.")
+    return source_fonts()
+
+
+def run_vendor_comment() -> None:
+    fonts = ensure_font_directory()
+    _, comment_fingerprint = compute_fingerprints(fonts)
+    if comment_vendor_ok(comment_fingerprint):
+        print("Vendored Waline Noto Sans SC comment fonts are current; skipped.")
+        return
+    print(f"Generating complete Waline Noto Sans SC coverage ({CHUNK_COUNT} chunks × 3 weights)…")
+    build_comment(fonts)
+    write_comment_fragment(comment_fingerprint)
+    if not comment_vendor_ok(comment_fingerprint):
+        raise RuntimeError("Comment font vendor outputs failed verification after generation.")
+    print("Wrote public/fonts/manifest-fragment.json")
+    print("Commit public/fonts/comment/, public/fonts/comment-fonts.css, and public/fonts/manifest-fragment.json")
+
+
+def run_generate() -> None:
+    fonts = ensure_font_directory()
+    static_fingerprint, comment_fingerprint = compute_fingerprints(fonts)
+    static_manifest = read_static_manifest()
+
+    if static_manifest.get("static") == static_fingerprint and static_outputs_exist():
         print("Static Noto Sans SC subsets are current; skipped.")
     else:
         print("Generating static Noto Sans SC subsets (400, 500, 700)…")
         build_static(fonts)
+    write_static_manifest(static_fingerprint)
 
-    if manifest.get("comment") == comment_fingerprint and comment_outputs_exist():
-        print("Waline Noto Sans SC comment chunks are current; skipped.")
-    else:
-        print(f"Generating complete Waline Noto Sans SC coverage ({CHUNK_COUNT} chunks × 3 weights)…")
-        build_comment(fonts)
+    if comment_vendor_ok(comment_fingerprint):
+        print("Vendored Waline Noto Sans SC comment fonts are current; skipped.")
+        return
 
-    write_manifest(new_manifest)
+    if strict_comment_vendor():
+        raise RuntimeError(
+            "STRICT_COMMENT_FONT_VENDOR=1: committed comment fonts are missing, stale, or altered. "
+            "Run `npm run fonts:ensure` or `npm run fonts:vendor-comment` locally (without STRICT), "
+            "then commit public/fonts/comment/, comment-fonts.css, and manifest-fragment.json."
+        )
+
+    print(f"Generating complete Waline Noto Sans SC coverage ({CHUNK_COUNT} chunks × 3 weights)…")
+    build_comment(fonts)
+    write_comment_fragment(comment_fingerprint)
+    if not comment_vendor_ok(comment_fingerprint):
+        raise RuntimeError("Comment font vendor outputs failed verification after generation.")
+    print(
+        "WARNING: comment fonts were regenerated locally. "
+        "Commit public/fonts/comment/, comment-fonts.css, and manifest-fragment.json.",
+        file=sys.stderr,
+    )
+
+
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate or vendor Noto Sans SC font assets.")
+    parser.add_argument(
+        "--vendor-comment",
+        action="store_true",
+        help="Ensure comment outputs exist, write manifest-fragment.json, and print commit hints.",
+    )
+    parser.add_argument(
+        "--print-comment-fingerprint",
+        action="store_true",
+        help="Print the current comment fingerprint and exit.",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv if argv is not None else sys.argv[1:])
+    if args.print_comment_fingerprint:
+        fonts = ensure_font_directory()
+        _, comment_fingerprint = compute_fingerprints(fonts)
+        print(comment_fingerprint)
+        return
+    if args.vendor_comment:
+        run_vendor_comment()
+        return
+    run_generate()
 
 
 if __name__ == "__main__":

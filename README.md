@@ -35,11 +35,11 @@ npm run preview
 
 ## 中文字体子集
 
-`npm run dev` 和 `npm run build` 会自动准备字体。首次运行会在项目内创建 `.fonttools/` 并安装固定版本的 FontTools（需要 `python3` 与网络）；之后会复用缓存。
+`npm run dev` 和 `npm run build` 会自动准备字体。首次运行会在项目内创建 `.fonttools/` 并安装固定版本的 FontTools（需要 Python 3 与网络）；之后会复用缓存。
 
-正文使用静态中文子集；修改 `src/` 中的文案会自动重建 400、500、700 三个字重。Waline 评论使用完整覆盖的 `unicode-range` 分块，因此未知中文输入也能使用同版 WebFont。
+正文使用静态中文子集（`public/fonts/static/`，不提交）；修改 `src/` 中的文案会自动重建 400、500、700 三个字重。Waline 评论字体分块已提交在 `public/fonts/comment/`，冷启动只需校验指纹与文件哈希，不必重新子集化。
 
-生成的 `.fonttools/`、`.cache/` 和 `public/fonts/` 不提交到仓库。字体来源、扫描范围、缓存与 CI、验证和排障细节见[字体子集技术方案](docs/font-subsetting.md)。
+若改动了评论字体生成策略或源字体，本地运行 `npm run fonts:ensure`（或 `npm run fonts:vendor-comment`）后，把更新后的 comment 产物与 `manifest-fragment.json` 一并提交。CI 开启 `STRICT_COMMENT_FONT_VENDOR`，过期未提交会失败。细节见[字体子集技术方案](docs/font-subsetting.md)。
 
 ## 评论系统
 

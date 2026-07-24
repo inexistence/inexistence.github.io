@@ -7,7 +7,7 @@ dist/
 .astro/
 .cache/
 .fonttools/
-public/fonts/
+public/fonts/static/
 .env
 .env.local
 .env.*.local

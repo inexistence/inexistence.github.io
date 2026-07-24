@@ -31,14 +31,6 @@ jobs:
           python-version: '3.12'
           cache: pip
           cache-dependency-path: tools/font-subset-requirements.txt
-      - name: Restore comment font cache
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
-        with:
-          path: |
-            .cache/inexistence-fonts/
-            public/fonts/comment/
-            public/fonts/comment-fonts.css
-          key: fonts-comment-${{ runner.os }}-${{ hashFiles('package-lock.json', 'scripts/fonts-ensure.mjs', 'scripts/generate-font-subsets.py', 'tools/font-subset-requirements.txt') }}
       - name: Restore static font cache
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
         with:
@@ -52,6 +44,7 @@ jobs:
         env:
           PUBLIC_WALINE_SERVER_URL: ${{ vars.WALINE_SERVER_URL }}
           PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
+          STRICT_COMMENT_FONT_VENDOR: "1"
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
