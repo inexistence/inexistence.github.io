@@ -32,10 +32,14 @@ node_modules/animal-island-ui/dist/files/
 `package.json` 的生命周期脚本会在开发和构建前执行：
 
 ```text
-predev / prebuild
+predev
+  ├─ npm run fonts:ensure
+  │    ├─ scripts/fonts-ensure.mjs
+  │    └─ scripts/generate-font-subsets.py
+  └─ npm run fonts:verify -- --fonts-dir public/fonts
+
+prebuild
   └─ npm run fonts:ensure
-       ├─ scripts/fonts-ensure.mjs
-       └─ scripts/generate-font-subsets.py
 ```
 
 首次运行时，`fonts:ensure` 会使用 `python3`（也可用 `PYTHON` 指定）创建项目内的 `.fonttools/` 虚拟环境，并从 `tools/font-subset-requirements.txt` 安装固定版本的 `fonttools[woff]`。首次需要网络；后续会复用该环境。
@@ -67,6 +71,23 @@ public/fonts/static/noto-sans-sc-static-700.woff2
 静态内容变更只会重新生成这三份正文子集，不会触发评论字体重分块。新增普通页面或文章只要位于 `src/` 且扩展名在上述列表中，就会自动纳入下一次开发或构建。
 
 当前策略是全站共用子集，不按路由拆分。因此技术分类页可能会下载包含其他文章文字的子集。以当前内容为例，页面若使用了 400、500、700 三个字重，字体传输约为 621 KB；这仍低于三份完整中文字体约 3.47 MB。按路由拆分可进一步降低单页首次传输，但会增加产物、请求数和缓存维护复杂度。
+
+### 容量监控与演进阈值
+
+随着文章增加，全站静态子集会逐渐变大，单个页面也可能下载并未实际显示的文章字符。`npm run dev` 的前置流程会检查 `public/fonts`，`npm run build` 末尾则检查 `dist/fonts`；两种模式都会统计三个静态字体的实际总字节数。超过阈值时会输出警告，在 GitHub Actions 中显示为 warning annotation，但不会让构建失败。也可随时手动检查：
+
+```bash
+du -ch public/fonts/static/*.woff2
+```
+
+以下阈值用于决定何时演进方案：
+
+- 合计低于 1 MiB：继续使用当前全站共享子集；
+- 达到 1–2 MiB：脚本发出评估提醒，考虑拆分“公共 UI 字体”和“文章正文字体”；
+- 达到 2 MiB，或实际监测显示字体请求已明显影响 LCP：脚本发出拆分提醒，应实施按路由或按文章生成子集，并保留公共字符字体；
+- CI 字体生成耗时明显增加：优化静态指纹，使其只依赖实际字符集合，避免 CSS、注释或代码结构变化触发不必要的重建。
+
+这些阈值是维护触发条件，不是构建失败条件。评估时应同时参考生产环境字体传输大小、缓存命中率、LCP 和 CI 生成耗时；评论字体不依赖文章内容，不纳入上述静态子集容量判断。
 
 所有自托管字体均设置 `font-display: swap`。首次访问时，浏览器可以先用后备字体显示文字，字体下载完成后再切换至 Noto Sans SC；短暂的字形变化是为了避免文字被字体下载阻塞的预期取舍。验证实际字体时应等待 Network 中的字体请求完成，再在 DevTools 的 Rendered Fonts 面板确认。
 
@@ -113,6 +134,8 @@ public/fonts/static/noto-sans-sc-static-700.woff2
 - `dist/fonts/comment/` 中恰有 144 个非空评论分块，且评论 CSS 存在；
 - 任意 `dist` 文件中没有组件库的 `noto-sans-sc-chinese-simplified-*` 原始完整字体；
 - 含 `data-waline-host` 的 HTML 页面必须引用评论 CSS，未含 Waline 的页面不得引用它。
+
+开发前执行的 `npm run fonts:verify -- --fonts-dir public/fonts` 复用字体完整性和容量检查，但跳过仅适用于完整构建的原始字体泄漏与 HTML 页面范围检查。
 
 ## 验证与排障
 

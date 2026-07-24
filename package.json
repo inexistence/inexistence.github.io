@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "npm run fonts:ensure",
+    "predev": "npm run fonts:ensure && npm run fonts:verify -- --fonts-dir public/fonts",
     "dev": "astro dev",
     "prebuild": "npm run fonts:ensure",
     "build": "astro check && astro build",
