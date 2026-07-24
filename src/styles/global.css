@@ -1,3 +1,31 @@
+/* Generated from the text in src/ by `npm run fonts:ensure`. */
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/static/noto-sans-sc-static-400.woff2') format('woff2');
+  unicode-range: U+0250-10FFFF;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/static/noto-sans-sc-static-500.woff2') format('woff2');
+  unicode-range: U+0250-10FFFF;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/static/noto-sans-sc-static-700.woff2') format('woff2');
+  unicode-range: U+0250-10FFFF;
+}
+
 :root {
   --island-mint: oklch(78% 0.075 150);
   --island-mint-deep: oklch(55% 0.105 150);
@@ -1290,9 +1318,15 @@ form {
   --waline-border: 1px solid var(--waline-border-color);
   --waline-box-shadow: none;
   --waline-avatar-radius: 50%;
+  font-family: 'Noto Sans SC Comment', 'Noto Sans SC', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   width: 100%;
   min-height: 112px;
   margin-top: 0;
+}
+
+.waline-host :where(*) {
+  font-family: inherit;
 }
 
 .waline-host .wl-panel {
@@ -1318,7 +1352,7 @@ form {
 .waline-host .wl-header input,
 .waline-host .wl-editor {
   color: var(--animal-text-color);
-  font-family: var(--animal-font-family);
+  font-family: inherit;
   font-weight: 500;
 }
 
@@ -1343,8 +1377,14 @@ form {
 
 .waline-host .wl-btn {
   border-radius: 999px;
-  font-family: var(--animal-font-family);
+  font-family: inherit;
   font-weight: 700;
+}
+
+.waline-host :is(code, kbd, pre, samp),
+.waline-host :is(code, kbd, pre, samp) * {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
 }
 
 .waline-host .wl-btn.primary {

@@ -4,9 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "npm run fonts:ensure",
     "dev": "astro dev",
+    "prebuild": "npm run fonts:ensure",
     "build": "astro check && astro build",
+    "postbuild": "npm run fonts:verify",
     "check": "astro check",
+    "fonts:ensure": "node scripts/fonts-ensure.mjs",
+    "fonts:verify": "node scripts/verify-font-build.mjs",
+    "fonts:subset": "npm run fonts:ensure",
     "preview": "astro preview"
   },
   "dependencies": {

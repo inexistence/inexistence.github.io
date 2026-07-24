@@ -2,6 +2,24 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
+const subsetAnimalIslandFonts = () => ({
+  name: 'subset-animal-island-fonts',
+  enforce: 'pre',
+  transform(code, id) {
+    if (!id.endsWith('/animal-island-ui/dist/index.css')) return null;
+
+    return {
+      code: code.replace(/@font-face\{[^}]*\}/g, (rule) => {
+        if (!rule.includes('font-family:Noto Sans SC')) return rule;
+        if (rule.includes('noto-sans-sc-chinese-simplified')) return '';
+
+        return rule.replace('}', ';unicode-range:U+0000-024F}');
+      }),
+      map: null,
+    };
+  },
+});
+
 export default defineConfig({
   site: 'https://inexistence.github.io',
   output: 'static',
@@ -13,6 +31,7 @@ export default defineConfig({
     }),
   ],
   vite: {
+    plugins: [subsetAnimalIslandFonts()],
     resolve: {
       noExternal: ['animal-island-ui'],
     },

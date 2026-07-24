@@ -33,7 +33,12 @@ const color = categoryColor(post.data.category);
 const tocHeadings = headings.filter((heading) => heading.depth <= 3);
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover || undefined}>
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.cover || undefined}
+  commentFonts
+>
   <article class="post">
     <header class:list={['post-header', `post-header--${color}`]}>
       <div class="shell post-header__inner" data-reveal>

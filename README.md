@@ -33,6 +33,14 @@ npm run build
 npm run preview
 ```
 
+## 中文字体子集
+
+`npm run dev` 和 `npm run build` 会自动准备字体。首次运行会在项目内创建 `.fonttools/` 并安装固定版本的 FontTools（需要 `python3` 与网络）；之后会复用缓存。
+
+正文使用静态中文子集；修改 `src/` 中的文案会自动重建 400、500、700 三个字重。Waline 评论使用完整覆盖的 `unicode-range` 分块，因此未知中文输入也能使用同版 WebFont。
+
+生成的 `.fonttools/`、`.cache/` 和 `public/fonts/` 不提交到仓库。字体来源、扫描范围、缓存与 CI、验证和排障细节见[字体子集技术方案](docs/font-subsetting.md)。
+
 ## 评论系统
 
 文章评论与留言板使用 Waline。完整的架构、部署步骤、安全边界、环境变量和排障方法请参阅 [评论系统说明](docs/comments.md)。

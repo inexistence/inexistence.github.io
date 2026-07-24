@@ -11,6 +11,7 @@ interface Props {
   image?: string;
   noindex?: boolean;
   bodyClass?: string;
+  commentFonts?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   image = '/assets/images/cover.jpg',
   noindex = false,
   bodyClass,
+  commentFonts = false,
 } = Astro.props;
 const pageTitle = title === 'INEXISTENCE' ? title : `${title} · INEXISTENCE`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -44,6 +46,7 @@ const socialImage = new URL(image, Astro.site);
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
     <meta name="twitter:card" content="summary_large_image" />
+    {commentFonts && <link rel="stylesheet" href="/fonts/comment-fonts.css" />}
     <title>{pageTitle}</title>
   </head>
   <body class={bodyClass}>
