@@ -1,0 +1,31 @@
+src/pages/index.astro
+  s_24b3681de20b99::t_243b0faf2685c5 78
+src/layouts/BaseLayout.astro
+  s_24b3681de20b99::t_243b0faf2685c5 69-75,77-82
+src/styles/global.css
+  s_24b3681de20b99::t_8b8843397d2ee2 1665,1674,1704-1710
+  s_24b3681de20b99::t_711d7da4a3430b 2471,2481-2484,2486-2487,2489-2493,2495,2973-2979,2982-2983,2985-2986
+  s_24b3681de20b99::t_07f81efae395c7 2984
+  s_24b3681de20b99::t_007b5e9c302233 1697
+  s_24b3681de20b99::t_243b0faf2685c5 1663,1667-1668,1694
+  s_24b3681de20b99::t_814b5e983be4b7 1695-1696,1698-1699
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "df96cc351e5614fe6d731adb8669362c84eb1698",
+  "prompts": {},
+  "logical_commit_id": "df96cc351e5614fe6d731adb8669362c84eb1698",
+  "sessions": {
+    "s_24b3681de20b99": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f930a-7d01-7633-8199-949fe57a27af",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 60,
+      "total_deletions": 39
+    }
+  }
+}
