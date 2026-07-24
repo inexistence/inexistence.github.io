@@ -1,0 +1,20 @@
+DESIGN.md
+  s_4e02ce4f5ed854::t_6d63015d3bb8ae 121-124
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "33c08871b1a82f95c6791c6d99ba275a821f0a47",
+  "prompts": {},
+  "logical_commit_id": "33c08871b1a82f95c6791c6d99ba275a821f0a47",
+  "sessions": {
+    "s_4e02ce4f5ed854": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f9385-5c67-7293-8971-447e252fcdcf",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
