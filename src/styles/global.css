@@ -1084,10 +1084,12 @@ form {
 }
 
 .prose {
+  min-width: 0;
   color: color-mix(in oklch, var(--island-brown) 92%, black);
   font-family: 'Noto Sans SC', sans-serif;
   font-size: clamp(1rem, 1.4vw, 1.08rem);
   line-height: 1.95;
+  overflow-wrap: anywhere;
 }
 
 .prose > :first-child {
@@ -1177,6 +1179,8 @@ form {
   color: #8a4d3c;
   background: #efe3ca;
   font-size: 0.88em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .prose pre {
