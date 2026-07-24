@@ -1,0 +1,21 @@
+src/styles/global.css
+  s_64b677769b43b8::t_e362d2f6a1f698 1087,1092,1182-1183
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "ff17356b1eaabe082773bf428504f82c6975d908",
+  "prompts": {},
+  "logical_commit_id": "ff17356b1eaabe082773bf428504f82c6975d908",
+  "sessions": {
+    "s_64b677769b43b8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f9225-90ca-7de2-a9cb-132b7a3abff6",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 4
+    }
+  }
+}
