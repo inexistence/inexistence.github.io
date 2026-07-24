@@ -1,0 +1,24 @@
+docs/font-subsetting.md
+  s_4e02ce4f5ed854::t_3b90da7739d46c 35-41,75-91,137-138
+package.json
+  s_4e02ce4f5ed854::t_fb922d341e7f7b 7
+scripts/verify-font-build.mjs
+  s_4e02ce4f5ed854::t_8e349221b952ca 2,9-11,24-25,32-50,52-53,55-56,58-67,71-72,79-84,86-93,97-101
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "4b9818440ca2bd7b714ddf81dd12fbf1894da038",
+  "prompts": {},
+  "logical_commit_id": "4b9818440ca2bd7b714ddf81dd12fbf1894da038",
+  "sessions": {
+    "s_4e02ce4f5ed854": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f9385-5c67-7293-8971-447e252fcdcf",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
