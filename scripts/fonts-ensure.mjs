@@ -11,7 +11,22 @@ const requirementsMarker = join(virtualEnvironment, '.requirements-hash');
 const isWindows = process.platform === 'win32';
 const environmentPython = join(virtualEnvironment, isWindows ? 'Scripts/python.exe' : 'bin/python');
 const environmentPip = join(virtualEnvironment, isWindows ? 'Scripts/pip.exe' : 'bin/pip');
-const configuredPython = process.env.PYTHON || 'python3';
+
+function resolveSystemPython() {
+  // Windows installs usually expose `python` / `py`, not `python3`.
+  const candidates = process.env.PYTHON
+    ? [process.env.PYTHON]
+    : isWindows
+      ? ['python', 'py', 'python3']
+      : ['python3', 'python'];
+
+  for (const candidate of candidates) {
+    const probe = spawnSync(candidate, ['--version'], { cwd: root, stdio: 'ignore' });
+    if (probe.status === 0) return candidate;
+  }
+
+  return null;
+}
 
 function run(command, arguments_, message) {
   const result = spawnSync(command, arguments_, { cwd: root, stdio: 'inherit' });
@@ -36,13 +51,13 @@ async function main() {
 
   if (!(await exists(environmentPython))) {
     console.log('Initializing the project FontTools environment…');
-    const probe = spawnSync(configuredPython, ['--version'], { cwd: root, stdio: 'ignore' });
-    if (probe.status !== 0) {
+    const systemPython = resolveSystemPython();
+    if (!systemPython) {
       throw new Error(
-        `Python 3 is required to generate fonts. Install python3, or set PYTHON to its executable. (${configuredPython} was unavailable)`,
+        'Python 3 is required to generate fonts. Install Python 3, or set PYTHON to its executable. (python3/python was unavailable)',
       );
     }
-    run(configuredPython, ['-m', 'venv', virtualEnvironment], 'Could not create .fonttools/.');
+    run(systemPython, ['-m', 'venv', virtualEnvironment], 'Could not create .fonttools/.');
   }
 
   const installedHash = (await exists(requirementsMarker))
