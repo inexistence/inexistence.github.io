@@ -42,7 +42,9 @@ prebuild
   └─ npm run fonts:ensure
 ```
 
-首次运行时，`fonts:ensure` 会使用 `python3`（也可用 `PYTHON` 指定）创建项目内的 `.fonttools/` 虚拟环境，并从 `tools/font-subset-requirements.txt` 安装固定版本的 `fonttools[woff]`。首次需要网络；后续会复用该环境。
+首次运行时，`fonts:ensure` 会查找可用的 Python 3（`PYTHON` 优先；Windows 还会尝试 `python` / `py`，非 Windows 优先 `python3`；会用 `sys.version_info` 排除 Python 2）创建项目内的 `.fonttools/` 虚拟环境，并从 `tools/font-subset-requirements.txt` 安装固定版本的 `fonttools[woff]`。首次需要网络；后续会复用该环境。
+
+评论字体共 144 个分块，生成器使用进程池并行子集化（默认最多 8 个 worker），以缩短冷启动时间。输出内容与顺序仍由固定分块策略决定，与串行结果一致。
 
 生成清单位于 `.cache/inexistence-fonts/manifest.json`，并分别记录静态字体与评论字体的指纹。指纹包含字体源哈希、生成器版本、FontTools 版本和相应策略。输出文件不存在或指纹不同才会重建。
 

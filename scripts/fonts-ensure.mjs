@@ -12,6 +12,17 @@ const isWindows = process.platform === 'win32';
 const environmentPython = join(virtualEnvironment, isWindows ? 'Scripts/python.exe' : 'bin/python');
 const environmentPip = join(virtualEnvironment, isWindows ? 'Scripts/pip.exe' : 'bin/pip');
 
+function isPython3(command) {
+  // Prefer a runtime check: `python --version` can succeed for Python 2,
+  // and Windows `py` may launch either depending on install.
+  const probe = spawnSync(
+    command,
+    ['-c', 'import sys; raise SystemExit(0 if sys.version_info[0] >= 3 else 1)'],
+    { cwd: root, stdio: 'ignore' },
+  );
+  return probe.status === 0;
+}
+
 function resolveSystemPython() {
   // Windows installs usually expose `python` / `py`, not `python3`.
   const candidates = process.env.PYTHON
@@ -21,8 +32,7 @@ function resolveSystemPython() {
       : ['python3', 'python'];
 
   for (const candidate of candidates) {
-    const probe = spawnSync(candidate, ['--version'], { cwd: root, stdio: 'ignore' });
-    if (probe.status === 0) return candidate;
+    if (isPython3(candidate)) return candidate;
   }
 
   return null;
@@ -54,7 +64,7 @@ async function main() {
     const systemPython = resolveSystemPython();
     if (!systemPython) {
       throw new Error(
-        'Python 3 is required to generate fonts. Install Python 3, or set PYTHON to its executable. (python3/python was unavailable)',
+        'Python 3 is required to generate fonts. Install Python 3, or set PYTHON to a Python 3 executable. (no usable python3/python found)',
       );
     }
     run(systemPython, ['-m', 'venv', virtualEnvironment], 'Could not create .fonttools/.');
