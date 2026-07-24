@@ -29,8 +29,10 @@ FRAGMENT_PATH = PUBLIC_FONTS / "manifest-fragment.json"
 MANIFEST_PATH = ROOT / ".cache" / "inexistence-fonts" / "manifest.json"
 WEIGHTS = (400, 500, 700)
 CHUNK_COUNT = 48
-GENERATOR_VERSION = "2026-07-24.3"
+GENERATOR_VERSION = "2026-07-24.4"
 SOURCE_EXTENSIONS = {".astro", ".css", ".md", ".mdx", ".ts", ".tsx", ".js", ".jsx", ".json"}
+# Hash these as LF-normalized text so Windows autocrlf checkouts match Linux CI.
+TEXT_HASH_SUFFIXES = {".astro", ".css", ".js", ".json", ".jsx", ".md", ".mdx", ".mjs", ".py", ".ts", ".tsx", ".txt"}
 # Cap workers so a laptop rebuild does not thrash disk while still using several cores.
 MAX_WORKERS = 8
 
@@ -53,7 +55,13 @@ def sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
+def normalize_newlines(value: bytes) -> bytes:
+    return value.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+
+
 def sha256_file(path: Path) -> str:
+    if path.suffix.lower() in TEXT_HASH_SUFFIXES:
+        return sha256_bytes(normalize_newlines(path.read_bytes()))
     digest = hashlib.sha256()
     with path.open("rb") as file:
         for block in iter(lambda: file.read(1024 * 1024), b""):
@@ -79,7 +87,7 @@ def collect_site_text() -> bytes:
             continue
         digest.update(path.relative_to(ROOT).as_posix().encode())
         digest.update(b"\0")
-        digest.update(path.read_bytes())
+        digest.update(normalize_newlines(path.read_bytes()))
         digest.update(b"\0")
     return digest.digest()
 

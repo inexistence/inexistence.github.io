@@ -1,8 +1,8 @@
 {
   "chunkCount": 48,
-  "commentFingerprint": "d54c199981acc5e5d9b2ecc7967b2f5562e3a396854f2b87be10d25b9f792903",
+  "commentFingerprint": "cd5d505d3696902c49db135d11b026afbcf0c46388c8b1cb340b1dad34774b1f",
   "files": {
-    "comment-fonts.css": "51adb1f827ce8d398476b8a94ba7978e95d1a68155dedc3e4f57d2c5d30f9f88",
+    "comment-fonts.css": "429c415b10070b28ad67e2cd053d7ba22bb4cd78362099ea9e6bd16388b636ec",
     "comment/noto-sans-sc-comment-400-01.woff2": "f80dde5bf5b0eceff1907125d352727b8362400ca7cd5c40003ff767381860a6",
     "comment/noto-sans-sc-comment-400-02.woff2": "d94b32b43bb7d3cd3d5683aa0b67207cabe6d50cb0210389ebe772341dedfc3f",
     "comment/noto-sans-sc-comment-400-03.woff2": "2576061f38f1741e52c9af4dfa9ec0a3afe678bfed32a143e987eadc0ec7a9a9",
@@ -148,6 +148,6 @@
     "comment/noto-sans-sc-comment-700-47.woff2": "05b2570a308ced4970975fc8ed9a09226710fc7b2f703a8a5a3e417460617461",
     "comment/noto-sans-sc-comment-700-48.woff2": "7901de71c91d089656a7f8549108d9ca0589c37f0b71d6cf775b2b700262a8b5"
   },
-  "generator": "2026-07-24.3",
+  "generator": "2026-07-24.4",
   "version": 1
 }
