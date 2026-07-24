@@ -1,11 +1,11 @@
 ---
-title: "别处的日落"
-description: "偶然看见一场别处的日落，足够提醒自己：世界很大，而此刻我们都正在其中。"
+title: "别处日落"
+description: "偶然看见一场别处的日落。"
 publishDate: "2026-07-24"
 category: "日志"
 place: ""
 tags: []
-cover: ""
+cover: "/assets/blog-images/sunset-elsewhere/cover.webp"
 draft: false
 ---
 
