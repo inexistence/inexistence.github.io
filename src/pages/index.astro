@@ -71,7 +71,7 @@ const categoryIcons: Record<string, string> = {
           <article class:list={['trail-stop', { 'trail-stop--reverse': index % 2 === 1 }]} data-reveal style={`--stop-index:${index}`}>
             <div class="trail-stop__marker" aria-hidden="true">
               <span>{String(index + 1).padStart(2, '0')}</span>
-              <img src={`/assets/animal-island-ui/${trailItems[index % trailItems.length]}.png`} alt="" loading="lazy" />
+              <img src={`/assets/animal-island-ui/${trailItems[index % trailItems.length]}.webp`} alt="" loading="lazy" />
             </div>
             <a class="trail-stop__link" href={`/posts/${post.id}/`} aria-label={`阅读《${post.data.title}》`}>
               <Card color={color} pattern={index === 0 ? color : 'none'} hoverable className="trail-stop__card">
