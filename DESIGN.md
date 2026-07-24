@@ -118,7 +118,10 @@ INEXISTENCE 是一座持续生长的个人记忆岛屿。它保存技术笔记�
 
 - 英文品牌、数字、眉题、展示标题：`Nunito`，回退 `sans-serif`；
 - 中文正文与界面：`Noto Sans SC`, `PingFang SC`, `sans-serif`；
-- 组件库已随样式打包 Nunito 与 Noto Sans SC 字体文件，不再重复引入远程字体。
+- `Nunito` 与 Noto Sans SC 拉丁字体由组件库提供，不再重复引入远程字体；
+- 中文正文使用从 `src/` 静态内容生成的 Noto Sans SC 400、500、700 全站子集，组件库原始完整中文字体不进入构建产物；
+- Waline 的界面、输入和用户评论使用独立的 `Noto Sans SC Comment` 分块字体，以覆盖无法预先枚举的动态文本；
+- 字体生成、加载范围、缓存、容量监控和维护流程统一以[中文字体子集技术方案](docs/font-subsetting.md)为准。
 
 ### 4.2 字重
 
