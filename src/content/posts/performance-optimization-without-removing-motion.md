@@ -1,5 +1,5 @@
 ---
-title: "给 Astro 博客做性能优化：不靠删动画拿分"
+title: "给 Astro 博客做性能优化"
 description: "从 Lighthouse 审计出发，记录响应式图片、组件样式裁剪与 Waline 延迟加载，并说明哪些资源级数据可以证明收益。"
 publishDate: "2026-07-25"
 category: "技术"

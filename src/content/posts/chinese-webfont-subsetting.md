@@ -1,5 +1,5 @@
 ---
-title: "给博客做中文 WebFont 子集：静态文案、评论分块，以及一次换行符翻车"
+title: "给博客做中文 WebFont 子集"
 description: "记录本站 Noto Sans SC 的双轨字体方案：正文静态子集、Waline 评论 unicode-range 分块、容量监控、把评论字体 vendoring 进仓，以及 Windows autocrlf 导致 CI STRICT 校验失败的踩坑。"
 publishDate: "2026-07-25"
 category: "技术"
