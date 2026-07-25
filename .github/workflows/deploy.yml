@@ -43,7 +43,6 @@ jobs:
         with:
           path: |
             public/assets/responsive/
-            src/generated/responsive-images.json
           key: responsive-images-${{ runner.os }}-${{ hashFiles('package-lock.json', 'public/assets/**', 'scripts/generate-responsive-images.mjs') }}
       - name: Install dependencies
         run: npm ci
