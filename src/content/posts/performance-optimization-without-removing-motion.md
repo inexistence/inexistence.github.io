@@ -6,7 +6,7 @@ category: "技术"
 place: ""
 tags: ["Astro", "Lighthouse", "性能优化", "响应式图片", "Waline"]
 cover: ""
-draft: true
+draft: false
 ---
 
 这是我第一次认真用 Lighthouse 审计自己的博客。此前我会凭感觉压缩图片、删一点 CSS，但很难回答一个更具体的问题：访问首页和文章页时，浏览器到底在把时间和流量花在哪里？
