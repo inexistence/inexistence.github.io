@@ -24,12 +24,23 @@ function isPython3(command) {
 }
 
 function resolveSystemPython() {
+  if (process.env.PYTHON) {
+    return isPython3(process.env.PYTHON) ? process.env.PYTHON : null;
+  }
+
+  // When uv manages this project, `uv python find` honors its local
+  // .python-version file. This keeps `npm run dev` and `npm run build`
+  // independent from the Python version selected globally in the shell.
+  const uvPython = spawnSync('uv', ['python', 'find'], {
+    cwd: root,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  });
+  const uvCandidate = uvPython.status === 0 ? uvPython.stdout.trim() : '';
+  if (uvCandidate && isPython3(uvCandidate)) return uvCandidate;
+
   // Windows installs usually expose `python` / `py`, not `python3`.
-  const candidates = process.env.PYTHON
-    ? [process.env.PYTHON]
-    : isWindows
-      ? ['python', 'py', 'python3']
-      : ['python3', 'python'];
+  const candidates = isWindows ? ['python', 'py', 'python3'] : ['python3', 'python'];
 
   for (const candidate of candidates) {
     if (isPython3(candidate)) return candidate;

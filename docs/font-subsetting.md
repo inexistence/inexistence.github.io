@@ -42,7 +42,7 @@ prebuild
   └─ npm run fonts:ensure
 ```
 
-首次运行时，`fonts:ensure` 会查找可用的 Python 3（`PYTHON` 优先；Windows 还会尝试 `python` / `py`，非 Windows 优先 `python3`；会用 `sys.version_info` 排除 Python 2）创建项目内的 `.fonttools/` 虚拟环境，并从 `tools/font-subset-requirements.txt` 安装固定版本的 `fonttools[woff]`。首次需要网络；后续会复用该环境。
+首次运行时，`fonts:ensure` 会查找可用的 Python 3：`PYTHON` 优先；否则若安装了 uv，则用 `uv python find` 读取项目的 `.python-version`；最后才回退到系统 Python（Windows 还会尝试 `python` / `py`，非 Windows 优先 `python3`）。它会用 `sys.version_info` 排除 Python 2，创建项目内的 `.fonttools/` 虚拟环境，并从 `tools/font-subset-requirements.txt` 安装固定版本的 `fonttools[woff]`。首次需要网络；后续会复用该环境。
 
 评论字体共 144 个分块。仓库提交 `public/fonts/comment/`、`comment-fonts.css` 与 `manifest-fragment.json`（含 comment 指纹与每个文件的 SHA-256）。`fonts:ensure` 在指纹、生成器版本与文件哈希均匹配时跳过评论子集化；不匹配时本地会重新生成、写入 `manifest-fragment.json` 并警告，随后把更新后的 comment 产物一并提交即可。`npm run fonts:vendor-comment` 用于显式刷新/初次 vendoring（过期时会重建）。CI 设置 `STRICT_COMMENT_FONT_VENDOR=1`，不匹配则直接失败，禁止靠现算混过。指纹与文本文件哈希按 LF 规范化计算（见 `.gitattributes`），避免 Windows `autocrlf` 与 Linux CI 因换行符不一致而误判过期。
 
