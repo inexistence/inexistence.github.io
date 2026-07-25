@@ -236,6 +236,7 @@ async function main() {
   let skippedWebp = 0;
   let skippedAvif = 0;
   let discardedPartialAvif = 0;
+  const avifFallbackSources = new Set();
 
   try {
     for (const source of sourceFiles) {
@@ -293,6 +294,7 @@ async function main() {
           } else {
             await rm(stagedAvif, { force: true });
             skippedAvif += 1;
+            avifFallbackSources.add(sourceUrl);
           }
         }));
       }
@@ -331,6 +333,14 @@ async function main() {
     const nextPaths = new Set(managedPaths(manifest));
     await prunePaths(managedPaths(previous).filter((path) => !nextPaths.has(path)));
     console.log(`Responsive images: ${Object.keys(images).length} total, ${reused} reused, ${generated} generated, ${skippedWebp} WebP candidates skipped, ${skippedAvif} AVIF candidates larger than WebP, ${discardedPartialAvif} partial AVIF candidates discarded.`);
+    if (skippedAvif) {
+      const sources = [...avifFallbackSources].join(', ');
+      const message = `${skippedAvif} AVIF candidates were larger than their WebP fallbacks for: ${sources}. WebP will be used instead.`;
+      console.warn(`Responsive image warning: ${message}`);
+      if (process.env.GITHUB_ACTIONS === 'true') {
+        console.warn(`::warning title=Responsive image AVIF fallback::${message}`);
+      }
+    }
   } finally {
     await rm(stagingDirectory, { recursive: true, force: true });
   }
