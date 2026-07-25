@@ -30,6 +30,9 @@ MANIFEST_PATH = ROOT / ".cache" / "inexistence-fonts" / "manifest.json"
 WEIGHTS = (400, 500, 700)
 CHUNK_COUNT = 48
 GENERATOR_VERSION = "2026-07-24.4"
+# Keep comment-vendor invalidation independent from static-font work. A change
+# to static subsetting must not force regenerating 144 unchanged comment files.
+COMMENT_GENERATOR_VERSION = "2026-07-24.4"
 SOURCE_EXTENSIONS = {".astro", ".css", ".md", ".mdx", ".ts", ".tsx", ".js", ".jsx", ".json"}
 # Hash these as LF-normalized text so Windows autocrlf checkouts match Linux CI.
 TEXT_HASH_SUFFIXES = {".astro", ".css", ".js", ".json", ".jsx", ".md", ".mdx", ".mjs", ".py", ".ts", ".tsx", ".txt"}
@@ -136,24 +139,28 @@ def stable_hash(value: object) -> str:
     return sha256_bytes(encoded)
 
 
-def subset_font(source: Path, codepoints: Iterable[int], destination: Path) -> None:
+def subset_loaded_font(font: TTFont, codepoints: Iterable[int], destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     options = Options()
     options.flavor = "woff2"
     options.layout_features = ["*"]
     subsetter = Subsetter(options=options)
     subsetter.populate(unicodes=set(codepoints))
+    subsetter.subset(font)
+    font.flavor = "woff2"
+    with tempfile.NamedTemporaryFile(dir=destination.parent, suffix=".woff2", delete=False) as temporary:
+        temporary_path = Path(temporary.name)
+    try:
+        font.save(temporary_path)
+        temporary_path.replace(destination)
+    finally:
+        temporary_path.unlink(missing_ok=True)
+
+
+def subset_font(source: Path, codepoints: Iterable[int], destination: Path) -> None:
     font = TTFont(source, recalcBBoxes=False, recalcTimestamp=False)
     try:
-        subsetter.subset(font)
-        font.flavor = "woff2"
-        with tempfile.NamedTemporaryFile(dir=destination.parent, suffix=".woff2", delete=False) as temporary:
-            temporary_path = Path(temporary.name)
-        try:
-            font.save(temporary_path)
-            temporary_path.replace(destination)
-        finally:
-            temporary_path.unlink(missing_ok=True)
+        subset_loaded_font(font, codepoints, destination)
     finally:
         font.close()
 
@@ -238,7 +245,7 @@ def write_comment_fragment(comment_fingerprint: str) -> None:
     fragment = {
         "version": 1,
         "commentFingerprint": comment_fingerprint,
-        "generator": GENERATOR_VERSION,
+        "generator": COMMENT_GENERATOR_VERSION,
         "chunkCount": CHUNK_COUNT,
         "files": compute_comment_file_hashes(),
     }
@@ -262,7 +269,7 @@ def comment_vendor_ok(comment_fingerprint: str) -> bool:
         return False
     if fragment.get("commentFingerprint") != comment_fingerprint:
         return False
-    if fragment.get("generator") != GENERATOR_VERSION:
+    if fragment.get("generator") != COMMENT_GENERATOR_VERSION:
         return False
     if fragment.get("chunkCount") != CHUNK_COUNT:
         return False
@@ -331,8 +338,7 @@ def compute_fingerprints(fonts: dict[int, Path]) -> tuple[str, str]:
         "staticStrategy": "all-source-text-codepoints",
     })
     comment_fingerprint = stable_hash({
-        "generator": GENERATOR_VERSION,
-        "generatorHash": generator_hash,
+        "generator": COMMENT_GENERATOR_VERSION,
         "fontTools": FONTTOOLS_VERSION,
         "fonts": source_hashes,
         "chunkCount": CHUNK_COUNT,

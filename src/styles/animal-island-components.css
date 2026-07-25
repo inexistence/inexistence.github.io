@@ -1,0 +1,11 @@
+/* Add a component stylesheet here whenever its JS component is introduced.
+   `npm run styles:verify` checks that all referenced theme variables exist. */
+@import '../../node_modules/animal-island-ui/dist/es/components/Button/button.module.css';
+@import '../../node_modules/animal-island-ui/dist/es/components/Card/card.module.css';
+@import '../../node_modules/animal-island-ui/dist/es/components/Collapse/collapse.module.css';
+@import '../../node_modules/animal-island-ui/dist/es/components/Divider/divider.module.css';
+@import '../../node_modules/animal-island-ui/dist/es/components/Footer/footer.module.css';
+@import '../../node_modules/animal-island-ui/dist/es/components/Loading/Loading.module.css';
+@import '../../node_modules/animal-island-ui/dist/es/components/Tag/tag.module.css';
+@import '../../node_modules/animal-island-ui/dist/es/components/Title/title.module.css';
+@import '../../node_modules/animal-island-ui/dist/es/components/Tooltip/tooltip.module.css';

@@ -1,3 +1,55 @@
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../../node_modules/animal-island-ui/dist/files/nunito-latin-500-normal.78b3b3a4.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../../node_modules/animal-island-ui/dist/files/nunito-latin-700-normal.0b62b606.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('../../node_modules/animal-island-ui/dist/files/nunito-latin-900-normal.8b5d13b8.woff2') format('woff2');
+}
+
+/* Keep the same Latin Noto faces and fallback order as animal-island-ui's full stylesheet. */
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../node_modules/animal-island-ui/dist/files/noto-sans-sc-latin-400-normal.d0072abd.woff2') format('woff2');
+  unicode-range: U+0000-024F;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../../node_modules/animal-island-ui/dist/files/noto-sans-sc-latin-500-normal.df58f967.woff2') format('woff2');
+  unicode-range: U+0000-024F;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../../node_modules/animal-island-ui/dist/files/noto-sans-sc-latin-700-normal.11e48442.woff2') format('woff2');
+  unicode-range: U+0000-024F;
+}
+
 /* Generated from the text in src/ by `npm run fonts:ensure`. */
 @font-face {
   font-family: 'Noto Sans SC';
@@ -55,9 +107,31 @@
   --animal-border-color-light: #ded2bb;
   --animal-border-radius-base: 20px;
   --animal-border-radius-lg: 30px;
+  --animal-border-radius-sm: 16px;
+  --animal-border-width: 2px;
+  --animal-font-size-sm: 12px;
+  --animal-font-size-base: 14px;
+  --animal-font-size-lg: 16px;
+  --animal-line-height-base: 1.5715;
+  --animal-spacing-xs: 4px;
+  --animal-spacing-sm: 8px;
+  --animal-spacing-md: 12px;
+  --animal-spacing-lg: 16px;
+  --animal-spacing-xl: 24px;
+  --animal-height-sm: 32px;
+  --animal-height-lg: 48px;
+  --animal-motion-duration-fast: 0.15s;
+  --animal-motion-duration-base: 0.25s;
+  --animal-motion-ease: cubic-bezier(.4, 0, .2, 1);
+  --animal-shadow-sm: 0 2px 4px rgba(61, 52, 40, 0.06);
+  --animal-focus-yellow: #f5c31c;
+  --animal-error-color: #e05a5a;
+  --animal-error-color-hover: #e87878;
+  --animal-error-color-active: #c94444;
   --animal-shadow-base: 0 5px 0 rgba(88, 68, 48, 0.14), 0 12px 28px rgba(71, 96, 70, 0.09);
   --animal-shadow-lg: 0 8px 0 rgba(88, 68, 48, 0.12), 0 22px 50px rgba(71, 96, 70, 0.14);
-  --animal-font-family: 'Nunito', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --site-font-stack: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --animal-font-family: 'Nunito', var(--site-font-stack) !important;
 }
 
 *,
@@ -77,7 +151,7 @@ body {
   min-width: 320px;
   color: var(--island-brown);
   background: var(--island-cream);
-  font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-family: var(--site-font-stack);
   font-size: 16px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -92,6 +166,10 @@ img,
 svg {
   display: block;
   max-width: 100%;
+}
+
+img {
+  height: auto;
 }
 
 a {
@@ -439,7 +517,7 @@ form {
 
 .article-card h3 {
   margin: 26px 0 12px;
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(1.45rem, 4cqi, 2.25rem);
   line-height: 1.18;
 }
@@ -470,6 +548,7 @@ form {
 .article-card__link:hover .article-card__more span {
   transform: translateX(5px);
 }
+
 
 .article-card__cover {
   aspect-ratio: 16 / 8;
@@ -566,7 +645,7 @@ form {
 
 .categories__intro h2 {
   margin: 0 0 14px;
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1.08;
 }
@@ -625,7 +704,7 @@ form {
 
 .about-card__content h2 {
   margin: 0 0 22px;
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(2rem, 4.8vw, 4.4rem);
   line-height: 1.06;
 }
@@ -674,7 +753,7 @@ form {
   max-width: 830px;
   margin: 0 0 20px;
   color: var(--island-cream);
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(3.2rem, 8vw, 7.5rem);
   font-weight: 900;
   letter-spacing: -0.055em;
@@ -1016,7 +1095,7 @@ form {
   max-width: 800px;
   margin: 22px 0 18px;
   color: var(--island-brown);
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(3rem, 6.8vw, 6.1rem);
   font-weight: 900;
   letter-spacing: -0.05em;
@@ -1114,7 +1193,7 @@ form {
 .prose {
   min-width: 0;
   color: color-mix(in oklch, var(--island-brown) 92%, black);
-  font-family: 'Noto Sans SC', sans-serif;
+  font-family: var(--site-font-stack);
   font-size: clamp(1rem, 1.4vw, 1.08rem);
   line-height: 1.95;
   overflow-wrap: anywhere;
@@ -1128,7 +1207,7 @@ form {
 .prose h3,
 .prose h4 {
   color: var(--island-brown);
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   line-height: 1.28;
   scroll-margin-top: 30px;
 }
@@ -1164,7 +1243,7 @@ form {
 }
 
 .prose a {
-  color: var(--island-mint-deep);
+  color: #337542;
   font-weight: 650;
 }
 
@@ -1277,7 +1356,7 @@ form {
 .guestbook__heading h2 {
   margin: -0.1em 0 8px;
   color: var(--island-brown);
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(1.75rem, 3.2vw, 2.35rem);
   line-height: 1.1;
 }
@@ -1318,8 +1397,7 @@ form {
   --waline-border: 1px solid var(--waline-border-color);
   --waline-box-shadow: none;
   --waline-avatar-radius: 50%;
-  font-family: 'Noto Sans SC Comment', 'Noto Sans SC', 'PingFang SC',
-    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-family: 'Noto Sans SC Comment', var(--site-font-stack);
   width: 100%;
   min-height: 112px;
   margin-top: 0;
@@ -1642,7 +1720,7 @@ form {
 
 .not-found h1 {
   margin: 0 0 18px;
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(2.5rem, 7vw, 5rem);
   line-height: 1;
 }
@@ -1689,7 +1767,7 @@ form {
 }
 
 .site-footer__license {
-  color: color-mix(in oklch, var(--island-paper) 90%, transparent);
+  color: #f3f5ea;
   font-size: 0.82rem;
   line-height: 1.65;
 }
@@ -2148,10 +2226,22 @@ form {
   overflow: hidden;
   color: var(--home-cream);
   background-color: var(--home-teal);
-  background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), url('/assets/animal-island-ui/home-bg.webp');
+  background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), var(--home-hero-background-image, url('/assets/animal-island-ui/home-bg.webp'));
   background-position: center;
   background-size: cover;
   isolation: isolate;
+}
+
+@media (max-width: 700px) {
+  .home-hero {
+    background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), var(--home-hero-background-medium, var(--home-hero-background-image, url('/assets/animal-island-ui/home-bg.webp')));
+  }
+}
+
+@media (max-width: 360px) and (max-resolution: 1.5dppx) {
+  .home-hero {
+    background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), var(--home-hero-background-small, var(--home-hero-background-medium, var(--home-hero-background-image, url('/assets/animal-island-ui/home-bg.webp'))));
+  }
 }
 
 .home-hero::after {
@@ -2216,7 +2306,7 @@ form {
 .home-hero h1 {
   margin: 0;
   color: var(--home-cream);
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(3.6rem, 5.4vw, 6.6rem);
   font-weight: 900;
   letter-spacing: -0.075em;
@@ -2411,7 +2501,7 @@ form {
   max-width: 680px;
   margin: 0;
   color: var(--home-ink);
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(2.55rem, 4.2vw, 4.35rem);
   letter-spacing: -0.045em;
   line-height: 1.02;
@@ -2520,6 +2610,11 @@ form {
   grid-template-columns: 240px minmax(0, 1fr);
 }
 
+.trail-stop__card > picture:has(.trail-stop__cover) {
+  display: block;
+  height: 100%;
+}
+
 .trail-stop__link:focus-visible .trail-stop__card {
   transform: translateY(-5px) rotate(0);
 }
@@ -2547,7 +2642,8 @@ form {
   object-fit: cover;
 }
 
-.trail-stop__cover + .trail-stop__body {
+.trail-stop__cover + .trail-stop__body,
+.trail-stop__card > picture:has(.trail-stop__cover) + .trail-stop__body {
   min-height: 210px;
 }
 
@@ -2563,7 +2659,7 @@ form {
 .trail-stop h3 {
   margin: 18px 0 9px;
   color: var(--home-ink);
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(1.55rem, 2.5vw, 2.15rem);
   letter-spacing: -0.025em;
   line-height: 1.12;
@@ -2633,7 +2729,7 @@ form {
 
 .island-directory h2 {
   margin: 0 0 18px;
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(2.5rem, 5vw, 4.6rem);
   letter-spacing: -0.04em;
   line-height: 1.02;
@@ -2702,7 +2798,12 @@ form {
   contain-intrinsic-size: auto 380px;
 }
 
-.island-note > img {
+.island-note > img,
+.island-note > picture {
+  width: 100%;
+}
+
+.island-note > picture > img {
   width: 100%;
   filter: drop-shadow(0 14px 10px rgba(83, 70, 42, 0.18));
   transform: rotate(-8deg);
@@ -2712,7 +2813,7 @@ form {
   max-width: 760px;
   margin: 0 0 22px;
   color: var(--home-ink);
-  font-family: 'Nunito', 'Noto Sans SC', sans-serif;
+  font-family: 'Nunito', var(--site-font-stack);
   font-size: clamp(2.1rem, 3.8vw, 3.8rem);
   letter-spacing: -0.045em;
   line-height: 1.05;
@@ -3006,7 +3107,8 @@ form {
     gap: 18px;
   }
 
-  .island-note > img {
+  .island-note > img,
+  .island-note > picture {
     width: 62px;
   }
 }

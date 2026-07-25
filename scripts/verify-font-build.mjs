@@ -90,8 +90,9 @@ async function main() {
   }
   const commentDirectory = join(fontsDirectory, 'comment');
   const commentFiles = (await readdir(commentDirectory)).filter((file) => file.endsWith('.woff2'));
-  if (commentFiles.length !== weights.length * commentChunkCount) {
-    throw new Error(`Expected ${weights.length * commentChunkCount} comment font chunks, found ${commentFiles.length}.`);
+  const expectedCommentFiles = weights.length * commentChunkCount;
+  if (commentFiles.length !== expectedCommentFiles) {
+    throw new Error(`Expected ${expectedCommentFiles} comment font chunks, found ${commentFiles.length}.`);
   }
   await Promise.all(commentFiles.map((file) => assertNonEmpty(join(commentDirectory, file), `comment font chunk ${file}`)));
 
@@ -107,16 +108,19 @@ async function main() {
       const html = await readFile(path, 'utf8');
       const hasWaline = html.includes('data-waline-host');
       const hasCommentFonts = html.includes('/fonts/comment-fonts.css');
-      if (hasWaline !== hasCommentFonts) {
-        throw new Error(`Comment font CSS does not match Waline usage: ${path}`);
+      if (hasCommentFonts) {
+        throw new Error(`Comment font CSS must be deferred until the Waline host approaches the viewport: ${path}`);
+      }
+      if (hasWaline && !html.includes('Waline.astro')) {
+        throw new Error(`Waline host is missing its deferred loader script: ${path}`);
       }
     }
   }
 
   console.log(
     verifyBuildOutput
-      ? `Font build verification passed: static fonts total ${formatMebibytes(staticFontBytes)}, 144 comment chunks, manifest fragment, and page-scoped CSS are valid.`
-      : `Font asset verification passed for ${fontsDirectory}: static fonts total ${formatMebibytes(staticFontBytes)}, 144 comment chunks, and manifest fragment are valid.`,
+      ? `Font build verification passed: static fonts total ${formatMebibytes(staticFontBytes)}, ${expectedCommentFiles} comment chunks, manifest fragment, and page-scoped CSS are valid.`
+      : `Font asset verification passed for ${fontsDirectory}: static fonts total ${formatMebibytes(staticFontBytes)}, ${expectedCommentFiles} comment chunks, and manifest fragment are valid.`,
   );
 }
 

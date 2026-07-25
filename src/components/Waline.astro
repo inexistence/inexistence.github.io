@@ -1,6 +1,4 @@
 ---
-import '@waline/client/style';
-
 interface Props {
   path: string;
   label?: string;
@@ -34,11 +32,17 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 </div>
 
 <script>
-  import { init } from '@waline/client';
+  type WalineInstance = ReturnType<typeof import('@waline/client').init>;
 
-  let instance: ReturnType<typeof init> = null;
+  let instance: WalineInstance = null;
   let mountedHost: HTMLElement | null = null;
   let stopTurnstileCleanup: (() => void) | null = null;
+  let observer: IntersectionObserver | null = null;
+  let observedHost: HTMLElement | null = null;
+  let mountingHost: HTMLElement | null = null;
+  let mountPromise: Promise<void> | null = null;
+  let mountGeneration = 0;
+  let walineClient: Promise<typeof import('@waline/client')> | null = null;
 
   const clearTurnstile = (editor: HTMLTextAreaElement) => {
     editor.closest('.wl-panel')?.querySelector('.wl-captcha-container')?.replaceChildren();
@@ -105,50 +109,151 @@ const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   };
 
   const destroyWaline = () => {
+    mountGeneration += 1;
+    observer?.disconnect();
+    observer = null;
+    observedHost = null;
     stopTurnstileCleanup?.();
     instance?.destroy();
     instance = null;
     mountedHost = null;
+    mountingHost = null;
+    mountPromise = null;
   };
 
-  const mountWaline = () => {
+  const ensureCommentFonts = () => new Promise<void>((resolve, reject) => {
+    const existing = document.querySelector<HTMLLinkElement>('link[data-waline-fonts]');
+    if (existing) {
+      if (existing.sheet) resolve();
+      else {
+        existing.addEventListener('load', () => resolve(), { once: true });
+        existing.addEventListener('error', () => reject(new Error('Could not load Waline comment fonts.')), { once: true });
+      }
+      return;
+    }
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/fonts/comment-fonts.css';
+    link.dataset.walineFonts = '';
+    link.addEventListener('load', () => resolve(), { once: true });
+    link.addEventListener('error', () => reject(new Error('Could not load Waline comment fonts.')), { once: true });
+    document.head.append(link);
+  });
+
+  const ensureWalineStyles = async () => {
+    const existing = document.querySelector<HTMLStyleElement>('style[data-waline-styles]');
+    if (existing?.textContent?.trim()) return;
+
+    const { default: css } = await import('@waline/client/style?inline');
+    const style = existing ?? document.createElement('style');
+    style.dataset.walineStyles = '';
+    style.textContent = css;
+    // Keep Waline's base rules before global.css so the site's comment-theme
+    // overrides retain the same cascade as the eager stylesheet did.
+    if (!style.isConnected) document.head.prepend(style);
+  };
+
+  const mountWaline = (host: HTMLElement) => {
+    if (mountedHost === host && instance) return;
+    if (mountingHost === host && mountPromise) return mountPromise;
+    if (!host.isConnected || host !== document.querySelector('[data-waline-host]')) return;
+
     destroyWaline();
+    const generation = mountGeneration;
+    mountingHost = host;
 
-    const host = document.querySelector<HTMLElement>('[data-waline-host]');
-    const serverURL = host?.dataset.walineServerUrl;
-    const path = host?.dataset.walinePath;
+    mountPromise = (async () => {
+      const serverURL = host?.dataset.walineServerUrl;
+      const path = host?.dataset.walinePath;
 
-    if (!host || !serverURL || !path) return;
-    if (instance && host === mountedHost) return;
+      if (!host || !serverURL || !path) return;
 
-    instance = init({
-      el: host,
-      serverURL,
-      path,
-      lang: 'zh-CN',
-      meta: ['nick', 'mail'],
-      requiredMeta: ['nick', 'mail'],
-      login: 'disable',
-      commentSorting: 'latest',
-      pageview: false,
-      reaction: false,
-      emoji: [],
-      search: false,
-      noCopyright: false,
-      noRss: true,
-      dark: false,
-      ...(host.dataset.walineTurnstileKey
-        ? { turnstileKey: host.dataset.walineTurnstileKey }
-        : {}),
+      walineClient ??= import('@waline/client');
+      const [client] = await Promise.all([
+        walineClient,
+        ensureWalineStyles(),
+      ]);
+      void ensureCommentFonts().catch((error) => {
+        // A font stylesheet is an enhancement: comments must still work with
+        // the system-font fallback if it cannot be loaded.
+        console.warn('Could not load Waline comment fonts.', error);
+      });
+      if (
+        generation !== mountGeneration
+        || !host.isConnected
+        || host !== document.querySelector('[data-waline-host]')
+      ) return;
+
+      const { init } = client;
+
+      instance = init({
+        el: host,
+        serverURL,
+        path,
+        lang: 'zh-CN',
+        meta: ['nick', 'mail'],
+        requiredMeta: ['nick', 'mail'],
+        login: 'disable',
+        commentSorting: 'latest',
+        pageview: false,
+        reaction: false,
+        emoji: [],
+        search: false,
+        noCopyright: false,
+        noRss: true,
+        dark: false,
+        ...(host.dataset.walineTurnstileKey
+          ? { turnstileKey: host.dataset.walineTurnstileKey }
+          : {}),
+      });
+
+      mountedHost = host;
+      applyEmailHint(host);
+      bindTurnstileCleanup(host);
+      host.setAttribute('aria-busy', 'false');
+    })().finally(() => {
+      if (generation === mountGeneration) {
+        mountingHost = null;
+        mountPromise = null;
+      }
     });
 
-    mountedHost = host;
-    applyEmailHint(host);
-    bindTurnstileCleanup(host);
-    host.setAttribute('aria-busy', 'false');
+    return mountPromise;
   };
 
-  mountWaline();
-  document.addEventListener('astro:page-load', mountWaline);
+  const scheduleWaline = () => {
+    const host = document.querySelector<HTMLElement>('[data-waline-host]');
+    if (!host || !host.dataset.walineServerUrl || !host.dataset.walinePath) {
+      destroyWaline();
+      return;
+    }
+    if (
+      (mountedHost === host && instance)
+      || (mountingHost === host && mountPromise)
+      || (observedHost === host && observer)
+    ) return;
+
+    destroyWaline();
+
+    host.setAttribute('aria-busy', 'true');
+    if (!('IntersectionObserver' in window)) {
+      void mountWaline(host);
+      return;
+    }
+
+    observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer?.disconnect();
+      observer = null;
+      observedHost = null;
+      void mountWaline(host);
+    }, { rootMargin: '600px 0px' });
+    observedHost = host;
+    observer.observe(host);
+  };
+
+  scheduleWaline();
+  document.addEventListener('astro:page-load', scheduleWaline);
   document.addEventListener('astro:before-swap', destroyWaline);
 </script>

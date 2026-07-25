@@ -1,0 +1,10 @@
+/* Shared defaults from animal-island-ui's global stylesheet. Load this before
+   the selected component CSS so component size and color variants can override it. */
+[class^='animal-'] {
+  color: var(--animal-text-color);
+  font-family: var(--animal-font-family);
+  font-size: var(--animal-font-size-base);
+  line-height: var(--animal-line-height-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

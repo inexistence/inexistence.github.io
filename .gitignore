@@ -6,6 +6,11 @@ node_modules/
 dist/
 .astro/
 .cache/
+.generated/
+__pycache__/
+*.py[cod]
+src/generated/responsive-images.json
+public/assets/responsive/
 .fonttools/
 .lighthouse/
 public/fonts/static/

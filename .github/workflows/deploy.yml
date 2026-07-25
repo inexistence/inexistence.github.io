@@ -38,6 +38,13 @@ jobs:
             .cache/inexistence-fonts/
             public/fonts/static/
           key: fonts-static-${{ runner.os }}-${{ hashFiles('package-lock.json', 'src/**', 'scripts/fonts-ensure.mjs', 'scripts/generate-font-subsets.py', 'tools/font-subset-requirements.txt') }}
+      - name: Restore responsive image cache
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        with:
+          path: |
+            public/assets/responsive/
+            src/generated/responsive-images.json
+          key: responsive-images-${{ runner.os }}-${{ hashFiles('package-lock.json', 'public/assets/**', 'scripts/generate-responsive-images.mjs') }}
       - name: Install dependencies
         run: npm ci
       - name: Build

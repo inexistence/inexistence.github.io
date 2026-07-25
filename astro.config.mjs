@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import { unified } from '@astrojs/markdown-remark';
+import responsiveImages from './src/plugins/responsive-images.mjs';
 
 const subsetAnimalIslandFonts = () => ({
   name: 'subset-animal-island-fonts',
@@ -40,6 +42,7 @@ export default defineConfig({
     },
   },
   markdown: {
+    processor: unified({ remarkPlugins: [responsiveImages] }),
     shikiConfig: {
       theme: 'github-light',
       wrap: true,

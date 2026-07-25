@@ -7,6 +7,7 @@ import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Waline from '../../components/Waline.astro';
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
 import { categoryColor, formatDate, getPublishedPosts, type Post } from '../../lib/posts';
 
 export async function getStaticPaths() {
@@ -37,7 +38,6 @@ const tocHeadings = headings.filter((heading) => heading.depth <= 3);
   title={post.data.title}
   description={post.data.description}
   image={post.data.cover || undefined}
-  commentFonts
 >
   <article class="post">
     <header class:list={['post-header', `post-header--${color}`]}>
@@ -61,7 +61,12 @@ const tocHeadings = headings.filter((heading) => heading.depth <= 3);
       <div class="post-layout__main">
         {post.data.cover && (
           <figure class="post-cover" data-reveal>
-            <img src={post.data.cover} alt={`${post.data.title}的文章封面`} />
+            <ResponsiveImage
+              src={post.data.cover}
+              alt={`${post.data.title}的文章封面`}
+              sizes="(max-width: 760px) calc(100vw - 40px), 720px"
+              loading="eager"
+            />
           </figure>
         )}
         <div class="prose" data-reveal>

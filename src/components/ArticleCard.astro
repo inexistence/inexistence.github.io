@@ -3,6 +3,7 @@ import { Card } from 'animal-island-ui/es/components/Card/Card.js';
 import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import type { Post } from '../lib/posts';
 import { categoryColor, formatDate } from '../lib/posts';
+import ResponsiveImage from './ResponsiveImage.astro';
 
 interface Props {
   post: Post;
@@ -21,7 +22,12 @@ const pattern = featured ? color : uniform || index % 3 === 0 ? 'default' : 'non
     <Card color={featured ? color : 'default'} pattern={pattern} hoverable className="article-card__surface">
       {post.data.cover && (
         <div class="article-card__cover">
-          <img src={post.data.cover} alt="" loading={featured ? 'eager' : 'lazy'} />
+          <ResponsiveImage
+            src={post.data.cover}
+            alt=""
+            loading={featured ? 'eager' : 'lazy'}
+            sizes={featured ? '(max-width: 760px) calc(100vw - 40px), 560px' : '(max-width: 760px) calc(100vw - 40px), 360px'}
+          />
         </div>
       )}
       <div class="article-card__body">

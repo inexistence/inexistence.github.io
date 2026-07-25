@@ -1,0 +1,78 @@
+---
+import manifest from '../generated/responsive-images.json';
+
+interface Candidate {
+  width: number;
+  src: string;
+}
+
+interface ImageEntry {
+  width: number;
+  height: number;
+  candidates: Candidate[];
+}
+
+interface Props {
+  src: string;
+  alt: string;
+  sizes?: string;
+  class?: string;
+  pictureClass?: string;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'async' | 'sync' | 'auto';
+  fixedWidth?: number;
+  ariaHidden?: boolean;
+  reveal?: boolean;
+}
+
+const {
+  src,
+  alt,
+  sizes,
+  class: className,
+  pictureClass,
+  loading = 'lazy',
+  decoding = 'async',
+  fixedWidth,
+  ariaHidden = false,
+  reveal = false,
+} = Astro.props;
+const entry = (manifest.images as Record<string, ImageEntry>)[src];
+// The WebP <source> wins over the original <img>. Only use it when the
+// candidate set retains an original-width image, otherwise a large layout
+// would upscale a smaller WebP instead of using the sharper fallback.
+const maxCandidateWidth = entry?.candidates.at(-1)?.width ?? 0;
+const responsive = Boolean(entry && entry.candidates.length > 0 && maxCandidateWidth >= entry.width && !fixedWidth);
+const fixedCandidate = fixedWidth && entry
+  ? entry.candidates.find((candidate) => candidate.width >= fixedWidth)
+  : undefined;
+const srcset = entry?.candidates.map((candidate) => `${candidate.src} ${candidate.width}w`).join(', ');
+---
+
+{entry ? (
+  <picture class={pictureClass}>
+    {responsive && <source type="image/webp" srcset={srcset} sizes={sizes} />}
+    {fixedCandidate && <source type="image/webp" srcset={fixedCandidate.src} />}
+    <img
+      src={src}
+      alt={alt}
+      class={className}
+      width={entry.width}
+      height={entry.height}
+      loading={loading}
+      decoding={decoding}
+      aria-hidden={ariaHidden ? 'true' : undefined}
+      data-reveal={reveal ? '' : undefined}
+    />
+  </picture>
+) : (
+  <img
+    src={src}
+    alt={alt}
+    class={className}
+    loading={loading}
+    decoding={decoding}
+    aria-hidden={ariaHidden ? 'true' : undefined}
+    data-reveal={reveal ? '' : undefined}
+  />
+)}

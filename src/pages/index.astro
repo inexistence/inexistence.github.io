@@ -4,9 +4,20 @@ import { Card } from 'animal-island-ui/es/components/Card/Card.js';
 import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
 import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import responsiveImageManifest from '../generated/responsive-images.json';
 import { categoryColor, formatDate, getPublishedPosts } from '../lib/posts';
 
 const posts = await getPublishedPosts();
+const homeBackgroundSource = '/assets/animal-island-ui/home-bg.webp';
+const homeBackgroundCandidates = responsiveImageManifest.images[homeBackgroundSource]?.candidates ?? [];
+const homeBackgroundAtLeast = (width: number) => (
+  homeBackgroundCandidates.find((candidate) => candidate.width >= width)?.src
+  ?? homeBackgroundSource
+);
+const homeBackground = homeBackgroundAtLeast(1012);
+const homeBackgroundMedium = homeBackgroundAtLeast(480);
+const homeBackgroundSmall = homeBackgroundAtLeast(320);
 const trailPosts = posts.slice(0, 5);
 const categories = [...posts.reduce((map, post) => {
   map.set(post.data.category, (map.get(post.data.category) ?? 0) + 1);
@@ -22,7 +33,11 @@ const categoryIcons: Record<string, string> = {
 ---
 
 <BaseLayout bodyClass="home-page">
-  <section class="home-hero" aria-labelledby="home-title">
+  <section
+    class="home-hero"
+    aria-labelledby="home-title"
+    style={`--home-hero-background-image: url("${homeBackground}"); --home-hero-background-medium: url("${homeBackgroundMedium}"); --home-hero-background-small: url("${homeBackgroundSmall}")`}
+  >
     <div class="home-hero__texture" aria-hidden="true"></div>
     <div class="home-hero__rings" aria-hidden="true"></div>
 
@@ -40,10 +55,16 @@ const categoryIcons: Record<string, string> = {
       <div class="home-hero__scene-wrap">
         <div class="home-hero__scene" aria-label="两位狸猫岛民欢迎你登岛">
           <div class="home-hero__sun" aria-hidden="true"></div>
-          <img class="home-hero__animal" src="/assets/animal-island-ui/animal-icon.webp" alt="两位狸猫岛民" />
-          <img class="hero-float hero-float--star" src="/assets/animal-island-ui/star-wand.webp" alt="" aria-hidden="true" />
-          <img class="hero-float hero-float--flower" src="/assets/animal-island-ui/flower.webp" alt="" aria-hidden="true" />
-          <img class="hero-float hero-float--coin" src="/assets/animal-island-ui/coin.webp" alt="" aria-hidden="true" />
+          <ResponsiveImage
+            class="home-hero__animal"
+            src="/assets/animal-island-ui/animal-icon.webp"
+            alt="两位狸猫岛民"
+            sizes="(max-width: 760px) 112vw, min(52vw, 687px)"
+            loading="eager"
+          />
+          <ResponsiveImage class="hero-float hero-float--star" src="/assets/animal-island-ui/star-wand.webp" alt="" ariaHidden fixedWidth={128} />
+          <ResponsiveImage class="hero-float hero-float--flower" src="/assets/animal-island-ui/flower.webp" alt="" ariaHidden fixedWidth={96} />
+          <ResponsiveImage class="hero-float hero-float--coin" src="/assets/animal-island-ui/coin.webp" alt="" ariaHidden fixedWidth={128} />
           <span class="home-hero__stamp" aria-hidden="true">WELCOME<br />ASHORE</span>
         </div>
       </div>
@@ -71,11 +92,19 @@ const categoryIcons: Record<string, string> = {
           <article class:list={['trail-stop', { 'trail-stop--reverse': index % 2 === 1 }]} data-reveal style={`--stop-index:${index}`}>
             <div class="trail-stop__marker" aria-hidden="true">
               <span>{String(index + 1).padStart(2, '0')}</span>
-              <img src={`/assets/animal-island-ui/${trailItems[index % trailItems.length]}.webp`} alt="" loading="lazy" />
+              <ResponsiveImage src={`/assets/animal-island-ui/${trailItems[index % trailItems.length]}.webp`} alt="" fixedWidth={64} />
             </div>
             <a class="trail-stop__link" href={`/posts/${post.id}/`} aria-label={`阅读《${post.data.title}》`}>
               <Card color={color} pattern={index === 0 ? color : 'none'} hoverable className="trail-stop__card">
-                {post.data.cover && <img class="trail-stop__cover" src={post.data.cover} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />}
+                {post.data.cover && (
+                  <ResponsiveImage
+                    class="trail-stop__cover"
+                    src={post.data.cover}
+                    alt=""
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    sizes="(max-width: 760px) calc(100vw - 116px), 240px"
+                  />
+                )}
                 <div class="trail-stop__body">
                   <div class="trail-stop__meta">
                     <Tag size="small" variant="solid" color={categoryColor(post.data.category)}>{post.data.category}</Tag>
@@ -111,7 +140,7 @@ const categoryIcons: Record<string, string> = {
         {categories.map(([category, count], index) => (
           <a href={`/category/${encodeURIComponent(category)}/`} class="directory-app" data-reveal style={`--app-index:${index}`}>
             <span class="directory-app__icon">
-              <img src={`/assets/animal-island-ui/${categoryIcons[category] ?? 'shopping'}.svg`} alt="" />
+              <img src={`/assets/animal-island-ui/${categoryIcons[category] ?? 'shopping'}.svg`} alt="" width="96" height="96" />
             </span>
             <strong>{category}</strong>
             <small>{count} 篇记录</small>
@@ -122,7 +151,7 @@ const categoryIcons: Record<string, string> = {
   </section>
 
   <section class="island-note shell" data-reveal>
-    <img src="/assets/animal-island-ui/bell-bag.webp" alt="" aria-hidden="true" />
+    <ResponsiveImage src="/assets/animal-island-ui/bell-bag.webp" alt="" ariaHidden fixedWidth={128} />
     <div>
       <p class="eyebrow">MESSAGE FROM THE ISLAND</p>
       <h2>这座小岛，从 2015 年亮灯到现在。</h2>

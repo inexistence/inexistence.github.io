@@ -2,12 +2,12 @@
 import { Card } from 'animal-island-ui/es/components/Card/Card.js';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Waline from '../components/Waline.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
 ---
 
 <BaseLayout
   title="岛屿留言板"
   description="在 INEXISTENCE 留下一句话，或与路过这里的岛民聊聊。"
-  commentFonts
 >
   <header class="page-hero page-hero--scene guestbook-hero">
     <div class="shell page-hero__inner page-hero__inner--scene">
@@ -16,12 +16,13 @@ import Waline from '../components/Waline.astro';
         <h1 data-reveal>留下一个脚印</h1>
         <p data-reveal>写下想说的话，和路过这里的岛民打个招呼。</p>
       </div>
-      <img
+      <ResponsiveImage
         class="page-hero__scene guestbook-hero__scene"
         src="/assets/page-scenes/guestbook/message-corner-scene-v2.webp"
         alt=""
-        aria-hidden="true"
-        data-reveal
+        ariaHidden
+        reveal
+        sizes="(max-width: 900px) 42vw, 360px"
       />
     </div>
   </header>

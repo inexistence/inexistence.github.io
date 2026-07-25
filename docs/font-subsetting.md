@@ -50,6 +50,8 @@ prebuild
 
 静态字体的跳过清单位于 `.cache/inexistence-fonts/manifest.json`，**仅记录 static 指纹**。三份静态 WOFF2 存在且指纹相同才会跳过；`.cache` 不再作为 comment 的依据。
 
+Noto Sans SC 源字体不支持的符号会按照组件库完整样式的字体栈回退到系统字体；例如 `→`、`←`、`↗` 的实际字形由访问者的平台字体决定。
+
 以下路径为本地生成物或缓存，已被 `.gitignore` 忽略：
 
 ```text
@@ -146,7 +148,7 @@ git add public/fonts/comment public/fonts/comment-fonts.css public/fonts/manifes
 
 每个字重的分块顺序为“固定优先级字符 + 其余码点的稳定排序”，随后按码点数量均匀切成 48 段。这里均衡的是字符数量，而不是 WOFF2 的字节数：不同字形及其 OpenType 依赖不同，单个文件体积不一定相同。完整覆盖以源字体 CMap 为准；生成后的 48 块并集应等于对应源字体的 CMap。
 
-文章页和留言页通过 `BaseLayout` 的 `commentFonts` 属性在 `<head>` 中加载评论 CSS；分类页、首页、归档页等没有 Waline 的页面不会加载它。`.waline-host` 及其输入、编辑器和按钮使用评论字体，`code`、`pre`、`kbd` 与 `samp` 仍使用等宽字体。
+文章页和留言页的 `Waline` 加载器会在评论区进入视口前约 600px 时，动态插入评论 CSS 与字体；它们不在初始 `<head>` 中加载。分类页、首页、归档页等没有 Waline 的页面同样不会加载它。`.waline-host` 及其输入、编辑器和按钮使用评论字体，`code`、`pre`、`kbd` 与 `samp` 仍使用等宽字体。
 
 评论使用独立的 `Noto Sans SC Comment` 字体族，而不是复用正文的 `Noto Sans SC`。正文族的中文文件是有限静态子集，适合已知文本；评论族则完整覆盖源字体。两者隔离后，未知评论字符只会匹配评论分块，不会误命中正文子集并回退到系统中文字体。
 
@@ -167,7 +169,7 @@ Build 步骤设置 `STRICT_COMMENT_FONT_VENDOR=1`：已提交的 comment 指纹�
 1. 执行 `npm run build`；
 2. 确认构建末尾的 `fonts:verify` 通过；
 3. 在 `dist/_astro` 中确认没有 `noto-sans-sc-chinese-simplified-*` 原始完整字体；
-4. 在文章页或留言页确认评论 CSS 和实际命中的评论分块可加载；
+4. 在文章页或留言页滚动接近评论区，确认评论 CSS 和实际命中的评论分块可加载；
 5. 在分类页确认不会加载评论 CSS。
 
 ## 构建回归测试
@@ -178,7 +180,7 @@ Build 步骤设置 `STRICT_COMMENT_FONT_VENDOR=1`：已提交的 comment 指纹�
 - `dist/fonts/comment/` 中恰有 144 个非空评论分块，且评论 CSS 存在；
 - `dist/fonts/manifest-fragment.json` 存在，且 `chunkCount` 为 48、含非空 `commentFingerprint`；
 - 任意 `dist` 文件中没有组件库的 `noto-sans-sc-chinese-simplified-*` 原始完整字体；
-- 含 `data-waline-host` 的 HTML 页面必须引用评论 CSS，未含 Waline 的页面不得引用它。
+- 初始 HTML 不得引用评论 CSS；含 `data-waline-host` 的页面必须保留 Waline 延迟加载器。
 
 开发前执行的 `npm run fonts:verify -- --fonts-dir public/fonts` 复用字体完整性和容量检查，但跳过仅适用于完整构建的原始字体泄漏与 HTML 页面范围检查。
 
@@ -193,7 +195,7 @@ npm run dev
 在浏览器 DevTools 的 Network 面板中勾选 Disable cache 后刷新页面：
 
 - 分类页应请求实际用到的 `noto-sans-sc-static-*.woff2`，不应出现 `noto-sans-sc-chinese-simplified-*.woff2` 原始完整字体；
-- 文章页或留言页应加载 `/fonts/comment-fonts.css`，随后只请求命中的少数 `comment/*.woff2`；
+- 文章页或留言页的首屏不应加载 `/fonts/comment-fonts.css`；滚动接近评论区后才应加载它，随后只请求命中的少数 `comment/*.woff2`；
 - 在 Elements 的 Computed 面板底部查看 Rendered Fonts：正文应使用 Noto Sans SC，评论区应使用 Noto Sans SC Comment。
 
 检查生成目录和缓存命中：

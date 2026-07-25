@@ -128,6 +128,15 @@ public/assets/page-scenes/archive/time-trail-scene.webp
 <img src="/assets/page-scenes/archive/time-trail-scene.webp" alt="" aria-hidden="true">
 ```
 
+本地 `/assets/` 图片会在开发和构建前自动生成响应式 WebP 候选图；当候选中保留了不低于原图宽度的有效 WebP 时，Markdown 图片和本地 HTML `<img>` 会输出 `srcset`、`sizes`、原图回退及固有尺寸；否则直接使用原图。新增图片后可运行：
+
+```bash
+npm run images:ensure
+npm run images:verify
+```
+
+派生图和清单均为忽略的构建产物，无需提交。外链图片不会被改写。完整的生成、组件用法、缓存、Waline 延迟加载与排障说明见[性能与响应式图片优化](docs/responsive-images.md)。
+
 目录用途不要混用：
 
 - `blog-images/`：文章封面与正文图片，按文章名或主题分组；
