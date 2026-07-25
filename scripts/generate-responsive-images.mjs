@@ -124,10 +124,23 @@ async function candidateExists(candidate) {
   }
 }
 
+async function candidateFilesMatchManifest(candidate) {
+  try {
+    const derivatives = [candidate.webp, candidate.avif].filter(Boolean);
+    const checks = await Promise.all(derivatives.map(async (file) => {
+      if (!Number.isSafeInteger(file.bytes)) return false;
+      return (await stat(join(root, 'public', file.src.slice(1)))).size === file.bytes;
+    }));
+    return checks.every(Boolean);
+  } catch {
+    return false;
+  }
+}
+
 async function webpCandidateExists(candidate) {
   try {
-    await access(join(root, 'public', candidate.webp.src.slice(1)));
-    return true;
+    if (!candidate.webp || !Number.isSafeInteger(candidate.webp.bytes)) return false;
+    return (await stat(join(root, 'public', candidate.webp.src.slice(1)))).size === candidate.webp.bytes;
   } catch {
     return false;
   }
@@ -142,7 +155,9 @@ async function canReuse(existing, metadata, hashValue) {
     && existing.height === metadata.height
     && Array.isArray(existing.candidates)
     && hasCompleteAvifSet
-    && Promise.all(existing.candidates.map(candidateExists)).then((checks) => checks.every(Boolean));
+    && Promise.all(existing.candidates.map(async (candidate) => (
+      await candidateExists(candidate) && await candidateFilesMatchManifest(candidate)
+    ))).then((checks) => checks.every(Boolean));
 }
 
 async function canReuseWebpCandidates(existing, metadata, hashValue) {
@@ -239,7 +254,11 @@ async function main() {
 
       const reusesWebpCandidates = await canReuseWebpCandidates(existing, metadata, sourceFingerprint);
       const candidates = reusesWebpCandidates
-        ? existing.candidates.map((candidate) => ({ ...candidate }))
+        // AVIF output can vary between native encoder versions even when the
+        // WebP fallback remains valid. Rebuild AVIF whenever the full image
+        // set is not an exact manifest match, rather than retaining cached
+        // AVIF files that may no longer satisfy the size policy.
+        ? existing.candidates.map((candidate) => ({ width: candidate.width, webp: candidate.webp }))
         : [];
       if (!reusesWebpCandidates) {
         for (const width of candidateWidths(metadata.width)) {
