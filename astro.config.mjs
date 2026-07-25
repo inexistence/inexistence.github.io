@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import { unified } from '@astrojs/markdown-remark';
-import responsiveImages from './src/plugins/responsive-images.mjs';
+import { sharedRemarkPlugins, sharedShikiConfig } from './src/lib/markdown-config.mjs';
 
 const subsetAnimalIslandFonts = () => ({
   name: 'subset-animal-island-fonts',
@@ -34,6 +34,11 @@ export default defineConfig({
   ],
   vite: {
     plugins: [subsetAnimalIslandFonts()],
+    // Waline is loaded on demand in the browser. Pre-bundle it during `astro dev`
+    // so Vite can serve its optimized dependency module on the first visit.
+    optimizeDeps: {
+      include: ['@waline/client'],
+    },
     resolve: {
       noExternal: ['animal-island-ui'],
     },
@@ -42,10 +47,7 @@ export default defineConfig({
     },
   },
   markdown: {
-    processor: unified({ remarkPlugins: [responsiveImages] }),
-    shikiConfig: {
-      theme: 'github-light',
-      wrap: true,
-    },
+    processor: unified({ remarkPlugins: sharedRemarkPlugins }),
+    shikiConfig: sharedShikiConfig,
   },
 });

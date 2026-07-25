@@ -1,10 +1,12 @@
-# INEXISTENCE
+# 🏝️ INEXISTENCE
 
 <p align="center">
-  <img src="public/assets/animal-island-ui/welcome-panel.webp" alt="Welcome to INEXISTENCE ISLAND — Open since 2015" width="680">
+  <img src="public/assets/animal-island-ui/welcome-panel.webp" alt="Welcome to INEXISTENCE ISLAND — Open since 2015" width="40%">
 </p>
 
-个人博客，使用 Astro 构建，并通过 GitHub Pages 发布。
+<div align="center">
+  个人博客，使用 Astro 构建，并通过 GitHub Pages 发布。
+</div>
 
 ## 技术栈
 

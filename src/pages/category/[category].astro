@@ -1,7 +1,7 @@
 ---
 import { Button } from 'animal-island-ui/es/components/Button/Button.js';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
+import CategoryPostCard from '../../components/CategoryPostCard.astro';
 import { categoryColor, getPublishedPosts, type Post } from '../../lib/posts';
 
 export async function getStaticPaths() {
@@ -32,8 +32,8 @@ const color = categoryColor(category);
   </header>
 
   <section class="shell section category-list">
-    <div class="article-grid article-grid--category">
-      {posts.map((post, index) => <ArticleCard post={post} index={index} uniform />)}
+    <div class="category-post-list">
+      {posts.map((post) => <CategoryPostCard post={post} />)}
     </div>
     <div class="section-action">
       <form action="/archive/">
