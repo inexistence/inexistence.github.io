@@ -1,6 +1,5 @@
 ---
 import leafIcon from '../../node_modules/animal-island-ui/dist/files/icon-leaf.40329f03.png';
-import RssMailbox from './RssMailbox';
 
 const path = Astro.url.pathname;
 const links = [
@@ -45,6 +44,5 @@ const isCurrent = (href: string) => {
         ))}
       </ul>
     </nav>
-    <RssMailbox client:load />
   </div>
 </header>

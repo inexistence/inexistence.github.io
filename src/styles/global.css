@@ -311,10 +311,6 @@ form {
   gap: 10px;
 }
 
-.rss-mailbox-tooltip {
-  flex: 0 0 auto;
-}
-
 .rss-mailbox {
   display: grid;
   width: 42px;
@@ -338,10 +334,6 @@ form {
 
 .rss-mailbox:active {
   transform: translateY(1px) scale(0.94);
-}
-
-.rss-mailbox-tooltip [role='tooltip'] {
-  z-index: 110;
 }
 
 .hero {
@@ -1768,6 +1760,12 @@ form {
   letter-spacing: 0.12em;
 }
 
+.site-footer__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .site-footer__license {
   color: #f3f5ea;
   font-size: 0.82rem;
@@ -1778,7 +1776,7 @@ form {
   color: inherit;
 }
 
-.js [data-reveal] {
+.js.reveal-ready [data-reveal] {
   --reveal-delay: 0ms;
   --reveal-distance: 12px;
   opacity: 0;
@@ -1789,7 +1787,7 @@ form {
   will-change: opacity, transform;
 }
 
-.js [data-reveal].is-visible {
+.js.reveal-ready [data-reveal].is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) rotate(var(--reveal-to-rotate, 0deg)) scale(var(--reveal-to-scale, 1));
   will-change: auto;
@@ -2166,7 +2164,7 @@ form {
     transition-duration: 0.01ms !important;
   }
 
-  .js [data-reveal] {
+  .js.reveal-ready [data-reveal] {
     opacity: 1;
     transform: none;
   }

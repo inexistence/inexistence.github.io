@@ -41,6 +41,19 @@ npm run preview
 
 若改动了评论字体生成策略或源字体，本地运行 `npm run fonts:ensure`（或 `npm run fonts:vendor-comment`）后，把更新后的 comment 产物与 `manifest-fragment.json` 一并提交。CI 开启 `STRICT_COMMENT_FONT_VENDOR`，过期未提交会失败。细节见[字体子集技术方案](docs/font-subsetting.md)。
 
+## 组件库按需样式
+
+本站不会引入 `animal-island-ui` 的全量 CSS；新增或移除组件时，需要同步更新 `src/styles/animal-island-components.css`。`npm run styles:verify` 会检查源码组件、组件样式清单和主题变量是否一致，并会在开发、检查与构建前自动运行。裁剪逻辑和完整维护流程见[组件库样式维护说明](docs/animal-island-styles.md)。
+
+## 开发与维护文档
+
+- [设计规范](DESIGN.md)：新增页面、组件与视觉调整的基准；
+- [性能与响应式图片优化](docs/responsive-images.md)：素材、响应式候选图与首屏资源策略；
+- [中文字体子集技术方案](docs/font-subsetting.md)：字体生成、产物与构建校验；
+- [组件库样式维护说明](docs/animal-island-styles.md)：`animal-island-ui` CSS 裁剪与校验；
+- [前端运行时与 Hydration 维护](docs/frontend-runtime.md)：island 时机、站内导航与动效回退；
+- [评论系统说明](docs/comments.md) 与 [评论系统维护手册](docs/comment-maintenance.md)：架构、跨仓库运维与安全边界。
+
 ## 评论系统
 
 文章评论与留言板使用 Waline。完整的架构、部署步骤、安全边界、环境变量和排障方法请参阅 [评论系统说明](docs/comments.md)。
@@ -135,7 +148,7 @@ npm run images:ensure
 npm run images:verify
 ```
 
-派生图和清单均为忽略的构建产物，无需提交。外链图片不会被改写。完整的生成、组件用法、缓存、Waline 延迟加载与排障说明见[性能与响应式图片优化](docs/responsive-images.md)。
+`public/assets/responsive/` 下的派生图为忽略的构建产物，无需提交；`src/generated/` 下的响应式图片清单与背景 token 会由生成器更新，需随改动提交。外链图片不会被改写。完整的生成、组件用法、缓存、Waline 延迟加载与排障说明见[性能与响应式图片优化](docs/responsive-images.md)。
 
 目录用途不要混用：
 

@@ -57,8 +57,16 @@ async function main() {
     throw new Error(`Missing animal-island theme variables: ${missing.join(', ')}`);
   }
   const missingStyles = [...components].filter((component) => !componentStylesheets.has(component)).sort();
+  const unusedStyles = [...componentStylesheets].filter((component) => !components.has(component)).sort();
+  const styleErrors = [];
   if (missingStyles.length) {
-    throw new Error(`Missing animal-island component styles: ${missingStyles.join(', ')}`);
+    styleErrors.push(`Missing animal-island component styles: ${missingStyles.join(', ')}`);
+  }
+  if (unusedStyles.length) {
+    styleErrors.push(`Unused animal-island component styles: ${unusedStyles.join(', ')}`);
+  }
+  if (styleErrors.length) {
+    throw new Error(styleErrors.join('\n'));
   }
 
   console.log(`Animal Island style verification passed: ${components.size} imported components, ${imports.length} component styles, ${referenced.size} theme variables.`);

@@ -89,7 +89,7 @@ background-image: var(--responsive-background-animal-island-ui-home-bg-1012, url
 
 ## 其他首屏资源策略
 
-- 不再引入 `animal-island-ui` 的全量样式入口；基础布局只汇入本站实际使用的 Button、Card、Collapse、Divider、Footer、Loading、Tag、Title 与 Tooltip 样式，并在全局样式补齐主题变量。
+- 不再引入 `animal-island-ui` 的全量样式入口；基础布局只在 `src/styles/animal-island-components.css` 汇入实际使用的组件样式，并在全局样式补齐主题变量。裁剪逻辑与维护流程见 [`animal-island-styles.md`](animal-island-styles.md)。
 - Waline 的客户端、样式和评论字体不在初始 HTML 中加载。评论区进入视口前约 600px 时才动态加载；不支持 `IntersectionObserver` 的浏览器会立即加载作为回退。站内切换时旧实例会销毁，当前页面重新建立观察器。
 - 首页的入场动画、漂浮动画以及 `ClientRouter` 保持原有行为与时长；性能优化不以移除这些体验为代价。
 - 图片声明固有尺寸，页脚许可文字和正文链接色使用满足 WCAG AA 对比度的颜色。

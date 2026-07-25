@@ -27,11 +27,10 @@ const socialImage = new URL(image, Astro.site);
 ---
 
 <!doctype html>
-<html lang="zh-CN" class="js">
+<html lang="zh-CN">
   <head>
     <ClientRouter />
     <style is:inline data-waline-styles data-astro-transition-persist="waline-styles"></style>
-    <noscript><style>[data-reveal] { opacity: 1 !important; transform: none !important; will-change: auto !important; }</style></noscript>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#8ec7a0" />
@@ -57,7 +56,6 @@ const socialImage = new URL(image, Astro.site);
     <SiteFooter />
     <script is:inline data-astro-rerun>
       (() => {
-        let initialized = false;
         let observer;
 
         const cleanup = () => {
@@ -65,11 +63,12 @@ const socialImage = new URL(image, Astro.site);
         };
 
         const initializeRevealItems = () => {
-          if (initialized) return;
-          initialized = true;
-
           const revealItems = document.querySelectorAll('[data-reveal]');
+          const root = document.documentElement;
+          root.classList.add('js');
+
           if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            root.classList.add('reveal-ready');
             observer = new IntersectionObserver((entries) => {
               for (const entry of entries) {
                 if (entry.isIntersecting) {
@@ -84,8 +83,7 @@ const socialImage = new URL(image, Astro.site);
           }
         };
 
-        document.addEventListener('astro:page-load', initializeRevealItems, { once: true });
-        window.addEventListener('load', initializeRevealItems, { once: true });
+        initializeRevealItems();
         document.addEventListener('astro:before-swap', cleanup, { once: true });
       })();
     </script>

@@ -30,6 +30,18 @@ npm run preview   # 预览 dist/
 - 评论字体的指纹和文件哈希由 CI 校验；不要通过手改产物规避校验。
 - 细节见 [`docs/font-subsetting.md`](docs/font-subsetting.md)。
 
+## 组件库样式
+
+- `src/styles/animal-island-components.css` 仅导入 `src/` 实际使用的 `animal-island-ui` 组件样式。新增或移除组件时，必须在同一改动中同步更新该文件。
+- `npm run styles:verify` 会双向校验组件导入与样式清单，并检查所需主题变量；不得通过保留无用样式或跳过校验规避报错。
+- 裁剪逻辑、脚本边界与新增／移除组件的维护流程见 [`docs/animal-island-styles.md`](docs/animal-island-styles.md)。
+
+## 前端运行时
+
+- 默认交付静态 HTML；只为真实客户端交互使用 island，并按交互时机选择合适的 `client:*` 指令。不能以延迟 hydration 为由移除链接、语义或无 JavaScript 回退。
+- 本站启用 `ClientRouter`。新增页面脚本、观察器、计时器或第三方实例时，必须处理重复初始化，并在 `astro:before-swap` 清理资源。
+- 细则、动效可访问性与验证清单见 [`docs/frontend-runtime.md`](docs/frontend-runtime.md)。
+
 ## 评论、安全与部署
 
 - Waline 前端、服务端和数据分别由本仓库、`waline-for-blog` 与私有 `waline-data` 仓库维护。改动评论功能前阅读 [`docs/comments.md`](docs/comments.md)；日常操作看 [`docs/comment-maintenance.md`](docs/comment-maintenance.md)。

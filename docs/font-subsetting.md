@@ -119,7 +119,6 @@ du -ch public/fonts/static/*.woff2
 | Drawer | 关闭 | 无障碍 / 关闭控件 |
 | Input | 清除 | 清除按钮 |
 | Form validators | 此项为必填、不能少于/多于 …、长度必须为 …、格式不正确 | 默认校验 Error 文案 |
-| Tooltip | （主要为源码注释中的中文） | 一般不进入页面字形 |
 
 类型声明（`.d.ts`）与 README 中的中文只影响文档，不影响运行时字形。
 
