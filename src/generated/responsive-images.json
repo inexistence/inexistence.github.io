@@ -1,0 +1,907 @@
+{
+  "version": 3,
+  "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+  "images": {
+    "/assets/animal-island-ui/animal-icon.webp": {
+      "width": 1952,
+      "height": 1266,
+      "sourceHash": "8246041bf69bf64d2da49a6a01943b2995466c1d84db322976a8ca707618c35d",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.320.741de12d5eac.webp",
+            "bytes": 10608
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.320.adb2eebbc7ae.avif",
+            "bytes": 9388
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.480.5f563a4cd036.webp",
+            "bytes": 17190
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.480.e391c7d0b43a.avif",
+            "bytes": 14713
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.768.a956922c7c47.webp",
+            "bytes": 30884
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.768.d1f0ef18af8d.avif",
+            "bytes": 23416
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.1024.d9a8c4a53dc1.webp",
+            "bytes": 43952
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.1024.529f822d0301.avif",
+            "bytes": 31798
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.1440.d4e84c5f1733.webp",
+            "bytes": 68634
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.1440.388d3f7297f2.avif",
+            "bytes": 46413
+          }
+        },
+        {
+          "width": 1952,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.1952.96993d8b2070.webp",
+            "bytes": 86134
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/animal-icon.1952.48684afd33bf.avif",
+            "bytes": 71140
+          }
+        }
+      ]
+    },
+    "/assets/animal-island-ui/bell-bag.webp": {
+      "width": 207,
+      "height": 256,
+      "sourceHash": "ffacb5b14073c3a4588409a042030153bf254f5a41b9725283020e9c9a44c3c2",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": []
+    },
+    "/assets/animal-island-ui/coin.webp": {
+      "width": 256,
+      "height": 248,
+      "sourceHash": "a3c4ec784b69dd69aca97e339effccb20b8d9867eedfb033abc52350bbd4edf4",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 64,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/coin.64.b67cbf4b53b0.webp",
+            "bytes": 1776
+          }
+        }
+      ]
+    },
+    "/assets/animal-island-ui/content-bg.webp": {
+      "width": 1000,
+      "height": 1000,
+      "sourceHash": "c21c8ee095d6e8e1543fc8af9160cfa5dcc5af8c9fdecc0452b10dbd83a80e54",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": []
+    },
+    "/assets/animal-island-ui/fish.webp": {
+      "width": 256,
+      "height": 159,
+      "sourceHash": "a02deb64c4756e955d79e76cbdd02bc6b5aacb297a30253112a375d5f15be4a3",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": []
+    },
+    "/assets/animal-island-ui/flower.webp": {
+      "width": 108,
+      "height": 256,
+      "sourceHash": "cd672d8396451c88dd62676a5d5accfbc0697fd700b8229df8d3d6f23e1757fe",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": []
+    },
+    "/assets/animal-island-ui/home-bg.webp": {
+      "width": 1012,
+      "height": 2156,
+      "sourceHash": "8ec4d9cb1d20559b86fb99c2a8fb827203d3a18de30d78672c76e7bba172b318",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/home-bg.320.3a21273246b8.webp",
+            "bytes": 82902
+          }
+        },
+        {
+          "width": 1012,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/home-bg.1012.d45dbf9392a3.webp",
+            "bytes": 78556
+          }
+        }
+      ]
+    },
+    "/assets/animal-island-ui/menu-bg.webp": {
+      "width": 670,
+      "height": 200,
+      "sourceHash": "793a7874161561ea49d96eda89053cf767cf84b99206df0149df1fafb26cbfec",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": []
+    },
+    "/assets/animal-island-ui/star-wand.webp": {
+      "width": 221,
+      "height": 256,
+      "sourceHash": "f8a54da9b15ce5ac0f8d1d89cef0da18cbb6f1e4b308b331ca9ff1874ceb955b",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 64,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/star-wand.64.573eb7d7ea43.webp",
+            "bytes": 1966
+          }
+        }
+      ]
+    },
+    "/assets/animal-island-ui/welcome-panel.webp": {
+      "width": 1254,
+      "height": 1254,
+      "sourceHash": "4bcfbfbdbdfbb887418943bd062e9a9966e99f98999db727d5bf4366e9814d9a",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.320.af1880d2804c.webp",
+            "bytes": 18074
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.480.574720e60380.webp",
+            "bytes": 30378
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.768.e5a0237d1f90.webp",
+            "bytes": 57224
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.1024.c2c57dfa8af8.webp",
+            "bytes": 82900
+          }
+        },
+        {
+          "width": 1254,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.1254.f9e531b940ab.webp",
+            "bytes": 131298
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/2015/1/2015-01-01.jpg": {
+      "width": 860,
+      "height": 400,
+      "sourceHash": "0c043ceb8c3e1deef6b248b7da94378a37604c3158857e920187d69c87d747e3",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/2015-01-01.320.5a9f2685b109.webp",
+            "bytes": 3186
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/2015-01-01.480.1972a9675dd9.webp",
+            "bytes": 6418
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/2015-01-01.768.337977805a39.webp",
+            "bytes": 15176
+          }
+        },
+        {
+          "width": 860,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/2015-01-01.860.385016c31e82.webp",
+            "bytes": 19542
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/2015/1/dora.jpg": {
+      "width": 640,
+      "height": 640,
+      "sourceHash": "53370187016836895a87241aefd0fd51fed5a563af41051f15acdab1e0e2787f",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/dora.320.112a43132af8.webp",
+            "bytes": 18998
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/dora.480.f226f8fe6974.webp",
+            "bytes": 32806
+          }
+        },
+        {
+          "width": 640,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/dora.640.998a15e7f45e.webp",
+            "bytes": 47444
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/2015/1/rakugaki.jpg": {
+      "width": 1600,
+      "height": 1600,
+      "sourceHash": "2bc9acf2509e3dad85c55569ef567b549651a560dd4853bcfd3b7f0fd178bd3c",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/rakugaki.320.2e42c45b6d66.webp",
+            "bytes": 1716
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/rakugaki.480.41671a923d56.webp",
+            "bytes": 3216
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/rakugaki.768.fc368165a552.webp",
+            "bytes": 7544
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/rakugaki.1024.89e03af2bcf8.webp",
+            "bytes": 14472
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/rakugaki.1440.bb958487f15f.webp",
+            "bytes": 45450
+          }
+        },
+        {
+          "width": 1600,
+          "webp": {
+            "src": "/assets/responsive/blog-images/2015/1/rakugaki.1600.684148109466.webp",
+            "bytes": 76932
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/function-calling-mcp-skills/mcp-architecture.png": {
+      "width": 2136,
+      "height": 1663,
+      "sourceHash": "76db276e377aaca13e19943e900f4332e30f5912fd8712e519dcada82bae5d6f",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.320.e2f180905576.webp",
+            "bytes": 72206
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.320.5970575c440b.avif",
+            "bytes": 19404
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.480.c6c300a56aae.webp",
+            "bytes": 134230
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.480.720be23486d6.avif",
+            "bytes": 44986
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.768.282f376de9d7.webp",
+            "bytes": 268044
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.768.f89dea747a41.avif",
+            "bytes": 105979
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.1024.433ed3d00716.webp",
+            "bytes": 396130
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.1024.ff3e0482f1ae.avif",
+            "bytes": 148029
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/function-calling-mcp-skills/mcp-workflow.png": {
+      "width": 7152,
+      "height": 911,
+      "sourceHash": "d3f5131bca0481c55452e7d46a605713e888fb3ce6903ce3b24e2f17f25ae530",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.320.6407d7311c93.webp",
+            "bytes": 6488
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.320.d24a530a9216.avif",
+            "bytes": 2060
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.480.814340515d66.webp",
+            "bytes": 13760
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.480.60e7fbd5f5ef.avif",
+            "bytes": 3515
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.768.fed367cf7b75.webp",
+            "bytes": 30084
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.768.6463c8b39207.avif",
+            "bytes": 7518
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.1024.36c5b0b2a702.webp",
+            "bytes": 45670
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.1024.ed48e42a950d.avif",
+            "bytes": 11160
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.1440.b1dec7ab044b.webp",
+            "bytes": 74086
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.1440.edfac7e08098.avif",
+            "bytes": 18819
+          }
+        },
+        {
+          "width": 7152,
+          "webp": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.7152.4632cced33f2.webp",
+            "bytes": 167242
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.7152.574970a4765f.avif",
+            "bytes": 141593
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/hello-blog/cat_man.png": {
+      "width": 154,
+      "height": 154,
+      "sourceHash": "101a89b043e85f60e98a9f855a213eae1425a9a16305fe9540946be3eb6ef21f",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": []
+    },
+    "/assets/blog-images/rag-introduction/flowchart-rag-safe-input.png": {
+      "width": 3840,
+      "height": 635,
+      "sourceHash": "c5fa23a462c6ba0379025f40e5124d99faa90fc87e21900545cfe31d060a3351",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-rag-safe-input.320.ac5d8b33a7ab.webp",
+            "bytes": 5078
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-rag-safe-input.320.a8d7adb65318.avif",
+            "bytes": 2173
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-rag-safe-input.480.3a3b49b95c16.webp",
+            "bytes": 8928
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-rag-safe-input.480.22e9b45882df.avif",
+            "bytes": 3357
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-rag-safe-input.768.cdf980215072.webp",
+            "bytes": 16714
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-rag-safe-input.768.a9197040f168.avif",
+            "bytes": 6048
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-rag-safe-input.1024.b39b56104528.webp",
+            "bytes": 22704
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-rag-safe-input.1024.bf3be07c8ca9.avif",
+            "bytes": 9026
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/rag-introduction/flowchart-retrieval.png": {
+      "width": 3840,
+      "height": 1027,
+      "sourceHash": "bb17c2d1eb6bcf76abac1ac1270084d72833c77312a7c3f600cae7c611bf8dc1",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-retrieval.320.384d893edeed.webp",
+            "bytes": 7646
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-retrieval.480.7267558e906a.webp",
+            "bytes": 13348
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-retrieval.768.780c5ebcb3da.webp",
+            "bytes": 25118
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-retrieval.1024.e7abb53cbd6b.webp",
+            "bytes": 34964
+          }
+        },
+        {
+          "width": 3840,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-retrieval.3840.5a45d0ff5b77.webp",
+            "bytes": 39288
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/rag-introduction/flowchart-vector-database.png": {
+      "width": 3840,
+      "height": 643,
+      "sourceHash": "8434e9002fe12becc13cdf32649f8ebd212879f40e79eff2e7aba6e28f3f95f0",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-vector-database.320.35760824e94a.webp",
+            "bytes": 7146
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-vector-database.480.edd9410cc032.webp",
+            "bytes": 12638
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-vector-database.768.afcc8d136ef9.webp",
+            "bytes": 21698
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-vector-database.1024.424d6e188c42.webp",
+            "bytes": 30724
+          }
+        },
+        {
+          "width": 3840,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/flowchart-vector-database.3840.13570342f71b.webp",
+            "bytes": 35572
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/rag-introduction/rag-system.png": {
+      "width": 969,
+      "height": 1067,
+      "sourceHash": "dad9b34f7ccd797bc811d6e0d907241e3c6e9e6ea3f8e875271099f1c5348dfa",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-system.320.5db13e1e36cd.webp",
+            "bytes": 81138
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-system.320.c4333ed5045d.avif",
+            "bytes": 19440
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-system.480.60f04873e17e.webp",
+            "bytes": 173248
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-system.480.f5fa93255481.avif",
+            "bytes": 44759
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/rag-introduction/sequence-diagram-rag-system.png": {
+      "width": 3840,
+      "height": 2871,
+      "sourceHash": "f2d0be6a7583269fccb87f687f2995d09e82df55445e16d3343be9896827152f",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/sequence-diagram-rag-system.320.deb867e0516d.webp",
+            "bytes": 14622
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/sequence-diagram-rag-system.480.d4c97428d85a.webp",
+            "bytes": 23672
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/sequence-diagram-rag-system.768.f1d593de9286.webp",
+            "bytes": 42212
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/sequence-diagram-rag-system.1024.aa6f29ec2039.webp",
+            "bytes": 58682
+          }
+        },
+        {
+          "width": 3840,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/sequence-diagram-rag-system.3840.8eefce698660.webp",
+            "bytes": 43148
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/rag-introduction/vector-sample.png": {
+      "width": 800,
+      "height": 600,
+      "sourceHash": "f1547c9fdf188bf240643e46c1a3f7cc87aec6f75a28795876762bc70fdb2e19",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": []
+    },
+    "/assets/blog-images/story/book_girl/2015/1/book_girl_front.jpeg": {
+      "width": 736,
+      "height": 461,
+      "sourceHash": "eab52cd6127eefffccb34afafd65d40213de7359c160740c8d1f657482582515",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/story/book_girl/2015/1/book_girl_front.320.b8db16dd728c.webp",
+            "bytes": 7532
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/story/book_girl/2015/1/book_girl_front.480.96cad604118b.webp",
+            "bytes": 14538
+          }
+        },
+        {
+          "width": 736,
+          "webp": {
+            "src": "/assets/responsive/blog-images/story/book_girl/2015/1/book_girl_front.736.abb248191795.webp",
+            "bytes": 28678
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/sunset-elsewhere/cover.webp": {
+      "width": 1672,
+      "height": 941,
+      "sourceHash": "17498e73468c4bcc1057aad990f948eb9c5842dc56446a25d501ff60983b52b8",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/sunset-elsewhere/cover.320.e7c3ba0977b8.webp",
+            "bytes": 1222
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/sunset-elsewhere/cover.480.928c065173a7.webp",
+            "bytes": 2272
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/sunset-elsewhere/cover.768.77bb1c064436.webp",
+            "bytes": 6032
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/sunset-elsewhere/cover.1024.4acb451162d6.webp",
+            "bytes": 12252
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/blog-images/sunset-elsewhere/cover.1440.55d268adfda8.webp",
+            "bytes": 27346
+          }
+        },
+        {
+          "width": 1672,
+          "webp": {
+            "src": "/assets/responsive/blog-images/sunset-elsewhere/cover.1672.5a0c0f429835.webp",
+            "bytes": 61308
+          }
+        }
+      ]
+    },
+    "/assets/images/cover.jpg": {
+      "width": 1600,
+      "height": 698,
+      "sourceHash": "9ca12a1d6bfe89335952a7cab115f4ff29c370208927455a955cbd04d411a69f",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/images/cover.320.6baa8c629ddc.webp",
+            "bytes": 7812
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/images/cover.480.aff346f7e1ad.webp",
+            "bytes": 14556
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/images/cover.768.a8d20115225f.webp",
+            "bytes": 28342
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/images/cover.1024.b0981db2c56b.webp",
+            "bytes": 42058
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/images/cover.1440.3ae1c679351d.webp",
+            "bytes": 67488
+          }
+        },
+        {
+          "width": 1600,
+          "webp": {
+            "src": "/assets/responsive/images/cover.1600.b63cd58347e6.webp",
+            "bytes": 82810
+          }
+        }
+      ]
+    },
+    "/assets/page-scenes/archive/time-trail-scene.webp": {
+      "width": 1663,
+      "height": 946,
+      "sourceHash": "22d6cd1af107935778fbc4979cf06da650dc8393bab4d7a9f74af6e7b9df1f09",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/archive/time-trail-scene.320.bcd202b07dad.webp",
+            "bytes": 7518
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/archive/time-trail-scene.480.f474e6191623.webp",
+            "bytes": 12130
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/archive/time-trail-scene.768.7db6836929a5.webp",
+            "bytes": 20686
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/archive/time-trail-scene.1024.480416090a6d.webp",
+            "bytes": 29014
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/archive/time-trail-scene.1440.db26610a3365.webp",
+            "bytes": 42324
+          }
+        },
+        {
+          "width": 1663,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/archive/time-trail-scene.1663.8a8342adbc0e.webp",
+            "bytes": 42696
+          }
+        }
+      ]
+    },
+    "/assets/page-scenes/guestbook/message-corner-scene-v2.webp": {
+      "width": 1663,
+      "height": 946,
+      "sourceHash": "1bcb264f287538986331decedef3a50c8d88faa23c2793375bb986f8070bd49a",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.320.ff3487acc981.webp",
+            "bytes": 7434
+          },
+          "avif": {
+            "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.320.f3d440d7fcdb.avif",
+            "bytes": 7167
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.480.ee7db489129e.webp",
+            "bytes": 11716
+          },
+          "avif": {
+            "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.480.0d996305e674.avif",
+            "bytes": 11241
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.768.0717fbea1379.webp",
+            "bytes": 20584
+          },
+          "avif": {
+            "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.768.fcfe259057f2.avif",
+            "bytes": 19314
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.1024.5b93dfc936d4.webp",
+            "bytes": 29048
+          },
+          "avif": {
+            "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.1024.b5234c42bec5.avif",
+            "bytes": 27727
+          }
+        }
+      ]
+    }
+  }
+}

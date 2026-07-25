@@ -9,7 +9,6 @@ dist/
 .generated/
 __pycache__/
 *.py[cod]
-src/generated/responsive-images.json
 public/assets/responsive/
 .fonttools/
 .lighthouse/

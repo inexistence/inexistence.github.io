@@ -5,19 +5,9 @@ import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
 import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
-import responsiveImageManifest from '../generated/responsive-images.json';
 import { categoryColor, formatDate, getPublishedPosts } from '../lib/posts';
 
 const posts = await getPublishedPosts();
-const homeBackgroundSource = '/assets/animal-island-ui/home-bg.webp';
-const homeBackgroundCandidates = responsiveImageManifest.images[homeBackgroundSource]?.candidates ?? [];
-const homeBackgroundAtLeast = (width: number) => (
-  homeBackgroundCandidates.find((candidate) => candidate.width >= width)?.src
-  ?? homeBackgroundSource
-);
-const homeBackground = homeBackgroundAtLeast(1012);
-const homeBackgroundMedium = homeBackgroundAtLeast(480);
-const homeBackgroundSmall = homeBackgroundAtLeast(320);
 const trailPosts = posts.slice(0, 5);
 const categories = [...posts.reduce((map, post) => {
   map.set(post.data.category, (map.get(post.data.category) ?? 0) + 1);
@@ -36,7 +26,6 @@ const categoryIcons: Record<string, string> = {
   <section
     class="home-hero"
     aria-labelledby="home-title"
-    style={`--home-hero-background-image: url("${homeBackground}"); --home-hero-background-medium: url("${homeBackgroundMedium}"); --home-hero-background-small: url("${homeBackgroundSmall}")`}
   >
     <div class="home-hero__texture" aria-hidden="true"></div>
     <div class="home-hero__rings" aria-hidden="true"></div>

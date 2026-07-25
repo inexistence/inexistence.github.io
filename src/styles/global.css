@@ -1,3 +1,5 @@
+@import '../generated/responsive-backgrounds.css';
+
 @font-face {
   font-family: 'Nunito';
   font-style: normal;
@@ -838,7 +840,7 @@ form {
 }
 
 .page-hero--archive {
-  background: #65b99b url('/assets/animal-island-ui/home-bg.webp') center / 560px auto;
+  background: #65b99b var(--responsive-background-animal-island-ui-home-bg-1012, url('/assets/animal-island-ui/home-bg.webp')) center / 560px auto;
 }
 
 .page-hero--archive::before {
@@ -882,7 +884,7 @@ form {
   border: 0;
   border-radius: 0;
   opacity: 0.3;
-  background: url('/assets/animal-island-ui/home-bg.webp') center top / 520px auto repeat;
+  background: var(--responsive-background-animal-island-ui-home-bg-1012, url('/assets/animal-island-ui/home-bg.webp')) center top / 520px auto repeat;
   filter: grayscale(1) contrast(1.45) brightness(1.3);
   mix-blend-mode: multiply;
 }
@@ -1041,7 +1043,7 @@ form {
   z-index: 0;
   inset: 0;
   opacity: 0.34;
-  background-image: url('/assets/animal-island-ui/home-bg.webp');
+  background-image: var(--responsive-background-animal-island-ui-home-bg-1012, url('/assets/animal-island-ui/home-bg.webp'));
   background-repeat: repeat;
   background-position: center top;
   background-size: 520px auto;
@@ -2226,7 +2228,7 @@ form {
   overflow: hidden;
   color: var(--home-cream);
   background-color: var(--home-teal);
-  background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), var(--home-hero-background-image, url('/assets/animal-island-ui/home-bg.webp'));
+  background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), var(--responsive-background-animal-island-ui-home-bg-1012, url('/assets/animal-island-ui/home-bg.webp'));
   background-position: center;
   background-size: cover;
   isolation: isolate;
@@ -2234,13 +2236,13 @@ form {
 
 @media (max-width: 700px) {
   .home-hero {
-    background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), var(--home-hero-background-medium, var(--home-hero-background-image, url('/assets/animal-island-ui/home-bg.webp')));
+    background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), var(--responsive-background-animal-island-ui-home-bg-480, var(--responsive-background-animal-island-ui-home-bg-1012, url('/assets/animal-island-ui/home-bg.webp')));
   }
 }
 
 @media (max-width: 360px) and (max-resolution: 1.5dppx) {
   .home-hero {
-    background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), var(--home-hero-background-small, var(--home-hero-background-medium, var(--home-hero-background-image, url('/assets/animal-island-ui/home-bg.webp'))));
+    background-image: linear-gradient(115deg, rgba(13, 103, 97, 0.15), rgba(72, 168, 146, 0.08)), var(--responsive-background-animal-island-ui-home-bg-320, var(--responsive-background-animal-island-ui-home-bg-480, var(--responsive-background-animal-island-ui-home-bg-1012, url('/assets/animal-island-ui/home-bg.webp'))));
   }
 }
 

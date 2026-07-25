@@ -20,11 +20,17 @@ function attributeValue(attributes, name) {
 
 function pictureHtml({ src, alt = '', title, attributes = '' }) {
   const entry = entryFor(src);
-  // A WebP <source> takes precedence over the <img> fallback. If its largest
-  // candidate is smaller than the original, browsers would upscale it instead
-  // of using the sharper original asset.
-  if (!entry?.candidates?.length || entry.candidates.at(-1)?.width < entry.width) return null;
-  const srcset = entry.candidates.map((candidate) => `${candidate.src} ${candidate.width}w`).join(', ');
+  const hasCompleteAvifSet = Boolean(entry?.candidates?.length)
+    && entry.candidates.every((candidate) => candidate.avif);
+  const sourceSet = (format) => {
+    if (format === 'avif' && !hasCompleteAvifSet) return undefined;
+    const candidates = entry?.candidates?.filter((candidate) => candidate[format]) ?? [];
+    if (!candidates.length || candidates.at(-1)?.width < entry.width) return undefined;
+    return candidates.map((candidate) => `${candidate[format].src} ${candidate.width}w`).join(', ');
+  };
+  const avifSrcset = sourceSet('avif');
+  const webpSrcset = sourceSet('webp');
+  if (!avifSrcset && !webpSrcset) return null;
   const loading = attributeValue(attributes, 'loading') ?? 'lazy';
   const decoding = attributeValue(attributes, 'decoding') ?? 'async';
   const cleanAttributes = attributes
@@ -32,7 +38,11 @@ function pictureHtml({ src, alt = '', title, attributes = '' }) {
     .replace(/\s+(?:alt|width|height|loading|decoding)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
   const titleAttribute = title ? ` title="${escapeAttribute(title)}"` : '';
   const fallback = `<img${cleanAttributes} src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}"${titleAttribute} width="${entry.width}" height="${entry.height}" loading="${escapeAttribute(loading)}" decoding="${escapeAttribute(decoding)}">`;
-  return `<picture><source type="image/webp" srcset="${srcset}" sizes="${articleSizes}">${fallback}</picture>`;
+  const sources = [
+    avifSrcset && `<source type="image/avif" srcset="${avifSrcset}" sizes="${articleSizes}">`,
+    webpSrcset && `<source type="image/webp" srcset="${webpSrcset}" sizes="${articleSizes}">`,
+  ].filter(Boolean).join('');
+  return `<picture>${sources}${fallback}</picture>`;
 }
 
 function transformHtmlImages(value) {

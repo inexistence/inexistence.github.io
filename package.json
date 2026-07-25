@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "predev": "npm run fonts:ensure && npm run images:ensure && npm run styles:verify && npm run fonts:verify -- --fonts-dir public/fonts",
-    "dev": "astro dev",
+    "dev": "astro dev --force",
     "prebuild": "npm run fonts:ensure && npm run images:ensure && npm run styles:verify",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build --force",
     "postbuild": "npm run fonts:verify && npm run images:verify",
     "precheck": "npm run images:ensure && npm run styles:verify",
     "check": "astro check",

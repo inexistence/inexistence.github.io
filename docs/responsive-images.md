@@ -1,6 +1,6 @@
 # 性能与响应式图片优化
 
-本站对 `public/assets/` 下的本地图片生成 WebP 候选资源。当候选中保留了不低于原图宽度的有效 WebP 时，构建会将页面、文章封面和 Markdown 正文图片输出为带 `srcset`、`sizes` 与固有尺寸的响应式图片；否则直接使用原图。原图始终保留，作为不支持 WebP 或候选不足时的回退资源。
+本站对 `public/assets/` 下的站点图片按实际收益生成 WebP 与 AVIF 候选资源。当候选中保留了不低于原图宽度的有效格式时，构建会将页面、文章封面和 Markdown 正文图片输出为带 `srcset`、`sizes` 与固有尺寸的响应式图片。浏览器依次尝试 AVIF、WebP 与原图；原图始终保留为最终回退资源。
 
 这套机制的目标是减少移动端下载远大于实际显示尺寸的图片，同时为图片预留布局空间以降低 CLS。它不改写外链图片，也不会改变首页入场动画、漂浮动画或 Astro 页面切换。
 
@@ -17,13 +17,18 @@ npm run images:verify  # 验证清单、尺寸和候选文件
 
 ```text
 public/assets/**                         原始图片（提交）
-public/assets/responsive/**              WebP 派生图（忽略）
-src/generated/responsive-images.json     尺寸与候选清单（忽略）
+public/assets/responsive/**              带内容指纹的 AVIF/WebP 派生图（忽略）
+src/generated/responsive-images.json     尺寸、候选与构建缓存清单（提交）
+src/generated/responsive-backgrounds.css CSS 背景图格式 token（提交）
 ```
 
-生成器会为 JPG、JPEG、PNG 和 WebP 生成不超过原图宽度的 `320 / 480 / 768 / 1024 / 1440` 宽候选图，并尝试保留一张原图宽度的 WebP。小于 320px 的装饰图会改用不超过原图的更小候选宽度，避免为图标建立多余的 `srcset`。PNG 流程图使用无损 WebP；照片、封面和装饰图使用高质量有损 WebP。每张候选图若不比原图更小会被删除；若因此没有保留原图宽度候选，即使较小候选仍存在，常规响应式输出也会改用原图，避免放大较小 WebP 或增加传输体积。源文件内容的 SHA-256 组成稳定指纹，未变化的图片会直接复用已有候选图；它不依赖文件修改时间，因此 GitHub Actions 在全新检出时仍可命中缓存。
+生成器会为 JPG、JPEG、PNG 和 WebP 尝试不超过原图宽度的 `320 / 480 / 768 / 1024 / 1440` 宽候选图。它先在临时目录编码并测量真实体积：WebP 必须比原图至少节省 8 KiB 才发布。AVIF 会逐一与同宽 WebP 比较；只有不大于 WebP 的候选才保留，且一张图必须拥有覆盖全部 WebP 宽度的完整 AVIF 集合才会发布 AVIF。小图因此通常直接使用原图。SVG 与 `assets/avatars/` 不参与候选生成；后者是 Waline 的头像池，更新规则见 [`docs/comment-maintenance.md`](comment-maintenance.md#修改岛民头像池)。
 
-GitHub Actions 缓存派生图和清单；缓存键同时依赖 `package-lock.json`、原始 `public/assets/` 内容和生成脚本。派生图不提交到仓库，因此清理它们后只需重新运行 `npm run images:ensure`。
+候选文件名包含源图和编码配置的内容指纹；替换原图或调整质量、尺寸、门槛后会生成新 URL，避免浏览器继续使用旧缓存。manifest 同时保存源图哈希和管线哈希，且所有候选文件存在时才复用；缺失文件、原图或配置变化会只重建对应图片组。旧 manifest 曾管理但不再引用的候选会在成功发布新 manifest 后清理。
+
+`npm run dev` 与 `npm run build` 会强制刷新 Astro 内容层缓存，确保图片候选 URL 更新后，即使 Markdown 正文没有改动，也会重新执行 `<picture>` 转换而不会保留已删除的旧候选 URL。
+
+GitHub Actions 缓存派生图；manifest 与背景 token 会随代码提交。派生图不提交到仓库，因此清理它们后只需重新运行 `npm run images:ensure`。
 
 ## 写文章与添加素材
 
@@ -33,7 +38,7 @@ GitHub Actions 缓存派生图和清单；缓存键同时依赖 `package-lock.js
 ![海边的傍晚](/assets/blog-images/my-new-post/photo.jpg)
 ```
 
-构建时，具备足够宽有效候选的 Markdown 图片会改写为 `<picture>`：WebP `srcset` 用于支持的浏览器，原图保留在 `<img>` 的 `src` 中作为回退，且自动填入正确的 `width` 与 `height`。候选不足时，Markdown 图片保持为原始 `<img>`。
+构建时，具备足够宽有效候选的 Markdown 图片会改写为 `<picture>`：AVIF `srcset` 优先，WebP 次之，原图保留在 `<img>` 的 `src` 中作为回退，且自动填入正确的 `width` 与 `height`。候选不足时，Markdown 图片保持为原始 `<img>`。
 
 已有的本地 HTML 图片也会被处理，可保留样式类：
 
@@ -51,7 +56,7 @@ npm run images:verify
 npm run build
 ```
 
-不要手工编辑 `public/assets/responsive/` 或 `src/generated/responsive-images.json`；它们会由生成器重建。
+不要手工编辑 `public/assets/responsive/`、`src/generated/responsive-images.json` 或 `src/generated/responsive-backgrounds.css`；它们会由生成器重建。
 
 ## 页面组件用法
 
@@ -66,7 +71,19 @@ npm run build
 />
 ```
 
-组件会从清单读取图片固有宽高，保留现有 CSS 的裁切、`object-fit` 和动画规则。小型装饰图可传入 `fixedWidth`，输出宽度不小于目标显示尺寸的最小单一 WebP 候选，而不建立冗余 `srcset`；若没有足够宽的候选则使用原图。首页背景图按媒体条件引用桌面和移动端各自足够宽的候选图；候选不足时同样使用原图。
+组件会从清单读取图片固有宽高，保留现有 CSS 的裁切、`object-fit` 和动画规则。小型装饰图可传入 `fixedWidth`，只在候选有实际收益时输出最小足够宽的 AVIF/WebP 来源；否则使用原图。首页等大型 CSS 背景使用生成的背景 token，并按媒体条件引用足够宽的候选图；候选不足时同样使用原图。新增需要响应式格式的 CSS 大背景时，把其原图路径加入生成器的 `cssBackgroundSources`，再在样式中使用对应 token。
+
+### CSS 背景图
+
+`<picture>` 是 HTML 图片元素的选择机制，不能用于 CSS 的 `background-image`；CSS 背景没有 `<source>`、`srcset` 或 `sizes`。因此普通内容图继续由 `ResponsiveImage` 输出 `AVIF → WebP → 原图` 的 `<picture>`，而大型 CSS 背景走背景 token。
+
+生成器只为 `cssBackgroundSources` 中列出的原图写入 [`src/generated/responsive-backgrounds.css`](../src/generated/responsive-backgrounds.css)。每个已发布的 WebP 候选都有一个 token；浏览器支持 `image-set()` 时，同一个 token 会优先选择 AVIF、再选择 WebP，浏览器不支持时使用 WebP。页面样式应始终为 token 提供原图回退，例如：
+
+```css
+background-image: var(--responsive-background-animal-island-ui-home-bg-1012, url('/assets/animal-island-ui/home-bg.webp'));
+```
+
+不要为所有图片生成背景 token：这些 URL 和变量会进入全站主 CSS，即使对应背景从未被页面使用。新增大型 CSS 背景时，添加其 `/assets/...` 原图路径到 `cssBackgroundSources`，运行 `npm run images:ensure`，从生成的文件确认实际存在的候选宽度与 token 名称，再在媒体查询中引用它们。不要手工编辑该生成的 CSS；某种格式或尺寸未达到收益门槛时，它不会产生 token，应保留原图回退。
 
 `fetchpriority="high"` 不作为默认设置。目前审计中的 LCP 是文本区域；错误地提高多个图片优先级会与关键 CSS、字体和文本竞争。响应式图片上线后，应在生产环境复测；只有当某页面的唯一真实 LCP 图片被确认后，才为它添加高优先级。
 
@@ -81,7 +98,7 @@ npm run build
 
 本地运行生产预览后，在 DevTools 的 Network 面板关闭缓存并检查：
 
-- 输出响应式 WebP `srcset` 的图片在移动端会选择较小候选；桌面或 Retina 屏会根据 `sizes` 与 DPR 选择合适宽度；候选不足的图片会直接请求原图；
+- 输出响应式图片在支持 AVIF 的浏览器会优先选择 AVIF，否则选择 WebP；桌面或 Retina 屏会根据 `sizes` 与 DPR 选择合适宽度；候选不足的图片会直接请求原图；
 - 已改写的 `<img>` 仍带原图 `src`、正确的 `width` 和 `height`；
 - 首屏文章不会请求 Waline JS、样式、评论字体或评论 API；滚动接近评论区后才会加载；
 - 页面切换后，评论区不应出现重复挂载。
@@ -93,4 +110,4 @@ npm run images:ensure
 npm run images:verify
 ```
 
-仍需完全重建时，可以只删除被忽略的 `public/assets/responsive/` 和 `src/generated/responsive-images.json`，再运行生成命令。不要删除原始图片。
+仍需完全重建时，可以只删除被忽略的 `public/assets/responsive/`，再运行生成命令。不要删除原始图片或生成的 manifest。
