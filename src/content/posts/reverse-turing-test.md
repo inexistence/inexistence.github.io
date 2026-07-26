@@ -5,7 +5,7 @@ publishDate: "2026-03-12"
 category: "技术"
 place: ""
 tags: ["AI", "写作", "图灵测试", "内容生态"]
-cover: ""
+cover: "/assets/blog-images/reverse-turing-test/cover.png"
 draft: false
 ---
 

@@ -5,7 +5,7 @@ publishDate: "2026-07-25"
 category: "技术"
 place: ""
 tags: ["Astro", "Lighthouse", "性能优化", "响应式图片", "Waline"]
-cover: ""
+cover: "/assets/blog-images/performance-optimization-without-removing-motion/cover.png"
 draft: false
 ---
 

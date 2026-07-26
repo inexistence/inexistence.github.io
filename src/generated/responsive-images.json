@@ -321,6 +321,132 @@
         }
       ]
     },
+    "/assets/blog-images/chinese-webfont-subsetting/cover.png": {
+      "width": 1536,
+      "height": 1024,
+      "sourceHash": "397c96867b7c679a3bc58d79b62a163219acf9f87f91cbd2d114aaa85ce48fc8",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.320.a88c5be87e53.webp",
+            "bytes": 55922
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.320.1e0af016370d.avif",
+            "bytes": 5043
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.480.8d1417f5b964.webp",
+            "bytes": 127010
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.480.2d3f7c89f2c7.avif",
+            "bytes": 10761
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.768.3c7bb157ca8a.webp",
+            "bytes": 340760
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.768.5c3305606063.avif",
+            "bytes": 30066
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.1024.a91ac237202d.webp",
+            "bytes": 633858
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.1024.f52c42a1c02c.avif",
+            "bytes": 61571
+          }
+        },
+        {
+          "width": 1536,
+          "webp": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.1536.97a7332bc7e7.webp",
+            "bytes": 1204372
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.1536.0771d4003b4a.avif",
+            "bytes": 160117
+          }
+        }
+      ]
+    },
+    "/assets/blog-images/from-giscus-to-waline/cover.png": {
+      "width": 1672,
+      "height": 941,
+      "sourceHash": "1a0553143818251731115c39c320d729020bbb7057ff5583545840af92f7077c",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.320.3a132749288f.webp",
+            "bytes": 57262
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.320.339e6b7d0cb8.avif",
+            "bytes": 7989
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.480.3c932139310e.webp",
+            "bytes": 132844
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.480.66a7e083f969.avif",
+            "bytes": 19457
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.768.87da40dd266a.webp",
+            "bytes": 367928
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.768.0e5e53f91a9f.avif",
+            "bytes": 62112
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.1024.3f3a213c1c61.webp",
+            "bytes": 689876
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.1024.f79cb56098e4.avif",
+            "bytes": 125811
+          }
+        },
+        {
+          "width": 1672,
+          "webp": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.1672.79840d95ceb3.webp",
+            "bytes": 1269696
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.1672.5d18c483ad51.avif",
+            "bytes": 313766
+          }
+        }
+      ]
+    },
     "/assets/blog-images/function-calling-mcp-skills/mcp-architecture.png": {
       "width": 2136,
       "height": 1663,
@@ -453,6 +579,80 @@
       "sourceHash": "101a89b043e85f60e98a9f855a213eae1425a9a16305fe9540946be3eb6ef21f",
       "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
       "candidates": []
+    },
+    "/assets/blog-images/performance-optimization-without-removing-motion/cover.png": {
+      "width": 1672,
+      "height": 941,
+      "sourceHash": "71cb14befa2246891679b7289a1d7f344c3b5d428cddc6853fe0d87348de22ee",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.320.39b7f25bf7a9.webp",
+            "bytes": 48352
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.320.76880ac9dbc1.avif",
+            "bytes": 4401
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.480.c1d314968a21.webp",
+            "bytes": 113654
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.480.412e5f254de8.avif",
+            "bytes": 10585
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.768.1a1688ace351.webp",
+            "bytes": 316482
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.768.bee3e5186614.avif",
+            "bytes": 33388
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.1024.8ee70116d7d4.webp",
+            "bytes": 588524
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.1024.b2152a7f5bb1.avif",
+            "bytes": 67669
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.1440.bad29fc158d9.webp",
+            "bytes": 1210966
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.1440.72d8d2d5270d.avif",
+            "bytes": 145373
+          }
+        },
+        {
+          "width": 1672,
+          "webp": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.1672.6a3f8db65bbe.webp",
+            "bytes": 1294114
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.1672.af88fe6247a7.avif",
+            "bytes": 195289
+          }
+        }
+      ]
     },
     "/assets/blog-images/rag-introduction/flowchart-rag-safe-input.png": {
       "width": 3840,
@@ -592,6 +792,80 @@
         }
       ]
     },
+    "/assets/blog-images/rag-introduction/rag-retrieval-owl-cover.png": {
+      "width": 1672,
+      "height": 941,
+      "sourceHash": "9c5c4c4f761caa5eb41338ae458d30227575be89cc6ae8fa44a31d6125404463",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.320.d1f8f0069d16.webp",
+            "bytes": 60102
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.320.55ef04400ad7.avif",
+            "bytes": 8392
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.480.f3fd3d821f2a.webp",
+            "bytes": 138322
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.480.693e5f4e3d3a.avif",
+            "bytes": 18979
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.768.374f45e00ea3.webp",
+            "bytes": 380712
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.768.33cee6ee040d.avif",
+            "bytes": 58702
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.1024.58851b4336b8.webp",
+            "bytes": 718834
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.1024.9261485a5d04.avif",
+            "bytes": 118359
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.1440.f9f348dc102c.webp",
+            "bytes": 1454466
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.1440.97014d272e05.avif",
+            "bytes": 232816
+          }
+        },
+        {
+          "width": 1672,
+          "webp": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.1672.a6f04aa4c480.webp",
+            "bytes": 1912468
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.1672.ae0b38d1ab9a.avif",
+            "bytes": 311077
+          }
+        }
+      ]
+    },
     "/assets/blog-images/rag-introduction/rag-system.png": {
       "width": 969,
       "height": 1067,
@@ -671,6 +945,80 @@
       "sourceHash": "f1547c9fdf188bf240643e46c1a3f7cc87aec6f75a28795876762bc70fdb2e19",
       "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
       "candidates": []
+    },
+    "/assets/blog-images/reverse-turing-test/cover.png": {
+      "width": 1672,
+      "height": 941,
+      "sourceHash": "f6399e26b7a384f0683e34ff43147af388f2838cd4818ec27562920f65c6e18f",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.320.bf7d57c094e0.webp",
+            "bytes": 52302
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.320.002ed71e26dc.avif",
+            "bytes": 6383
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.480.7ac9e35ca616.webp",
+            "bytes": 123722
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.480.7551196fb7a2.avif",
+            "bytes": 16211
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.768.551b01bbcdb0.webp",
+            "bytes": 342740
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.768.5cd8688384b7.avif",
+            "bytes": 52112
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.1024.c7322f3cfd2c.webp",
+            "bytes": 638434
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.1024.69b6c45fc13f.avif",
+            "bytes": 100938
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.1440.bc4b42360f10.webp",
+            "bytes": 1309408
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.1440.9fa149739a66.avif",
+            "bytes": 195416
+          }
+        },
+        {
+          "width": 1672,
+          "webp": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.1672.523485ed3ad9.webp",
+            "bytes": 1328846
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/reverse-turing-test/cover.1672.b3002851abe6.avif",
+            "bytes": 259905
+          }
+        }
+      ]
     },
     "/assets/blog-images/story/book_girl/2015/1/book_girl_front.jpeg": {
       "width": 736,

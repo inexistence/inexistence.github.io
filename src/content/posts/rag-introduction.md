@@ -5,7 +5,7 @@ publishDate: "2025-07-07"
 category: "技术"
 place: ""
 tags: ["AI", "RAG", "检索增强生成", "向量数据库"]
-cover: "/assets/blog-images/rag-introduction/rag-system.png"
+cover: "/assets/blog-images/rag-introduction/rag-retrieval-owl-cover.png"
 draft: false
 ---
 

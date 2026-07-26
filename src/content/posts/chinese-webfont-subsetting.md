@@ -5,7 +5,7 @@ publishDate: "2026-07-25"
 category: "技术"
 place: ""
 tags: ["Astro", "WebFont", "FontTools", "GitHub Actions", "性能"]
-cover: ""
+cover: "/assets/blog-images/chinese-webfont-subsetting/cover.png"
 draft: false
 ---
 

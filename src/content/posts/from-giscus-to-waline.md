@@ -5,7 +5,7 @@ publishDate: "2026-07-23"
 category: "技术"
 place: ""
 tags: ["Astro", "Waline", "Vercel", "GitHub Pages", "评论系统"]
-cover: ""
+cover: "/assets/blog-images/from-giscus-to-waline/cover.png"
 draft: false
 ---
 
