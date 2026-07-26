@@ -54,6 +54,7 @@ npm run preview
 - [中文字体子集技术方案](docs/font-subsetting.md)：字体生成、产物与构建校验；
 - [组件库样式维护说明](docs/animal-island-styles.md)：`animal-island-ui` CSS 裁剪与校验；
 - [前端运行时与 Hydration 维护](docs/frontend-runtime.md)：island 时机、站内导航与动效回退；
+- [RSS 订阅说明](docs/rss.md)：订阅源生成、文章收录规则与验证方式；
 - [评论系统说明](docs/comments.md) 与 [评论系统维护手册](docs/comment-maintenance.md)：架构、跨仓库运维与安全边界。
 
 ## 评论系统
