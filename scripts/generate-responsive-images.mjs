@@ -14,7 +14,11 @@ const widths = [320, 480, 768, 1024, 1440];
 const iconWidths = [64, 128, 192];
 const sourceExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 const excludedDirectories = new Set(['avatars', 'responsive']);
-const cssBackgroundSources = new Set(['/assets/animal-island-ui/home-bg.webp']);
+const cssBackgroundSources = new Set([
+  '/assets/animal-island-ui/home-bg.webp',
+  '/assets/exhibitions/museum-gallery-floor-v1.png',
+  '/assets/exhibitions/museum-gallery-wall-v1.png',
+]);
 const manifestVersion = 3;
 const minimumWebpSavings = 8 * 1024;
 // Derivative URLs are keyed by encoding inputs, not by the publication policy.

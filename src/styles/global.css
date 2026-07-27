@@ -196,6 +196,10 @@ form {
   outline-offset: 4px;
 }
 
+/* ClientRouter moves focus here for assistive technology after navigation.
+   The main landmark is page-sized, so it should not inherit the control focus ring. */
+main:focus-visible { outline: none; }
+
 .shell {
   width: min(calc(100% - 40px), var(--shell));
   margin-inline: auto;
@@ -309,6 +313,33 @@ form {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.site-exhibition-link {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 15px 16px 14px 17px;
+  text-decoration: none;
+  transform-origin: 50% 82%;
+  transition: transform 180ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.site-exhibition-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.site-exhibition-link:hover {
+  transform: translateY(-3px) rotate(-2deg);
+}
+
+.site-exhibition-link:active {
+  transform: translateY(2px) scale(.96);
 }
 
 .rss-mailbox {
@@ -925,6 +956,12 @@ form {
 
   .site-header__actions {
     gap: 6px;
+  }
+
+  .site-exhibition-link {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px 13px 11px 14px;
   }
 
   .rss-mailbox,

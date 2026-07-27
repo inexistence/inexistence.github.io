@@ -44,5 +44,14 @@ const isCurrent = (href: string) => {
         ))}
       </ul>
     </nav>
+    <a
+      class="site-exhibition-link"
+      href="/exhibitions/"
+      aria-label="前往岛屿展厅"
+      aria-current={isCurrent('/exhibitions/') ? 'page' : undefined}
+      title="岛屿展厅"
+    >
+      <img src="/assets/animal-island-ui/island-museum-logo.png" alt="" width="256" height="256" />
+    </a>
   </div>
 </header>

@@ -1,0 +1,54 @@
+---
+import { Button } from 'animal-island-ui/es/components/Button/Button.js';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import '../../styles/exhibitions.css';
+import { getPublishedExhibitions } from '../../lib/exhibitions';
+
+const exhibitions = await getPublishedExhibitions();
+---
+
+<BaseLayout title="岛屿展厅" description="和两位岛民一起，慢慢看完一组摄影作品。" bodyClass="exhibitions-page">
+  <section class="exhibition-index shell" aria-labelledby="exhibition-index-title">
+    <header class="exhibition-index__heading">
+      <p class="eyebrow">ISLAND EXHIBITION</p>
+      <h1 id="exhibition-index-title">岛屿展厅</h1>
+      <p>每一期展览都是一段慢慢经过的路。选两位岛民，和他们一起看完一组照片。</p>
+    </header>
+
+    {exhibitions.length ? (
+      <div class="exhibition-index__list">
+        {exhibitions.map((exhibition) => (
+          <article class="exhibition-card" data-reveal>
+            <ResponsiveImage
+              class="exhibition-card__image"
+              src={exhibition.data.cover}
+              alt=""
+              ariaHidden
+              sizes="(max-width: 760px) calc(100vw - 40px), 540px"
+            />
+            <div class="exhibition-card__body">
+              <p class="eyebrow">CURRENT EXHIBITION</p>
+              <h2>{exhibition.data.title}</h2>
+              <p>{exhibition.data.description}</p>
+              <a class="exhibition-card__link" href={`/exhibitions/${exhibition.id}/`}>
+                进入展厅 <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <section class="exhibition-empty" aria-labelledby="exhibition-empty-title">
+        <div class="exhibition-empty__token" aria-hidden="true">✦</div>
+        <div>
+          <h2 id="exhibition-empty-title">展厅正在布展</h2>
+          <p>第一组照片正在等待挂上墙。过些时候再来走走吧。</p>
+        </div>
+        <form action="/">
+          <Button type="default" htmlType="submit">先回岛上逛逛</Button>
+        </form>
+      </section>
+    )}
+  </section>
+</BaseLayout>

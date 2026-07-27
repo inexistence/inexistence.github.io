@@ -8,11 +8,13 @@ import '../styles/home.css';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import { getCategorySummaries } from '../lib/category';
+import { getFeaturedExhibition } from '../lib/exhibitions';
 import { categoryColor, formatDate, getPublishedPosts } from '../lib/posts';
 
 const posts = await getPublishedPosts();
 const trailPosts = posts.slice(0, 5);
 const categories = getCategorySummaries(posts);
+const featuredExhibition = await getFeaturedExhibition();
 
 const trailItems = ['star-wand', 'flower', 'fish', 'bell-bag', 'coin'];
 const trailColors = ['app-yellow', 'app-pink', 'app-blue', 'app-orange', 'app-green'] as const;
@@ -143,6 +145,26 @@ const trailColors = ['app-yellow', 'app-pink', 'app-blue', 'app-orange', 'app-gr
       <p>有时热闹，有时安静。只要还有想记下的事，码头就会继续开放。</p>
     </div>
   </section>
+
+  {featuredExhibition && (
+    <section class="exhibition-promo shell" data-reveal aria-labelledby="exhibition-promo-title">
+      <ResponsiveImage
+        class="exhibition-promo__image"
+        src={featuredExhibition.data.cover}
+        alt=""
+        ariaHidden
+        sizes="(max-width: 760px) calc(100vw - 40px), 440px"
+      />
+      <div class="exhibition-promo__copy">
+        <p class="eyebrow">ISLAND EXHIBITION · NOW OPEN</p>
+        <h2 id="exhibition-promo-title">{featuredExhibition.data.title}</h2>
+        <p>{featuredExhibition.data.description}</p>
+        <a class="exhibition-promo__link" href={`/exhibitions/${featuredExhibition.id}/`}>
+          选两位岛民一起逛 <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  )}
 
   <script is:inline data-astro-rerun>
     (() => {

@@ -2,4 +2,29 @@
 :root {
   --responsive-background-animal-island-ui-home-bg-320: url('/assets/responsive/animal-island-ui/home-bg.320.3a21273246b8.webp');
   --responsive-background-animal-island-ui-home-bg-1012: url('/assets/responsive/animal-island-ui/home-bg.1012.d45dbf9392a3.webp');
+  --responsive-background-exhibitions-museum-gallery-floor-v1-320: url('/assets/responsive/exhibitions/museum-gallery-floor-v1.320.b6047163e390.webp');
+  --responsive-background-exhibitions-museum-gallery-floor-v1-480: url('/assets/responsive/exhibitions/museum-gallery-floor-v1.480.334bb87a521a.webp');
+  --responsive-background-exhibitions-museum-gallery-floor-v1-768: url('/assets/responsive/exhibitions/museum-gallery-floor-v1.768.d0e57eb6f3e1.webp');
+  --responsive-background-exhibitions-museum-gallery-floor-v1-1024: url('/assets/responsive/exhibitions/museum-gallery-floor-v1.1024.efae13d862b3.webp');
+  --responsive-background-exhibitions-museum-gallery-floor-v1-1254: url('/assets/responsive/exhibitions/museum-gallery-floor-v1.1254.564728bc0597.webp');
+  --responsive-background-exhibitions-museum-gallery-wall-v1-320: url('/assets/responsive/exhibitions/museum-gallery-wall-v1.320.b775ec540476.webp');
+  --responsive-background-exhibitions-museum-gallery-wall-v1-480: url('/assets/responsive/exhibitions/museum-gallery-wall-v1.480.683ce013eafe.webp');
+  --responsive-background-exhibitions-museum-gallery-wall-v1-768: url('/assets/responsive/exhibitions/museum-gallery-wall-v1.768.24a614c83abe.webp');
+  --responsive-background-exhibitions-museum-gallery-wall-v1-1024: url('/assets/responsive/exhibitions/museum-gallery-wall-v1.1024.b1fb07d58143.webp');
+  --responsive-background-exhibitions-museum-gallery-wall-v1-1254: url('/assets/responsive/exhibitions/museum-gallery-wall-v1.1254.938807c49108.webp');
+}
+
+@supports (background-image: image-set(url('data:image/avif;base64,AAAA') type('image/avif') 1x, url('data:image/webp;base64,AAAA') type('image/webp') 1x)) {
+  :root {
+  --responsive-background-exhibitions-museum-gallery-floor-v1-320: image-set(url('/assets/responsive/exhibitions/museum-gallery-floor-v1.320.bda9477c8ab3.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-floor-v1.320.b6047163e390.webp') type('image/webp') 1x);
+  --responsive-background-exhibitions-museum-gallery-floor-v1-480: image-set(url('/assets/responsive/exhibitions/museum-gallery-floor-v1.480.f998c11a9e72.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-floor-v1.480.334bb87a521a.webp') type('image/webp') 1x);
+  --responsive-background-exhibitions-museum-gallery-floor-v1-768: image-set(url('/assets/responsive/exhibitions/museum-gallery-floor-v1.768.8539b40c3ad4.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-floor-v1.768.d0e57eb6f3e1.webp') type('image/webp') 1x);
+  --responsive-background-exhibitions-museum-gallery-floor-v1-1024: image-set(url('/assets/responsive/exhibitions/museum-gallery-floor-v1.1024.5989b982b3f0.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-floor-v1.1024.efae13d862b3.webp') type('image/webp') 1x);
+  --responsive-background-exhibitions-museum-gallery-floor-v1-1254: image-set(url('/assets/responsive/exhibitions/museum-gallery-floor-v1.1254.0dfe645918cb.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-floor-v1.1254.564728bc0597.webp') type('image/webp') 1x);
+  --responsive-background-exhibitions-museum-gallery-wall-v1-320: image-set(url('/assets/responsive/exhibitions/museum-gallery-wall-v1.320.164f7a99f25d.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-wall-v1.320.b775ec540476.webp') type('image/webp') 1x);
+  --responsive-background-exhibitions-museum-gallery-wall-v1-480: image-set(url('/assets/responsive/exhibitions/museum-gallery-wall-v1.480.c7f938d4568c.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-wall-v1.480.683ce013eafe.webp') type('image/webp') 1x);
+  --responsive-background-exhibitions-museum-gallery-wall-v1-768: image-set(url('/assets/responsive/exhibitions/museum-gallery-wall-v1.768.fe80a6e2da73.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-wall-v1.768.24a614c83abe.webp') type('image/webp') 1x);
+  --responsive-background-exhibitions-museum-gallery-wall-v1-1024: image-set(url('/assets/responsive/exhibitions/museum-gallery-wall-v1.1024.e10407a1c96c.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-wall-v1.1024.b1fb07d58143.webp') type('image/webp') 1x);
+  --responsive-background-exhibitions-museum-gallery-wall-v1-1254: image-set(url('/assets/responsive/exhibitions/museum-gallery-wall-v1.1254.48a4880b436f.avif') type('image/avif') 1x, url('/assets/responsive/exhibitions/museum-gallery-wall-v1.1254.938807c49108.webp') type('image/webp') 1x);
+  }
 }

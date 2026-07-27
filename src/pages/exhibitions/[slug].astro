@@ -1,0 +1,487 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import responsiveImageManifest from '../../generated/responsive-images.json';
+import '../../styles/exhibitions.css';
+import { getExhibitionById, getExhibitionPhotos, getPublishedExhibitions } from '../../lib/exhibitions';
+import { islanders, type IslanderId } from '../../lib/islanders';
+
+export async function getStaticPaths() {
+  const exhibitions = await getPublishedExhibitions();
+  return exhibitions.map((exhibition) => ({ params: { slug: exhibition.id } }));
+}
+
+const exhibition = await getExhibitionById(Astro.params.slug ?? '');
+if (!exhibition) throw new Error(`Unknown exhibition: ${Astro.params.slug}`);
+const photographs = await getExhibitionPhotos(exhibition.id);
+const islanderEntries = Object.entries(islanders) as [IslanderId, typeof islanders[IslanderId]][];
+const imageEntries = responsiveImageManifest.images as Record<string, { width: number; height: number }>;
+const photoAspect = (src: string) => {
+  const image = imageEntries[src];
+  return image ? `${image.width} / ${image.height}` : '3 / 2';
+};
+const tourData = {
+  photographs: photographs.map((photo) => ({
+    dialogue: photo.islanderDialogue,
+    pairDialogue: photo.data.pairDialogue,
+  })),
+  islanders,
+};
+const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
+---
+
+<BaseLayout title={exhibition.data.title} description={exhibition.data.description} image={exhibition.data.cover} bodyClass="exhibition-tour-page">
+  <section class="exhibition-tour" data-exhibition-tour aria-label="选择同行岛民">
+    <div class="exhibition-tour__chooser" data-tour-chooser>
+      <a class="exhibition-tour__back" href="/exhibitions/">← 返回岛屿展厅</a>
+
+      <div class="exhibition-tour__selection" aria-describedby="tour-selection-note">
+        <div>
+          <p class="eyebrow">CHOOSE YOUR COMPANY</p>
+          <h2>选两位岛民，一起出发。</h2>
+          <p id="tour-selection-note" data-selection-note>还差两位同行者。</p>
+        </div>
+        <div class="exhibition-tour__islander-grid" role="group" aria-label="选择两位同行岛民">
+          {islanderEntries.map(([id, islander]) => (
+            <button class="islander-picker" type="button" data-islander-picker={id} aria-pressed="false">
+              <img src={islander.avatar} alt="" width="96" height="96" loading="lazy" />
+              <span>{islander.name}</span>
+              <small>{islander.specialty}</small>
+              <b aria-hidden="true">✓</b>
+            </button>
+          ))}
+        </div>
+        <button class="exhibition-tour__start" type="button" data-tour-start disabled>
+          带我们去看第一张 <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="exhibition-tour__viewer" data-tour-viewer hidden>
+      <div class="exhibition-tour__stage" data-tour-stage>
+        <header class="exhibition-tour__viewer-header">
+          <a class="exhibition-tour__back" href="/exhibitions/" data-tour-exit>退出逛展</a>
+          <p class="exhibition-tour__progress" aria-live="polite"><span data-tour-position>1</span> / {photographs.length}</p>
+        </header>
+        <div class="exhibition-tour__path" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="exhibition-tour__scene-deck" data-scene-deck>
+          {photographs.map((photo, index) => (
+            <figure
+              class="exhibition-tour__scene"
+              data-scene={index}
+              data-state={index === 0 ? 'active' : 'hidden'}
+              aria-hidden={index === 0 ? 'false' : 'true'}
+              style={`--photo-aspect: ${photoAspect(photo.data.image)}`}
+            >
+              <ResponsiveImage
+                class="exhibition-tour__photo"
+                src={photo.data.image}
+                alt={photo.data.alt}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding={index === 0 ? 'sync' : 'async'}
+                sizes="(max-width: 760px) 100vw, min(90vw, 1180px)"
+              />
+            </figure>
+          ))}
+        </div>
+
+        <div class="exhibition-tour__walkers" aria-label="同行岛民正在看作品" data-tour-walkers>
+          <div class="exhibition-tour__walker exhibition-tour__walker--one">
+            <div class="exhibition-tour__speech" data-dialogue-bubble="0"></div>
+            <img data-walker-avatar="0" alt="" />
+            <span data-walker-name="0"></span>
+          </div>
+          <div class="exhibition-tour__walker exhibition-tour__walker--two">
+            <div class="exhibition-tour__speech" data-dialogue-bubble="1"></div>
+            <img data-walker-avatar="1" alt="" />
+            <span data-walker-name="1"></span>
+          </div>
+        </div>
+
+        <div class="exhibition-tour__dialogue-shell">
+          <div class="exhibition-tour__controls">
+            <button type="button" class="exhibition-tour__previous" data-tour-previous disabled>← 上一张</button>
+            <button type="button" class="exhibition-tour__next" data-tour-next disabled>听他们说完…</button>
+          </div>
+        </div>
+      </div>
+      <div class="sr-only" data-tour-announcer aria-live="polite" aria-atomic="true"></div>
+    </div>
+
+    <div class="exhibition-tour__ending shell" data-tour-ending hidden>
+      <p class="eyebrow">END OF THE WALK</p>
+      <h2>这一趟，走到这里了。</h2>
+      <p data-ending-copy>谢谢两位岛民陪你把这一组照片慢慢看完。</p>
+      <div>
+        <button type="button" data-tour-restart>换两位岛民再走一次</button>
+        <a href="/exhibitions/">回到岛屿展厅</a>
+      </div>
+    </div>
+
+    <noscript>
+      <style>
+        .exhibition-tour-page { overflow: auto; }
+        .exhibition-tour-page .site-header { display: flex; }
+        .exhibition-tour-page .site-footer { display: block; }
+        .exhibition-tour-page main,
+        .exhibition-tour { min-height: 0; height: auto; overflow: visible; }
+        .exhibition-tour__chooser { display: none; }
+      </style>
+      <section class="exhibition-tour__fallback shell" aria-labelledby="fallback-title">
+        <h2 id="fallback-title">按顺序浏览展览</h2>
+        <p>启用 JavaScript 后，可以选择同行岛民并体验完整的展径转场。</p>
+        {photographs.map((photo) => (
+          <figure>
+            <ResponsiveImage src={photo.data.image} alt={photo.data.alt} sizes="(max-width: 760px) 100vw, 900px" />
+            <figcaption>
+              <details>
+                <summary>展开岛民评论</summary>
+                <ul>
+                  {islanderEntries.map(([id, islander]) => <li><strong>{islander.name}</strong>：{photo.islanderDialogue[id]}</li>)}
+                </ul>
+              </details>
+            </figcaption>
+          </figure>
+        ))}
+      </section>
+    </noscript>
+    <script is:inline type="application/json" data-tour-data set:html={serializedTourData}></script>
+  </section>
+
+  <script is:inline data-astro-rerun>
+    (() => {
+      const root = document.querySelector('[data-exhibition-tour]');
+      if (!(root instanceof HTMLElement)) return;
+
+      const dataNode = root.querySelector('[data-tour-data]');
+      if (!(dataNode instanceof HTMLScriptElement)) return;
+      const data = JSON.parse(dataNode.textContent ?? '{}');
+      const chooser = root.querySelector('[data-tour-chooser]');
+      const viewer = root.querySelector('[data-tour-viewer]');
+      const ending = root.querySelector('[data-tour-ending]');
+      const dialogueBubbles = Array.from(root.querySelectorAll('[data-dialogue-bubble]'));
+      const announcer = root.querySelector('[data-tour-announcer]');
+      const selectionNote = root.querySelector('[data-selection-note]');
+      const start = root.querySelector('[data-tour-start]');
+      const previous = root.querySelector('[data-tour-previous]');
+      const next = root.querySelector('[data-tour-next]');
+      const position = root.querySelector('[data-tour-position]');
+      const endingCopy = root.querySelector('[data-ending-copy]');
+      const restart = root.querySelector('[data-tour-restart]');
+      const exit = root.querySelector('[data-tour-exit]');
+      const pickerButtons = Array.from(root.querySelectorAll('[data-islander-picker]'));
+      const scenes = Array.from(root.querySelectorAll('[data-scene]'));
+      const walkers = root.querySelector('[data-tour-walkers]');
+      const walkerElements = Array.from(root.querySelectorAll('[data-tour-walkers] .exhibition-tour__walker'));
+      const walkerAvatars = Array.from(root.querySelectorAll('[data-walker-avatar]'));
+      const walkerNames = Array.from(root.querySelectorAll('[data-walker-name]'));
+      const stage = root.querySelector('[data-tour-stage]');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const dialogueHoldDuration = reducedMotion ? 0 : 1800;
+      const dialogueHandoffDuration = reducedMotion ? 0 : 260;
+      const dialogueCloseDuration = reducedMotion ? 0 : 220;
+      const abortController = new AbortController();
+      const timers = [];
+      let animationFrame;
+      let selected = [];
+      let current = 0;
+      let moving = false;
+      let dialogueComplete = false;
+      let leaving = false;
+
+      const later = (callback, delay) => {
+        const timer = window.setTimeout(callback, delay);
+        timers.push(timer);
+        return timer;
+      };
+      const clearTimers = () => {
+        while (timers.length) window.clearTimeout(timers.pop());
+        if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      };
+      const setViewerMode = (isViewing) => document.body.classList.toggle('is-exhibition-viewing', isViewing);
+      const islander = (id) => data.islanders[id];
+      const normalizePair = (ids) => [...ids].sort().join('|');
+
+      const updateSelection = () => {
+        pickerButtons.forEach((button) => {
+          const id = button.dataset.islanderPicker;
+          const isSelected = selected.includes(id);
+          button.setAttribute('aria-pressed', String(isSelected));
+          button.classList.toggle('is-selected', isSelected);
+          button.disabled = selected.length === 2 && !isSelected;
+        });
+        const remaining = 2 - selected.length;
+        selectionNote.textContent = remaining ? `还差${remaining}位同行者。` : `${islander(selected[0]).name}和${islander(selected[1]).name}已经准备好了。`;
+        start.disabled = selected.length !== 2;
+      };
+
+      const updateWalkers = () => {
+        selected.forEach((id, index) => {
+          walkerAvatars[index].src = islander(id).avatar;
+          walkerNames[index].textContent = islander(id).name;
+        });
+      };
+
+      const updateProgress = () => {
+        position.textContent = String(current + 1);
+        previous.disabled = moving || current === 0;
+        next.disabled = moving || !dialogueComplete;
+        next.textContent = current === data.photographs.length - 1 ? '结束这趟展览 →' : '继续逛 →';
+      };
+
+      const typeLine = (line, complete) => {
+        const speaker = islander(line.speaker);
+        const speakerIndex = selected.indexOf(line.speaker);
+        const bubble = dialogueBubbles[speakerIndex];
+        if (!(bubble instanceof HTMLElement)) return complete();
+        dialogueBubbles.forEach((otherBubble, index) => {
+          if (!(otherBubble instanceof HTMLElement) || index === speakerIndex) return;
+          otherBubble.classList.remove('is-visible');
+          if (otherBubble.textContent?.trim()) otherBubble.classList.add('is-leaving');
+        });
+        const walker = walkerElements[speakerIndex];
+        if (walker instanceof HTMLElement && !reducedMotion) {
+          walker.classList.remove('is-speaking');
+          void walker.offsetWidth;
+          walker.classList.add('is-speaking');
+          later(() => walker.classList.remove('is-speaking'), 390);
+        }
+        bubble.replaceChildren();
+        bubble.classList.add('is-visible');
+        bubble.classList.remove('is-leaving');
+        const copy = document.createElement('p');
+        copy.setAttribute('aria-hidden', 'true');
+        bubble.append(copy);
+        if (announcer instanceof HTMLElement) announcer.textContent = `${speaker.name}：${line.text}`;
+        const characters = Array.from(line.text);
+        if (reducedMotion) {
+          copy.textContent = line.text;
+          complete();
+          return;
+        }
+        let characterIndex = 0;
+        const writeNext = () => {
+          const character = characters[characterIndex] ?? '';
+          copy.textContent += character;
+          characterIndex += 1;
+          if (characterIndex >= characters.length) {
+            later(complete, dialogueHoldDuration);
+            return;
+          }
+          const pause = /[，、；：]/u.test(character) ? 170 : /[。！？]/u.test(character) ? 280 : 56;
+          later(writeNext, pause);
+        };
+        writeNext();
+      };
+
+      const linesForCurrentPhoto = () => {
+        const photo = data.photographs[current];
+        const primary = selected.map((id) => ({ speaker: id, text: photo.dialogue[id] }));
+        const selectedPair = normalizePair(selected);
+        const pair = photo.pairDialogue.find((candidate) => normalizePair(candidate.islanders) === selectedPair);
+        return pair ? [...primary, ...pair.lines] : primary;
+      };
+
+      const revealDialogue = (delay = 1200) => {
+        clearTimers();
+        dialogueBubbles.forEach((bubble) => {
+          bubble.replaceChildren();
+          bubble.classList.remove('is-visible', 'is-leaving');
+        });
+        dialogueComplete = false;
+        updateProgress();
+        const lines = linesForCurrentPhoto();
+        const reveal = (index) => {
+          typeLine(lines[index], () => {
+            if (index < lines.length - 1) {
+              later(() => reveal(index + 1), dialogueHandoffDuration);
+              return;
+            }
+            dialogueBubbles.forEach((bubble) => {
+              if (!(bubble instanceof HTMLElement) || !bubble.textContent?.trim()) return;
+              bubble.classList.remove('is-visible');
+              bubble.classList.add('is-leaving');
+            });
+            later(() => {
+              dialogueComplete = true;
+              updateProgress();
+            }, dialogueCloseDuration);
+          });
+        };
+        if (reducedMotion) {
+          lines.forEach((line) => typeLine(line, () => {}));
+          dialogueComplete = true;
+          updateProgress();
+          return;
+        }
+        later(() => reveal(0), delay);
+      };
+
+      const setScene = (index, dialogueDelay = 1200) => {
+        scenes.forEach((scene, sceneIndex) => {
+          scene.dataset.state = sceneIndex === index ? 'active' : 'hidden';
+          scene.setAttribute('aria-hidden', String(sceneIndex !== index));
+        });
+        current = index;
+        revealDialogue(dialogueDelay);
+      };
+
+      const moveTo = (target) => {
+        if (moving || target < 0 || target >= data.photographs.length) return;
+        clearTimers();
+        moving = true;
+        dialogueComplete = false;
+        dialogueBubbles.forEach((bubble) => bubble.classList.add('is-leaving'));
+        updateProgress();
+        const direction = target > current ? 'forward' : 'back';
+        const outgoing = scenes[current];
+        const incoming = scenes[target];
+        incoming.dataset.state = `incoming-${direction}`;
+        incoming.setAttribute('aria-hidden', 'false');
+        // Commit the off-stage position before asking the browser to animate it.
+        // Without this separation, the two state changes can be coalesced into a cut.
+        if (!reducedMotion) void incoming.offsetWidth;
+        const beginWalk = () => {
+          root.dataset.walking = direction;
+          animationFrame = window.requestAnimationFrame(() => {
+            outgoing.dataset.state = `leaving-${direction}`;
+            incoming.dataset.state = `entering-${direction}`;
+          });
+        };
+        if (reducedMotion) beginWalk();
+        else later(beginWalk, 170);
+        later(() => {
+          outgoing.dataset.state = `passed-${direction}`;
+          outgoing.setAttribute('aria-hidden', 'true');
+          incoming.dataset.state = 'active';
+          current = target;
+          moving = false;
+          dialogueBubbles.forEach((bubble) => bubble.classList.remove('is-leaving'));
+          delete root.dataset.walking;
+          revealDialogue();
+        }, reducedMotion ? 0 : 1390);
+      };
+
+      const walkOut = (complete) => {
+        if (leaving) return;
+        if (reducedMotion || !(walkers instanceof HTMLElement) || !(stage instanceof HTMLElement)) {
+          complete();
+          return;
+        }
+        leaving = true;
+        moving = true;
+        dialogueComplete = false;
+        clearTimers();
+        dialogueBubbles.forEach((bubble) => bubble.classList.add('is-leaving'));
+        delete root.dataset.arrival;
+        delete root.dataset.walking;
+        const exitDistance = Math.ceil(stage.getBoundingClientRect().width / 2 + walkers.getBoundingClientRect().width / 2 + 24);
+        const exitDuration = Math.round((exitDistance / 280) * 1000);
+        root.style.setProperty('--exhibit-exit-distance', `${exitDistance}px`);
+        root.style.setProperty('--exhibit-exit-duration', `${exitDuration}ms`);
+        root.dataset.departing = 'true';
+        updateProgress();
+        later(complete, exitDuration + 120);
+      };
+
+      const finish = () => {
+        walkOut(() => {
+          viewer.hidden = true;
+          ending.hidden = false;
+          setViewerMode(true);
+          endingCopy.textContent = `${islander(selected[0]).name}和${islander(selected[1]).name}陪你把这一组照片慢慢看完了。`;
+          ending.querySelector('button')?.focus();
+        });
+      };
+
+      const leaveExhibition = (href) => {
+        walkOut(() => window.location.assign(href));
+      };
+
+      pickerButtons.forEach((button) => button.addEventListener('click', () => {
+        const id = button.dataset.islanderPicker;
+        if (!id) return;
+        selected = selected.includes(id) ? selected.filter((item) => item !== id) : [...selected, id];
+        updateSelection();
+      }, { signal: abortController.signal }));
+
+      start.addEventListener('click', () => {
+        if (selected.length !== 2) return;
+        leaving = false;
+        moving = false;
+        dialogueComplete = false;
+        delete root.dataset.departing;
+        chooser.hidden = true;
+        viewer.hidden = false;
+        setViewerMode(true);
+        window.scrollTo(0, 0);
+        updateWalkers();
+        if (!reducedMotion && walkers instanceof HTMLElement && stage instanceof HTMLElement) {
+          const arrivalDistance = Math.ceil(stage.getBoundingClientRect().width / 2 + walkers.getBoundingClientRect().width / 2 + 24);
+          const arrivalDuration = Math.round((arrivalDistance / 280) * 1000);
+          root.style.setProperty('--exhibit-arrival-distance', `${arrivalDistance}px`);
+          root.style.setProperty('--exhibit-arrival-duration', `${arrivalDuration}ms`);
+          root.dataset.arrival = 'prepared';
+          setScene(0, arrivalDuration + 350);
+          void walkers.offsetWidth;
+          animationFrame = window.requestAnimationFrame(() => {
+            animationFrame = window.requestAnimationFrame(() => {
+              root.dataset.arrival = 'walking';
+              later(() => delete root.dataset.arrival, arrivalDuration + 80);
+            });
+          });
+        } else {
+          setScene(0, 0);
+        }
+        if (exit instanceof HTMLAnchorElement) exit.focus();
+      }, { signal: abortController.signal });
+
+      previous.addEventListener('click', () => moveTo(current - 1), { signal: abortController.signal });
+      exit.addEventListener('click', (event) => {
+        if (!(exit instanceof HTMLAnchorElement) || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        leaveExhibition(exit.href);
+      }, { signal: abortController.signal });
+      next.addEventListener('click', () => {
+        if (!dialogueComplete || moving) return;
+        if (current === data.photographs.length - 1) finish();
+        else moveTo(current + 1);
+      }, { signal: abortController.signal });
+      restart.addEventListener('click', () => {
+        clearTimers();
+        ending.hidden = true;
+        chooser.hidden = false;
+        setViewerMode(false);
+        leaving = false;
+        moving = false;
+        dialogueComplete = false;
+        delete root.dataset.departing;
+        selected = [];
+        current = 0;
+        updateSelection();
+        chooser.querySelector('[data-islander-picker]')?.focus();
+      }, { signal: abortController.signal });
+      document.addEventListener('keydown', (event) => {
+        if (viewer.hidden || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.key === 'Escape') {
+          leaveExhibition(exit.getAttribute('href') || '/exhibitions/');
+          return;
+        }
+        if (event.key === 'ArrowLeft') moveTo(current - 1);
+        if (event.key === 'ArrowRight' && dialogueComplete) {
+          if (current === data.photographs.length - 1) finish();
+          else moveTo(current + 1);
+        }
+      }, { signal: abortController.signal });
+
+      updateSelection();
+      document.addEventListener('astro:before-swap', () => {
+        clearTimers();
+        abortController.abort();
+        setViewerMode(false);
+      }, { once: true });
+    })();
+  </script>
+</BaseLayout>

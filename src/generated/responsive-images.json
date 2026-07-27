@@ -141,6 +141,25 @@
         }
       ]
     },
+    "/assets/animal-island-ui/island-museum-logo.png": {
+      "width": 256,
+      "height": 256,
+      "sourceHash": "9f8059edfa766cc45b25c39b168abe7c64d24f5def1d243e0118ba6e92fdd363",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 64,
+          "webp": {
+            "src": "/assets/responsive/animal-island-ui/island-museum-logo.64.1bea1c008dc0.webp",
+            "bytes": 5820
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/island-museum-logo.64.3ba9df625c2e.avif",
+            "bytes": 2383
+          }
+        }
+      ]
+    },
     "/assets/animal-island-ui/menu-bg.webp": {
       "width": 670,
       "height": 200,
@@ -1115,6 +1134,620 @@
           "webp": {
             "src": "/assets/responsive/blog-images/sunset-elsewhere/cover.1672.5a0c0f429835.webp",
             "bytes": 61308
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/first-empty-room/black-swan-family.jpg": {
+      "width": 3024,
+      "height": 4032,
+      "sourceHash": "f8497882e1bde14b06c792069386b9c30b548d4c3b20956399981d60d1153ce9",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.320.ad564109fef2.webp",
+            "bytes": 33218
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.320.591f075cde3f.avif",
+            "bytes": 30271
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.480.624c132ee20f.webp",
+            "bytes": 66404
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.480.d6b002b4e8bf.avif",
+            "bytes": 60525
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.768.43bf4dde4ab0.webp",
+            "bytes": 145244
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.768.4f6081c33c81.avif",
+            "bytes": 130877
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.1024.f5edfdc3d439.webp",
+            "bytes": 227432
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.1024.7c7f8cb8be96.avif",
+            "bytes": 203183
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.1440.10c5681aeec4.webp",
+            "bytes": 362490
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.1440.a664a8b01b2d.avif",
+            "bytes": 320035
+          }
+        },
+        {
+          "width": 3024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.3024.ab34ac445f03.webp",
+            "bytes": 853218
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/black-swan-family.3024.f0d5fc489658.avif",
+            "bytes": 824098
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/first-empty-room/city-above-clouds.jpg": {
+      "width": 3024,
+      "height": 4032,
+      "sourceHash": "e93a3b884eaa33387f2021dff5e87ff0c6c5ab847f4493dcba048865b527c2e3",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/city-above-clouds.320.87cc2ac5c543.webp",
+            "bytes": 8130
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/city-above-clouds.480.5a120dc915e8.webp",
+            "bytes": 14766
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/city-above-clouds.768.4e8010e775ec.webp",
+            "bytes": 29150
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/city-above-clouds.1024.2b9d6b6945d1.webp",
+            "bytes": 45442
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/city-above-clouds.1440.f3b79dc5314a.webp",
+            "bytes": 81750
+          }
+        },
+        {
+          "width": 3024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/city-above-clouds.3024.28bd981188a6.webp",
+            "bytes": 324042
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/first-empty-room/flame-tree-bloom.jpg": {
+      "width": 3024,
+      "height": 1701,
+      "sourceHash": "2bca8eaa4a45976c870eb42892ab05b2b92fcbe9cb1197a952bfde184876d856",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/flame-tree-bloom.320.d3922831e744.webp",
+            "bytes": 11274
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/flame-tree-bloom.480.94ada20f9de2.webp",
+            "bytes": 21884
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/flame-tree-bloom.768.76cb1c355955.webp",
+            "bytes": 48838
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/flame-tree-bloom.1024.c2e4cb3c567f.webp",
+            "bytes": 81640
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/flame-tree-bloom.1440.232d9d5ecff2.webp",
+            "bytes": 140432
+          }
+        },
+        {
+          "width": 3024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/flame-tree-bloom.3024.70a48c5244db.webp",
+            "bytes": 359142
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/first-empty-room/florist-in-the-garden.jpg": {
+      "width": 1295,
+      "height": 1726,
+      "sourceHash": "bb533f5fcbfc47dcd109c2dc3cceec5aef77d858c573912d14b249d4117d3c7b",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/florist-in-the-garden.320.c8015c334bb6.webp",
+            "bytes": 46094
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/florist-in-the-garden.320.9988bf02c427.avif",
+            "bytes": 43048
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/florist-in-the-garden.480.3adbe39a5407.webp",
+            "bytes": 93194
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/florist-in-the-garden.480.da054b8c4884.avif",
+            "bytes": 87588
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/florist-in-the-garden.768.16844a699c8a.webp",
+            "bytes": 193390
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/florist-in-the-garden.768.dfa63e82d773.avif",
+            "bytes": 176559
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/florist-in-the-garden.1024.499cd7de101e.webp",
+            "bytes": 285556
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/florist-in-the-garden.1024.946b44e6ca17.avif",
+            "bytes": 254470
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/first-empty-room/orange-flowers.jpg": {
+      "width": 2588,
+      "height": 3450,
+      "sourceHash": "96811f4235456d8139ffca9206ec22176436ef1c93398566237ca8f682a71061",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.320.266353d125da.webp",
+            "bytes": 54664
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.320.6f6096eaba3b.avif",
+            "bytes": 51892
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.480.25c444872f37.webp",
+            "bytes": 118476
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.480.741e6c58f9e8.avif",
+            "bytes": 105512
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.768.cce7f05a054d.webp",
+            "bytes": 287740
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.768.e009962bdff2.avif",
+            "bytes": 258715
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.1024.2c2385b3c659.webp",
+            "bytes": 471904
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.1024.76f179362777.avif",
+            "bytes": 419670
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.1440.b410dd7e964d.webp",
+            "bytes": 748492
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.1440.28cbaf4a038d.avif",
+            "bytes": 663364
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/first-empty-room/otters-by-window.jpg": {
+      "width": 3024,
+      "height": 4032,
+      "sourceHash": "5675d93844b43e3e18d23254f2be2422652bdec0deff94be412b8f6c7baf9d20",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.320.00462e6ae7bb.webp",
+            "bytes": 22366
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.480.3f6c45f0d60d.webp",
+            "bytes": 39266
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.768.f4620cf29b93.webp",
+            "bytes": 72690
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.1024.d9229818c6c4.webp",
+            "bytes": 113342
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.1440.845c61ca286c.webp",
+            "bytes": 188978
+          }
+        },
+        {
+          "width": 3024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.3024.9485b231cab9.webp",
+            "bytes": 575206
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/first-empty-room/petals-on-water.jpg": {
+      "width": 2522,
+      "height": 2017,
+      "sourceHash": "f78012fad9dcacb25c791d797a3efcb42c0bec178752fef649258f3006026389",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/petals-on-water.320.95ad7c9b32cf.webp",
+            "bytes": 24986
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/petals-on-water.480.57c3ce994c0d.webp",
+            "bytes": 50948
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/petals-on-water.768.6c6adf7d84d3.webp",
+            "bytes": 122488
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/petals-on-water.1024.cb032482cb58.webp",
+            "bytes": 194858
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/petals-on-water.1440.d2937ceca455.webp",
+            "bytes": 298976
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/first-empty-room/swan-and-mountains.jpg": {
+      "width": 2190,
+      "height": 3286,
+      "sourceHash": "c511f6be461a674d81f5559816e2f2865b6704a9a25b672837f250267ac87ef2",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/swan-and-mountains.320.565980dc81a7.webp",
+            "bytes": 35292
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/swan-and-mountains.480.a86b909c924c.webp",
+            "bytes": 79880
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/swan-and-mountains.768.24d9622b3316.webp",
+            "bytes": 185584
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/swan-and-mountains.1024.8cb538799e06.webp",
+            "bytes": 288034
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/swan-and-mountains.1440.cb4f52072204.webp",
+            "bytes": 442920
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/museum-gallery-floor-v1.png": {
+      "width": 1254,
+      "height": 1254,
+      "sourceHash": "dfe82102920381c4737d722e00a2c505534ab6354b244c197d7f76aa360a7ff6",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.320.b6047163e390.webp",
+            "bytes": 110592
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.320.bda9477c8ab3.avif",
+            "bytes": 18703
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.480.334bb87a521a.webp",
+            "bytes": 250636
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.480.f998c11a9e72.avif",
+            "bytes": 38059
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.768.d0e57eb6f3e1.webp",
+            "bytes": 672348
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.768.8539b40c3ad4.avif",
+            "bytes": 108672
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.1024.efae13d862b3.webp",
+            "bytes": 1224488
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.1024.5989b982b3f0.avif",
+            "bytes": 189585
+          }
+        },
+        {
+          "width": 1254,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.1254.564728bc0597.webp",
+            "bytes": 1844960
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-floor-v1.1254.0dfe645918cb.avif",
+            "bytes": 273921
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/museum-gallery-wall-v1.png": {
+      "width": 1254,
+      "height": 1254,
+      "sourceHash": "821ad4649a07cfd97120ec3b7087274049f3c9ba7fcb753063467929b656791e",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.320.b775ec540476.webp",
+            "bytes": 82416
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.320.164f7a99f25d.avif",
+            "bytes": 5799
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.480.683ce013eafe.webp",
+            "bytes": 202676
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.480.c7f938d4568c.avif",
+            "bytes": 15386
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.768.24a614c83abe.webp",
+            "bytes": 579684
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.768.fe80a6e2da73.avif",
+            "bytes": 62760
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.1024.b1fb07d58143.webp",
+            "bytes": 1080878
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.1024.e10407a1c96c.avif",
+            "bytes": 129186
+          }
+        },
+        {
+          "width": 1254,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.1254.938807c49108.webp",
+            "bytes": 1625144
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gallery-wall-v1.1254.48a4880b436f.avif",
+            "bytes": 197592
+          }
+        }
+      ]
+    },
+    "/assets/exhibitions/museum-gilt-frame.png": {
+      "width": 1130,
+      "height": 1130,
+      "sourceHash": "607c74ef27fcab4ebe3886edd04cab1280c173a6f87b2666421a69cf742a2fa3",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.320.d381d52d27b4.webp",
+            "bytes": 73246
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.320.7b5385f57488.avif",
+            "bytes": 14550
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.480.98609bd88abf.webp",
+            "bytes": 160606
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.480.1aa75ad3dba9.avif",
+            "bytes": 35933
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.768.c7e60e2b9a78.webp",
+            "bytes": 399668
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.768.5b049a3df26c.avif",
+            "bytes": 84950
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.1024.58ee1181b0d9.webp",
+            "bytes": 682008
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.1024.efb91d3b755a.avif",
+            "bytes": 128837
+          }
+        },
+        {
+          "width": 1130,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.1130.ff986be39ec9.webp",
+            "bytes": 820466
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/museum-gilt-frame.1130.b9f3e3fbb3a7.avif",
+            "bytes": 152460
           }
         }
       ]
