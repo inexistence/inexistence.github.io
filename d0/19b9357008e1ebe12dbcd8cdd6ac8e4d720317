@@ -1,0 +1,62 @@
+docs/exhibition-maintenance.md
+  s_d9d34179e51319::t_9348e83be0248f 1-35
+scripts/generate-responsive-images.mjs
+  s_d9d34179e51319::t_dd4353cfb554f6 17-21
+src/components/SiteHeader.astro
+  s_bbf13f484f2a84::t_9acab34f78313c 47-55
+src/content.config.ts
+  s_d9d34179e51319::t_e753764c265ac1 19-49
+src/content/exhibitions/first-empty-room.md
+  s_d9d34179e51319::t_ed615f23864f93 1-9
+src/content/photographs/first-empty-room-01.md
+  s_d9d34179e51319::t_0a1666c0f2cbc2 1-36
+src/content/photographs/first-empty-room-02.md
+  s_d9d34179e51319::t_a5ceaeb6a864e1 1-36
+src/content/photographs/first-empty-room-03.md
+  s_d9d34179e51319::t_1feda215380752 1-36
+src/content/photographs/first-empty-room-04.md
+  s_d9d34179e51319::t_06ce5b5de14700 1-36
+src/content/photographs/first-empty-room-05.md
+  s_d9d34179e51319::t_8ee8db56185e6b 1-36
+src/content/photographs/first-empty-room-06.md
+  s_d9d34179e51319::t_d36006516e1b2f 1-36
+src/content/photographs/first-empty-room-07.md
+  s_d9d34179e51319::t_b43ea8f69eda4d 1-36
+src/content/photographs/first-empty-room-08.md
+  s_d9d34179e51319::t_59944f016674c7 1-36
+src/lib/exhibitions.ts
+  s_d9d34179e51319::t_a86f53943697f8 1-80
+src/lib/islanders.ts
+  s_d9d34179e51319::t_5216a00f51e29b 12,18,24,30,36,42,48,54,60,66
+src/pages/exhibitions/index.astro
+  s_d9d34179e51319::t_3fef37b7448d63 1-54
+src/pages/index.astro
+  s_d9d34179e51319::t_0fa49f9f0d5724 11,17,148-167
+src/styles/home.css
+  s_bbf13f484f2a84::t_de868f21b4d5af 10-53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "d019b9357008e1ebe12dbcd8cdd6ac8e4d720317",
+  "prompts": {},
+  "logical_commit_id": "d019b9357008e1ebe12dbcd8cdd6ac8e4d720317",
+  "sessions": {
+    "s_bbf13f484f2a84": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa3f6-1215-7ea1-afca-8e5b0cf31f17",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    },
+    "s_d9d34179e51319": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa2c6-b07b-76e0-a62c-b8ebe328fe10",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
