@@ -1,6 +1,6 @@
 import { Collapse } from 'animal-island-ui/es/components/Collapse/Collapse.js';
 import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
-import { categoryColor } from '../lib/category';
+import { categoryColor, categoryUrl } from '../lib/category';
 
 interface ArchiveItem {
   title: string;
@@ -27,18 +27,20 @@ export default function ArchiveCollapse({ groups }: { groups: YearGroup[] }) {
             <ul className="archive-collapse-list">
               {group.posts.map((post) => (
                 <li key={post.href}>
-                  <a href={post.href}>
-                    <span>{post.title}</span>
+                  <a className="archive-collapse-list__title" href={post.href}>{post.title}</a>
+                  <div className="archive-collapse-list__meta">
                     <time dateTime={post.publishDate}>{post.date}</time>
-                    <Tag
-                      className="archive-collapse-list__tag"
-                      size="small"
-                      variant="soft"
-                      color={categoryColor(post.category)}
-                    >
-                      {post.category}
-                    </Tag>
-                  </a>
+                    <a href={categoryUrl(post.category)} aria-label={`查看${post.category}小径`}>
+                      <Tag
+                        className="archive-collapse-list__tag"
+                        size="small"
+                        variant="soft"
+                        color={categoryColor(post.category)}
+                      >
+                        {post.category}
+                      </Tag>
+                    </a>
+                  </div>
                 </li>
               ))}
             </ul>

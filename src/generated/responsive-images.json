@@ -12,33 +12,33 @@
           "width": 320,
           "webp": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.320.741de12d5eac.webp",
-            "bytes": 10608
+            "bytes": 10596
           },
           "avif": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.320.adb2eebbc7ae.avif",
-            "bytes": 9388
+            "bytes": 9390
           }
         },
         {
           "width": 480,
           "webp": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.480.5f563a4cd036.webp",
-            "bytes": 17190
+            "bytes": 17198
           },
           "avif": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.480.e391c7d0b43a.avif",
-            "bytes": 14713
+            "bytes": 14408
           }
         },
         {
           "width": 768,
           "webp": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.768.a956922c7c47.webp",
-            "bytes": 30884
+            "bytes": 30886
           },
           "avif": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.768.d1f0ef18af8d.avif",
-            "bytes": 23416
+            "bytes": 23102
           }
         },
         {
@@ -49,18 +49,18 @@
           },
           "avif": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.1024.529f822d0301.avif",
-            "bytes": 31798
+            "bytes": 31299
           }
         },
         {
           "width": 1440,
           "webp": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.1440.d4e84c5f1733.webp",
-            "bytes": 68634
+            "bytes": 68632
           },
           "avif": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.1440.388d3f7297f2.avif",
-            "bytes": 46413
+            "bytes": 45960
           }
         },
         {
@@ -71,7 +71,7 @@
           },
           "avif": {
             "src": "/assets/responsive/animal-island-ui/animal-icon.1952.48684afd33bf.avif",
-            "bytes": 71140
+            "bytes": 70578
           }
         }
       ]
@@ -174,6 +174,10 @@
           "webp": {
             "src": "/assets/responsive/animal-island-ui/welcome-panel.320.af1880d2804c.webp",
             "bytes": 18074
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.320.4a4e99aa8e41.avif",
+            "bytes": 16793
           }
         },
         {
@@ -181,6 +185,10 @@
           "webp": {
             "src": "/assets/responsive/animal-island-ui/welcome-panel.480.574720e60380.webp",
             "bytes": 30378
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.480.60b424fe6759.avif",
+            "bytes": 28701
           }
         },
         {
@@ -188,13 +196,21 @@
           "webp": {
             "src": "/assets/responsive/animal-island-ui/welcome-panel.768.e5a0237d1f90.webp",
             "bytes": 57224
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.768.5b53af731ba3.avif",
+            "bytes": 54507
           }
         },
         {
           "width": 1024,
           "webp": {
             "src": "/assets/responsive/animal-island-ui/welcome-panel.1024.c2c57dfa8af8.webp",
-            "bytes": 82900
+            "bytes": 82938
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.1024.49a8e0f1e789.avif",
+            "bytes": 82918
           }
         },
         {
@@ -202,6 +218,10 @@
           "webp": {
             "src": "/assets/responsive/animal-island-ui/welcome-panel.1254.f9e531b940ab.webp",
             "bytes": 131298
+          },
+          "avif": {
+            "src": "/assets/responsive/animal-island-ui/welcome-panel.1254.ec7a4643a8e5.avif",
+            "bytes": 130163
           }
         }
       ]
@@ -230,7 +250,7 @@
           "width": 768,
           "webp": {
             "src": "/assets/responsive/blog-images/2015/1/2015-01-01.768.337977805a39.webp",
-            "bytes": 15176
+            "bytes": 15144
           }
         },
         {
@@ -346,7 +366,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.480.2d3f7c89f2c7.avif",
-            "bytes": 10761
+            "bytes": 10605
           }
         },
         {
@@ -357,7 +377,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.768.5c3305606063.avif",
-            "bytes": 30066
+            "bytes": 29722
           }
         },
         {
@@ -368,7 +388,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.1024.f52c42a1c02c.avif",
-            "bytes": 61571
+            "bytes": 61145
           }
         },
         {
@@ -379,7 +399,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/chinese-webfont-subsetting/cover.1536.0771d4003b4a.avif",
-            "bytes": 160117
+            "bytes": 159349
           }
         }
       ]
@@ -409,7 +429,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.480.66a7e083f969.avif",
-            "bytes": 19457
+            "bytes": 19354
           }
         },
         {
@@ -420,7 +440,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.768.0e5e53f91a9f.avif",
-            "bytes": 62112
+            "bytes": 62289
           }
         },
         {
@@ -431,7 +451,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.1024.f79cb56098e4.avif",
-            "bytes": 125811
+            "bytes": 126637
           }
         },
         {
@@ -442,7 +462,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/from-giscus-to-waline/cover.1672.5d18c483ad51.avif",
-            "bytes": 313766
+            "bytes": 313817
           }
         }
       ]
@@ -472,7 +492,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.480.720be23486d6.avif",
-            "bytes": 44986
+            "bytes": 46211
           }
         },
         {
@@ -483,7 +503,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.768.f89dea747a41.avif",
-            "bytes": 105979
+            "bytes": 104475
           }
         },
         {
@@ -494,7 +514,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-architecture.1024.ff3e0482f1ae.avif",
-            "bytes": 148029
+            "bytes": 143876
           }
         }
       ]
@@ -546,7 +566,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.1024.ed48e42a950d.avif",
-            "bytes": 11160
+            "bytes": 10960
           }
         },
         {
@@ -557,7 +577,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.1440.edfac7e08098.avif",
-            "bytes": 18819
+            "bytes": 18518
           }
         },
         {
@@ -568,7 +588,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/function-calling-mcp-skills/mcp-workflow.7152.574970a4765f.avif",
-            "bytes": 141593
+            "bytes": 138926
           }
         }
       ]
@@ -605,7 +625,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.480.412e5f254de8.avif",
-            "bytes": 10585
+            "bytes": 10509
           }
         },
         {
@@ -616,7 +636,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.768.bee3e5186614.avif",
-            "bytes": 33388
+            "bytes": 33245
           }
         },
         {
@@ -627,7 +647,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.1024.b2152a7f5bb1.avif",
-            "bytes": 67669
+            "bytes": 67661
           }
         },
         {
@@ -638,7 +658,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.1440.72d8d2d5270d.avif",
-            "bytes": 145373
+            "bytes": 145185
           }
         },
         {
@@ -649,7 +669,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/performance-optimization-without-removing-motion/cover.1672.af88fe6247a7.avif",
-            "bytes": 195289
+            "bytes": 194963
           }
         }
       ]
@@ -701,7 +721,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/rag-introduction/flowchart-rag-safe-input.1024.bf3be07c8ca9.avif",
-            "bytes": 9026
+            "bytes": 8911
           }
         }
       ]
@@ -806,7 +826,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.320.55ef04400ad7.avif",
-            "bytes": 8392
+            "bytes": 8397
           }
         },
         {
@@ -817,7 +837,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.480.693e5f4e3d3a.avif",
-            "bytes": 18979
+            "bytes": 18891
           }
         },
         {
@@ -828,7 +848,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.768.33cee6ee040d.avif",
-            "bytes": 58702
+            "bytes": 58838
           }
         },
         {
@@ -839,7 +859,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.1024.9261485a5d04.avif",
-            "bytes": 118359
+            "bytes": 118876
           }
         },
         {
@@ -850,7 +870,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.1440.97014d272e05.avif",
-            "bytes": 232816
+            "bytes": 233464
           }
         },
         {
@@ -861,7 +881,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/rag-introduction/rag-retrieval-owl-cover.1672.ae0b38d1ab9a.avif",
-            "bytes": 311077
+            "bytes": 311048
           }
         }
       ]
@@ -876,11 +896,11 @@
           "width": 320,
           "webp": {
             "src": "/assets/responsive/blog-images/rag-introduction/rag-system.320.5db13e1e36cd.webp",
-            "bytes": 81138
+            "bytes": 81188
           },
           "avif": {
             "src": "/assets/responsive/blog-images/rag-introduction/rag-system.320.c4333ed5045d.avif",
-            "bytes": 19440
+            "bytes": 19284
           }
         },
         {
@@ -971,7 +991,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/reverse-turing-test/cover.480.7551196fb7a2.avif",
-            "bytes": 16211
+            "bytes": 16002
           }
         },
         {
@@ -982,7 +1002,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/reverse-turing-test/cover.768.5cd8688384b7.avif",
-            "bytes": 52112
+            "bytes": 51872
           }
         },
         {
@@ -993,7 +1013,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/reverse-turing-test/cover.1024.69b6c45fc13f.avif",
-            "bytes": 100938
+            "bytes": 100671
           }
         },
         {
@@ -1004,7 +1024,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/reverse-turing-test/cover.1440.9fa149739a66.avif",
-            "bytes": 195416
+            "bytes": 194768
           }
         },
         {
@@ -1015,7 +1035,7 @@
           },
           "avif": {
             "src": "/assets/responsive/blog-images/reverse-turing-test/cover.1672.b3002851abe6.avif",
-            "bytes": 259905
+            "bytes": 259446
           }
         }
       ]
@@ -1059,7 +1079,7 @@
           "width": 320,
           "webp": {
             "src": "/assets/responsive/blog-images/sunset-elsewhere/cover.320.e7c3ba0977b8.webp",
-            "bytes": 1222
+            "bytes": 1226
           }
         },
         {
@@ -1087,7 +1107,7 @@
           "width": 1440,
           "webp": {
             "src": "/assets/responsive/blog-images/sunset-elsewhere/cover.1440.55d268adfda8.webp",
-            "bytes": 27346
+            "bytes": 27348
           }
         },
         {
@@ -1166,14 +1186,14 @@
           "width": 480,
           "webp": {
             "src": "/assets/responsive/page-scenes/archive/time-trail-scene.480.f474e6191623.webp",
-            "bytes": 12130
+            "bytes": 12136
           }
         },
         {
           "width": 768,
           "webp": {
             "src": "/assets/responsive/page-scenes/archive/time-trail-scene.768.7db6836929a5.webp",
-            "bytes": 20686
+            "bytes": 20690
           }
         },
         {
@@ -1209,7 +1229,7 @@
           "width": 320,
           "webp": {
             "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.320.ff3487acc981.webp",
-            "bytes": 7434
+            "bytes": 7436
           },
           "avif": {
             "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.320.f3d440d7fcdb.avif",
@@ -1224,18 +1244,18 @@
           },
           "avif": {
             "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.480.0d996305e674.avif",
-            "bytes": 11241
+            "bytes": 11111
           }
         },
         {
           "width": 768,
           "webp": {
             "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.768.0717fbea1379.webp",
-            "bytes": 20584
+            "bytes": 20576
           },
           "avif": {
             "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.768.fcfe259057f2.avif",
-            "bytes": 19314
+            "bytes": 19097
           }
         },
         {
@@ -1246,7 +1266,7 @@
           },
           "avif": {
             "src": "/assets/responsive/page-scenes/guestbook/message-corner-scene-v2.1024.b5234c42bec5.avif",
-            "bytes": 27727
+            "bytes": 27442
           }
         }
       ]

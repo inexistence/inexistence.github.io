@@ -3,10 +3,13 @@ import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
 import { Title } from 'animal-island-ui/es/components/Title/Title.js';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArchiveCollapse from '../../components/ArchiveCollapse';
+import CategoryTrailNav from '../../components/CategoryTrailNav.astro';
 import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import { categoryUrl, getCategorySummaries } from '../../lib/category';
 import { formatDate, getDateParts, getPublishedPosts } from '../../lib/posts';
 
 const posts = await getPublishedPosts();
+const categories = getCategorySummaries(posts);
 const grouped = posts.reduce((map, post) => {
   const { year } = getDateParts(post.data.publishDate);
   const entries = map.get(year) ?? [];
@@ -60,7 +63,7 @@ const groups = [...grouped].map(([year, entries]) => ({
               <li data-reveal style={`--reveal-delay:${80 + Math.min(index, 3) * 55}ms; --reveal-distance:10px;`}>
                 <time datetime={post.publishDate}>{post.date}</time>
                 <a href={post.href}>{post.title}</a>
-                <span>{post.category}</span>
+                <a class="archive-year__category" href={categoryUrl(post.category)}>{post.category}</a>
               </li>
             ))}
           </ol>
@@ -71,5 +74,17 @@ const groups = [...grouped].map(([year, entries]) => ({
     <div class="archive__mobile" data-reveal>
       <ArchiveCollapse client:visible groups={groups} />
     </div>
+  </section>
+
+  <section class="archive-routes shell" aria-labelledby="archive-routes-title" data-reveal>
+    <div class="archive-routes__divider" aria-hidden="true"><Divider type="wave-yellow" /></div>
+    <div class="archive-routes__heading">
+      <div>
+        <p class="eyebrow">A DIFFERENT TRAIL</p>
+        <h2 id="archive-routes-title">换条小径</h2>
+      </div>
+      <p>不按时间走的话，也可以按主题慢慢读。</p>
+    </div>
+    <CategoryTrailNav categories={categories} />
   </section>
 </BaseLayout>

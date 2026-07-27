@@ -1,18 +1,17 @@
 ---
 import { Card } from 'animal-island-ui/es/components/Card/Card.js';
-import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 import { getIslanderForPost } from '../lib/islanders';
 import { sharedRemarkPlugins, sharedShikiConfig } from '../lib/markdown-config.mjs';
-import { categoryColor, formatDate, getPostIntroMarkdownBlocks, type Post } from '../lib/posts';
+import { formatDate, getPostIntroMarkdownBlocks, type Post } from '../lib/posts';
 import ResponsiveImage from './ResponsiveImage.astro';
 
 interface Props {
   post: Post;
+  index: number;
 }
 
-const { post } = Astro.props;
-const color = categoryColor(post.data.category);
+const { post, index } = Astro.props;
 const islander = getIslanderForPost(post);
 const excerptRenderer = await createMarkdownProcessor({
   remarkPlugins: sharedRemarkPlugins,
@@ -45,7 +44,7 @@ const introHtmlBlocks = await Promise.all(getPostIntroMarkdownBlocks(post).map(a
       <p class="category-post-card__resident"><strong>{islander.name}</strong><span> · {islander.specialty}</span></p>
       <h2>{post.data.title}</h2>
       <div class="category-post-card__meta">
-        <Tag size="small" variant="soft" color={color}>{post.data.category}</Tag>
+        <span class="category-post-card__stop">第 {String(index + 1).padStart(2, '0')} 站</span>
         <time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time>
       </div>
       <div class="category-post-card__reading">

@@ -1,24 +1,26 @@
 ---
-import { Button } from 'animal-island-ui/es/components/Button/Button.js';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryTrailNav from '../../components/CategoryTrailNav.astro';
 import CategoryPostCard from '../../components/CategoryPostCard.astro';
+import { getCategorySummaries, type CategorySummary } from '../../lib/category';
 import { categoryColor, getPublishedPosts, type Post } from '../../lib/posts';
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
-  const categories = [...new Set(posts.map((post) => post.data.category))];
-  return categories.map((category) => ({
+  const categories = getCategorySummaries(posts);
+  return categories.map(({ name: category }) => ({
     params: { category },
-    props: { category, posts: posts.filter((post) => post.data.category === category) },
+    props: { category, posts: posts.filter((post) => post.data.category === category), categories },
   }));
 }
 
 interface Props {
   category: string;
   posts: Post[];
+  categories: CategorySummary[];
 }
 
-const { category, posts } = Astro.props;
+const { category, posts, categories } = Astro.props;
 const color = categoryColor(category);
 ---
 
@@ -32,13 +34,15 @@ const color = categoryColor(category);
   </header>
 
   <section class="shell section category-list">
-    <div class="category-post-list">
-      {posts.map((post) => <CategoryPostCard post={post} />)}
-    </div>
-    <div class="section-action">
-      <form action="/archive/">
-        <Button type="default" size="large" htmlType="submit">返回完整岛志</Button>
-      </form>
+    <div class="category-trail-layout">
+      <aside class="category-trail-aside" data-reveal>
+        <a class="category-trail-aside__back" href="/archive/">← 返回完整岛志</a>
+        <p>换一条小径</p>
+        <CategoryTrailNav categories={categories} currentCategory={category} variant="aside" />
+      </aside>
+      <div class="category-post-list">
+        {posts.map((post, index) => <CategoryPostCard post={post} index={index} />)}
+      </div>
     </div>
   </section>
 </BaseLayout>

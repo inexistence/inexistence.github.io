@@ -2,24 +2,19 @@
 import { Button } from 'animal-island-ui/es/components/Button/Button.js';
 import { Card } from 'animal-island-ui/es/components/Card/Card.js';
 import { Divider } from 'animal-island-ui/es/components/Divider/Divider.js';
+import { Icon } from 'animal-island-ui';
 import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
+import { getCategorySummaries } from '../lib/category';
 import { categoryColor, formatDate, getPublishedPosts } from '../lib/posts';
 
 const posts = await getPublishedPosts();
 const trailPosts = posts.slice(0, 5);
-const categories = [...posts.reduce((map, post) => {
-  map.set(post.data.category, (map.get(post.data.category) ?? 0) + 1);
-  return map;
-}, new Map<string, number>())];
+const categories = getCategorySummaries(posts);
 
 const trailItems = ['star-wand', 'flower', 'fish', 'bell-bag', 'coin'];
 const trailColors = ['app-yellow', 'app-pink', 'app-blue', 'app-orange', 'app-green'] as const;
-const categoryIcons: Record<string, string> = {
-  技术: 'recipes',
-  日志: 'chat',
-};
 ---
 
 <BaseLayout bodyClass="home-page">
@@ -126,13 +121,13 @@ const categoryIcons: Record<string, string> = {
         <p>去技术区翻翻工具箱，去日志区听听旧故事；也可以不选方向，继续散步。</p>
       </div>
       <div class="directory-apps">
-        {categories.map(([category, count], index) => (
-          <a href={`/category/${encodeURIComponent(category)}/`} class="directory-app" data-reveal style={`--app-index:${index}`}>
+        {categories.map((category, index) => (
+          <a href={category.href} class="directory-app" data-reveal style={`--app-index:${index}`}>
             <span class="directory-app__icon">
-              <img src={`/assets/animal-island-ui/${categoryIcons[category] ?? 'shopping'}.svg`} alt="" width="96" height="96" />
+              <Icon name={category.icon} size="100%" aria-hidden="true" />
             </span>
-            <strong>{category}</strong>
-            <small>{count} 篇记录</small>
+            <strong>{category.name}</strong>
+            <small>{category.count} 篇记录</small>
           </a>
         ))}
       </div>
