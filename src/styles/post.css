@@ -1,0 +1,314 @@
+/* Reading layout and article prose. */
+.post-header {
+  position: relative;
+  overflow: hidden;
+  padding: 128px 0 46px;
+  background: var(--island-mint);
+  isolation: isolate;
+}
+
+.post-header--app-yellow { background: #e8c96f; }
+.post-header--app-teal { background: #85c7b0; }
+.post-header--purple { background: #b5a1cb; }
+.post-header--app-orange { background: #dcad7a; }
+.post-header--warm-peach-pink { background: #dda593; }
+
+.post-header::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: 0.34;
+  background-image: var(--responsive-background-animal-island-ui-home-bg-1012, url('/assets/animal-island-ui/home-bg.webp'));
+  background-repeat: repeat;
+  background-position: center top;
+  background-size: 520px auto;
+  content: '';
+  filter: grayscale(1) contrast(1.65) brightness(1.35);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.post-header::after {
+  display: none;
+}
+
+.post-header__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.post-header__back {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  margin: -8px 0 8px;
+  padding-inline: 2px;
+  font-size: 0.84rem;
+  font-weight: 750;
+  text-decoration: none;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.post-header__content {
+  width: min(100%, 920px);
+  padding-block: 0 clamp(18px, 2vw, 24px);
+}
+
+.post-header__back:hover {
+  color: var(--island-mint-dark);
+  transform: translateX(-3px);
+}
+
+.post-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  color: color-mix(in oklch, var(--island-brown) 94%, black);
+  font-size: 0.84rem;
+}
+
+.post-header h1 {
+  max-width: 800px;
+  margin: 22px 0 18px;
+  color: var(--island-brown);
+  font-family: 'Nunito', var(--site-font-stack);
+  font-size: clamp(3rem, 6.8vw, 6.1rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+  text-shadow: none;
+}
+
+.post-header__content > p:last-child {
+  max-width: 58ch;
+  margin: 0;
+  color: color-mix(in oklch, var(--island-brown) 96%, black);
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+.post-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 760px) 220px;
+  justify-content: space-between;
+  gap: clamp(40px, 7vw, 100px);
+  padding-block: clamp(48px, 4.5vw, 68px) clamp(82px, 8vw, 116px);
+}
+
+.post-layout__main {
+  min-width: 0;
+}
+
+.post-cover {
+  margin: 0 0 60px;
+  overflow: hidden;
+  border: 10px solid var(--island-paper);
+  border-radius: 38px 55px 35px 50px;
+  box-shadow: var(--shadow-soft);
+  transform: rotate(-0.8deg);
+}
+
+.post-cover img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+}
+
+.post-toc {
+  position: sticky;
+  top: 32px;
+  align-self: start;
+  padding-top: 18px;
+  border-top: 3px solid var(--island-yellow);
+}
+
+.post-toc > p {
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.post-toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-toc li {
+  margin: 8px 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.post-toc li.depth-3 {
+  padding-left: 14px;
+}
+
+.post-toc a {
+  display: block;
+  padding: 0 8px;
+  border-left: 3px solid transparent;
+  border-radius: 0 10px 10px 0;
+  color: var(--island-brown-soft);
+  text-decoration: none;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.post-toc a:hover {
+  color: var(--island-mint-deep);
+}
+
+.post-toc a.is-active,
+.post-toc a[aria-current='location'] {
+  border-left-color: var(--island-mint-deep);
+  color: var(--island-brown);
+  background: color-mix(in oklch, var(--island-mint) 24%, transparent);
+  font-weight: 800;
+}
+
+.prose {
+  min-width: 0;
+  color: color-mix(in oklch, var(--island-brown) 92%, black);
+  font-family: var(--site-font-stack);
+  font-size: clamp(1rem, 1.4vw, 1.08rem);
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--island-brown);
+  font-family: 'Nunito', var(--site-font-stack);
+  line-height: 1.28;
+  scroll-margin-top: 30px;
+}
+
+.prose h2 {
+  margin: 2.6em 0 0.8em;
+  font-size: clamp(1.8rem, 4vw, 2.65rem);
+}
+
+.prose h2::before {
+  display: inline-block;
+  width: 0.58em;
+  height: 0.4em;
+  margin-right: 0.32em;
+  border-radius: 100% 0 100% 0;
+  background: var(--island-mint-deep);
+  content: '';
+  transform: rotate(-20deg);
+}
+
+.prose h3 {
+  margin: 2em 0 0.6em;
+  font-size: 1.4rem;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose pre,
+.prose table {
+  margin-block: 1.35em;
+}
+
+.prose a {
+  color: #337542;
+  font-weight: 650;
+}
+
+.prose img {
+  width: auto;
+  max-height: 680px;
+  margin: 2.3em auto;
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.prose blockquote {
+  position: relative;
+  margin-inline: 0;
+  padding: 24px 28px 24px 58px;
+  border: 0;
+  border-radius: 18px 28px 20px 26px;
+  color: var(--island-brown);
+  background: color-mix(in oklch, var(--island-mint) 24%, var(--island-paper));
+}
+
+.prose blockquote::before {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  color: var(--island-mint-deep);
+  content: '“';
+  font-family: Georgia, serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.prose blockquote > :first-child { margin-top: 0; }
+.prose blockquote > :last-child { margin-bottom: 0; }
+
+.prose :not(pre) > code {
+  padding: 0.18em 0.4em;
+  border-radius: 7px;
+  color: #8a4d3c;
+  background: #efe3ca;
+  font-size: 0.88em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 24px;
+  border: 1px solid var(--island-line);
+  border-radius: 18px;
+  box-shadow: 0 12px 34px rgba(76, 67, 52, 0.08);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.prose th,
+.prose td {
+  min-width: 130px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--island-line);
+  text-align: left;
+}
+
+.prose th {
+  background: color-mix(in oklch, var(--island-sand) 35%, transparent);
+}
+
+.prose hr {
+  width: 68%;
+  height: 14px;
+  margin: 3em auto;
+  border: 0;
+  background: radial-gradient(circle at center, var(--island-yellow) 0 4px, transparent 5px) 0 50% / 28px 14px repeat-x;
+}
+
+.post-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding-block: 70px 130px;
+}
+
