@@ -154,6 +154,13 @@ export function getPostIntroMarkdownBlocks(post: Post) {
   for (const rawLine of lines) {
     const line = rawLine.trim();
 
+    // MDX posts can import interactive islands before the body. Imports are
+    // implementation details, not prose that belongs in a category excerpt.
+    if (!insideCodeFence && /^(?:import|export)\s/.test(line)) {
+      completeBlock();
+      continue;
+    }
+
     if (codeFence.test(line)) {
       if (!insideCodeFence && currentBlock.length) completeBlock();
       currentBlock.push(rawLine);

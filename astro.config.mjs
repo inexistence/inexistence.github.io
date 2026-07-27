@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import { unified } from '@astrojs/markdown-remark';
@@ -27,6 +28,7 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   integrations: [
+    mdx(),
     react(),
     sitemap({
       filter: (page) => !/\/\d{4}\/\d{2}\/\d{2}\//.test(new URL(page).pathname),
