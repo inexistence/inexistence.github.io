@@ -1,0 +1,26 @@
+src/styles/collection-pages.css
+  s_40f803b92c9ed1::t_030d4192fc130f 869-1038
+src/styles/comments.css
+  s_40f803b92c9ed1::t_4d5052c8ef0b97 222-237
+src/styles/global.css
+  s_40f803b92c9ed1::t_1f9194ed64248d 221
+src/styles/post.css
+  s_40f803b92c9ed1::t_f3ecf10a4a7c75 315-430
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "3567ac273a5538eb04617b9e9b4b14134aa60f2f",
+  "prompts": {},
+  "logical_commit_id": "3567ac273a5538eb04617b9e9b4b14134aa60f2f",
+  "sessions": {
+    "s_40f803b92c9ed1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa2b4-dd5d-7ee0-afcd-53b2e1a76cf8",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
