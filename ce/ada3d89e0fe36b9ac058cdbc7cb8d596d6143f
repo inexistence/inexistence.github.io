@@ -1,0 +1,24 @@
+src/pages/index.astro
+  s_01ec1c37d42754::t_d19ac9f667cd11 7
+src/styles/home.css
+  s_01ec1c37d42754::t_c7f52d1233d340 1-957
+src/styles/rag-labs.css
+  s_01ec1c37d42754::t_9decf714863350 1-562
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "ceada3d89e0fe36b9ac058cdbc7cb8d596d6143f",
+  "prompts": {},
+  "logical_commit_id": "ceada3d89e0fe36b9ac058cdbc7cb8d596d6143f",
+  "sessions": {
+    "s_01ec1c37d42754": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa208-2f11-70c0-a1d1-2e284d96fcb6",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
