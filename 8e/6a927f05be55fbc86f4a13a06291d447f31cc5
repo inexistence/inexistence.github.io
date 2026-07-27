@@ -1,0 +1,38 @@
+src/components/ArchiveCollapse.tsx
+  s_92fb0a47d1a1df::t_4e9de0349ff02a 3,30-31,33-43
+src/components/CategoryPostCard.astro
+  s_92fb0a47d1a1df::t_5cb71f3c6c445a 6,11,14,47
+src/lib/category.ts
+  s_92fb0a47d1a1df::t_eec9a6f006376f 1-50,52-77
+src/pages/category/[category].astro
+  s_b5ea7b7510d49f::t_110b513695fdb0 3,5,10-11,13,20,23,37-45
+src/pages/index.astro
+  s_92fb0a47d1a1df::t_d9e4565432ceda 5,9,14,124-125,127,129-130
+src/styles/animal-island-components.css
+  s_92fb0a47d1a1df::t_6ad26a201bbd7a 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "8e6a927f05be55fbc86f4a13a06291d447f31cc5",
+  "prompts": {},
+  "logical_commit_id": "8e6a927f05be55fbc86f4a13a06291d447f31cc5",
+  "sessions": {
+    "s_92fb0a47d1a1df": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa1cc-9a50-7e53-85d7-95d4d6fc37ac",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    },
+    "s_b5ea7b7510d49f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa221-ba05-79b2-9f8e-ba3b8963913d",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
