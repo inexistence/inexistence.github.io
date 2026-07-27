@@ -47,6 +47,18 @@ npm run preview
 
 本站不会引入 `animal-island-ui` 的全量 CSS；新增或移除组件时，需要同步更新 `src/styles/animal-island-components.css`。`npm run styles:verify` 会检查源码组件、组件样式清单和主题变量是否一致，并会在开发、检查与构建前自动运行。裁剪逻辑和完整维护流程见[组件库样式维护说明](docs/animal-island-styles.md)。
 
+## 页面样式组织
+
+`src/styles/global.css` 仅存放全站字体与变量、重置与布局基础、导航/页脚等共享样式，以及跨页面的响应式覆盖。页面或功能专属样式应由对应页面直接导入，当前分工如下：
+
+- `home.css`：首页的岛屿旅程与首页 Hero；
+- `collection-pages.css`：归档、分类及这些页面共用的插画 Hero；
+- `post.css`：文章页的头部、目录、正文和相邻文章导航；
+- `comments.css`：文章评论与留言板使用的 Waline 外观；
+- `rag-labs.css`：RAG 文章中的交互实验台。
+
+新增页面时，优先新建或复用对应的页面样式文件，并在页面的 frontmatter import 区直接导入。只有确实被多个页面共同使用的规则，才放回 `global.css`。
+
 ## 开发与维护文档
 
 - [设计规范](DESIGN.md)：新增页面、组件与视觉调整的基准；

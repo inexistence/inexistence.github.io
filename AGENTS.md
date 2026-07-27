@@ -36,6 +36,11 @@ npm run preview   # 预览 dist/
 - `npm run styles:verify` 会双向校验组件导入与样式清单，并检查所需主题变量；不得通过保留无用样式或跳过校验规避报错。
 - 裁剪逻辑、脚本边界与新增／移除组件的维护流程见 [`docs/animal-island-styles.md`](docs/animal-island-styles.md)。
 
+## 页面样式
+
+- 页面专属样式放在 `src/styles/` 的对应文件中，并由页面直接导入；不要把它们继续堆入 `global.css`。
+- `global.css` 只保留全站基础、共享组件与跨页面的响应式规则。新增或调整样式前，先查阅 `README.md` 的“页面样式组织”。
+
 ## 前端运行时
 
 - 默认交付静态 HTML；只为真实客户端交互使用 island，并按交互时机选择合适的 `client:*` 指令。不能以延迟 hydration 为由移除链接、语义或无 JavaScript 回退。
