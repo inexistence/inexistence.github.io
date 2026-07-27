@@ -50,7 +50,7 @@ const socialImage = new URL(image, Astro.site);
   <body class={bodyClass}>
     <a class="skip-link" href="#main-content">跳到主要内容</a>
     <SiteHeader />
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <SiteFooter />
@@ -60,6 +60,7 @@ const socialImage = new URL(image, Astro.site);
         window.__inexistenceRevealControllerInstalled = true;
 
         let observer;
+        let shouldFocusMain = false;
 
         const cleanup = () => {
           observer?.disconnect();
@@ -94,8 +95,16 @@ const socialImage = new URL(image, Astro.site);
         };
 
         initializeRevealItems();
-        document.addEventListener('astro:before-swap', cleanup);
-        document.addEventListener('astro:after-swap', initializeRevealItems);
+        document.addEventListener('astro:before-swap', (event) => {
+          cleanup();
+          shouldFocusMain = event.navigationType !== 'traverse';
+        });
+        document.addEventListener('astro:after-swap', () => {
+          initializeRevealItems();
+          if (shouldFocusMain) {
+            document.querySelector('#main-content')?.focus({ preventScroll: true });
+          }
+        });
       })();
     </script>
   </body>

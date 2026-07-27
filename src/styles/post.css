@@ -312,3 +312,119 @@
   padding-block: 70px 130px;
 }
 
+@media (max-width: 900px) {
+  .post-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .post-toc {
+    display: none;
+  }
+
+  .post-header__content {
+    width: min(100%, 820px);
+  }
+}
+
+@media (max-width: 700px) {
+  .post-header {
+    padding-top: 125px;
+    padding-bottom: 46px;
+  }
+
+  .post-header h1 {
+    margin-top: 18px;
+    font-size: clamp(2.65rem, 13vw, 4.25rem);
+    line-height: 1.04;
+  }
+
+  .post-header__content {
+    width: 100%;
+    padding-block: 0 20px;
+  }
+
+  .post-header__back {
+    margin-bottom: 22px;
+  }
+
+  .post-layout {
+    padding-block: 44px 82px;
+  }
+
+  .post-cover {
+    margin-bottom: 42px;
+    border-width: 6px;
+    border-radius: 25px 35px 24px 32px;
+  }
+
+  .prose {
+    line-height: 1.86;
+  }
+
+  .prose blockquote {
+    padding: 22px 22px 22px 48px;
+  }
+
+  .post-nav {
+    grid-template-columns: 1fr;
+    padding-block: 58px 90px;
+  }
+
+  .post-nav > div,
+  .post-nav form {
+    min-width: 0;
+  }
+
+  .post-nav button {
+    width: 100%;
+    min-height: 48px;
+    height: auto;
+    padding-block: 10px;
+    white-space: normal;
+    line-height: 1.3;
+  }
+
+  .post-nav button span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .post-nav > div:last-child {
+    text-align: left;
+  }
+
+  .back-to-top {
+    right: 6px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    width: 84px;
+    height: 102px;
+  }
+
+  .back-to-top.is-visible {
+    transform: translateX(12px) translateY(3px) rotate(2deg) scale(0.53);
+  }
+
+  .back-to-top.is-visible.is-expanded,
+  .back-to-top.is-visible:hover,
+  .back-to-top.is-visible:focus-visible {
+    transform: translateY(0) rotate(0) scale(1);
+  }
+
+  .back-to-top.is-visible:hover {
+    transform: translateY(-3px) rotate(-1deg) scale(1.025);
+  }
+
+  .back-to-top.is-visible:active {
+    transform: translateX(12px) translateY(5px) rotate(1deg) scale(0.5);
+  }
+
+  .back-to-top.is-visible.is-expanded:active,
+  .back-to-top.is-visible:hover:active,
+  .back-to-top.is-visible:focus-visible:active {
+    transform: translateY(2px) rotate(0) scale(0.98);
+  }
+
+  .back-to-top__label {
+    display: none;
+  }
+}

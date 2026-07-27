@@ -219,3 +219,19 @@
   width: 100%;
 }
 
+@media (max-width: 700px) {
+  .post-comments__heading,
+  .guestbook__heading {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .guestbook {
+    width: min(calc(100% - 28px), 820px);
+    padding-block: 48px 76px;
+  }
+
+  .waline-host .wl-panel {
+    margin-block: 0.65em;
+  }
+}
