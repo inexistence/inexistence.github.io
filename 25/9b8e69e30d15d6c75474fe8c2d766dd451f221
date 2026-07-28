@@ -1,0 +1,33 @@
+src/pages/exhibitions/[slug].astro
+  s_72e5f82fc9e82b::t_4c2b070ec562b2 463,547-548
+  s_72e5f82fc9e82b::t_678f5e8145afc2 205,458,465,469,543,545
+  s_72e5f82fc9e82b::t_55af0f21abb147 466,546
+  s_72e5f82fc9e82b::t_6ac9cff1f39157 459
+  s_72e5f82fc9e82b::t_83cb8845af88cd 206,460-462,464,467-468,544
+src/styles/exhibitions.css
+  s_72e5f82fc9e82b::t_3368fd8f9d189e 345
+  s_72e5f82fc9e82b::t_86c8465f7222d7 287
+  s_72e5f82fc9e82b::t_783eef82b75efe 368
+  s_72e5f82fc9e82b::t_7646ff8fd8f4e5 284,344
+  s_72e5f82fc9e82b::t_db9f2e428b9fdd 285-286,395-396,398-400,402-403
+  s_72e5f82fc9e82b::t_3f10b8872657fc 283
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "259b8e69e30d15d6c75474fe8c2d766dd451f221",
+  "prompts": {},
+  "logical_commit_id": "259b8e69e30d15d6c75474fe8c2d766dd451f221",
+  "sessions": {
+    "s_72e5f82fc9e82b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa86c-3fd5-7451-9751-61dd1817f659",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 47,
+      "total_deletions": 23
+    }
+  }
+}
