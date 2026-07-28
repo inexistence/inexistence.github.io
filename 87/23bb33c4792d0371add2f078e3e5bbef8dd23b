@@ -1,0 +1,23 @@
+src/styles/exhibitions.css
+  s_72e5f82fc9e82b::t_d98a352c490fd8 339
+  s_72e5f82fc9e82b::t_854d3bcdc01a08 452-453
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "8723bb33c4792d0371add2f078e3e5bbef8dd23b",
+  "prompts": {},
+  "logical_commit_id": "8723bb33c4792d0371add2f078e3e5bbef8dd23b",
+  "sessions": {
+    "s_72e5f82fc9e82b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa86c-3fd5-7451-9751-61dd1817f659",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 7,
+      "total_deletions": 9
+    }
+  }
+}
