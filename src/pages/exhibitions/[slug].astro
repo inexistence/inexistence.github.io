@@ -39,7 +39,7 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       <div class="exhibition-tour__loading-visual" aria-hidden="true">
         <ExhibitionLoading client:load />
       </div>
-      <div class="exhibition-tour__loading-copy">
+      <div class="exhibition-tour__loading-copy" data-tour-loading-copy>
         <p class="eyebrow">PREPARING THE GALLERY</p>
         <h2 id="tour-loading-title">正在挂画</h2>
         <p data-tour-loading-status role="status" aria-live="polite">正在挂画 0 / {photographs.length}</p>
@@ -103,13 +103,30 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       <div class="sr-only" data-tour-announcer aria-live="polite" aria-atomic="true"></div>
     </div>
 
-    <div class="exhibition-tour__ending shell" data-tour-ending hidden>
-      <p class="eyebrow">END OF THE WALK</p>
-      <h2>这一趟，走到这里了。</h2>
-      <p data-ending-copy>谢谢两位岛民陪你把这一组照片慢慢看完。</p>
-      <div>
-        <button type="button" data-tour-restart>换两位岛民再走一次</button>
-        <a href="/exhibitions/">回到岛屿展厅</a>
+    <div class="exhibition-tour__ending" data-tour-ending hidden>
+      <div class="exhibition-tour__ending-shell shell">
+        <div class="exhibition-tour__ending-copy">
+          <p class="eyebrow">WALK COMPLETE</p>
+          <h2><span>看完这一组，</span><span>把心情带走。</span></h2>
+          <p data-ending-copy>两位岛民陪你看完了这一组照片。</p>
+          <div class="exhibition-tour__ending-actions">
+            <button type="button" data-tour-restart>换两位岛民再走一次 <span aria-hidden="true">→</span></button>
+            <a href="/exhibitions/">回到岛屿展厅</a>
+          </div>
+        </div>
+        <div class="exhibition-tour__ending-companions" aria-label="本次同行的岛民">
+          <p class="exhibition-tour__ending-companions-label">陪你看完这一组</p>
+          <div class="exhibition-tour__ending-companion-list">
+            <div class="exhibition-tour__ending-companion">
+              <div class="exhibition-tour__ending-portrait"><img data-ending-avatar="0" alt="" /></div>
+              <p data-ending-name="0"></p>
+            </div>
+            <div class="exhibition-tour__ending-companion">
+              <div class="exhibition-tour__ending-portrait"><img data-ending-avatar="1" alt="" /></div>
+              <p data-ending-name="1"></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -163,6 +180,7 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       const restart = root.querySelector('[data-tour-restart]');
       const exit = root.querySelector('[data-tour-exit]');
       const loadingScreen = root.querySelector('[data-tour-loading]');
+      const loadingCopy = root.querySelector('[data-tour-loading-copy]');
       const loadingStatus = root.querySelector('[data-tour-loading-status]');
       const loadingActions = root.querySelector('[data-tour-loading-actions]');
       const loadingRetry = root.querySelector('[data-tour-loading-retry]');
@@ -172,6 +190,8 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       const walkerElements = Array.from(root.querySelectorAll('[data-tour-walkers] .exhibition-tour__walker'));
       const walkerAvatars = Array.from(root.querySelectorAll('[data-walker-avatar]'));
       const walkerNames = Array.from(root.querySelectorAll('[data-walker-name]'));
+      const endingAvatars = Array.from(root.querySelectorAll('[data-ending-avatar]'));
+      const endingNames = Array.from(root.querySelectorAll('[data-ending-name]'));
       const stage = root.querySelector('[data-tour-stage]');
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const dialogueHoldDuration = reducedMotion ? 0 : 1800;
@@ -213,13 +233,21 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         loadingIsland.dataset.revealRequested = 'true';
         loadingIsland.dispatchEvent(new CustomEvent('exhibition-loading:reveal'));
       };
-      const showLoading = () => {
+      const resetLoadingIsland = () => {
+        if (!(loadingScreen instanceof HTMLElement)) return;
+        const loadingIsland = loadingScreen.querySelector('.exhibition-tour__loading-island');
+        if (!(loadingIsland instanceof HTMLElement)) return;
+        loadingIsland.removeAttribute('data-reveal-requested');
+        loadingIsland.dispatchEvent(new CustomEvent('exhibition-loading:reset'));
+      };
+      const showLoading = (showCopy = true) => {
         if (!(loadingScreen instanceof HTMLElement)) return;
         loadingScreen.hidden = false;
         loadingScreen.dataset.state = 'loading';
         delete loadingScreen.dataset.revealRequested;
         loadingScreen.querySelector('.exhibition-tour__loading-island')?.removeAttribute('data-reveal-requested');
         loadingScreen.setAttribute('aria-busy', 'true');
+        if (loadingCopy instanceof HTMLElement) loadingCopy.hidden = !showCopy;
         if (loadingActions instanceof HTMLElement) loadingActions.hidden = true;
         updateLoadingStatus(`正在挂画 ${readyImageCount} / ${scenes.length}`);
       };
@@ -230,6 +258,7 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
           loadingScreen.setAttribute('aria-busy', 'false');
           return;
         }
+        loadingScreen.hidden = false;
         loadingScreen.dataset.state = 'revealing';
         loadingScreen.dataset.revealRequested = 'true';
         loadingScreen.setAttribute('aria-busy', 'false');
@@ -248,6 +277,7 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         if (typeof image.decode === 'function') await image.decode();
       };
       const imagePreparationTimeout = 15_000;
+      const loadingCopyDelay = 400;
       const waitForImage = async (image) => {
         image.loading = 'eager';
         await new Promise((resolve, reject) => {
@@ -476,7 +506,15 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
           viewer.hidden = true;
           ending.hidden = false;
           setViewerMode(true);
-          endingCopy.textContent = `${islander(selected[0]).name}和${islander(selected[1]).name}陪你把这一组照片慢慢看完了。`;
+          endingCopy.textContent = `${islander(selected[0]).name}和${islander(selected[1]).name}陪你看完了这一组照片。`;
+          endingAvatars.forEach((avatar, index) => {
+            if (!(avatar instanceof HTMLImageElement)) return;
+            const companion = islander(selected[index]);
+            avatar.src = companion.avatar;
+          });
+          endingNames.forEach((name, index) => {
+            if (name instanceof HTMLElement) name.textContent = islander(selected[index]).name;
+          });
           ending.querySelector('button')?.focus();
         });
       };
@@ -518,7 +556,6 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       const requestTourStart = (selection) => {
         if (startRequested || selection.length !== 2 || !selection.every((id) => islander(id))) return;
         startRequested = true;
-        showLoading();
         const launch = () => {
           if (disposed) return;
           if (imagePreparationError) {
@@ -532,6 +569,11 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
           launch();
           return;
         }
+        showLoading(false);
+        later(() => {
+          if (disposed || imagePreparationError || imagesPrepared) return;
+          showLoading(true);
+        }, loadingCopyDelay);
         prepareImages.then(launch).catch(() => {
           if (!disposed) showLoadingError();
         });
@@ -572,6 +614,7 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         selected = [];
         current = 0;
         startRequested = false;
+        resetLoadingIsland();
         openPicker(true);
       }, { signal: abortController.signal });
       loadingRetry?.addEventListener('click', () => window.location.reload(), { signal: abortController.signal });

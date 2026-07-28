@@ -33,13 +33,21 @@ export function ExhibitionLoading() {
         });
       });
     };
+    const reset = () => {
+      if (timerRef.current) window.clearTimeout(timerRef.current);
+      timerRef.current = undefined;
+      revealedRef.current = false;
+      setActive(true);
+    };
 
     host.addEventListener('exhibition-loading:reveal', reveal);
+    host.addEventListener('exhibition-loading:reset', reset);
     host.dispatchEvent(new CustomEvent('exhibition-loading:mounted', { bubbles: true }));
     if (host.dataset.revealRequested === 'true') reveal();
 
     return () => {
       host.removeEventListener('exhibition-loading:reveal', reveal);
+      host.removeEventListener('exhibition-loading:reset', reset);
       if (timerRef.current) window.clearTimeout(timerRef.current);
     };
   }, []);
