@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ExhibitionLoading } from '../../components/ExhibitionLoading';
 import IslanderPickerModal from '../../components/IslanderPickerModal.astro';
 import ResponsiveImage from '../../components/ResponsiveImage.astro';
 import responsiveImageManifest from '../../generated/responsive-images.json';
@@ -33,6 +34,21 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
 <BaseLayout title={exhibition.data.title} description={exhibition.data.description} image={exhibition.data.cover} bodyClass="exhibition-tour-page">
   <section class="exhibition-tour" data-exhibition-tour aria-label="选择同行岛民">
     <IslanderPickerModal id="tour-islander-picker" />
+
+    <section class="exhibition-tour__loading" data-tour-loading hidden aria-labelledby="tour-loading-title" aria-busy="true">
+      <div class="exhibition-tour__loading-visual" aria-hidden="true">
+        <ExhibitionLoading client:load />
+      </div>
+      <div class="exhibition-tour__loading-copy">
+        <p class="eyebrow">PREPARING THE GALLERY</p>
+        <h2 id="tour-loading-title">正在挂画</h2>
+        <p data-tour-loading-status role="status" aria-live="polite">正在挂画 0 / {photographs.length}</p>
+        <div class="exhibition-tour__loading-actions" data-tour-loading-actions hidden>
+          <button type="button" data-tour-loading-retry>重新布展</button>
+          <a href="/exhibitions/" data-tour-loading-exit>返回展厅</a>
+        </div>
+      </div>
+    </section>
 
     <div class="exhibition-tour__viewer" data-tour-viewer hidden>
       <div class="exhibition-tour__stage" data-tour-stage>
@@ -146,6 +162,11 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       const endingCopy = root.querySelector('[data-ending-copy]');
       const restart = root.querySelector('[data-tour-restart]');
       const exit = root.querySelector('[data-tour-exit]');
+      const loadingScreen = root.querySelector('[data-tour-loading]');
+      const loadingStatus = root.querySelector('[data-tour-loading-status]');
+      const loadingActions = root.querySelector('[data-tour-loading-actions]');
+      const loadingRetry = root.querySelector('[data-tour-loading-retry]');
+      const loadingExit = root.querySelector('[data-tour-loading-exit]');
       const scenes = Array.from(root.querySelectorAll('[data-scene]'));
       const walkers = root.querySelector('[data-tour-walkers]');
       const walkerElements = Array.from(root.querySelectorAll('[data-tour-walkers] .exhibition-tour__walker'));
@@ -164,6 +185,11 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       let moving = false;
       let dialogueComplete = false;
       let leaving = false;
+      let disposed = false;
+      let readyImageCount = 0;
+      let imagesPrepared = false;
+      let imagePreparationError = null;
+      let startRequested = false;
 
       const later = (callback, delay) => {
         const timer = window.setTimeout(callback, delay);
@@ -177,6 +203,104 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       const setViewerMode = (isViewing) => document.body.classList.toggle('is-exhibition-viewing', isViewing);
       const islander = (id) => data.islanders[id];
       const normalizePair = (ids) => [...ids].sort().join('|');
+      const updateLoadingStatus = (message) => {
+        if (loadingStatus instanceof HTMLElement) loadingStatus.textContent = message;
+      };
+      const requestLoadingIslandReveal = () => {
+        if (!(loadingScreen instanceof HTMLElement)) return;
+        const loadingIsland = loadingScreen.querySelector('.exhibition-tour__loading-island');
+        if (!(loadingIsland instanceof HTMLElement)) return;
+        loadingIsland.dataset.revealRequested = 'true';
+        loadingIsland.dispatchEvent(new CustomEvent('exhibition-loading:reveal'));
+      };
+      const showLoading = () => {
+        if (!(loadingScreen instanceof HTMLElement)) return;
+        loadingScreen.hidden = false;
+        loadingScreen.dataset.state = 'loading';
+        delete loadingScreen.dataset.revealRequested;
+        loadingScreen.querySelector('.exhibition-tour__loading-island')?.removeAttribute('data-reveal-requested');
+        loadingScreen.setAttribute('aria-busy', 'true');
+        if (loadingActions instanceof HTMLElement) loadingActions.hidden = true;
+        updateLoadingStatus(`正在挂画 ${readyImageCount} / ${scenes.length}`);
+      };
+      const hideLoading = () => {
+        if (!(loadingScreen instanceof HTMLElement)) return;
+        if (reducedMotion) {
+          loadingScreen.hidden = true;
+          loadingScreen.setAttribute('aria-busy', 'false');
+          return;
+        }
+        loadingScreen.dataset.state = 'revealing';
+        loadingScreen.dataset.revealRequested = 'true';
+        loadingScreen.setAttribute('aria-busy', 'false');
+        requestLoadingIslandReveal();
+      };
+      const showLoadingError = () => {
+        if (!(loadingScreen instanceof HTMLElement)) return;
+        showLoading();
+        loadingScreen.dataset.state = 'error';
+        loadingScreen.setAttribute('aria-busy', 'false');
+        updateLoadingStatus('有一幅作品没有挂好，请重新布展或先返回展厅。');
+        if (loadingActions instanceof HTMLElement) loadingActions.hidden = false;
+        if (loadingRetry instanceof HTMLButtonElement) loadingRetry.focus();
+      };
+      const decodeImage = async (image) => {
+        if (typeof image.decode === 'function') await image.decode();
+      };
+      const imagePreparationTimeout = 15_000;
+      const waitForImage = async (image) => {
+        image.loading = 'eager';
+        await new Promise((resolve, reject) => {
+          let settled = false;
+          const cleanup = () => {
+            window.clearTimeout(timeout);
+            image.removeEventListener('load', onLoad);
+            image.removeEventListener('error', onError);
+          };
+          const settle = (callback, value) => {
+            if (settled) return;
+            settled = true;
+            cleanup();
+            callback(value);
+          };
+          const fail = () => settle(reject, new Error(`Unable to load ${image.currentSrc || image.src}`));
+          const onLoad = () => {
+            decodeImage(image).then(
+              () => settle(resolve),
+              (error) => settle(reject, error),
+            );
+          };
+          const onError = () => fail();
+          image.addEventListener('load', onLoad, { once: true });
+          image.addEventListener('error', onError, { once: true });
+          const timeout = window.setTimeout(() => {
+            fail();
+          }, imagePreparationTimeout);
+          if (image.complete) {
+            if (image.naturalWidth) onLoad();
+            else fail();
+          }
+        });
+      };
+      const tourImages = scenes
+        .map((scene) => scene.querySelector('img'))
+        .filter((image) => image instanceof HTMLImageElement);
+      const prepareImages = Promise.all(tourImages.map(async (image) => {
+        await waitForImage(image);
+        if (disposed || imagePreparationError) return;
+        readyImageCount += 1;
+        updateLoadingStatus(`正在挂画 ${readyImageCount} / ${tourImages.length}`);
+      })).then(() => {
+        if (disposed) return;
+        imagesPrepared = true;
+      }).catch((error) => {
+        if (disposed) return;
+        imagePreparationError = error;
+        throw error;
+      });
+      // Start requests immediately, even when a direct visitor still needs to choose companions.
+      // The catch is intentionally handled here so a later choice can surface the same failure state.
+      prepareImages.catch(() => {});
 
       const updateWalkers = () => {
         selected.forEach((id, index) => {
@@ -391,6 +515,28 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         }
       };
 
+      const requestTourStart = (selection) => {
+        if (startRequested || selection.length !== 2 || !selection.every((id) => islander(id))) return;
+        startRequested = true;
+        showLoading();
+        const launch = () => {
+          if (disposed) return;
+          if (imagePreparationError) {
+            showLoadingError();
+            return;
+          }
+          startTour(selection);
+          hideLoading();
+        };
+        if (imagesPrepared || imagePreparationError) {
+          launch();
+          return;
+        }
+        prepareImages.then(launch).catch(() => {
+          if (!disposed) showLoadingError();
+        });
+      };
+
       const openPicker = (reset = false) => {
         if (!(pickerModal instanceof HTMLDialogElement)) return;
         pickerModal.dispatchEvent(new CustomEvent('islander-picker:open', { detail: { reset } }));
@@ -398,7 +544,7 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
 
       pickerModal?.addEventListener('islander-picker:confirm', (event) => {
         const selection = event instanceof CustomEvent ? event.detail?.selected : null;
-        if (Array.isArray(selection)) startTour(selection);
+        if (Array.isArray(selection)) requestTourStart(selection);
       }, { signal: abortController.signal });
       pickerModal?.addEventListener('islander-picker:cancel', () => {
         if (viewer.hidden && ending.hidden) window.location.assign('/exhibitions/');
@@ -425,7 +571,23 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         delete root.dataset.departing;
         selected = [];
         current = 0;
+        startRequested = false;
         openPicker(true);
+      }, { signal: abortController.signal });
+      loadingRetry?.addEventListener('click', () => window.location.reload(), { signal: abortController.signal });
+      loadingExit?.addEventListener('click', (event) => {
+        if (!(loadingExit instanceof HTMLAnchorElement) || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        window.location.assign(loadingExit.href);
+      }, { signal: abortController.signal });
+      loadingScreen?.addEventListener('exhibition-loading:mounted', () => {
+        if (loadingScreen instanceof HTMLElement && loadingScreen.dataset.revealRequested === 'true') {
+          requestLoadingIslandReveal();
+        }
+      }, { signal: abortController.signal });
+      loadingScreen?.addEventListener('exhibition-loading:revealed', () => {
+        if (!(loadingScreen instanceof HTMLElement) || disposed || loadingScreen.dataset.state !== 'revealing') return;
+        loadingScreen.hidden = true;
       }, { signal: abortController.signal });
       document.addEventListener('keydown', (event) => {
         if (viewer.hidden || event.altKey || event.ctrlKey || event.metaKey) return;
@@ -446,11 +608,12 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         const url = new URL(window.location.href);
         url.searchParams.delete('companions');
         window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
-        startTour(companions);
+        requestTourStart(companions);
       } else {
         window.requestAnimationFrame(() => openPicker());
       }
       document.addEventListener('astro:before-swap', () => {
+        disposed = true;
         clearTimers();
         abortController.abort();
         setViewerMode(false);
