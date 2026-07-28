@@ -1,0 +1,57 @@
+src/generated/responsive-images.json
+  s_565605e98ee719::t_41a38d0807c0af 369,371,374-375,378-382,385-386,389-393,396-397,400-404,407-408,411-413,415,418-419,422,1202-1249
+  s_565605e98ee719::t_0962fc5dba8be3 366-368
+  s_565605e98ee719::t_b99495440a4c00 370
+  s_565605e98ee719::t_a9c17c3e00e952 372-373
+  s_565605e98ee719::t_b535dbac49c104 376-377
+  s_565605e98ee719::t_74274538b5ae89 383-384
+  s_565605e98ee719::t_9dedfa8192ba0f 387-388
+  s_565605e98ee719::t_eecbc047c58881 394-395
+  s_565605e98ee719::t_056aacd4e9902b 398-399
+  s_565605e98ee719::t_e9d793ce667315 405-406
+  s_565605e98ee719::t_902d4e25033bd2 409-410
+  s_565605e98ee719::t_04fefcf7dd1adf 414
+  s_565605e98ee719::t_373fad49d94f5b 416-417
+  s_565605e98ee719::t_fa5ada9601c59d 420-421
+  s_565605e98ee719::t_5208b3ee7e667e 423-425
+  s_565605e98ee719::t_9ac9e81b1204ec 1200-1201
+src/content/posts/a-small-exhibition-for-wandering.md
+  s_565605e98ee719::t_0c9f313215bdf2 2-3,12,16,18,20,24,28,30,32,36,38
+  s_565605e98ee719::t_821a5f86fd0c26 1,4-11,13,15,17,19,21,23,25-27,29,31,33,35,37,39,41
+  s_565605e98ee719::t_b1fd1ea4f79fed 14
+  s_565605e98ee719::t_6facedfbf3d0f6 22
+  s_565605e98ee719::t_f9d4e6f9118b15 34
+  s_565605e98ee719::t_873a0877b17e34 40
+  s_565605e98ee719::t_266d92567acb66 42-44
+src/content/photographs/first-empty-room-07.md
+  s_565605e98ee719::t_2625142b13df09 4-5
+src/pages/rss.xml.ts
+  s_9e24c50f469077::t_15a5bccc98a4fc 4-9,22-24,26-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "eb2dd801c310886c22d65e2f1a6a92e24f7ab07e",
+  "prompts": {},
+  "logical_commit_id": "eb2dd801c310886c22d65e2f1a6a92e24f7ab07e",
+  "sessions": {
+    "s_565605e98ee719": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa8a7-6598-77e1-920e-4887627edc5c",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 116,
+      "total_deletions": 72
+    },
+    "s_9e24c50f469077": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa8bb-b047-7bc2-a456-c88250543eef",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
