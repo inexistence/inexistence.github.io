@@ -1,0 +1,22 @@
+src/components/ExhibitionLoading.tsx
+  s_dba4bec0c00e21::t_28c7d03e7d6408 1-52
+src/styles/exhibitions.css
+  s_dba4bec0c00e21::t_b0de21b8dd25ef 289-315,578-582
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "40e6c7b4560505fd138b201d12fde3ec93e147e9",
+  "prompts": {},
+  "logical_commit_id": "40e6c7b4560505fd138b201d12fde3ec93e147e9",
+  "sessions": {
+    "s_dba4bec0c00e21": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa748-78e9-79e3-98e6-bfbd06dba745",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
