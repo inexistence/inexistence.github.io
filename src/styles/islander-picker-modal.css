@@ -81,6 +81,9 @@
 .islander-picker {
   position: relative;
   display: grid;
+  grid-template-rows: 92px auto auto;
+  align-content: center;
+  row-gap: 6px;
   min-width: 0;
   padding: 9px 8px 8px;
   border: 2px solid transparent;
@@ -98,15 +101,19 @@
 .islander-picker:active:not(:disabled) { transform: translateY(1px) scale(.98); box-shadow: 0 2px 0 rgba(114, 84, 58, .12); }
 .islander-picker:disabled { cursor: not-allowed; opacity: .46; }
 .islander-picker.is-selected { border-color: var(--exhibit-teal, #278f85); background: #fffdf4; box-shadow: 0 6px 0 rgba(39, 143, 133, .25); }
-.islander-picker img {
-  width: min(100%, 76px);
+.islander-picker__avatar {
+  display: grid;
   height: 92px;
-  margin-inline: auto;
-  object-fit: contain;
-  object-position: center bottom;
+  place-items: center;
 }
-.islander-picker span { margin-top: 5px; font-family: 'Nunito', var(--site-font-stack); font-weight: 900; }
-.islander-picker small { overflow: hidden; margin-top: 2px; color: var(--island-brown-soft); font-size: .68rem; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
+.islander-picker__avatar img {
+  width: min(100%, 76px);
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.islander-picker > span:not(.islander-picker__avatar) { font-family: 'Nunito', var(--site-font-stack); font-weight: 900; }
+.islander-picker small { overflow: hidden; color: var(--island-brown-soft); font-size: .68rem; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
 .islander-picker b { position: absolute; top: 8px; right: 8px; display: grid; width: 21px; aspect-ratio: 1; place-items: center; border-radius: 50%; color: #fff; background: var(--exhibit-teal, #278f85); font-size: .72rem; opacity: 0; transform: scale(.6); transition: transform 160ms cubic-bezier(.22, 1, .36, 1), opacity 160ms ease; }
 .islander-picker.is-selected b { opacity: 1; transform: scale(1); }
 
@@ -135,10 +142,10 @@
   .islander-picker-modal__surface { padding: 52px 14px 16px; }
   .islander-picker-modal__close { top: 11px; right: 12px; }
   .islander-picker-modal__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .islander-picker { grid-template-columns: 72px minmax(0, 1fr); column-gap: 11px; align-items: center; padding: 10px; text-align: left; }
-  .islander-picker img { grid-row: 1 / span 2; width: 64px; height: 64px; }
-  .islander-picker span { margin: 0; }
-  .islander-picker small { margin: 0; white-space: normal; }
+  .islander-picker { grid-template-rows: auto auto; grid-template-columns: 72px minmax(0, 1fr); column-gap: 11px; row-gap: 2px; align-items: center; padding: 10px; text-align: left; }
+  .islander-picker__avatar { grid-row: 1 / span 2; width: 64px; height: 64px; }
+  .islander-picker__avatar img { width: 64px; height: 64px; }
+  .islander-picker small { white-space: normal; }
 }
 
 @media (prefers-reduced-motion: reduce) {

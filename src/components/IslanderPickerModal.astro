@@ -43,7 +43,9 @@ const descriptionId = `${id}-description`;
     <div class="islander-picker-modal__grid" role="group" aria-label={`选择${selectionLimit}位同行岛民`}>
       {islanderEntries.map(([islanderId, islander]) => (
         <button class="islander-picker" type="button" data-islander-picker={islanderId} aria-pressed="false">
-          <img src={islander.avatar} alt="" width="96" height="96" loading="lazy" />
+          <span class="islander-picker__avatar">
+            <img src={islander.avatar} alt="" width="96" height="96" loading="lazy" />
+          </span>
           <span>{islander.name}</span>
           <small>{islander.specialty}</small>
           <b aria-hidden="true">✓</b>
