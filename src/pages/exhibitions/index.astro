@@ -1,6 +1,7 @@
 ---
 import { Button } from 'animal-island-ui/es/components/Button/Button.js';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import IslanderPickerModal from '../../components/IslanderPickerModal.astro';
 import ResponsiveImage from '../../components/ResponsiveImage.astro';
 import '../../styles/exhibitions.css';
 import { getPublishedExhibitions } from '../../lib/exhibitions';
@@ -31,7 +32,7 @@ const exhibitions = await getPublishedExhibitions();
               <p class="eyebrow">CURRENT EXHIBITION</p>
               <h2>{exhibition.data.title}</h2>
               <p>{exhibition.data.description}</p>
-              <a class="exhibition-card__link" href={`/exhibitions/${exhibition.id}/`}>
+              <a class="exhibition-card__link" href={`/exhibitions/${exhibition.id}/`} data-exhibition-picker-trigger>
                 进入展厅 <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -51,4 +52,31 @@ const exhibitions = await getPublishedExhibitions();
       </section>
     )}
   </section>
+  <IslanderPickerModal id="exhibition-islander-picker" />
+
+  <script is:inline data-astro-rerun>
+    (() => {
+      const modal = document.querySelector('[data-islander-picker-modal="exhibition-islander-picker"]');
+      if (!(modal instanceof HTMLDialogElement)) return;
+      const controller = new AbortController();
+      let destination = '';
+
+      document.querySelectorAll('[data-exhibition-picker-trigger]').forEach((trigger) => {
+        trigger.addEventListener('click', (event) => {
+          if (!(trigger instanceof HTMLAnchorElement) || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          destination = trigger.href;
+          modal.dispatchEvent(new CustomEvent('islander-picker:open', { detail: { reset: true } }));
+        }, { signal: controller.signal });
+      });
+      modal.addEventListener('islander-picker:confirm', (event) => {
+        const selected = event instanceof CustomEvent ? event.detail?.selected : null;
+        if (!destination || !Array.isArray(selected) || selected.length !== 2) return;
+        const target = new URL(destination);
+        target.searchParams.set('companions', selected.join(','));
+        window.location.assign(`${target.pathname}${target.search}`);
+      }, { signal: controller.signal });
+      document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
+    })();
+  </script>
 </BaseLayout>

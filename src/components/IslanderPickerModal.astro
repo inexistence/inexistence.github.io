@@ -1,0 +1,133 @@
+---
+import '../styles/islander-picker-modal.css';
+import { islanders, type IslanderId } from '../lib/islanders';
+
+interface Props {
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  confirmLabel?: string;
+  selectionLimit?: number;
+}
+
+const {
+  id,
+  eyebrow = 'CHOOSE YOUR COMPANY',
+  title = '选两位岛民，一起出发。',
+  description = '还差两位同行者。',
+  confirmLabel = '带我们去看第一张',
+  selectionLimit = 2,
+} = Astro.props;
+const islanderEntries = Object.entries(islanders) as [IslanderId, typeof islanders[IslanderId]][];
+const titleId = `${id}-title`;
+const descriptionId = `${id}-description`;
+---
+
+<dialog
+  id={id}
+  class="islander-picker-modal"
+  data-islander-picker-modal={id}
+  data-selection-limit={selectionLimit}
+  autofocus
+  aria-labelledby={titleId}
+  aria-describedby={descriptionId}
+>
+  <div class="islander-picker-modal__surface">
+    <button class="islander-picker-modal__close" type="button" data-islander-picker-cancel aria-label="关闭岛民选择">×</button>
+    <div class="islander-picker-modal__heading">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 id={titleId}>{title}</h2>
+      <p id={descriptionId} data-islander-picker-note>{description}</p>
+    </div>
+    <div class="islander-picker-modal__grid" role="group" aria-label={`选择${selectionLimit}位同行岛民`}>
+      {islanderEntries.map(([islanderId, islander]) => (
+        <button class="islander-picker" type="button" data-islander-picker={islanderId} aria-pressed="false">
+          <img src={islander.avatar} alt="" width="96" height="96" loading="lazy" />
+          <span>{islander.name}</span>
+          <small>{islander.specialty}</small>
+          <b aria-hidden="true">✓</b>
+        </button>
+      ))}
+    </div>
+    <button class="islander-picker-modal__confirm" type="button" data-islander-picker-confirm disabled>
+      {confirmLabel} <span aria-hidden="true">→</span>
+    </button>
+  </div>
+</dialog>
+
+<script is:inline data-astro-rerun>
+  (() => {
+    document.querySelectorAll('[data-islander-picker-modal]').forEach((modal) => {
+      if (!(modal instanceof HTMLDialogElement) || modal.dataset.islanderPickerInitialized) return;
+      modal.dataset.islanderPickerInitialized = 'true';
+
+      const selectionLimit = Number(modal.dataset.selectionLimit || 2);
+      const buttons = Array.from(modal.querySelectorAll('[data-islander-picker]'));
+      const note = modal.querySelector('[data-islander-picker-note]');
+      const confirm = modal.querySelector('[data-islander-picker-confirm]');
+      const cancel = modal.querySelector('[data-islander-picker-cancel]');
+      const controller = new AbortController();
+      let selected = [];
+
+      const update = () => {
+        buttons.forEach((button) => {
+          if (!(button instanceof HTMLButtonElement)) return;
+          const isSelected = selected.includes(button.dataset.islanderPicker);
+          button.setAttribute('aria-pressed', String(isSelected));
+          button.classList.toggle('is-selected', isSelected);
+          button.disabled = selected.length === selectionLimit && !isSelected;
+        });
+        if (note instanceof HTMLElement) {
+          const remaining = selectionLimit - selected.length;
+          note.textContent = remaining ? `还差${remaining}位同行者。` : '两位同行者已经准备好了。';
+        }
+        if (confirm instanceof HTMLButtonElement) confirm.disabled = selected.length !== selectionLimit;
+      };
+
+      const reset = () => {
+        selected = [];
+        update();
+      };
+
+      const close = () => {
+        modal.dispatchEvent(new CustomEvent('islander-picker:cancel', { bubbles: true }));
+        modal.close();
+      };
+
+      buttons.forEach((button) => button.addEventListener('click', () => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        const islanderId = button.dataset.islanderPicker;
+        if (!islanderId) return;
+        selected = selected.includes(islanderId)
+          ? selected.filter((item) => item !== islanderId)
+          : [...selected, islanderId];
+        update();
+      }, { signal: controller.signal }));
+
+      confirm?.addEventListener('click', () => {
+        if (selected.length !== selectionLimit) return;
+        modal.dispatchEvent(new CustomEvent('islander-picker:confirm', {
+          bubbles: true,
+          detail: { selected: [...selected] },
+        }));
+        modal.close();
+      }, { signal: controller.signal });
+
+      cancel?.addEventListener('click', close, { signal: controller.signal });
+      modal.addEventListener('cancel', () => {
+        modal.dispatchEvent(new CustomEvent('islander-picker:cancel', { bubbles: true }));
+      }, { signal: controller.signal });
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) close();
+      }, { signal: controller.signal });
+      modal.addEventListener('islander-picker:open', (event) => {
+        if (event instanceof CustomEvent && event.detail?.reset) reset();
+        if (!modal.open) modal.showModal();
+      }, { signal: controller.signal });
+
+      update();
+      document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
+    });
+  })();
+</script>

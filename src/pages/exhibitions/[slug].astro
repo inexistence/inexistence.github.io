@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import IslanderPickerModal from '../../components/IslanderPickerModal.astro';
 import ResponsiveImage from '../../components/ResponsiveImage.astro';
 import responsiveImageManifest from '../../generated/responsive-images.json';
 import '../../styles/exhibitions.css';
@@ -14,7 +15,6 @@ export async function getStaticPaths() {
 const exhibition = await getExhibitionById(Astro.params.slug ?? '');
 if (!exhibition) throw new Error(`Unknown exhibition: ${Astro.params.slug}`);
 const photographs = await getExhibitionPhotos(exhibition.id);
-const islanderEntries = Object.entries(islanders) as [IslanderId, typeof islanders[IslanderId]][];
 const imageEntries = responsiveImageManifest.images as Record<string, { width: number; height: number }>;
 const photoAspect = (src: string) => {
   const image = imageEntries[src];
@@ -32,30 +32,7 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
 
 <BaseLayout title={exhibition.data.title} description={exhibition.data.description} image={exhibition.data.cover} bodyClass="exhibition-tour-page">
   <section class="exhibition-tour" data-exhibition-tour aria-label="选择同行岛民">
-    <div class="exhibition-tour__chooser" data-tour-chooser>
-      <a class="exhibition-tour__back" href="/exhibitions/">← 返回岛屿展厅</a>
-
-      <div class="exhibition-tour__selection" aria-describedby="tour-selection-note">
-        <div>
-          <p class="eyebrow">CHOOSE YOUR COMPANY</p>
-          <h2>选两位岛民，一起出发。</h2>
-          <p id="tour-selection-note" data-selection-note>还差两位同行者。</p>
-        </div>
-        <div class="exhibition-tour__islander-grid" role="group" aria-label="选择两位同行岛民">
-          {islanderEntries.map(([id, islander]) => (
-            <button class="islander-picker" type="button" data-islander-picker={id} aria-pressed="false">
-              <img src={islander.avatar} alt="" width="96" height="96" loading="lazy" />
-              <span>{islander.name}</span>
-              <small>{islander.specialty}</small>
-              <b aria-hidden="true">✓</b>
-            </button>
-          ))}
-        </div>
-        <button class="exhibition-tour__start" type="button" data-tour-start disabled>
-          带我们去看第一张 <span aria-hidden="true">→</span>
-        </button>
-      </div>
-    </div>
+    <IslanderPickerModal id="tour-islander-picker" />
 
     <div class="exhibition-tour__viewer" data-tour-viewer hidden>
       <div class="exhibition-tour__stage" data-tour-stage>
@@ -139,7 +116,7 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
               <details>
                 <summary>展开岛民评论</summary>
                 <ul>
-                  {islanderEntries.map(([id, islander]) => <li><strong>{islander.name}</strong>：{photo.islanderDialogue[id]}</li>)}
+                {Object.entries(islanders).map(([id, islander]) => <li><strong>{islander.name}</strong>：{photo.islanderDialogue[id as IslanderId]}</li>)}
                 </ul>
               </details>
             </figcaption>
@@ -158,20 +135,17 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       const dataNode = root.querySelector('[data-tour-data]');
       if (!(dataNode instanceof HTMLScriptElement)) return;
       const data = JSON.parse(dataNode.textContent ?? '{}');
-      const chooser = root.querySelector('[data-tour-chooser]');
+      const pickerModal = root.querySelector('[data-islander-picker-modal="tour-islander-picker"]');
       const viewer = root.querySelector('[data-tour-viewer]');
       const ending = root.querySelector('[data-tour-ending]');
       const dialogueBubbles = Array.from(root.querySelectorAll('[data-dialogue-bubble]'));
       const announcer = root.querySelector('[data-tour-announcer]');
-      const selectionNote = root.querySelector('[data-selection-note]');
-      const start = root.querySelector('[data-tour-start]');
       const previous = root.querySelector('[data-tour-previous]');
       const next = root.querySelector('[data-tour-next]');
       const position = root.querySelector('[data-tour-position]');
       const endingCopy = root.querySelector('[data-ending-copy]');
       const restart = root.querySelector('[data-tour-restart]');
       const exit = root.querySelector('[data-tour-exit]');
-      const pickerButtons = Array.from(root.querySelectorAll('[data-islander-picker]'));
       const scenes = Array.from(root.querySelectorAll('[data-scene]'));
       const walkers = root.querySelector('[data-tour-walkers]');
       const walkerElements = Array.from(root.querySelectorAll('[data-tour-walkers] .exhibition-tour__walker'));
@@ -203,19 +177,6 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       const setViewerMode = (isViewing) => document.body.classList.toggle('is-exhibition-viewing', isViewing);
       const islander = (id) => data.islanders[id];
       const normalizePair = (ids) => [...ids].sort().join('|');
-
-      const updateSelection = () => {
-        pickerButtons.forEach((button) => {
-          const id = button.dataset.islanderPicker;
-          const isSelected = selected.includes(id);
-          button.setAttribute('aria-pressed', String(isSelected));
-          button.classList.toggle('is-selected', isSelected);
-          button.disabled = selected.length === 2 && !isSelected;
-        });
-        const remaining = 2 - selected.length;
-        selectionNote.textContent = remaining ? `还差${remaining}位同行者。` : `${islander(selected[0]).name}和${islander(selected[1]).name}已经准备好了。`;
-        start.disabled = selected.length !== 2;
-      };
 
       const updateWalkers = () => {
         selected.forEach((id, index) => {
@@ -400,20 +361,13 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         walkOut(() => window.location.assign(href));
       };
 
-      pickerButtons.forEach((button) => button.addEventListener('click', () => {
-        const id = button.dataset.islanderPicker;
-        if (!id) return;
-        selected = selected.includes(id) ? selected.filter((item) => item !== id) : [...selected, id];
-        updateSelection();
-      }, { signal: abortController.signal }));
-
-      start.addEventListener('click', () => {
-        if (selected.length !== 2) return;
+      const startTour = (selection) => {
+        if (selection.length !== 2 || !selection.every((id) => islander(id))) return;
+        selected = selection;
         leaving = false;
         moving = false;
         dialogueComplete = false;
         delete root.dataset.departing;
-        chooser.hidden = true;
         viewer.hidden = false;
         setViewerMode(true);
         window.scrollTo(0, 0);
@@ -435,7 +389,19 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         } else {
           setScene(0, 0);
         }
-        if (exit instanceof HTMLAnchorElement) exit.focus();
+      };
+
+      const openPicker = (reset = false) => {
+        if (!(pickerModal instanceof HTMLDialogElement)) return;
+        pickerModal.dispatchEvent(new CustomEvent('islander-picker:open', { detail: { reset } }));
+      };
+
+      pickerModal?.addEventListener('islander-picker:confirm', (event) => {
+        const selection = event instanceof CustomEvent ? event.detail?.selected : null;
+        if (Array.isArray(selection)) startTour(selection);
+      }, { signal: abortController.signal });
+      pickerModal?.addEventListener('islander-picker:cancel', () => {
+        if (viewer.hidden && ending.hidden) window.location.assign('/exhibitions/');
       }, { signal: abortController.signal });
 
       previous.addEventListener('click', () => moveTo(current - 1), { signal: abortController.signal });
@@ -452,7 +418,6 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       restart.addEventListener('click', () => {
         clearTimers();
         ending.hidden = true;
-        chooser.hidden = false;
         setViewerMode(false);
         leaving = false;
         moving = false;
@@ -460,8 +425,7 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         delete root.dataset.departing;
         selected = [];
         current = 0;
-        updateSelection();
-        chooser.querySelector('[data-islander-picker]')?.focus();
+        openPicker(true);
       }, { signal: abortController.signal });
       document.addEventListener('keydown', (event) => {
         if (viewer.hidden || event.altKey || event.ctrlKey || event.metaKey) return;
@@ -476,7 +440,16 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         }
       }, { signal: abortController.signal });
 
-      updateSelection();
+      const companions = new URLSearchParams(window.location.search).get('companions')?.split(',') ?? [];
+      const validCompanions = companions.length === 2 && new Set(companions).size === 2 && companions.every((id) => islander(id));
+      if (validCompanions) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('companions');
+        window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+        startTour(companions);
+      } else {
+        window.requestAnimationFrame(() => openPicker());
+      }
       document.addEventListener('astro:before-swap', () => {
         clearTimers();
         abortController.abort();

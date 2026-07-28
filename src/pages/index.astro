@@ -6,6 +6,7 @@ import { Icon } from 'animal-island-ui';
 import { Tag } from 'animal-island-ui/es/components/Tag/Tag.js';
 import '../styles/home.css';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import IslanderPickerModal from '../components/IslanderPickerModal.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import { getCategorySummaries } from '../lib/category';
 import { getFeaturedExhibition } from '../lib/exhibitions';
@@ -159,12 +160,37 @@ const trailColors = ['app-yellow', 'app-pink', 'app-blue', 'app-orange', 'app-gr
         <p class="eyebrow">ISLAND EXHIBITION · NOW OPEN</p>
         <h2 id="exhibition-promo-title">{featuredExhibition.data.title}</h2>
         <p>{featuredExhibition.data.description}</p>
-        <a class="exhibition-promo__link" href={`/exhibitions/${featuredExhibition.id}/`}>
+        <a class="exhibition-promo__link" href={`/exhibitions/${featuredExhibition.id}/`} data-home-exhibition-picker-trigger>
           选两位岛民一起逛 <span aria-hidden="true">→</span>
         </a>
       </div>
     </section>
+    <IslanderPickerModal id="home-exhibition-islander-picker" />
   )}
+
+  <script is:inline data-astro-rerun>
+    (() => {
+      const modal = document.querySelector('[data-islander-picker-modal="home-exhibition-islander-picker"]');
+      const trigger = document.querySelector('[data-home-exhibition-picker-trigger]');
+      if (!(modal instanceof HTMLDialogElement) || !(trigger instanceof HTMLAnchorElement)) return;
+      const controller = new AbortController();
+
+      trigger.addEventListener('click', (event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        modal.dispatchEvent(new CustomEvent('islander-picker:open', { detail: { reset: true } }));
+        if (!modal.open) modal.showModal();
+      }, { signal: controller.signal });
+      modal.addEventListener('islander-picker:confirm', (event) => {
+        const selected = event instanceof CustomEvent ? event.detail?.selected : null;
+        if (!Array.isArray(selected) || selected.length !== 2) return;
+        const target = new URL(trigger.href);
+        target.searchParams.set('companions', selected.join(','));
+        window.location.assign(`${target.pathname}${target.search}`);
+      }, { signal: controller.signal });
+      document.addEventListener('astro:before-swap', () => controller.abort(), { once: true });
+    })();
+  </script>
 
   <script is:inline data-astro-rerun>
     (() => {

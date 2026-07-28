@@ -85,7 +85,6 @@
 }
 
 .exhibition-index__heading h1,
-.exhibition-tour__selection h2,
 .exhibition-tour__ending h2 {
   margin: 0;
   color: var(--exhibit-ink);
@@ -284,20 +283,8 @@
   --exhibit-frame-ease: cubic-bezier(.5, 0, .5, 1);
 }
 
-.exhibition-tour__chooser[hidden],
 .exhibition-tour__viewer[hidden],
 .exhibition-tour__ending[hidden] { display: none !important; }
-
-.exhibition-tour__chooser {
-  position: absolute;
-  z-index: 10;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: clamp(20px, 4vw, 56px);
-  overflow-y: auto;
-  background: linear-gradient(to bottom, #f1eee6 0 72%, #c8bbab 72% 100%);
-}
 
 .exhibition-tour__back {
   display: inline-flex;
@@ -310,78 +297,6 @@
   text-decoration: none;
 }
 
-.exhibition-tour__chooser > .exhibition-tour__back {
-  position: absolute;
-  top: clamp(18px, 3vw, 34px);
-  left: clamp(18px, 4vw, 58px);
-  margin: 0;
-}
-
-.exhibition-tour__selection {
-  display: grid;
-  gap: clamp(14px, 2vw, 22px);
-  width: min(100%, 1140px);
-  max-height: calc(100svh - clamp(40px, 8vw, 112px));
-  padding: clamp(18px, 3vw, 34px);
-  overflow-y: auto;
-  border-radius: 34px;
-  background: #dff0d9 url('/assets/animal-island-ui/content-bg.webp') center / 760px auto;
-  box-shadow: inset 0 0 0 2px rgba(114, 84, 58, .16), 0 16px 0 rgba(114, 84, 58, .1);
-}
-
-.exhibition-tour__selection h2 { font-size: clamp(2rem, 4vw, 3.35rem); }
-.exhibition-tour__selection > div > p:last-child { margin: 9px 0 0; color: var(--island-brown-soft); }
-
-.exhibition-tour__islander-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(9px, 1.5vw, 16px);
-}
-
-.islander-picker {
-  position: relative;
-  display: grid;
-  min-width: 0;
-  padding: 9px 8px 8px;
-  border: 2px solid transparent;
-  border-radius: 22px;
-  color: var(--exhibit-ink);
-  background: rgba(255, 246, 220, .72);
-  box-shadow: 0 4px 0 rgba(114, 84, 58, .1);
-  cursor: pointer;
-  font: inherit;
-  text-align: center;
-  transition: transform 180ms cubic-bezier(.25, 1, .5, 1), background-color 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-}
-
-.islander-picker:hover:not(:disabled) { transform: translateY(-4px); box-shadow: 0 8px 0 rgba(114, 84, 58, .12); }
-.islander-picker:active:not(:disabled) { transform: translateY(1px) scale(.98); box-shadow: 0 2px 0 rgba(114, 84, 58, .12); }
-.islander-picker:disabled { cursor: not-allowed; opacity: .46; }
-.islander-picker.is-selected { border-color: var(--exhibit-teal); background: #fffdf4; box-shadow: 0 6px 0 rgba(39, 143, 133, .25); }
-.islander-picker img { width: min(100%, 76px); margin-inline: auto; border-radius: 50%; }
-.islander-picker span { margin-top: 5px; font-family: 'Nunito', var(--site-font-stack); font-weight: 900; }
-.islander-picker small { overflow: hidden; margin-top: 2px; color: var(--island-brown-soft); font-size: .68rem; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
-.islander-picker b { position: absolute; top: 8px; right: 8px; display: grid; width: 21px; aspect-ratio: 1; place-items: center; border-radius: 50%; color: #fff; background: var(--exhibit-teal); font-size: .72rem; opacity: 0; transform: scale(.6); transition: transform 160ms cubic-bezier(.22, 1, .36, 1), opacity 160ms ease; }
-.islander-picker.is-selected b { opacity: 1; transform: scale(1); }
-
-.exhibition-tour__start {
-  justify-self: start;
-  padding: 15px 23px;
-  border: 0;
-  border-radius: 999px;
-  color: var(--exhibit-paper);
-  background: var(--exhibit-teal);
-  box-shadow: 0 5px 0 #176e69;
-  cursor: pointer;
-  font-family: 'Nunito', var(--site-font-stack);
-  font-size: 1rem;
-  font-weight: 900;
-  transition: transform 150ms cubic-bezier(.25, 1, .5, 1), opacity 150ms ease;
-}
-
-.exhibition-tour__start:not(:disabled):hover { transform: translateY(-2px); }
-.exhibition-tour__start:not(:disabled):active { transform: translateY(3px) scale(.985); box-shadow: 0 2px 0 #176e69; }
-.exhibition-tour__start:disabled { cursor: not-allowed; opacity: .45; }
 
 .exhibition-tour-page.is-exhibition-viewing .site-header { display: none; }
 .exhibition-tour-page.is-exhibition-viewing { overflow: hidden; }
@@ -609,27 +524,10 @@
     background-image: radial-gradient(ellipse 31% 76% at 27% 0, rgba(255, 232, 177, .24), transparent 72%), radial-gradient(ellipse 31% 76% at 73% 0, rgba(255, 232, 177, .2), transparent 72%), var(--responsive-background-exhibitions-museum-gallery-wall-v1-480, var(--responsive-background-exhibitions-museum-gallery-wall-v1-1024, url('/assets/exhibitions/museum-gallery-wall-v1.png')));
     background-size: auto, auto, 520px auto;
   }
-  .exhibitions-page .site-header,
-  .exhibition-tour-page .site-header { width: min(calc(100% - 24px), var(--shell)); padding-block: 15px; }
-  .exhibitions-page .site-mark,
-  .exhibition-tour-page .site-mark { font-size: .7rem; }
-  .exhibitions-page .site-mark__leaf,
-  .exhibition-tour-page .site-mark__leaf { width: 23px; height: 22px; }
-  .exhibitions-page .site-nav,
-  .exhibition-tour-page .site-nav { gap: 0; padding: 3px; }
-  .exhibitions-page .site-nav a,
-  .exhibition-tour-page .site-nav a { padding: 7px 8px; font-size: .7rem; }
-  .exhibitions-page .site-exhibition-link,
-  .exhibition-tour-page .site-exhibition-link { width: 35px; height: 35px; }
   .exhibition-card { grid-template-columns: 1fr; }
   .exhibition-card > picture { height: clamp(250px, 72vw, 340px); }
   .exhibition-empty { grid-template-columns: auto minmax(0, 1fr); }
   .exhibition-empty form { grid-column: 1 / -1; }
-  .exhibition-tour__islander-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .islander-picker { grid-template-columns: 72px minmax(0, 1fr); column-gap: 11px; align-items: center; padding: 10px; text-align: left; }
-  .islander-picker img { grid-row: 1 / span 2; width: 64px; }
-  .islander-picker span { margin: 0; }
-  .islander-picker small { margin: 0; white-space: normal; }
   .exhibition-tour__viewer { min-height: 100svh; height: 100svh; }
   .exhibition-tour__stage { width: 100%; height: 100%; min-height: 500px; border-radius: 0; }
   .exhibition-tour__scene-deck { top: 70px; right: 12px; bottom: 260px; left: 12px; }
