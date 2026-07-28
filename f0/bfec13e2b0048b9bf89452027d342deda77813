@@ -1,0 +1,27 @@
+src/styles/islander-picker-modal.css
+  s_b283e546d207c4::t_d892cab94bbf14 113
+  s_b283e546d207c4::t_2532f6a38f8959 85
+  s_b283e546d207c4::t_3f3692603b11d4 86,104-105,107-111,115,145-147
+  s_b283e546d207c4::t_634d686585aa08 84,116,148
+src/components/IslanderPickerModal.astro
+  s_b283e546d207c4::t_3f3692603b11d4 46-48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "f0bfec13e2b0048b9bf89452027d342deda77813",
+  "prompts": {},
+  "logical_commit_id": "f0bfec13e2b0048b9bf89452027d342deda77813",
+  "sessions": {
+    "s_b283e546d207c4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa8a1-6829-7d01-9e3d-e29356ef041e",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 27,
+      "total_deletions": 18
+    }
+  }
+}
