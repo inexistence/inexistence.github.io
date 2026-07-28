@@ -202,6 +202,8 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       let animationFrame;
       let selected = [];
       let current = 0;
+      let pathOffset = 0;
+      let galleryPitch = 0;
       let moving = false;
       let dialogueComplete = false;
       let leaving = false;
@@ -453,6 +455,18 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         const direction = target > current ? 'forward' : 'back';
         const outgoing = scenes[current];
         const incoming = scenes[target];
+        if (!reducedMotion) {
+          // Keep the repeating gallery surfaces locked to the travelling frame.
+          // All frames use one fixed pitch on the wall panorama, regardless of aspect ratio.
+          galleryPitch ||= Math.round(Math.max(
+            ...scenes.map((scene) => scene.getBoundingClientRect().width),
+          ) * 1.18);
+          pathOffset += direction === 'forward' ? -galleryPitch : galleryPitch;
+          root.style.setProperty('--exhibit-path-offset', `${pathOffset}px`);
+          root.style.setProperty('--exhibit-floor-path-offset', `${pathOffset / 1.12}px`);
+          root.style.setProperty('--exhibit-scene-travel', `${galleryPitch}px`);
+          root.style.setProperty('--exhibit-scene-travel-negative', `${-galleryPitch}px`);
+        }
         incoming.dataset.state = `incoming-${direction}`;
         incoming.setAttribute('aria-hidden', 'false');
         // Commit the off-stage position before asking the browser to animate it.
@@ -526,6 +540,12 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
       const startTour = (selection) => {
         if (selection.length !== 2 || !selection.every((id) => islander(id))) return;
         selected = selection;
+        pathOffset = 0;
+        galleryPitch = 0;
+        root.style.setProperty('--exhibit-path-offset', '0px');
+        root.style.setProperty('--exhibit-floor-path-offset', '0px');
+        root.style.setProperty('--exhibit-scene-travel', '118%');
+        root.style.setProperty('--exhibit-scene-travel-negative', '-118%');
         leaving = false;
         moving = false;
         dialogueComplete = false;
