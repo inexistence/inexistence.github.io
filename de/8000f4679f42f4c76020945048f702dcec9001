@@ -1,0 +1,50 @@
+src/styles/islander-picker-modal.css
+  s_9746c322875ac0::t_a9610366fe4079 17-18
+src/styles/post.css
+  s_9746c322875ac0::t_93a443769aa8da 408,421
+src/styles/home.css
+  s_599c6f0bc47bdf::t_f298076452c9a7 15
+src/pages/exhibitions/[slug].astro
+  s_72e5f82fc9e82b::t_eaf5ad5969d0d8 458,465,475-479
+src/styles/global.css
+  s_9746c322875ac0::t_93a443769aa8da 195,714,738
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "de8000f4679f42f4c76020945048f702dcec9001",
+  "prompts": {},
+  "logical_commit_id": "de8000f4679f42f4c76020945048f702dcec9001",
+  "sessions": {
+    "s_599c6f0bc47bdf": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa88a-f3b7-75f0-a45e-567c72496828",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 4,
+      "total_deletions": 69
+    },
+    "s_72e5f82fc9e82b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa86c-3fd5-7451-9751-61dd1817f659",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 7,
+      "total_deletions": 3
+    },
+    "s_9746c322875ac0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa896-c9f1-7cf1-b04d-038cf406bcfa",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 7,
+      "total_deletions": 51
+    }
+  }
+}
