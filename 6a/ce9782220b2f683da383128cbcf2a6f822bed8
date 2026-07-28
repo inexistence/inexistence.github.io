@@ -1,0 +1,24 @@
+src/components/IslanderPickerModal.astro
+  s_01c2aee52ae678::t_5b37fb8379e93a 1-133
+src/pages/exhibitions/[slug].astro
+  s_01c2aee52ae678::t_91ffc8b9a183c9 3,35,119,138,364-366,392-404,428,443-452
+src/pages/exhibitions/index.astro
+  s_01c2aee52ae678::t_2d0470ec5f5d3a 4,35,55-81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "6ace9782220b2f683da383128cbcf2a6f822bed8",
+  "prompts": {},
+  "logical_commit_id": "6ace9782220b2f683da383128cbcf2a6f822bed8",
+  "sessions": {
+    "s_01c2aee52ae678": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fa719-05b7-7e11-8948-bd0fc7e60203",
+        "model": "unknown"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
