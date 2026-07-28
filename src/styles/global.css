@@ -192,14 +192,11 @@ form {
 }
 
 :focus-visible {
-  outline: 3px solid var(--island-coral);
-  outline-offset: 4px;
+  outline: none;
 }
 
 /* ClientRouter moves focus here for assistive technology after navigation.
    The main landmark is page-sized, so it should not inherit the control focus ring. */
-main:focus-visible { outline: none; }
-
 .shell {
   width: min(calc(100% - 40px), var(--shell));
   margin-inline: auto;
@@ -207,23 +204,6 @@ main:focus-visible { outline: none; }
 
 .section {
   padding-block: clamp(76px, 10vw, 144px);
-}
-
-.skip-link {
-  position: fixed;
-  z-index: 1000;
-  top: 12px;
-  left: 12px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  color: var(--island-paper);
-  background: var(--island-brown);
-  transform: translateY(-150%);
-  transition: transform 180ms ease;
-}
-
-.skip-link:focus-visible {
-  transform: translateY(0);
 }
 
 .eyebrow {
@@ -731,8 +711,7 @@ main:focus-visible { outline: none; }
 }
 
 .back-to-top.is-visible.is-expanded,
-.back-to-top.is-visible:hover,
-.back-to-top.is-visible:focus-visible {
+.back-to-top.is-visible:hover {
   opacity: 1;
   transform: translateY(0) rotate(0) scale(1);
   transition-duration: 260ms, 320ms, 180ms, 0s;
@@ -756,8 +735,7 @@ main:focus-visible { outline: none; }
 }
 
 .back-to-top.is-visible.is-expanded:active,
-.back-to-top.is-visible:hover:active,
-.back-to-top.is-visible:focus-visible:active {
+.back-to-top.is-visible:hover:active {
   transform: translateY(2px) rotate(0) scale(0.98);
 }
 

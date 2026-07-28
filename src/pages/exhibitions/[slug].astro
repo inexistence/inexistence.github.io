@@ -455,15 +455,14 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         const direction = target > current ? 'forward' : 'back';
         const outgoing = scenes[current];
         const incoming = scenes[target];
+        let nextPathOffset = pathOffset;
         if (!reducedMotion) {
           // Keep the repeating gallery surfaces locked to the travelling frame.
           // All frames use one fixed pitch on the wall panorama, regardless of aspect ratio.
           galleryPitch ||= Math.round(Math.max(
             ...scenes.map((scene) => scene.getBoundingClientRect().width),
           ) * 1.18);
-          pathOffset += direction === 'forward' ? -galleryPitch : galleryPitch;
-          root.style.setProperty('--exhibit-path-offset', `${pathOffset}px`);
-          root.style.setProperty('--exhibit-floor-path-offset', `${pathOffset / 1.12}px`);
+          nextPathOffset += direction === 'forward' ? -galleryPitch : galleryPitch;
           root.style.setProperty('--exhibit-scene-travel', `${galleryPitch}px`);
           root.style.setProperty('--exhibit-scene-travel-negative', `${-galleryPitch}px`);
         }
@@ -473,6 +472,11 @@ const serializedTourData = JSON.stringify(tourData).replace(/</g, '\\u003c');
         // Without this separation, the two state changes can be coalesced into a cut.
         if (!reducedMotion) void incoming.offsetWidth;
         const beginWalk = () => {
+          if (!reducedMotion) {
+            pathOffset = nextPathOffset;
+            root.style.setProperty('--exhibit-path-offset', `${pathOffset}px`);
+            root.style.setProperty('--exhibit-floor-path-offset', `${pathOffset / 1.12}px`);
+          }
           root.dataset.walking = direction;
           animationFrame = window.requestAnimationFrame(() => {
             outgoing.dataset.state = `leaving-${direction}`;

@@ -362,11 +362,6 @@
   transform: translateY(2px);
 }
 
-.category-trail-nav__link:focus-visible {
-  outline: 3px solid var(--island-brown);
-  outline-offset: 3px;
-}
-
 .category-trail-nav__link[aria-current='page'] {
   border-color: color-mix(in oklch, var(--trail-accent) 56%, var(--island-brown));
   background: color-mix(in oklch, var(--trail-accent) 32%, var(--island-paper));

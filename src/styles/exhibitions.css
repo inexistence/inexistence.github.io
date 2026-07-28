@@ -546,7 +546,6 @@
 .exhibition-tour__ending-actions button:hover span { transform: translateX(3px); }
 .exhibition-tour__ending-actions a:hover { background: rgba(255, 249, 232, .92); transform: translateY(-1px); }
 .exhibition-tour__ending-actions button:active { box-shadow: 0 2px 0 #176e69; transform: translateY(3px); }
-.exhibition-tour__ending-actions :focus-visible { outline: 3px solid #f5c31c; outline-offset: 4px; }
 .exhibition-tour__ending-companions {
   align-self: center;
   min-width: 0;

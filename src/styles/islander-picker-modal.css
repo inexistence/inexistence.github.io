@@ -14,7 +14,8 @@
 }
 
 .islander-picker-modal::backdrop { background: rgba(37, 48, 38, .58); backdrop-filter: blur(3px); }
-.islander-picker-modal:focus-visible { outline: none; }
+.islander-picker-modal:focus-visible,
+.islander-picker-modal :focus-visible { outline: none; }
 
 .islander-picker-modal__surface {
   position: relative;

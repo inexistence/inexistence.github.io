@@ -133,12 +133,6 @@
   color: var(--island-mint-dark);
   background: color-mix(in oklch, var(--island-mint) 40%, var(--island-paper));
 }
-.rag-lab__query-option input:focus-visible + span,
-.rag-lab__control-options input:focus-visible + span,
-.rag-lab__switch input:focus-visible + span {
-  outline: 3px solid var(--island-coral);
-  outline-offset: 3px;
-}
 .rag-lab__query-text {
   position: relative;
   margin: 0 0 18px;
