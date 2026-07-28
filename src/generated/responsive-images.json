@@ -360,6 +360,69 @@
         }
       ]
     },
+    "/assets/blog-images/a-small-exhibition-for-wandering/cover.png": {
+      "width": 1672,
+      "height": 941,
+      "sourceHash": "0617cb60c47f83fe84faf8d442731f1b26f2935467809289d510f032f656e341",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.320.fa593b17f5f6.webp",
+            "bytes": 70192
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.320.84c2eb72b48a.avif",
+            "bytes": 13919
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.480.c76348de0b72.webp",
+            "bytes": 151298
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.480.9607c86f5daf.avif",
+            "bytes": 26688
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.768.655421005cc8.webp",
+            "bytes": 396008
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.768.6a4c74755abc.avif",
+            "bytes": 65702
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.1024.0fc117fe9dbc.webp",
+            "bytes": 714224
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.1024.27e1492e4cdf.avif",
+            "bytes": 120566
+          }
+        },
+        {
+          "width": 1672,
+          "webp": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.1672.36549f69777c.webp",
+            "bytes": 918932
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/a-small-exhibition-for-wandering/cover.1672.a4d9c08ff8c1.avif",
+            "bytes": 317697
+          }
+        }
+      ]
+    },
     "/assets/blog-images/chinese-webfont-subsetting/cover.png": {
       "width": 1536,
       "height": 1024,
@@ -1138,6 +1201,56 @@
         }
       ]
     },
+    "/assets/exhibitions/first-empty-room/bears-by-window.jpg": {
+      "width": 3024,
+      "height": 4032,
+      "sourceHash": "5675d93844b43e3e18d23254f2be2422652bdec0deff94be412b8f6c7baf9d20",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/bears-by-window.320.00462e6ae7bb.webp",
+            "bytes": 22366
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/bears-by-window.480.3f6c45f0d60d.webp",
+            "bytes": 39266
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/bears-by-window.768.f4620cf29b93.webp",
+            "bytes": 72690
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/bears-by-window.1024.d9229818c6c4.webp",
+            "bytes": 113342
+          }
+        },
+        {
+          "width": 1440,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/bears-by-window.1440.845c61ca286c.webp",
+            "bytes": 188978
+          }
+        },
+        {
+          "width": 3024,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/first-empty-room/bears-by-window.3024.9485b231cab9.webp",
+            "bytes": 575206
+          }
+        }
+      ]
+    },
     "/assets/exhibitions/first-empty-room/black-swan-family.jpg": {
       "width": 3024,
       "height": 4032,
@@ -1423,56 +1536,6 @@
           "avif": {
             "src": "/assets/responsive/exhibitions/first-empty-room/orange-flowers.1440.28cbaf4a038d.avif",
             "bytes": 663364
-          }
-        }
-      ]
-    },
-    "/assets/exhibitions/first-empty-room/otters-by-window.jpg": {
-      "width": 3024,
-      "height": 4032,
-      "sourceHash": "5675d93844b43e3e18d23254f2be2422652bdec0deff94be412b8f6c7baf9d20",
-      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
-      "candidates": [
-        {
-          "width": 320,
-          "webp": {
-            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.320.00462e6ae7bb.webp",
-            "bytes": 22366
-          }
-        },
-        {
-          "width": 480,
-          "webp": {
-            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.480.3f6c45f0d60d.webp",
-            "bytes": 39266
-          }
-        },
-        {
-          "width": 768,
-          "webp": {
-            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.768.f4620cf29b93.webp",
-            "bytes": 72690
-          }
-        },
-        {
-          "width": 1024,
-          "webp": {
-            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.1024.d9229818c6c4.webp",
-            "bytes": 113342
-          }
-        },
-        {
-          "width": 1440,
-          "webp": {
-            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.1440.845c61ca286c.webp",
-            "bytes": 188978
-          }
-        },
-        {
-          "width": 3024,
-          "webp": {
-            "src": "/assets/responsive/exhibitions/first-empty-room/otters-by-window.3024.9485b231cab9.webp",
-            "bytes": 575206
           }
         }
       ]

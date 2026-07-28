@@ -1,8 +1,8 @@
 ---
 exhibition: first-empty-room
 order: 7
-image: /assets/exhibitions/first-empty-room/otters-by-window.jpg
-alt: 两只深棕色水獭隔着带水滴和划痕的玻璃相望，一只背对镜头，另一只从右侧探出头部。
+image: /assets/exhibitions/first-empty-room/bears-by-window.jpg
+alt: 两只深棕色熊隔着带水滴和划痕的玻璃相望，一只背对镜头，另一只从右侧探出头部。
 dialogue:
   apollo: "隔着玻璃还看得这么专心。挺好。"
   jack: "水痕没有毁掉画面，反倒让相遇更有意思。"
