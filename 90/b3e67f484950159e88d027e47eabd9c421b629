@@ -1,0 +1,23 @@
+README.md
+  s_6c53fa59c87590::t_dfcc4b018c53f9 70,127-142,188
+AGENTS.md
+  s_6c53fa59c87590::t_7dd6b57994b23d 19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "90b3e67f484950159e88d027e47eabd9c421b629",
+  "prompts": {},
+  "logical_commit_id": "90b3e67f484950159e88d027e47eabd9c421b629",
+  "sessions": {
+    "s_6c53fa59c87590": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fad54-f1c0-73a1-8734-9514f371a305",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>",
+      "total_additions": 19
+    }
+  }
+}
