@@ -16,6 +16,7 @@ npm run preview   # 预览 dist/
 ## 内容与静态资源
 
 - 文章位于 `src/content/posts/`；遵循 `README.md` 中的 frontmatter 约定。
+- 岛屿展厅独立于文章：展览元数据位于 `src/content/exhibitions/`，作品内容位于 `src/content/photographs/`，摄影素材位于 `public/assets/exhibitions/<展览-id>/`。新增或替换作品时遵循 [`docs/exhibition-maintenance.md`](docs/exhibition-maintenance.md)，并运行 `npm run images:ensure`、`npm run check` 和 `npm run build`。
 - `public/assets/` 中的原图是可手工新增、替换和提交的站点素材。
 - `public/assets/avatars/` 是 Waline 匿名留言的岛民头像池，不生成响应式候选；保持稳定文件名。增删或替换头像时，还要在 `waline-for-blog` 的 `index.cjs` 同步 `avatarFiles`，并先部署博客静态图片、再部署 Waline 服务。细节见 [`docs/comment-maintenance.md`](docs/comment-maintenance.md)。
 - 不要手工修改 `public/assets/responsive/`：它是被忽略的 AVIF/WebP 派生图。使用 `npm run images:ensure` 生成，使用 `npm run images:verify` 校验。

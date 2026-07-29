@@ -67,6 +67,7 @@ npm run preview
 - [组件库样式维护说明](docs/animal-island-styles.md)：`animal-island-ui` CSS 裁剪与校验；
 - [前端运行时与 Hydration 维护](docs/frontend-runtime.md)：island 时机、站内导航与动效回退；
 - [RSS 订阅说明](docs/rss.md)：订阅源生成、文章收录规则与验证方式；
+- [岛屿展厅维护](docs/exhibition-maintenance.md)：摄影展内容、作品台词、图片隐私与发布检查；
 - [评论系统说明](docs/comments.md) 与 [评论系统维护手册](docs/comment-maintenance.md)：架构、跨仓库运维与安全边界。
 
 ## 评论系统
@@ -123,6 +124,22 @@ draft: true
 
 建议新文章先设置 `draft: true`。草稿不会出现在生产页面、RSS 或 sitemap 中，确认完成后将其改为 `false` 再发布。
 
+## 岛屿展厅
+
+岛屿展厅是独立于文章的互动摄影展。每期展览的元数据位于
+`src/content/exhibitions/<展览-id>.md`，作品内容位于
+`src/content/photographs/`；已发布展览必须有 8 至 12 张按 `order` 连续编号的作品。
+
+摄影作品放在 `public/assets/exhibitions/<展览-id>/`，不要与文章配图混用。请使用已移除 EXIF、GPS 和器材信息的网页导出副本；每张作品需要提供无障碍文本、十位岛民的台词，并可选配搭档对话。新增或替换作品后运行：
+
+```bash
+npm run images:ensure
+npm run check
+npm run build
+```
+
+展览的 frontmatter 模板、台词规则、图片隐私边界及完整发布流程见[岛屿展厅维护](docs/exhibition-maintenance.md)。
+
 ### 添加图片与页面素材
 
 文章封面和正文图片统一放在 `public/assets/blog-images/<文章名或主题>/` 下。例如：
@@ -168,6 +185,7 @@ npm run images:verify
 目录用途不要混用：
 
 - `blog-images/`：文章封面与正文图片，按文章名或主题分组；
+- `exhibitions/`：岛屿展厅摄影作品，按展览 ID 分组，不与文章配图混用；
 - `page-scenes/`：归档、留言板等页面专属的 Hero 与装饰场景，按页面名分组；
 - `avatars/`：Waline 匿名留言使用的公开头像池，不存放作者头像或文章图片；
 - `animal-island-ui/`：本站直接引用的组件库配套静态素材，供多个页面复用；
