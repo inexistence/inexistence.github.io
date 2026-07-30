@@ -756,6 +756,69 @@
         }
       ]
     },
+    "/assets/blog-images/peter-and-the-magic-thread/cover.png": {
+      "width": 1672,
+      "height": 941,
+      "sourceHash": "136602d26acb9595488853615a32d5a1730a79f632df0f472bae168d568cd60e",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.320.7f5f6ab6b7b2.webp",
+            "bytes": 59872
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.320.f2ae90a515b5.avif",
+            "bytes": 8082
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.480.f350f89e9a04.webp",
+            "bytes": 135224
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.480.1c240dd1b72e.avif",
+            "bytes": 19188
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.768.785e7255c63d.webp",
+            "bytes": 361036
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.768.348a0e1f6107.avif",
+            "bytes": 56657
+          }
+        },
+        {
+          "width": 1024,
+          "webp": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.1024.092f210bdc75.webp",
+            "bytes": 661308
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.1024.117af6bbaad3.avif",
+            "bytes": 100735
+          }
+        },
+        {
+          "width": 1672,
+          "webp": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.1672.78a11545d1be.webp",
+            "bytes": 1210706
+          },
+          "avif": {
+            "src": "/assets/responsive/blog-images/peter-and-the-magic-thread/cover.1672.f7932dd5952d.avif",
+            "bytes": 240322
+          }
+        }
+      ]
+    },
     "/assets/blog-images/rag-introduction/flowchart-rag-safe-input.png": {
       "width": 3840,
       "height": 635,
