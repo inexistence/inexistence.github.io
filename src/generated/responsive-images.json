@@ -1689,6 +1689,58 @@
         }
       ]
     },
+    "/assets/exhibitions/live-house-dog.png": {
+      "width": 1254,
+      "height": 1254,
+      "sourceHash": "dc5b024cc0da0f3a756a6f0b3e915f19e0ff6e6acae1331501a1d924376d7bed",
+      "pipelineHash": "276018d063277b893e19d8a11e0edb3b5cf49787390f3a27ecb5abee791a7fe5",
+      "candidates": [
+        {
+          "width": 320,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/live-house-dog.320.2537a80c24d3.webp",
+            "bytes": 36982
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/live-house-dog.320.fd493ada5bcd.avif",
+            "bytes": 10648
+          }
+        },
+        {
+          "width": 480,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/live-house-dog.480.b53c5530bc32.webp",
+            "bytes": 72526
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/live-house-dog.480.70b1e2036105.avif",
+            "bytes": 16442
+          }
+        },
+        {
+          "width": 768,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/live-house-dog.768.620228e59a2b.webp",
+            "bytes": 157412
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/live-house-dog.768.493afe9cc49f.avif",
+            "bytes": 28037
+          }
+        },
+        {
+          "width": 1254,
+          "webp": {
+            "src": "/assets/responsive/exhibitions/live-house-dog.1254.03923606639d.webp",
+            "bytes": 200484
+          },
+          "avif": {
+            "src": "/assets/responsive/exhibitions/live-house-dog.1254.8af8e515da73.avif",
+            "bytes": 47060
+          }
+        }
+      ]
+    },
     "/assets/exhibitions/museum-gallery-floor-v1.png": {
       "width": 1254,
       "height": 1254,
