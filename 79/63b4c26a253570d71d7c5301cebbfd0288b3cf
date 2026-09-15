@@ -1,0 +1,20 @@
+.well-known/assetlinks.json
+  s_90aed629007c2f::t_7b7596cbab22df 1-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "7963b4c26a253570d71d7c5301cebbfd0288b3cf",
+  "prompts": {},
+  "logical_commit_id": "7963b4c26a253570d71d7c5301cebbfd0288b3cf",
+  "sessions": {
+    "s_90aed629007c2f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a09ee3-6fa5-71a2-9cc3-579785818e4c",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Jianbin <inexistenceorz@gmail.com>"
+    }
+  }
+}
