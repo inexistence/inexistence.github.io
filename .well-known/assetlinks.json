@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.janbean.zerotaplogindemo",
+      "sha256_cert_fingerprints": [
+        "91:30:9C:21:EB:36:F8:93:80:8C:61:3E:96:B3:F8:E9:0D:CC:C3:A7:DC:17:10:3C:D2:71:D9:B7:B5:D9:B5:4B"
+      ]
+    }
+  }
+]
